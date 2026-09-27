@@ -1,0 +1,55 @@
+# whichlib — repository guide for Claude
+
+Public repository: https://github.com/josifb/whichlib (MIT). Package on npm:
+`whichlib`. MCP registry: `io.github.josifb/whichlib`.
+
+## What this is
+
+The dependency picker for coding agents. An MCP server (stdio) with three
+tools, `recommend_repos`, `compare_repos`, `trending_repos`, plus the Fresh
+Repos dashboard and the nightly snapshot jobs. One shared score
+(`whichlib/lib/score.js`) is used by the dashboard, the report and the server.
+
+## Layout
+
+```
+whichlib/            the npm package (run all npm scripts from here)
+  mcp/               server.mjs, tools.mjs, expand.mjs, telemetry.mjs, github-api.mjs, data.mjs, smoke.mjs
+  mcp/eval/          needs.json, run-eval.mjs, inspect.mjs, results/
+  lib/score.js       the score: momentum 40, maintenance 25, adoption 25, license 10
+  snapshot/src/      query, normalize, github, registry, enrich, history, run, score-report, pull-data
+  dashboard/         index.html (single file)
+  server.json        MCP registry manifest (description max 100 chars)
+telemetry/           Cloudflare Worker + D1 call counter (live)
+.github/workflows/   daily snapshot -> data branch
+RELEASING.md         release steps and what has been published
+```
+
+## Commands (from `whichlib/`)
+
+```
+npm test           unit tests, no network (85+)
+npm run mcp:smoke  start the server over stdio and call every tool live
+npm run eval       20-need recommendation eval (set GITHUB_TOKEN; ~3 min)
+npm run snapshot / enrich / score / pull-data
+```
+
+`GITHUB_TOKEN="$(gh auth token)"` gives 30 searches/min for eval runs.
+
+## Working rules that have served this project
+
+- Short plan first (kept in the private workspace repo), tests before code,
+  one browser check for UI, commit with a detailed message, push.
+- Run the eval after any change to scoring, retrieval or ranking. Report the
+  numbers honestly; do not tune constants against the 20 needs.
+- Never log to stdout in the MCP server; stdout is the protocol channel.
+- Keep the score transparent: every part and flag is returned.
+- Anything internal (plans, positioning, business) belongs in the private
+  workspace repository, not here. `docs/` and `.agents/` are git-ignored here
+  for that reason.
+
+## Releasing
+
+See RELEASING.md. Bump the version in both `whichlib/package.json` and
+`whichlib/server.json`, test, tag, `npm publish` (needs a real TTY for the
+passkey web flow), then `mcp-publisher publish`.
