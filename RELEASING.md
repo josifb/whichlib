@@ -49,6 +49,8 @@ Check: https://registry.modelcontextprotocol.io/v0/servers?search=whichlib
 ## After publishing
 
 - [ ] Update the install lines in both READMEs if anything differs from `npx -y whichlib`.
+- [x] npm: whichlib@0.1.0 published 2026-09-27.
+- [x] MCP registry: io.github.josifb/whichlib 0.1.0 published 2026-09-27 (description max 100 chars).
 - [ ] Claude Code plugin marketplace and the awesome-mcp lists (`/directory-submissions` skill has the list and a tracker).
 - [ ] Announce (`/launch` skill, uses `.agents/product-marketing.md`).
 - [ ] Four weeks later: weekly active installs and calls per install decide the team tier.
