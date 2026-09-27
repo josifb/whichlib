@@ -8,3 +8,7 @@ whichlib/data/registry-map.json
 
 # Local checkout of the data branch made by the workflow (never on a dev box, but just in case)
 data-branch/
+
+# Internal documents live in josifb/whichlib-internal; working copies stay here untracked.
+docs/
+.agents/
