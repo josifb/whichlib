@@ -3,7 +3,8 @@
  * and Node (CommonJS import). Keep this file free of imports.
  *
  * scoreRepo(repo, { starsGained7d, now }) -> { score, tier, verdict, parts, flags, weights }
- *   repo: { stars, forks, openIssues, license, createdAt, pushedAt, archived }
+ *   repo: { stars, forks, openIssues, license, createdAt, pushedAt, archived,
+ *           weeklyDownloads? (number when known from npm/PyPI, else null/absent) }
  *   starsGained7d: stars gained over the last 7 days from snapshots, or null
  *
  * See README "Score" for the definition.
@@ -19,6 +20,7 @@
   const MOMENTUM_MAX_PER_WEEK = 5000;
   const STARS_MAX = 100000;
   const FORKS_MAX = 20000;
+  const DOWNLOADS_MAX = 1000000; // weekly registry downloads
   const FRESH_DAYS = 7;
   const STALE_DAYS = 90;
   const ISSUE_RATIO_LIMIT = 0.1;
@@ -71,7 +73,18 @@
   }
 
   function adoptionScore(repo) {
-    return 0.7 * logScale(repo.stars, STARS_MAX) + 0.3 * logScale(repo.forks, FORKS_MAX);
+    const stars = logScale(repo.stars, STARS_MAX);
+    const forks = logScale(repo.forks, FORKS_MAX);
+    if (typeof repo.weeklyDownloads === 'number') {
+      return 0.5 * stars + 0.2 * forks + 0.3 * logScale(repo.weeklyDownloads, DOWNLOADS_MAX);
+    }
+    return 0.7 * stars + 0.3 * forks;
+  }
+
+  function compactNumber(n) {
+    if (n >= 1e6) return `${(n / 1e6).toFixed(1).replace(/\.0$/, '')}M`;
+    if (n >= 1e3) return `${(n / 1e3).toFixed(1).replace(/\.0$/, '')}k`;
+    return String(n);
   }
 
   function momentumPhrase(m) {
@@ -112,9 +125,10 @@
     }
     if (!repo.license) flags.push('no-license');
 
+    const downloads = typeof repo.weeklyDownloads === 'number' ? `${compactNumber(repo.weeklyDownloads)} downloads/wk, ` : '';
     const verdict = repo.archived
       ? 'Archived, avoid.'
-      : `${momentumPhrase(parts.momentum)}, ${pushPhrase(repo, now)}, ${licensePhrase(repo.license)}.`;
+      : `${momentumPhrase(parts.momentum)}, ${downloads}${pushPhrase(repo, now)}, ${licensePhrase(repo.license)}.`;
 
     return { score, tier: tierFor(score), verdict, parts, flags, weights: WEIGHTS };
   }

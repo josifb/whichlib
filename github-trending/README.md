@@ -43,10 +43,17 @@ loads it with a `<script>` tag and Node imports it as CommonJS.
 ## Snapshot job
 
 ```
-npm test           # 34 unit tests, no network
+npm test           # 51 unit tests, no network
 npm run snapshot   # 27 queries (3 periods x 9 languages), ~3 min without a token
-npm run score      # top 25 from the latest snapshot with score and verdict
+npm run enrich     # npm / PyPI packages + weekly downloads for the latest snapshot, ~1.5 min
+npm run score      # top 25 from the latest snapshot with score, downloads and verdict
 ```
+
+`enrich` adds `packages` and `weeklyDownloads` to every item of the latest
+snapshot and maintains `data/registry-map.json` (repo to package names,
+cached across days). Only JavaScript, TypeScript, Python and Jupyter repos are
+looked up, and a package counts only when its registry metadata links back to
+the repo.
 
 Set `GITHUB_TOKEN` in the environment to run it in about one minute.
 Output: `data/snapshots/YYYY-MM-DD.json` with, per period and language, the
@@ -81,6 +88,8 @@ snapshot/src/normalize.mjs    raw API item -> stored record
 snapshot/src/github.mjs       fetch with rate-limit wait-and-retry
 snapshot/src/run.mjs          CLI: periods x languages -> data/snapshots/<date>.json
 snapshot/src/history.mjs      snapshots -> per-repo star series, starsGained
+snapshot/src/registry.mjs     repo -> npm / PyPI package (verified by back-link) + weekly downloads
+snapshot/src/enrich.mjs       CLI: enrich the latest snapshot, maintain data/registry-map.json
 snapshot/src/score-report.mjs CLI: top repos from the latest snapshot by score
 snapshot/src/pull-data.mjs    CLI: copy snapshots from the origin/data branch
 snapshot/test/                node:test suites for the above
@@ -89,8 +98,7 @@ data/snapshots/               one JSON file per day
 
 ## Next steps
 
-1. Registry adoption: map repos to npm and PyPI packages, add weekly downloads
-   to the adoption part.
-2. MCP server with three tools: recommend by need, compare named repos,
+1. MCP server with three tools: recommend by need, compare named repos,
    trending by period and language.
-3. Publish to npm, the MCP registry and the Claude Code plugin marketplace.
+2. Publish to npm, the MCP registry and the Claude Code plugin marketplace.
+3. Later: Cargo, Go and Maven adoption; downloads in the dashboard.

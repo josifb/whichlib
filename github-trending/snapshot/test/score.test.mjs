@@ -124,3 +124,28 @@ test('verdict wording: momentum phrase, push phrase, license', () => {
   const none = scoreRepo({ ...base, pushedAt: daysAgo(2) }, { starsGained7d: 0, now: NOW });
   assert.equal(none.verdict, 'Little traction, pushed 2 days ago, MIT.');
 });
+
+test('adoption with weekly downloads: 50% stars, 20% forks, 30% downloads (max 1M)', () => {
+  const full = scoreRepo({ ...base, stars: 100000, forks: 20000, weeklyDownloads: 1000000 }, { now: NOW }).parts.adoption;
+  assert.equal(full, 1);
+  const onlyDownloads = scoreRepo({ ...base, stars: 0, forks: 0, weeklyDownloads: 1000000 }, { now: NOW }).parts.adoption;
+  assert.ok(Math.abs(onlyDownloads - 0.3) < 1e-9);
+  const zeroDownloads = scoreRepo({ ...base, stars: 100000, forks: 20000, weeklyDownloads: 0 }, { now: NOW }).parts.adoption;
+  assert.ok(Math.abs(zeroDownloads - 0.7) < 1e-9, 'known-zero downloads count against the repo');
+});
+
+test('adoption without downloads is unchanged: 70% stars, 30% forks', () => {
+  const a = scoreRepo({ ...base, stars: 100000, forks: 20000, weeklyDownloads: null }, { now: NOW }).parts.adoption;
+  assert.equal(a, 1);
+  const b = scoreRepo({ ...base, stars: 100000, forks: 0 }, { now: NOW }).parts.adoption;
+  assert.ok(Math.abs(b - 0.7) < 1e-9);
+});
+
+test('verdict names weekly downloads when known', () => {
+  const r = scoreRepo({ ...base, pushedAt: daysAgo(1), weeklyDownloads: 12345 }, { starsGained7d: 2000, now: NOW });
+  assert.equal(r.verdict, 'Rising fast, 12.3k downloads/wk, pushed 1 day ago, MIT.');
+  const big = scoreRepo({ ...base, pushedAt: daysAgo(1), weeklyDownloads: 2500000 }, { starsGained7d: 2000, now: NOW });
+  assert.equal(big.verdict, 'Rising fast, 2.5M downloads/wk, pushed 1 day ago, MIT.');
+  const small = scoreRepo({ ...base, pushedAt: daysAgo(1), weeklyDownloads: 42 }, { starsGained7d: 2000, now: NOW });
+  assert.equal(small.verdict, 'Rising fast, 42 downloads/wk, pushed 1 day ago, MIT.');
+});

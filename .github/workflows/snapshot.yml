@@ -45,20 +45,31 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run snapshot
 
+      - name: Enrich with npm / PyPI packages and weekly downloads
+        working-directory: github-trending
+        run: |
+          set -euo pipefail
+          # Reuse yesterday's repo -> package map so lookups are not repeated.
+          if [ -f ../data-branch/github-trending/data/registry-map.json ]; then
+            cp ../data-branch/github-trending/data/registry-map.json data/registry-map.json
+          fi
+          npm run enrich
+
       - name: Commit snapshot to data branch
         run: |
           set -euo pipefail
           mkdir -p data-branch/github-trending/data/snapshots
           cp github-trending/data/snapshots/*.json data-branch/github-trending/data/snapshots/
+          cp github-trending/data/registry-map.json data-branch/github-trending/data/registry-map.json
           cd data-branch
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add github-trending/data/snapshots
+          git add github-trending/data/snapshots github-trending/data/registry-map.json
           if git diff --cached --quiet; then
             echo "Nothing new to commit."
             exit 0
           fi
-          FILES=$(git diff --cached --name-only | xargs -n1 basename | tr '\n' ' ')
+          FILES=$(git diff --cached --name-only -- github-trending/data/snapshots | xargs -n1 basename | tr '\n' ' ')
           git commit -m "snapshot: ${FILES}"
           git push origin data
 

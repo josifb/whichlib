@@ -28,3 +28,12 @@ for (const name of listing) {
   copied += 1;
 }
 console.log(`data branch has ${listing.length} snapshot(s); copied ${copied} new file(s) to ${OUT_DIR}`);
+
+// The registry map (repo -> package names) is small and changes daily: always refresh it.
+try {
+  const map = git('show', 'origin/data:github-trending/data/registry-map.json');
+  await writeFile(join(ROOT, 'data', 'registry-map.json'), map);
+  console.log(`registry-map.json refreshed (${Object.keys(JSON.parse(map)).length} repos)`);
+} catch {
+  console.log('registry-map.json not on the data branch yet');
+}

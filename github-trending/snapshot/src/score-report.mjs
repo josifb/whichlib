@@ -29,14 +29,17 @@ const scored = latestRepos(snapshots)
   .slice(0, limit);
 
 const withHistory = scored.filter((s) => s.gained !== null).length;
-console.log(`Snapshot ${latest.date} | ${snapshots.length} day(s) of history | ${withHistory}/${scored.length} shown repos have 7-day history\n`);
-console.log(['Score', 'Tier'.padEnd(9), 'Stars'.padStart(7), '+7d'.padStart(6), 'Repository'.padEnd(44), 'Verdict'].join('  '));
+const withDownloads = scored.filter((s) => typeof s.repo.weeklyDownloads === 'number').length;
+const enriched = latest.enrichedAt ? `enriched ${latest.enrichedAt.slice(0, 16)}Z` : 'not enriched';
+console.log(`Snapshot ${latest.date} | ${snapshots.length} day(s) of history | ${withHistory}/${scored.length} shown have 7-day history | ${withDownloads}/${scored.length} have downloads (${enriched})\n`);
+console.log(['Score', 'Tier'.padEnd(9), 'Stars'.padStart(7), '+7d'.padStart(6), 'DL/wk'.padStart(8), 'Repository'.padEnd(44), 'Verdict'].join('  '));
 for (const s of scored) {
   console.log([
     String(s.score).padStart(5),
     s.tier.padEnd(9),
     String(s.repo.stars).padStart(7),
     (s.gained === null ? '-' : String(s.gained)).padStart(6),
+    (typeof s.repo.weeklyDownloads === 'number' ? String(s.repo.weeklyDownloads) : '-').padStart(8),
     s.repo.fullName.slice(0, 44).padEnd(44),
     s.verdict,
   ].join('  '));
