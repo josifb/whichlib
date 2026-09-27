@@ -86,8 +86,20 @@ npm test          # 16 unit tests, no network
 npm run snapshot  # about 3 minutes without a token, 1 minute with GITHUB_TOKEN
 ```
 
-See [`github-trending/README.md`](github-trending/README.md) for the Windows
-Task Scheduler command that runs it every morning.
+A GitHub Actions workflow ([`.github/workflows/snapshot.yml`](.github/workflows/snapshot.yml))
+runs the job every day at 06:17 UTC and commits the result to the `data`
+branch, so history accumulates without bloating `main`. Trigger it by hand
+from the Actions tab or with `gh workflow run snapshot`. Bring the files down
+locally with:
+
+```
+cd github-trending
+npm run pull-data  # copies new snapshots from origin/data into data/snapshots/
+npm run score      # now with real 7-day stars gained once there are 2+ days
+```
+
+A Windows Task Scheduler alternative is in
+[`github-trending/README.md`](github-trending/README.md).
 
 ## Repository layout
 

@@ -1,0 +1,71 @@
+name: snapshot
+
+# Runs the GitHub trending snapshot every morning and commits the result to
+# the `data` branch, so history accumulates without bloating `main`.
+# Pull it locally with `npm run pull-data` in github-trending/.
+
+on:
+  schedule:
+    - cron: "17 6 * * *"   # 06:17 UTC daily; off the hour to dodge the queue rush
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+
+      - name: Check out data branch
+        uses: actions/checkout@v4
+        with:
+          ref: data
+          path: data-branch
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run tests
+        working-directory: github-trending
+        run: npm test
+
+      - name: Run snapshot
+        working-directory: github-trending
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run snapshot
+
+      - name: Commit snapshot to data branch
+        run: |
+          set -euo pipefail
+          mkdir -p data-branch/github-trending/data/snapshots
+          cp github-trending/data/snapshots/*.json data-branch/github-trending/data/snapshots/
+          cd data-branch
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add github-trending/data/snapshots
+          if git diff --cached --quiet; then
+            echo "Nothing new to commit."
+            exit 0
+          fi
+          FILES=$(git diff --cached --name-only | xargs -n1 basename | tr '\n' ' ')
+          git commit -m "snapshot: ${FILES}"
+          git push origin data
+
+      - name: Score report
+        working-directory: github-trending
+        run: |
+          rm -rf data/snapshots
+          mkdir -p data
+          cp -r ../data-branch/github-trending/data/snapshots data/snapshots
+          node snapshot/src/score-report.mjs 15

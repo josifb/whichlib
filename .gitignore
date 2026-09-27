@@ -1,5 +1,9 @@
 node_modules/
 *.log
 
-# Daily snapshots grow ~1.4 MB per day; keep them out of git.
+# Daily snapshots grow ~1.4 MB per day; they live on the `data` branch,
+# written by .github/workflows/snapshot.yml. Keep them off main.
 github-trending/data/snapshots/*.json
+
+# Local checkout of the data branch made by the workflow (never on a dev box, but just in case)
+data-branch/

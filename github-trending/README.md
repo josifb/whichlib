@@ -53,9 +53,17 @@ Output: `data/snapshots/YYYY-MM-DD.json` with, per period and language, the
 total match count and the top 100 repos (name, url, description, language,
 stars, forks, open issues, license, created, pushed, archived, topics).
 
-### Run it every morning (Windows Task Scheduler)
+### Run it every morning
 
-Run once from an elevated or normal PowerShell:
+The default is the GitHub Actions workflow in `.github/workflows/snapshot.yml`
+at the repository root. It runs daily at 06:17 UTC, commits the snapshot to the
+`data` branch and prints a score report in the job log. Get the files locally:
+
+```
+npm run pull-data   # fetches origin/data and copies new snapshots into data/snapshots/
+```
+
+Alternative, if you would rather run it on this PC (Windows Task Scheduler):
 
 ```
 schtasks /Create /SC DAILY /ST 07:00 /TN "GitHub Trending Snapshot" /TR "cmd /c cd /d E:\private\github-trending && node snapshot\src\run.mjs >> data\snapshot.log 2>&1"
@@ -74,6 +82,7 @@ snapshot/src/github.mjs       fetch with rate-limit wait-and-retry
 snapshot/src/run.mjs          CLI: periods x languages -> data/snapshots/<date>.json
 snapshot/src/history.mjs      snapshots -> per-repo star series, starsGained
 snapshot/src/score-report.mjs CLI: top repos from the latest snapshot by score
+snapshot/src/pull-data.mjs    CLI: copy snapshots from the origin/data branch
 snapshot/test/                node:test suites for the above
 data/snapshots/               one JSON file per day
 ```
