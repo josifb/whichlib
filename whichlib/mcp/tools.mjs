@@ -164,7 +164,7 @@ export function formatResult(result) {
       r.language, r.license ? r.license.toUpperCase() : 'no license',
     ].filter(Boolean).join(' · ');
     const head = typeof r.fit === 'number'
-      ? `fit ${r.fit} (${r.tier} ${r.score}, relevance ${r.relevanceRank === null ? 'stars-only' : `#${r.relevanceRank}`})`
+      ? `fit ${r.fit} (${r.tier} ${r.score}, relevance ${r.relevanceRank !== null ? `#${r.relevanceRank}` : r.sources?.includes('topic') ? 'topic' : 'stars-only'})`
       : `${r.tier} ${r.score}`;
     lines.push(`${i + 1}. ${r.fullName} — ${head} — ${bits}`);
     if (r.description) lines.push(`   ${r.description.length > 140 ? `${r.description.slice(0, 137)}...` : r.description}`);

@@ -207,3 +207,14 @@ test('recommend: a topic-only candidate that names the subject only in its tags 
   assert.equal(by['r/vision-tools'].relevance, 0.563);
   assert.equal(r.repos[0].fullName, 'p/pillow');
 });
+
+test('formatResult: labels the relevance source as #rank, topic or stars-only', async () => {
+  const ranked = rawItem('a/ranked', 100, { description: 'PDF parsing library' });
+  const tagged = rawItem('b/tagged', 100, { description: 'PDF parsing library' });
+  const popular = rawItem('c/popular', 100, { description: 'PDF parsing library' });
+  const { tools } = fakes({ relevanceItems: [ranked], items: [popular], topicItems: [tagged] });
+  const text = formatResult(await tools.recommend({ need: 'pdf parser', limit: 3 }));
+  assert.match(text, /a\/ranked — fit \d+ \(\w+ \d+, relevance #1\)/);
+  assert.match(text, /b\/tagged — fit \d+ \(\w+ \d+, relevance topic\)/);
+  assert.match(text, /c\/popular — fit \d+ \(\w+ \d+, relevance stars-only\)/);
+});
