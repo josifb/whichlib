@@ -1,0 +1,63 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { fetchSearch, paceDelayMs } from '../src/github.mjs';
+
+function response(status, body, headers = {}) {
+  return {
+    ok: status >= 200 && status < 300,
+    status,
+    headers: { get: (k) => headers[k.toLowerCase()] ?? null },
+    json: async () => body,
+    text: async () => JSON.stringify(body),
+  };
+}
+
+test('fetchSearch: returns items and totalCount, sends auth header when token given', async () => {
+  const calls = [];
+  const fetchImpl = async (url, init) => {
+    calls.push({ url, init });
+    return response(200, { total_count: 2, items: [{ id: 1 }, { id: 2 }] });
+  };
+  const out = await fetchSearch('https://api.github.com/x', { token: 'abc', fetchImpl, sleep: async () => {} });
+  assert.deepEqual(out, { items: [{ id: 1 }, { id: 2 }], totalCount: 2 });
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].init.headers.Authorization, 'Bearer abc');
+  assert.equal(calls[0].init.headers.Accept, 'application/vnd.github+json');
+  assert.ok(calls[0].init.headers['User-Agent']);
+});
+
+test('fetchSearch: no Authorization header without a token', async () => {
+  let seen;
+  const fetchImpl = async (_url, init) => { seen = init; return response(200, { total_count: 0, items: [] }); };
+  await fetchSearch('https://api.github.com/x', { fetchImpl, sleep: async () => {} });
+  assert.equal('Authorization' in seen.headers, false);
+});
+
+test('fetchSearch: on rate limit, waits until reset and retries once', async () => {
+  const resetAt = Math.floor(Date.now() / 1000) + 5;
+  let n = 0;
+  const slept = [];
+  const fetchImpl = async () => {
+    n += 1;
+    if (n === 1) return response(403, { message: 'rate limited' }, { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': String(resetAt) });
+    return response(200, { total_count: 1, items: [{ id: 9 }] });
+  };
+  const out = await fetchSearch('https://api.github.com/x', { fetchImpl, sleep: async (ms) => { slept.push(ms); } });
+  assert.equal(n, 2);
+  assert.equal(out.items[0].id, 9);
+  assert.equal(slept.length, 1);
+  assert.ok(slept[0] > 0 && slept[0] <= 7000, `slept ${slept[0]}ms`);
+});
+
+test('fetchSearch: non-rate-limit error throws with status and message', async () => {
+  const fetchImpl = async () => response(422, { message: 'Validation Failed' });
+  await assert.rejects(
+    fetchSearch('https://api.github.com/x', { fetchImpl, sleep: async () => {} }),
+    /422.*Validation Failed/
+  );
+});
+
+test('paceDelayMs: slower without a token', () => {
+  assert.equal(paceDelayMs(false), 6500);
+  assert.equal(paceDelayMs(true), 2100);
+});

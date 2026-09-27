@@ -1,0 +1,5 @@
+node_modules/
+*.log
+
+# Daily snapshots grow ~1.4 MB per day; keep them out of git.
+github-trending/data/snapshots/*.json

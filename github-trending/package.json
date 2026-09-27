@@ -1,0 +1,14 @@
+{
+  "name": "github-trending",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Daily dashboard of the most-starred new GitHub repos, plus a nightly snapshot job.",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"snapshot/test/**/*.test.mjs\"",
+    "snapshot": "node snapshot/src/run.mjs"
+  }
+}
