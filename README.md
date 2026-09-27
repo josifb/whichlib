@@ -60,16 +60,18 @@ the two can never disagree.
 | Part | Weight | Signal |
 |---|---|---|
 | Momentum | 40% | Stars gained over the last 7 days from our snapshots. Without history, stars per day since creation times 7, with age floored at one day. Log scale: 50 a week is already good, 5,000 is the max. |
-| Maintenance | 25% | Days since last push: full marks up to 7 days, zero at 90, linear between. Minus 0.2 when open issues exceed a tenth of the stars. |
+| Maintenance | 25% | Days since last push: full marks up to 30 days, zero at 365, linear between. Minus 0.2 when open issues exceed a tenth of the stars. Stability guard: a repo with 10k+ stars or 100k+ weekly downloads, pushed within the last year and not archived, never drops below 0.5 here. Heavy use plus silence is stability, not decay. |
 | Adoption | 25% | With weekly downloads known: 50% stars (max 100k), 20% forks (max 20k), 30% downloads (max 1M). Otherwise 70% stars, 30% forks. All log scale. |
 | License | 10% | Permissive 1.0, weak copyleft 0.75, strong copyleft 0.5, unrecognised 0.5, none 0. |
 
-Tiers: **Strong** 75 and above, **Promising** 50, **Watch** 25, **Avoid**
-below 25. Archived repos are capped at 20 and get the verdict "Archived,
-avoid." A missing license is always named in the verdict.
+Tiers: **Strong** 75 and above, **Solid** 50, **Watch** 25, **Avoid**
+below 25. The names are chosen to read correctly for a six-week-old project
+and a six-year-old library alike. Archived repos are capped at 20 and get the
+verdict "Archived, avoid." A missing license is always named in the verdict.
 
-Verdicts read like "Rising fast, 10.6k downloads/wk, pushed 2 days ago, MIT"
-or "Slow growth, no push in 60 days, GPL-3.0".
+Verdicts read like "Rising fast, 10.6k downloads/wk, pushed 2 days ago, MIT",
+"Gaining steadily, 145M downloads/wk, quiet for 6 months, widely used,
+BSD-3-CLAUSE" or "Slow growth, no push in 60 days, GPL-3.0".
 
 ### Downloads
 
@@ -143,9 +145,11 @@ cd whichlib
 npm run mcp:smoke   # starts the server over stdio, lists tools, calls each one
 ```
 
-Known bias: maintenance drops to zero at 90 days without a push, so a stable,
-finished library scores lower than an active one. Release cadence will soften
-this later.
+Known bias, reduced: maintenance used to drop to zero at 90 days without a
+push, which put httpx (145M weekly downloads, six quiet months) in "Watch".
+The curve now runs to a year and the stability guard keeps widely used repos
+at 0.5 or better; httpx lands in "Solid". Release cadence from the GitHub
+releases API is the proper long-term signal and is still to come.
 
 ### Recommendation eval
 

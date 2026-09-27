@@ -21,10 +21,18 @@
   const STARS_MAX = 100000;
   const FORKS_MAX = 20000;
   const DOWNLOADS_MAX = 1000000; // weekly registry downloads
-  const FRESH_DAYS = 7;
-  const STALE_DAYS = 90;
+  // Maintenance: full marks for a push within a month, zero after a year. Mature
+  // libraries release quarterly or less, so a 90-day cliff punished exactly the
+  // boring, reliable options the score should favour.
+  const FRESH_DAYS = 30;
+  const STALE_DAYS = 365;
   const ISSUE_RATIO_LIMIT = 0.1;
   const ISSUE_PENALTY = 0.2;
+  // Stability guard: heavy use plus silence is stability, not decay. Widely used
+  // repos pushed within the last year never drop below this maintenance value.
+  const STABLE_STARS = 10000;
+  const STABLE_DOWNLOADS = 100000;
+  const STABLE_FLOOR = 0.5;
   const ARCHIVED_CAP = 20;
   const MIN_AGE_DAYS = 1; // never extrapolate less than a day of evidence into a week
   const DAY_MS = 86400000;
@@ -49,11 +57,19 @@
     return 0.5; // "other", NOASSERTION, or something we do not recognise
   }
 
+  // Tier names must read correctly for a six-week-old project and a six-year-old
+  // library alike, so no "promising".
   function tierFor(score) {
     if (score >= 75) return 'Strong';
-    if (score >= 50) return 'Promising';
+    if (score >= 50) return 'Solid';
     if (score >= 25) return 'Watch';
     return 'Avoid';
+  }
+
+  const daysSincePush = (repo, now) => (now - Date.parse(repo.pushedAt)) / DAY_MS;
+
+  function isWidelyUsed(repo) {
+    return (repo.stars || 0) >= STABLE_STARS || (typeof repo.weeklyDownloads === 'number' && repo.weeklyDownloads >= STABLE_DOWNLOADS);
   }
 
   function momentumScore(repo, starsGained7d, now) {
@@ -63,13 +79,15 @@
   }
 
   function maintenanceScore(repo, now) {
-    const days = (now - Date.parse(repo.pushedAt)) / DAY_MS;
+    const days = daysSincePush(repo, now);
     let fresh;
     if (days <= FRESH_DAYS) fresh = 1;
     else if (days >= STALE_DAYS) fresh = 0;
     else fresh = 1 - (days - FRESH_DAYS) / (STALE_DAYS - FRESH_DAYS);
     const ratio = (repo.openIssues || 0) / Math.max(1, repo.stars || 0);
-    return clamp01(fresh - (ratio > ISSUE_RATIO_LIMIT ? ISSUE_PENALTY : 0));
+    const value = clamp01(fresh - (ratio > ISSUE_RATIO_LIMIT ? ISSUE_PENALTY : 0));
+    if (!repo.archived && days <= STALE_DAYS && isWidelyUsed(repo)) return Math.max(value, STABLE_FLOOR);
+    return value;
   }
 
   function adoptionScore(repo) {
@@ -95,9 +113,13 @@
   }
 
   function pushPhrase(repo, now) {
-    const days = Math.floor((now - Date.parse(repo.pushedAt)) / DAY_MS);
+    const days = Math.floor(daysSincePush(repo, now));
     if (days < 1) return 'pushed today';
     if (days <= 30) return `pushed ${days} day${days === 1 ? '' : 's'} ago`;
+    if (days <= STALE_DAYS && isWidelyUsed(repo)) {
+      const months = Math.max(1, Math.round(days / 30.44));
+      return `quiet for ${months} month${months === 1 ? '' : 's'}, widely used`;
+    }
     return `no push in ${days} days`;
   }
 

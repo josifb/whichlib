@@ -55,11 +55,34 @@ test('scoreRepo: returns score, tier, verdict, parts and flags; score equals wei
   assert.equal(typeof r.verdict, 'string');
 });
 
-test('maintenance: pushed within 7 days is 1, at 90+ days is 0, linear between', () => {
-  assert.equal(scoreRepo({ ...base, pushedAt: daysAgo(3) }, { now: NOW }).parts.maintenance, 1);
-  assert.equal(scoreRepo({ ...base, pushedAt: daysAgo(120) }, { now: NOW }).parts.maintenance, 0);
-  const mid = scoreRepo({ ...base, pushedAt: daysAgo(48.5) }, { now: NOW }).parts.maintenance;
+test('maintenance: pushed within 30 days is 1, at 365+ days is 0, linear between', () => {
+  assert.equal(scoreRepo({ ...base, pushedAt: daysAgo(20) }, { now: NOW }).parts.maintenance, 1);
+  assert.equal(scoreRepo({ ...base, pushedAt: daysAgo(400) }, { now: NOW }).parts.maintenance, 0);
+  const mid = scoreRepo({ ...base, pushedAt: daysAgo(197.5) }, { now: NOW }).parts.maintenance;
   assert.ok(Math.abs(mid - 0.5) < 0.01, `mid was ${mid}`);
+  const q = scoreRepo({ ...base, pushedAt: daysAgo(90) }, { now: NOW }).parts.maintenance;
+  assert.ok(Math.abs(q - (1 - 60 / 335)) < 1e-9, 'a quarter of silence costs less than a fifth');
+});
+
+test('stability guard: widely used repos pushed within a year never drop below 0.5 maintenance', () => {
+  // 10k+ stars, 200 days quiet: curve says 0.49, guard lifts to 0.5
+  assert.equal(scoreRepo({ ...base, stars: 20000, pushedAt: daysAgo(200) }, { now: NOW }).parts.maintenance, 0.5);
+  // 100k+ weekly downloads with few stars: same guard
+  assert.equal(scoreRepo({ ...base, stars: 500, weeklyDownloads: 200000, pushedAt: daysAgo(300) }, { now: NOW }).parts.maintenance, 0.5);
+  // beyond a year the guard no longer applies
+  assert.equal(scoreRepo({ ...base, stars: 20000, pushedAt: daysAgo(400) }, { now: NOW }).parts.maintenance, 0);
+  // small repos get no guard
+  assert.ok(scoreRepo({ ...base, stars: 1200, pushedAt: daysAgo(300) }, { now: NOW }).parts.maintenance < 0.5);
+  // the guard is a floor, not a cap: a fresh widely used repo keeps 1
+  assert.equal(scoreRepo({ ...base, stars: 20000, pushedAt: daysAgo(5) }, { now: NOW }).parts.maintenance, 1);
+});
+
+test('stability guard: httpx-like profile lands in Solid, not Watch', () => {
+  const httpx = { ...base, stars: 15514, forks: 900, openIssues: 60, license: 'bsd-3-clause', createdAt: daysAgo(2700), pushedAt: daysAgo(182), weeklyDownloads: 145000000 };
+  const r = scoreRepo(httpx, { now: NOW });
+  assert.ok(r.score >= 50 && r.score < 75, `score was ${r.score}`);
+  assert.equal(r.tier, 'Solid');
+  assert.equal(r.verdict, 'Gaining steadily, 145M downloads/wk, quiet for 6 months, widely used, BSD-3-CLAUSE.');
 });
 
 test('maintenance: open issues above a tenth of stars costs 0.2', () => {
@@ -107,8 +130,8 @@ test('no license: flagged and named in the verdict', () => {
 
 test('tierFor: boundaries', () => {
   assert.equal(tierFor(75), 'Strong');
-  assert.equal(tierFor(74), 'Promising');
-  assert.equal(tierFor(50), 'Promising');
+  assert.equal(tierFor(74), 'Solid');
+  assert.equal(tierFor(50), 'Solid');
   assert.equal(tierFor(49), 'Watch');
   assert.equal(tierFor(25), 'Watch');
   assert.equal(tierFor(24), 'Avoid');
@@ -121,6 +144,8 @@ test('verdict wording: momentum phrase, push phrase, license', () => {
   assert.equal(steady.verdict, 'Gaining steadily, pushed 12 days ago, MIT.');
   const slow = scoreRepo({ ...base, pushedAt: daysAgo(60), license: 'gpl-3.0' }, { starsGained7d: 10, now: NOW });
   assert.equal(slow.verdict, 'Slow growth, no push in 60 days, GPL-3.0.');
+  const quietButUsed = scoreRepo({ ...base, stars: 30000, pushedAt: daysAgo(45) }, { starsGained7d: 10, now: NOW });
+  assert.equal(quietButUsed.verdict, 'Slow growth, quiet for 1 month, widely used, MIT.');
   const none = scoreRepo({ ...base, pushedAt: daysAgo(2) }, { starsGained7d: 0, now: NOW });
   assert.equal(none.verdict, 'Little traction, pushed 2 days ago, MIT.');
 });

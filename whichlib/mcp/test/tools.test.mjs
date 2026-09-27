@@ -126,7 +126,7 @@ test('recommend: ranks by fit = score x relevance, so a huge repo that only matc
   assert.equal(g.relevance, 0.4);
   assert.equal(g.fit, Math.round(g.score * 0.4));
   assert.ok(g.score > r.repos[0].score, 'the giant still has the higher raw score; fit is what reorders');
-  assert.match(formatResult(r), /fit \d+ \((Strong|Promising|Watch|Avoid) \d+, relevance #1\)/);
+  assert.match(formatResult(r), /fit \d+ \((Strong|Solid|Watch|Avoid) \d+, relevance #1\)/);
   assert.match(formatResult(r), /relevance stars-only/);
 });
 
@@ -177,7 +177,7 @@ test('formatResult: readable text with tier, score, stars and verdict per repo',
   const { tools } = fakes({ items: [rawItem('a/one', 12345)] });
   const text = formatResult(await tools.trending({ period: 'month', limit: 1 }));
   assert.match(text, /a\/one/);
-  assert.match(text, /\b(Strong|Promising|Watch|Avoid)\b \d{1,3}\b/);
+  assert.match(text, /\b(Strong|Solid|Watch|Avoid)\b \d{1,3}\b/);
   assert.match(text, /12,345/);
   assert.match(text, /https:\/\/github\.com\/a\/one/);
 });
