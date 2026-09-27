@@ -1,12 +1,31 @@
 {
   "name": "whichlib",
   "version": "0.1.0",
-  "private": true,
   "description": "The dependency picker for coding agents: an MCP server that recommends, compares and scores GitHub repositories, plus a daily dashboard of the most-starred new repos.",
+  "keywords": ["mcp", "mcp-server", "model-context-protocol", "dependencies", "github", "recommendation", "claude-code", "cursor", "developer-tools"],
+  "homepage": "https://github.com/josifb/whichlib#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josifb/whichlib.git",
+    "directory": "whichlib"
+  },
+  "bugs": "https://github.com/josifb/whichlib/issues",
+  "mcpName": "io.github.josifb/whichlib",
+  "author": "Josif Todorovski",
   "license": "MIT",
   "type": "module",
   "engines": {
     "node": ">=22"
+  },
+  "files": [
+    "mcp/*.mjs",
+    "lib/",
+    "snapshot/src/",
+    "server.json",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
   },
   "bin": {
     "whichlib": "mcp/server.mjs"

@@ -2,8 +2,9 @@
 // whichlib MCP server (stdio). Three tools: recommend_repos, compare_repos,
 // trending_repos. stdout is the protocol channel: log to stderr only.
 //
-//   GITHUB_TOKEN          optional, raises GitHub rate limits
-//   FRESH_REPOS_DATA_DIR  optional, folder of daily snapshots for real momentum
+//   GITHUB_TOKEN           optional, raises GitHub rate limits
+//   FRESH_REPOS_DATA_DIR   optional, folder of daily snapshots for real momentum
+//   WHICHLIB_TELEMETRY=off or DO_NOT_TRACK=1  disable anonymous call counting
 
 import { readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
@@ -14,6 +15,7 @@ import { z } from 'zod';
 import { createGitHubClient } from './github-api.mjs';
 import { loadHistoryProvider } from './data.mjs';
 import { createTools, formatResult } from './tools.mjs';
+import { createTelemetry } from './telemetry.mjs';
 import { resolvePackages } from '../snapshot/src/registry.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
@@ -22,10 +24,12 @@ const pkg = JSON.parse(await readFile(join(here, '..', 'package.json'), 'utf8'))
 const github = createGitHubClient();
 const history = await loadHistoryProvider();
 const tools = createTools({ github, resolvePackages, history });
+const telemetry = createTelemetry({ version: pkg.version });
 
 const server = new McpServer({ name: 'whichlib', version: pkg.version });
 
-const run = (fn) => async (args) => {
+const run = (name, fn) => async (args) => {
+  telemetry.record(name); // fire-and-forget, never awaited
   try {
     const result = await fn(args);
     return { content: [{ type: 'text', text: formatResult(result) }], structuredContent: result };
@@ -44,7 +48,7 @@ server.registerTool('recommend_repos', {
     language: languageArg,
     limit: z.number().int().min(1).max(10).default(5).describe('How many recommendations to return.'),
   },
-}, run(tools.recommend));
+}, run('recommend_repos', tools.recommend));
 
 server.registerTool('compare_repos', {
   title: 'Compare repositories',
@@ -52,7 +56,7 @@ server.registerTool('compare_repos', {
   inputSchema: {
     repos: z.array(z.string().min(3).max(140)).min(2).max(10).describe('Repository names in the form owner/repo.'),
   },
-}, run(tools.compare));
+}, run('compare_repos', tools.compare));
 
 server.registerTool('trending_repos', {
   title: 'Trending repositories',
@@ -63,7 +67,7 @@ server.registerTool('trending_repos', {
     limit: z.number().int().min(1).max(100).default(20),
     withDownloads: z.boolean().default(false),
   },
-}, run(tools.trending));
+}, run('trending_repos', tools.trending));
 
 await server.connect(new StdioServerTransport());
-console.error(`whichlib MCP ${pkg.version} ready | token: ${github.hasToken ? 'yes' : 'no'} | history: ${history.days ? `${history.days} day(s), latest ${history.latestDate}` : 'none'}`);
+console.error(`whichlib MCP ${pkg.version} ready | token: ${github.hasToken ? 'yes' : 'no'} | history: ${history.days ? `${history.days} day(s), latest ${history.latestDate}` : 'none'} | anonymous call counting: ${telemetry.enabled ? 'on (set WHICHLIB_TELEMETRY=off to disable)' : 'off'}`);

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.josifb/whichlib",
+  "title": "whichlib",
+  "description": "The dependency picker for coding agents: recommends, compares and scores GitHub repositories with a transparent 0-100 score, npm/PyPI downloads and a one-line verdict.",
+  "websiteUrl": "https://github.com/josifb/whichlib",
+  "repository": {
+    "url": "https://github.com/josifb/whichlib",
+    "source": "github",
+    "subfolder": "whichlib"
+  },
+  "version": "0.1.0",
+  "packages": [
+    {
+      "registryType": "npm",
+      "registryBaseUrl": "https://registry.npmjs.org",
+      "identifier": "whichlib",
+      "version": "0.1.0",
+      "transport": {
+        "type": "stdio"
+      },
+      "environmentVariables": [
+        {
+          "name": "GITHUB_TOKEN",
+          "description": "Optional. Raises GitHub's search limit from 10 to 30 requests per minute. A fine-grained token with no permissions is enough.",
+          "isRequired": false,
+          "isSecret": true
+        },
+        {
+          "name": "WHICHLIB_TELEMETRY",
+          "description": "Optional. Set to \"off\" to disable anonymous call counting (tool name, random install id, version, platform, Node major). DO_NOT_TRACK=1 also disables it.",
+          "isRequired": false,
+          "isSecret": false
+        }
+      ]
+    }
+  ]
+}

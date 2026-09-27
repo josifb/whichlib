@@ -137,6 +137,11 @@ Environment variables, both optional:
 - `FRESH_REPOS_DATA_DIR` points at a folder of daily snapshots. The default is
   `whichlib/data/snapshots`, filled by `npm run pull-data`. With two or
   more days present, momentum uses real 7-day stars gained.
+- `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1` disables anonymous call
+  counting. What is counted: tool name, a random install id, version,
+  platform and Node major version. Never queries, repository names or
+  results. The collector is a small Cloudflare Worker in `telemetry/`; until
+  it is deployed and its URL is set in `mcp/telemetry.mjs`, counting is off.
 
 Try it without a client:
 
@@ -240,12 +245,16 @@ A Windows Task Scheduler alternative is in
 ## Repository layout
 
 ```
-whichlib/dashboard/   the app, one HTML file
+whichlib/             the npm package: MCP server, score, dashboard, jobs, eval, tests
+whichlib/dashboard/   Fresh Repos, one HTML file
 whichlib/lib/         score.js, shared by browser and Node
 whichlib/mcp/         MCP server: recommend_repos, compare_repos, trending_repos
-whichlib/snapshot/    snapshot job, enrichment, history builder, score report, tests
-docs/ideas/                  product one-pager
-docs/superpowers/            implementation plans
+whichlib/snapshot/    snapshot job, enrichment, history builder, score report
+whichlib/server.json  MCP registry manifest
+telemetry/            call counter: Cloudflare Worker + Analytics Engine
+docs/ideas/           product one-pager
+docs/superpowers/     implementation plans
+.agents/              product marketing context for the marketing skills
 ```
 
 ## Roadmap
@@ -253,11 +262,14 @@ docs/superpowers/            implementation plans
 1. Done: dashboard, nightly snapshots, transparent score with tiers and
    verdicts, npm and PyPI downloads, MCP server with recommend, compare and
    trending tools.
-2. Pick the product name, then publish to npm, the MCP registry and the
-   Claude Code plugin marketplace. Add anonymous call counting.
-3. Later: Cargo, Go and Maven adoption; release cadence in maintenance
-   (mature libraries such as Pillow score low on momentum); downloads in the
-   dashboard; grow the eval past 20 needs from real usage.
+2. Named whichlib. Package shape, `server.json` for the MCP registry and the
+   call counter are ready; remaining: deploy the counter, make the
+   repository public, `npm publish`, `mcp-publisher publish`, list in the
+   Claude Code plugin marketplace and the awesome-mcp lists.
+3. Then wait four weeks and read weekly active installs and calls per
+   install. That decides whether the team tier with policy rules gets built.
+4. Later: Cargo, Go and Maven adoption; release cadence in maintenance;
+   downloads in the dashboard; grow the eval past 20 needs from real usage.
 
 ## License
 

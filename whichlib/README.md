@@ -1,127 +1,94 @@
-# whichlib (package)
+# whichlib
 
-The npm package: the MCP server, the shared score, the Fresh Repos dashboard,
-the nightly snapshot and enrichment jobs, the recommendation eval and all
-tests. The product overview and install instructions are in the top-level
-README; this file covers the pieces and how to run them.
+The dependency picker for coding agents. Ask which library to use and get a
+scored, verified answer instead of a guess.
 
-The dashboard shows the most-starred GitHub repositories created in the last
-24 hours, 7 days and 30 days, with sorting by score, stars, stars per day,
-forks, open issues, created date, last push, language and license.
+whichlib is an MCP server with three tools. Every repository it returns
+carries a transparent 0–100 score (momentum, maintenance, adoption including
+npm and PyPI downloads, license), a tier, a one-line verdict and the full
+breakdown, so the agent can justify the pick and you can read why.
 
-## Open the dashboard
+## Install
 
-Double-click `dashboard/index.html`. It works from disk, no server needed.
-It talks directly to the GitHub Search API, which allows 10 requests per minute
-without a token. Each tab and language combination is one request and is cached
-in the browser for 60 minutes.
+Claude Code:
 
-Optional: paste a GitHub token under **Settings** to raise the limit to
-30 requests per minute. A fine-grained token with no permissions is enough.
-It is stored only in your browser's local storage.
+```
+claude mcp add whichlib -- npx -y whichlib
+```
 
-Tip: pin the file as a browser bookmark or set it as a new-tab page.
+Cursor, Windsurf and other MCP clients:
 
-## What the numbers mean
+```json
+{ "mcpServers": { "whichlib": { "command": "npx", "args": ["-y", "whichlib"] } } }
+```
 
-- **Trending** here means "created in the period, ranked by stars". This is what
-  the Search API supports. GitHub's own trending page ranks by stars gained in
-  the period, which has no API. Our daily snapshots will replace that.
-- **Rank (#)** is always the stars rank, so after sorting by another column you
-  still see where a repo stands.
-- **Stars/day** is stars divided by the repo's age in days. A rough velocity.
-- **Downloads** do not exist for repositories on GitHub, only for release
-  files. Forks are the nearest public signal.
+Requires Node 22 or newer. No account, no API key.
+
+## Tools
+
+| Tool | Ask | You get |
+|---|---|---|
+| `recommend_repos` | `need` in plain words, optional `language`, `limit` 1–10 | The best repositories for the need, ranked by fit (score × relevance), with downloads and a verdict each |
+| `compare_repos` | `repos`: 2–10 names as `owner/repo` | The repositories side by side, best first, same breakdown |
+| `trending_repos` | `period` day / week / month, optional `language`, `limit` | Most-starred repositories created in the period, scored |
+
+Example, in Claude Code: "which Python PDF parser should I use?" →
+MinerU, pdfplumber, pypdf with scores, weekly downloads and verdicts like
+"Rising fast, 26k downloads/wk, pushed 3 days ago, Apache-2.0".
 
 ## Score
 
-`lib/score.js` turns a repo record plus optional 7-day stars-gained into
-`{ score, tier, verdict, parts, flags }`. Weights: momentum 0.40,
-maintenance 0.25, adoption 0.25, license 0.10. Archived caps at 20. The full
-table is in the top-level README. The file is a plain script so the dashboard
-loads it with a `<script>` tag and Node imports it as CommonJS.
+| Part | Weight | Signal |
+|---|---|---|
+| Momentum | 40% | Stars gained over 7 days (from daily snapshots when available), else stars per day since creation. Log scale. |
+| Maintenance | 25% | Days since last push, full marks to 30 days, zero at a year. Widely used repos (10k+ stars or 100k+ weekly downloads) never drop below half. |
+| Adoption | 25% | Stars, forks and npm / PyPI weekly downloads, log scale. |
+| License | 10% | Permissive 1.0, weak copyleft 0.75, strong copyleft 0.5, none 0. |
 
-## MCP server
+Tiers: Strong ≥ 75, Solid ≥ 50, Watch ≥ 25, Avoid. Archived repos are capped
+at 20. On a 20-need eval the top recommendation is an accepted answer 75% of
+the time and the top five contain one 100% of the time; the eval and its
+reports live in the repository.
 
-```
-npm run mcp          # start the server on stdio (what an MCP client runs)
-npm run mcp:smoke    # end-to-end check against the live APIs
-npm run eval         # 20-need recommendation eval, report in mcp/eval/results/ (set GITHUB_TOKEN)
-```
+## Environment variables, all optional
 
-`mcp/server.mjs` registers `recommend_repos`, `compare_repos` and
-`trending_repos`. `mcp/tools.mjs` holds the logic with injected dependencies
-(GitHub client, registry resolver, history provider) and is unit-tested with
-fakes. Logs go to stderr only; stdout is the protocol channel. See the
-top-level README for install commands and environment variables.
+- `GITHUB_TOKEN`: raises GitHub's search limit from 10 to 30 per minute. A
+  fine-grained token with no permissions is enough. Recommend makes three
+  searches per call.
+- `FRESH_REPOS_DATA_DIR`: a folder of daily snapshots for real 7-day momentum
+  (see the repository's data branch).
+- `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1`: disables anonymous call
+  counting. What is counted: tool name, a random install id, version,
+  platform, Node major version. Never queries, repository names or results.
+  Counting is also off whenever no collector endpoint is configured.
 
-## Snapshot job
+## Source, dashboard, data
 
-```
-npm test           # 77 unit tests, no network
-npm run snapshot   # 27 queries (3 periods x 9 languages), ~3 min without a token
-npm run enrich     # npm / PyPI packages + weekly downloads for the latest snapshot, ~1.5 min
-npm run score      # top 25 from the latest snapshot with score, downloads and verdict
-```
+Repository: https://github.com/josifb/whichlib (MIT). It also holds the
+Fresh Repos dashboard (most-starred new repositories, day / week / month,
+sortable, one HTML file), the nightly snapshot and enrichment jobs, the
+recommendation eval, and 80+ unit tests.
 
-`enrich` adds `packages` and `weeklyDownloads` to every item of the latest
-snapshot and maintains `data/registry-map.json` (repo to package names,
-cached across days). Only JavaScript, TypeScript, Python and Jupyter repos are
-looked up, and a package counts only when its registry metadata links back to
-the repo.
-
-Set `GITHUB_TOKEN` in the environment to run it in about one minute.
-Output: `data/snapshots/YYYY-MM-DD.json` with, per period and language, the
-total match count and the top 100 repos (name, url, description, language,
-stars, forks, open issues, license, created, pushed, archived, topics).
-
-### Run it every morning
-
-The default is the GitHub Actions workflow in `.github/workflows/snapshot.yml`
-at the repository root. It runs daily at 06:17 UTC, commits the snapshot to the
-`data` branch and prints a score report in the job log. Get the files locally:
+Development, from the `whichlib/` folder of the repository:
 
 ```
-npm run pull-data   # fetches origin/data and copies new snapshots into data/snapshots/
+npm test           # unit tests, no network
+npm run mcp:smoke  # start the server over stdio and call every tool live
+npm run eval       # 20-need recommendation eval (set GITHUB_TOKEN)
+npm run snapshot   # today's top repos per period and language -> data/snapshots/
+npm run enrich     # add npm / PyPI packages and weekly downloads to the latest snapshot
+npm run score      # top repos from the latest snapshot with score and verdict
+npm run pull-data  # copy snapshots from the data branch
 ```
 
-Alternative, if you would rather run it on this PC (Windows Task Scheduler):
+Layout:
 
 ```
-schtasks /Create /SC DAILY /ST 07:00 /TN "GitHub Trending Snapshot" /TR "cmd /c cd /d E:\private\whichlib && node snapshot\src\run.mjs >> data\snapshot.log 2>&1"
+mcp/server.mjs         MCP entry (stdio)        mcp/tools.mjs       tool logic
+mcp/expand.mjs         query expansion          mcp/telemetry.mjs   anonymous call counting
+mcp/github-api.mjs     GitHub client + cache    mcp/data.mjs        snapshot history provider
+mcp/eval/              needs, metrics, runner, inspect, results/
+lib/score.js           the score, shared by browser and Node
+snapshot/src/          query, normalize, github, registry, enrich, history, run, score-report, pull-data
+dashboard/index.html   Fresh Repos
 ```
-
-Remove with `schtasks /Delete /TN "GitHub Trending Snapshot" /F`.
-
-## Layout
-
-```
-dashboard/index.html          the app, single file, no build step
-lib/score.js                  score, tier, verdict (shared browser + Node)
-snapshot/src/query.mjs        what "trending" means: periodStart, buildSearchQuery, searchUrl
-snapshot/src/normalize.mjs    raw API item -> stored record
-snapshot/src/github.mjs       fetch with rate-limit wait-and-retry
-snapshot/src/run.mjs          CLI: periods x languages -> data/snapshots/<date>.json
-snapshot/src/history.mjs      snapshots -> per-repo star series, starsGained
-snapshot/src/registry.mjs     repo -> npm / PyPI package (verified by back-link) + weekly downloads
-snapshot/src/enrich.mjs       CLI: enrich the latest snapshot, maintain data/registry-map.json
-snapshot/src/score-report.mjs CLI: top repos from the latest snapshot by score
-snapshot/src/pull-data.mjs    CLI: copy snapshots from the origin/data branch
-snapshot/test/                node:test suites for the above
-mcp/server.mjs                MCP server entry (stdio), zod schemas, text + structuredContent
-mcp/tools.mjs                 recommend / compare / trending logic, formatResult
-mcp/expand.mjs                query expansion: synonyms, topic pick, mention and library signals
-mcp/github-api.mjs            GitHub client with token and 10-minute cache
-mcp/data.mjs                  optional snapshot history provider
-mcp/smoke.mjs                 stdio client that exercises every tool
-mcp/test/                     unit tests with fakes
-mcp/eval/                     needs.json, metrics, run-eval.mjs, inspect.mjs, results/
-data/snapshots/               one JSON file per day
-```
-
-## Next steps
-
-1. Pick the product name, then publish to npm, the MCP registry and the
-   Claude Code plugin marketplace. Add anonymous call counting.
-2. Later: Cargo, Go and Maven adoption; release cadence in maintenance;
-   downloads in the dashboard.
