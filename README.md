@@ -1,16 +1,24 @@
-# Fresh Repos
+# whichlib
 
-Find the most-starred GitHub repositories created in the last day, week and
-month, and sort them your way. Open it every morning.
+The dependency picker for coding agents. Ask which library to use and get a
+scored, verified answer instead of a guess.
 
-This repository is also the starting point for a larger product: a dependency
-picker for AI coding agents. The dashboard is its free front door and its data
-collector. The plan is in [`docs/ideas/dependency-picker-for-agents.md`](docs/ideas/dependency-picker-for-agents.md).
+whichlib is an MCP server with three tools (`recommend_repos`,
+`compare_repos`, `trending_repos`) and a free dashboard, Fresh Repos, that
+shows the most-starred GitHub repositories created in the last day, week and
+month. Every repository gets a transparent 0–100 score from momentum,
+maintenance, adoption (stars, forks, npm and PyPI downloads) and license,
+plus a one-line verdict. The plan behind it is in
+[`docs/ideas/dependency-picker-for-agents.md`](docs/ideas/dependency-picker-for-agents.md).
 
 ## Quick start
 
+Agents: see [MCP server](#mcp-server) below for the one-line install.
+
+Dashboard:
+
 1. Clone or download this repository.
-2. Double-click `github-trending/dashboard/index.html`.
+2. Double-click `whichlib/dashboard/index.html`.
 
 That is all. The page is a single HTML file that calls the GitHub Search API
 straight from your browser. No build step, no server, no account.
@@ -46,7 +54,7 @@ permissions is enough. It stays in your browser's local storage.
 
 Every repo gets a score from 0 to 100, a tier and a one-line verdict. The
 breakdown is always returned so a person or an agent can see why. The same
-file, `github-trending/lib/score.js`, runs in the dashboard and in Node, so
+file, `whichlib/lib/score.js`, runs in the dashboard and in Node, so
 the two can never disagree.
 
 | Part | Weight | Signal |
@@ -88,7 +96,7 @@ report and the MCP server use real stars-gained figures once there are two or
 more days of snapshots.
 
 ```
-cd github-trending
+cd whichlib
 npm run score      # top 25 repos from the latest snapshot with score and verdict
 ```
 
@@ -105,16 +113,17 @@ The same score, served to coding agents. Three tools over stdio:
 Every result carries readable text and `structuredContent` (JSON) with the
 score, tier, verdict, the four subscores, flags, packages and downloads.
 
-Install into Claude Code (replace the path with your clone):
+Install into Claude Code (replace the path with your clone; `npx whichlib`
+once it is published to npm):
 
 ```
-claude mcp add fresh-repos -- node E:\private\github-trending\mcp\server.mjs
+claude mcp add whichlib -- node E:\private\whichlib\mcp\server.mjs
 ```
 
 Cursor, Windsurf and others take the same command in their MCP config:
 
 ```json
-{ "mcpServers": { "fresh-repos": { "command": "node", "args": ["E:\\private\\github-trending\\mcp\\server.mjs"] } } }
+{ "mcpServers": { "whichlib": { "command": "node", "args": ["E:\\private\\whichlib\\mcp\\server.mjs"] } } }
 ```
 
 Environment variables, both optional:
@@ -124,13 +133,13 @@ Environment variables, both optional:
   searches per call, so without a token it allows about three recommendations
   per minute.
 - `FRESH_REPOS_DATA_DIR` points at a folder of daily snapshots. The default is
-  `github-trending/data/snapshots`, filled by `npm run pull-data`. With two or
+  `whichlib/data/snapshots`, filled by `npm run pull-data`. With two or
   more days present, momentum uses real 7-day stars gained.
 
 Try it without a client:
 
 ```
-cd github-trending
+cd whichlib
 npm run mcp:smoke   # starts the server over stdio, lists tools, calls each one
 ```
 
@@ -198,13 +207,13 @@ whole candidate pool for one need with these values.
 
 ## Nightly snapshot job
 
-`github-trending/snapshot/` is a zero-dependency Node 22 script that stores the
+`whichlib/snapshot/` is a zero-dependency Node 22 script that stores the
 top 100 repos for 3 periods times 9 languages into
-`github-trending/data/snapshots/YYYY-MM-DD.json`. Consecutive snapshots are
+`whichlib/data/snapshots/YYYY-MM-DD.json`. Consecutive snapshots are
 what a momentum score needs.
 
 ```
-cd github-trending
+cd whichlib
 npm test          # 16 unit tests, no network
 npm run snapshot  # about 3 minutes without a token, 1 minute with GITHUB_TOKEN
 ```
@@ -216,21 +225,21 @@ from the Actions tab or with `gh workflow run snapshot`. Bring the files down
 locally with:
 
 ```
-cd github-trending
+cd whichlib
 npm run pull-data  # copies new snapshots from origin/data into data/snapshots/
 npm run score      # now with real 7-day stars gained once there are 2+ days
 ```
 
 A Windows Task Scheduler alternative is in
-[`github-trending/README.md`](github-trending/README.md).
+[`whichlib/README.md`](whichlib/README.md).
 
 ## Repository layout
 
 ```
-github-trending/dashboard/   the app, one HTML file
-github-trending/lib/         score.js, shared by browser and Node
-github-trending/mcp/         MCP server: recommend_repos, compare_repos, trending_repos
-github-trending/snapshot/    snapshot job, enrichment, history builder, score report, tests
+whichlib/dashboard/   the app, one HTML file
+whichlib/lib/         score.js, shared by browser and Node
+whichlib/mcp/         MCP server: recommend_repos, compare_repos, trending_repos
+whichlib/snapshot/    snapshot job, enrichment, history builder, score report, tests
 docs/ideas/                  product one-pager
 docs/superpowers/            implementation plans
 ```

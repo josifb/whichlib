@@ -3,8 +3,8 @@ node_modules/
 
 # Daily snapshots grow ~1.4 MB per day; they live on the `data` branch,
 # written by .github/workflows/snapshot.yml. Keep them off main.
-github-trending/data/snapshots/*.json
-github-trending/data/registry-map.json
+whichlib/data/snapshots/*.json
+whichlib/data/registry-map.json
 
 # Local checkout of the data branch made by the workflow (never on a dev box, but just in case)
 data-branch/

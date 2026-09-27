@@ -2,7 +2,7 @@
 // per minute, authenticated 30. We pace requests between calls and, if we
 // still hit the limit, wait for the reset and retry once.
 
-const USER_AGENT = 'github-trending-snapshot/0.1 (+local daily dashboard)';
+const USER_AGENT = 'whichlib/0.1 (+https://github.com/josifb/whichlib)';
 
 const defaultSleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 

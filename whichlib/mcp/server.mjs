@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Fresh Repos MCP server (stdio). Three tools: recommend_repos, compare_repos,
+// whichlib MCP server (stdio). Three tools: recommend_repos, compare_repos,
 // trending_repos. stdout is the protocol channel: log to stderr only.
 //
 //   GITHUB_TOKEN          optional, raises GitHub rate limits
@@ -23,7 +23,7 @@ const github = createGitHubClient();
 const history = await loadHistoryProvider();
 const tools = createTools({ github, resolvePackages, history });
 
-const server = new McpServer({ name: 'fresh-repos', version: pkg.version });
+const server = new McpServer({ name: 'whichlib', version: pkg.version });
 
 const run = (fn) => async (args) => {
   try {
@@ -66,4 +66,4 @@ server.registerTool('trending_repos', {
 }, run(tools.trending));
 
 await server.connect(new StdioServerTransport());
-console.error(`fresh-repos MCP ${pkg.version} ready | token: ${github.hasToken ? 'yes' : 'no'} | history: ${history.days ? `${history.days} day(s), latest ${history.latestDate}` : 'none'}`);
+console.error(`whichlib MCP ${pkg.version} ready | token: ${github.hasToken ? 'yes' : 'no'} | history: ${history.days ? `${history.days} day(s), latest ${history.latestDate}` : 'none'}`);

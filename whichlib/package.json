@@ -1,15 +1,15 @@
 {
-  "name": "github-trending",
+  "name": "whichlib",
   "version": "0.1.0",
   "private": true,
-  "description": "Daily dashboard of the most-starred new GitHub repos, plus a nightly snapshot job.",
+  "description": "The dependency picker for coding agents: an MCP server that recommends, compares and scores GitHub repositories, plus a daily dashboard of the most-starred new repos.",
   "license": "MIT",
   "type": "module",
   "engines": {
     "node": ">=22"
   },
   "bin": {
-    "fresh-repos-mcp": "mcp/server.mjs"
+    "whichlib": "mcp/server.mjs"
   },
   "scripts": {
     "test": "node --test \"snapshot/test/**/*.test.mjs\" \"mcp/test/**/*.test.mjs\"",

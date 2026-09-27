@@ -187,7 +187,7 @@
 <body>
 <div class="wrap">
   <header class="top">
-    <h1>Fresh Repos <span>· most-starred new repositories on GitHub</span></h1>
+    <h1>Fresh Repos <span>· most-starred new repositories on GitHub · part of whichlib</span></h1>
     <div class="status" id="status">Loading…</div>
   </header>
 
@@ -239,7 +239,7 @@
   <footer>
     <p><strong>How this list is built.</strong> Repositories created in the last 24 hours, 7 days or 30 days, fetched live from the GitHub Search API and ranked by stars. The rank column always shows the stars rank, so you can sort by another column and still see where a repo stands.</p>
     <p><strong>Downloads.</strong> GitHub publishes no download count for repositories, only for release files. Forks are the nearest public signal of people taking a copy. Stars/day is stars divided by the repo's age, a rough velocity.</p>
-    <p><strong>Score.</strong> 0 to 100 from four parts: momentum (40%), maintenance (25%), adoption (25%) and license (10%). Archived repos are capped at 20. Hover a score for the one-line verdict. Opened from disk, momentum uses stars per day; the nightly snapshots give the real stars-gained figure to the report and the upcoming MCP server. Full definition in the README.</p>
+    <p><strong>Score.</strong> 0 to 100 from four parts: momentum (40%), maintenance (25%), adoption (25%) and license (10%). Archived repos are capped at 20. Hover a score for the one-line verdict. Opened from disk, momentum uses stars per day; the nightly snapshots give the real stars-gained figure to the report and the whichlib MCP server. Full definition in the README.</p>
     <p>Results are cached in this browser for 60 minutes per tab and language. Refresh forces a new fetch.</p>
   </footer>
 </div>
@@ -256,7 +256,7 @@
   const LANG_COLORS = { JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5', Go: '#00ADD8', Rust: '#dea584', Java: '#b07219', 'C++': '#f34b7d', 'C#': '#178600', C: '#555555', Kotlin: '#A97BFF', Swift: '#F05138', Ruby: '#701516', PHP: '#4F5D95', Dart: '#00B4AB', Shell: '#89e051', HTML: '#e34c26', 'Jupyter Notebook': '#DA5B0B', Vue: '#41b883', Svelte: '#ff3e00', Lua: '#000080', Zig: '#ec915c', Elixir: '#6e4a7e', Scala: '#c22d40', Haskell: '#5e5086', 'Objective-C': '#438eff', R: '#198CE7' };
   const CACHE_TTL_MS = 60 * 60 * 1000;
   const NUMERIC = new Set(['score', 'stars', 'starsPerDay', 'forks', 'openIssues']);
-  const scorer = typeof FreshReposScore !== 'undefined' ? FreshReposScore : null;
+  const scorer = typeof WhichlibScore !== 'undefined' ? WhichlibScore : null;
   const DATES = new Set(['createdAt', 'pushedAt']);
 
   // ---- storage (may be unavailable) ----------------------------------------

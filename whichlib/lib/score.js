@@ -1,5 +1,5 @@
 /*
- * Fresh Repos score. Shared by the browser dashboard (plain <script> tag)
+ * whichlib score. Shared by the browser dashboard (plain <script> tag)
  * and Node (CommonJS import). Keep this file free of imports.
  *
  * scoreRepo(repo, { starsGained7d, now }) -> { score, tier, verdict, parts, flags, weights }
@@ -11,7 +11,7 @@
  */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) module.exports = factory();
-  else root.FreshReposScore = factory();
+  else root.WhichlibScore = factory();
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
 

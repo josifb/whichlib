@@ -1,12 +1,13 @@
-# Fresh Repos
+# whichlib (package)
 
-A dashboard you open every day showing the most-starred GitHub repositories
-created in the last 24 hours, 7 days and 30 days, with sorting by stars,
-stars per day, forks, open issues, created date, last push, language and
-license. Plus a nightly job that stores a daily snapshot so velocity can be
-computed later.
+The npm package: the MCP server, the shared score, the Fresh Repos dashboard,
+the nightly snapshot and enrichment jobs, the recommendation eval and all
+tests. The product overview and install instructions are in the top-level
+README; this file covers the pieces and how to run them.
 
-This is step 1 of the plan in `../docs/ideas/dependency-picker-for-agents.md`.
+The dashboard shows the most-starred GitHub repositories created in the last
+24 hours, 7 days and 30 days, with sorting by score, stars, stars per day,
+forks, open issues, created date, last push, language and license.
 
 ## Open the dashboard
 
@@ -87,7 +88,7 @@ npm run pull-data   # fetches origin/data and copies new snapshots into data/sna
 Alternative, if you would rather run it on this PC (Windows Task Scheduler):
 
 ```
-schtasks /Create /SC DAILY /ST 07:00 /TN "GitHub Trending Snapshot" /TR "cmd /c cd /d E:\private\github-trending && node snapshot\src\run.mjs >> data\snapshot.log 2>&1"
+schtasks /Create /SC DAILY /ST 07:00 /TN "GitHub Trending Snapshot" /TR "cmd /c cd /d E:\private\whichlib && node snapshot\src\run.mjs >> data\snapshot.log 2>&1"
 ```
 
 Remove with `schtasks /Delete /TN "GitHub Trending Snapshot" /F`.

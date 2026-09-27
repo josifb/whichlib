@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const OUT_DIR = join(ROOT, 'data', 'snapshots');
-const BRANCH_PATH = 'github-trending/data/snapshots';
+const BRANCH_PATH = 'snapshots'; // layout of the data branch: snapshots/<date>.json, registry-map.json
 
 const git = (...args) => execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
 
@@ -31,7 +31,7 @@ console.log(`data branch has ${listing.length} snapshot(s); copied ${copied} new
 
 // The registry map (repo -> package names) is small and changes daily: always refresh it.
 try {
-  const map = git('show', 'origin/data:github-trending/data/registry-map.json');
+  const map = git('show', 'origin/data:registry-map.json');
   await writeFile(join(ROOT, 'data', 'registry-map.json'), map);
   console.log(`registry-map.json refreshed (${Object.keys(JSON.parse(map)).length} repos)`);
 } catch {

@@ -10,7 +10,7 @@ import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 
 const serverPath = join(dirname(fileURLToPath(import.meta.url)), 'server.mjs');
 const transport = new StdioClientTransport({ command: process.execPath, args: [serverPath], env: process.env, stderr: 'inherit' });
-const client = new Client({ name: 'fresh-repos-smoke', version: '0.0.0' });
+const client = new Client({ name: 'whichlib-smoke', version: '0.0.0' });
 await client.connect(transport);
 
 const { tools } = await client.listTools();

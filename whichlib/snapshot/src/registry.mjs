@@ -2,7 +2,7 @@
 // A package only counts when the registry's own metadata links back to the
 // repo; a matching name alone is never enough.
 
-const USER_AGENT = 'fresh-repos-enrich/0.1 (+https://github.com/josifb/fresh-repos)';
+const USER_AGENT = 'whichlib/0.1 (+https://github.com/josifb/whichlib)';
 export const NEGATIVE_TTL_MS = 7 * 86400000;
 
 const REGISTRIES_BY_LANGUAGE = {
