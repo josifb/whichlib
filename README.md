@@ -8,8 +8,7 @@ whichlib is an MCP server with three tools (`recommend_repos`,
 shows the most-starred GitHub repositories created in the last day, week and
 month. Every repository gets a transparent 0–100 score from momentum,
 maintenance, adoption (stars, forks, npm and PyPI downloads) and license,
-plus a one-line verdict. The plan behind it is in
-[`docs/ideas/dependency-picker-for-agents.md`](docs/ideas/dependency-picker-for-agents.md).
+plus a one-line verdict.
 
 ## Quick start
 
@@ -252,9 +251,7 @@ whichlib/mcp/         MCP server: recommend_repos, compare_repos, trending_repos
 whichlib/snapshot/    snapshot job, enrichment, history builder, score report
 whichlib/server.json  MCP registry manifest
 telemetry/            call counter: Cloudflare Worker + Analytics Engine
-docs/ideas/           product one-pager
-docs/superpowers/     implementation plans
-.agents/              product marketing context for the marketing skills
+RELEASING.md          release steps
 ```
 
 ## Roadmap

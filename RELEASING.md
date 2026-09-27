@@ -9,8 +9,9 @@ automated on purpose: publishing is outward-facing and should be a decision.
 - [ ] `cd whichlib && npm test && npm run mcp:smoke` green.
 - [ ] `npm pack --dry-run` shows ~20 files, no dashboard, tests or eval data.
 - [ ] Version in `whichlib/package.json` and `whichlib/server.json` match.
-- [ ] Repository public: `gh repo edit josifb/whichlib --visibility public --accept-visibility-change-consequences`.
-      The docs folder (one-pager, plans, `.agents/product-marketing.md`) becomes public too. Move it out first if you want it private.
+- [x] Repository public (2026-09-27). Internal documents (one-pager, plans,
+      marketing context) live in the private repository josifb/whichlib-internal
+      and are git-ignored here.
 
 ## Call counter (optional but recommended before launch)
 
