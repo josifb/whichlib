@@ -1,0 +1,25 @@
+{
+  "description": "20 needs with accepted answers: repositories a senior engineer would consider a reasonable pick today. Names are matched case-insensitively; old names are listed where a repo moved.",
+  "needs": [
+    { "need": "pdf parser", "language": "Python", "accept": ["pymupdf/PyMuPDF", "jsvine/pdfplumber", "py-pdf/pypdf", "pdfminer/pdfminer.six", "opendatalab/MinerU", "docling-project/docling", "DS4SD/docling", "pymupdf/pymupdf4llm"] },
+    { "need": "http client", "language": "Python", "accept": ["psf/requests", "encode/httpx", "aio-libs/aiohttp", "urllib3/urllib3"] },
+    { "need": "state management", "language": "TypeScript", "accept": ["pmndrs/zustand", "pmndrs/jotai", "reduxjs/redux-toolkit", "mobxjs/mobx", "statelyai/xstate", "pmndrs/valtio", "TanStack/store", "reduxjs/redux"] },
+    { "need": "schema validation", "language": "TypeScript", "accept": ["colinhacks/zod", "fabian-hiller/valibot", "jquense/yup", "arktypeio/arktype", "sinclairzx81/typebox", "ianstormtaylor/superstruct"] },
+    { "need": "web framework", "language": "JavaScript", "accept": ["expressjs/express", "fastify/fastify", "koajs/koa", "honojs/hono", "nestjs/nest", "hapijs/hapi", "elysiajs/elysia"] },
+    { "need": "web framework", "language": "Python", "accept": ["django/django", "pallets/flask", "fastapi/fastapi", "tiangolo/fastapi", "encode/starlette", "litestar-org/litestar", "tornadoweb/tornado", "sanic-org/sanic"] },
+    { "need": "command line argument parser", "language": "Rust", "accept": ["clap-rs/clap", "google/argh", "TeXitoi/structopt", "Manishearth/pico-args", "RazrFalcon/pico-args", "bpaf-rs/bpaf"] },
+    { "need": "http router", "language": "Go", "accept": ["gin-gonic/gin", "gorilla/mux", "go-chi/chi", "labstack/echo", "gofiber/fiber", "julienschmidt/httprouter"] },
+    { "need": "date library", "language": "JavaScript", "accept": ["date-fns/date-fns", "iamkun/dayjs", "moment/luxon", "moment/moment", "js-temporal/temporal-polyfill"] },
+    { "need": "testing framework", "language": "Python", "accept": ["pytest-dev/pytest", "HypothesisWorks/hypothesis", "nose-devs/nose2", "robotframework/robotframework"] },
+    { "need": "testing framework", "language": "TypeScript", "accept": ["vitest-dev/vitest", "jestjs/jest", "facebook/jest", "mochajs/mocha", "avajs/ava", "microsoft/playwright", "cypress-io/cypress"] },
+    { "need": "orm", "language": "Python", "accept": ["sqlalchemy/sqlalchemy", "tortoise/tortoise-orm", "coleifer/peewee", "encode/orm", "ponyorm/pony", "fastapi/sqlmodel", "tiangolo/sqlmodel"] },
+    { "need": "orm", "language": "TypeScript", "accept": ["prisma/prisma", "drizzle-team/drizzle-orm", "typeorm/typeorm", "mikro-orm/mikro-orm", "kysely-org/kysely", "sequelize/sequelize", "knex/knex"] },
+    { "need": "cli framework", "language": "Python", "accept": ["pallets/click", "fastapi/typer", "tiangolo/typer", "google/python-fire", "Textualize/rich", "Textualize/textual", "docopt/docopt"] },
+    { "need": "async runtime", "language": "Rust", "accept": ["tokio-rs/tokio", "async-rs/async-std", "smol-rs/smol", "DataDog/glommio"] },
+    { "need": "structured logging", "language": "Go", "accept": ["uber-go/zap", "rs/zerolog", "sirupsen/logrus", "go-logr/logr", "golang/go"] },
+    { "need": "charting library", "language": "JavaScript", "accept": ["chartjs/Chart.js", "apache/echarts", "d3/d3", "plotly/plotly.js", "recharts/recharts", "apexcharts/apexcharts.js", "airbnb/visx", "observablehq/plot"] },
+    { "need": "data validation", "language": "Python", "accept": ["pydantic/pydantic", "marshmallow-code/marshmallow", "python-attrs/cattrs", "python-attrs/attrs", "keleshev/schema", "alecthomas/voluptuous", "python-jsonschema/jsonschema"] },
+    { "need": "markdown parser", "language": "JavaScript", "accept": ["markedjs/marked", "markdown-it/markdown-it", "remarkjs/remark", "showdownjs/showdown", "micromark/micromark", "commonmark/commonmark.js"] },
+    { "need": "image processing", "language": "Python", "accept": ["python-pillow/Pillow", "opencv/opencv-python", "opencv/opencv", "scikit-image/scikit-image", "imageio/imageio", "lovell/sharp"] }
+  ]
+}

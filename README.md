@@ -136,6 +136,30 @@ Known bias: maintenance drops to zero at 90 days without a push, so a stable,
 finished library scores lower than an active one. Release cadence will soften
 this later.
 
+### Recommendation eval
+
+`mcp/eval/needs.json` holds 20 needs ("pdf parser" in Python, "state
+management" in TypeScript, ...) each with a set of accepted answers a senior
+engineer would consider reasonable. `npm run eval` runs them through
+`recommend_repos` live and reports how often an accepted repo appears at
+rank 1, 3 and 5, for our ranking and for baselines built from the same
+candidate pool. Reports land in `mcp/eval/results/`.
+
+Result on 2026-09-27:
+
+| Ranking | hit@1 | hit@3 | hit@5 | MRR |
+|---|---|---|---|---|
+| ours (fit = score × relevance) | 75% | 95% | 100% | 0.86 |
+| stars order | 65% | 95% | 95% | 0.79 |
+| score only, no relevance | 65% | 85% | 90% | 0.76 |
+| GitHub relevance order | 50% | 95% | 95% | 0.72 |
+
+The five needs without a rank-1 hit were retrieval gaps: GitHub search never
+surfaced the best-known answer because of vocabulary ("async" vs
+"asynchronous" hid tokio, "image processing" hid the "Python Imaging
+Library"). Where the right answer was in the pool, our ranking put it first or
+second every time. Query expansion is the next lever, not score tuning.
+
 ## Nightly snapshot job
 
 `github-trending/snapshot/` is a zero-dependency Node 22 script that stores the
@@ -182,7 +206,9 @@ docs/superpowers/            implementation plans
    trending tools.
 2. Pick the product name, then publish to npm, the MCP registry and the
    Claude Code plugin marketplace. Add anonymous call counting.
-3. Later: Cargo, Go and Maven adoption; release cadence in maintenance;
+3. Query expansion for recommend (synonyms, topic search) to close the
+   retrieval gaps the eval found.
+4. Later: Cargo, Go and Maven adoption; release cadence in maintenance;
    downloads in the dashboard.
 
 ## License

@@ -45,7 +45,7 @@ export function createTools({ github, resolvePackages, history, now = () => Date
   const byScore = (a, b) => b.score - a.score || b.stars - a.stars;
 
   return {
-    async recommend({ need, language = null, limit = 5 } = {}) {
+    async recommend({ need, language = null, limit = 5, includeCandidates = false } = {}) {
       const text = String(need ?? '').trim();
       if (text.length < 2) throw new Error('Describe the need in a few words, for example "python pdf parser".');
       const n = Math.min(Math.max(Number(limit) || 5, 1), 10);
@@ -72,12 +72,15 @@ export function createTools({ github, resolvePackages, history, now = () => Date
       const prelim = (await enrichAndScore(candidates, { withDownloads: false })).map(withFit).sort(byFit);
       const shortlist = prelim.slice(0, Math.max(2 * n, 8)).map((r) => candidates.find((it) => it.full_name === r.fullName));
       const scored = (await enrichAndScore(shortlist, { withDownloads: true })).map(withFit).sort(byFit).slice(0, n);
-      return {
+      const result = {
         tool: 'recommend_repos', need: text, language, query, totalMatches: relevance.totalCount,
         candidatesConsidered: candidates.length, shortlisted: shortlist.length,
         ranking: 'fit = score x relevance; relevance is 1.0 for GitHub relevance rank 1, 0.5 at rank 25, 0.4 when the repo only appears in the stars-sorted results',
         generatedAt: new Date(now()).toISOString(), dataNotes: dataNotes(), repos: scored,
       };
+      // For the eval: every candidate with its pre-download score, so baselines can be computed from the same pool.
+      if (includeCandidates) result.candidates = prelim.map(({ fullName, stars, score, fit, relevanceRank }) => ({ fullName, stars, score, fit, relevanceRank }));
+      return result;
     },
 
     async compare({ repos } = {}) {

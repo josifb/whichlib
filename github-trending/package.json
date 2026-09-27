@@ -18,7 +18,8 @@
     "score": "node snapshot/src/score-report.mjs",
     "pull-data": "node snapshot/src/pull-data.mjs",
     "mcp": "node mcp/server.mjs",
-    "mcp:smoke": "node mcp/smoke.mjs"
+    "mcp:smoke": "node mcp/smoke.mjs",
+    "eval": "node mcp/eval/run-eval.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.1",

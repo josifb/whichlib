@@ -45,6 +45,7 @@ loads it with a `<script>` tag and Node imports it as CommonJS.
 ```
 npm run mcp          # start the server on stdio (what an MCP client runs)
 npm run mcp:smoke    # end-to-end check against the live APIs
+npm run eval         # 20-need recommendation eval, report in mcp/eval/results/ (set GITHUB_TOKEN)
 ```
 
 `mcp/server.mjs` registers `recommend_repos`, `compare_repos` and
@@ -112,6 +113,7 @@ mcp/github-api.mjs            GitHub client with token and 10-minute cache
 mcp/data.mjs                  optional snapshot history provider
 mcp/smoke.mjs                 stdio client that exercises every tool
 mcp/test/                     unit tests with fakes
+mcp/eval/                     needs.json, metrics, run-eval.mjs, results/
 data/snapshots/               one JSON file per day
 ```
 
