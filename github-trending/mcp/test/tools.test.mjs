@@ -15,13 +15,13 @@ function rawItem(fullName, stars, extra = {}) {
   };
 }
 
-function fakes({ items = [], relevanceItems = null, repos = {}, gained = {}, downloads = {} } = {}) {
+function fakes({ items = [], relevanceItems = null, topicItems = [], repos = {}, gained = {}, downloads = {} } = {}) {
   const calls = { search: [], getRepo: [], resolve: [] };
   const github = {
     hasToken: false,
     async searchRepos(query, opts) {
       calls.search.push({ query, opts });
-      const list = opts?.sort === 'best-match' && relevanceItems ? relevanceItems : items;
+      const list = query.startsWith('topic:') ? topicItems : opts?.sort === 'best-match' && relevanceItems ? relevanceItems : items;
       return { items: list, totalCount: list.length };
     },
     async getRepo(fullName) {
@@ -40,19 +40,49 @@ function fakes({ items = [], relevanceItems = null, repos = {}, gained = {}, dow
   return { tools, calls };
 }
 
-test('recommend: query carries the need, quoted language and hygiene qualifiers; asks for relevance and stars order', async () => {
+test('recommend: text query has synonyms, quoted language and hygiene; relevance + stars + one topic search', async () => {
   const { tools, calls } = fakes({ items: [rawItem('a/one', 100)] });
   await tools.recommend({ need: 'pdf parser', language: 'C#', limit: 5 });
-  assert.equal(calls.search.length, 2);
-  for (const c of calls.search) assert.equal(c.query, 'pdf parser language:"C#" archived:false fork:false stars:>=20');
-  assert.deepEqual(calls.search.map((c) => c.opts.sort).sort(), ['best-match', 'stars']);
+  assert.equal(calls.search.length, 3);
+  const text = calls.search.filter((c) => !c.query.startsWith('topic:'));
+  assert.equal(text.length, 2);
+  for (const c of text) assert.equal(c.query, 'pdf OR pdfs parser language:"C#" archived:false fork:false stars:>=20');
+  assert.deepEqual(text.map((c) => c.opts.sort).sort(), ['best-match', 'stars']);
+  const topic = calls.search.find((c) => c.query.startsWith('topic:'));
+  assert.equal(topic.query, 'topic:pdf language:"C#" archived:false fork:false');
+  assert.equal(topic.opts.sort, 'stars');
+});
+
+test('recommend: JavaScript and TypeScript are one family; Python includes Jupyter', async () => {
+  const { tools, calls } = fakes({ items: [rawItem('a/one', 100)] });
+  await tools.recommend({ need: 'markdown parser', language: 'JavaScript' });
+  assert.match(calls.search[0].query, /language:JavaScript language:TypeScript/);
+  calls.search.length = 0;
+  await tools.recommend({ need: 'orm', language: 'Python' });
+  assert.match(calls.search[0].query, /language:Python language:"Jupyter Notebook"/);
+  calls.search.length = 0;
+  await tools.recommend({ need: 'orm', language: 'Rust' });
+  assert.match(calls.search[0].query, /language:Rust archived/);
+});
+
+test('recommend: a repo found only through the topic query gets relevance 0.75 and sources ["topic"]', async () => {
+  const tagged = rawItem('t/tagged', 3000, { description: 'A PDF parsing library' });
+  const textOnly = rawItem('x/text', 3000, { description: 'Another PDF library' });
+  const { tools } = fakes({ items: [textOnly], topicItems: [tagged] });
+  const r = await tools.recommend({ need: 'pdf parser', limit: 5 });
+  const t = r.repos.find((x) => x.fullName === 't/tagged');
+  assert.deepEqual(t.sources, ['topic']);
+  assert.equal(t.relevance, 0.75);
+  assert.equal(t.relevanceRank, null);
+  assert.deepEqual(r.repos.find((x) => x.fullName === 'x/text').sources, ['relevance', 'stars']);
+  assert.equal(r.topicQuery, 'topic:pdf archived:false fork:false');
 });
 
 test('recommend: candidates from both searches are deduplicated; only the shortlist gets registry lookups', async () => {
   const many = Array.from({ length: 12 }, (_, i) => rawItem(`o/r${i}`, 1000 - i * 50));
   const { tools, calls } = fakes({ items: many });
   const r = await tools.recommend({ need: 'thing', limit: 2 });
-  assert.equal(r.candidatesConsidered, 12, 'same 12 items returned by both searches count once');
+  assert.equal(r.candidatesConsidered, 12, 'same 12 items returned by both text searches count once');
   assert.equal(r.shortlisted, 8, 'max(2*limit, 8)');
   assert.equal(calls.resolve.length, 8);
   assert.equal(r.repos.length, 2);
@@ -82,8 +112,8 @@ test('recommend: returns at most limit repos sorted by score, with downloads att
 });
 
 test('recommend: ranks by fit = score x relevance, so a huge repo that only matches by popularity loses to a relevant one', async () => {
-  const relevant = rawItem('r/pdf-lib', 5000, { pushed_at: daysAgo(3) });          // relevance rank 1
-  const giant = rawItem('g/knowledge-graph', 150000, { pushed_at: daysAgo(0.5) }); // only in the stars list
+  const relevant = rawItem('r/pdf-lib', 5000, { pushed_at: daysAgo(3), description: 'PDF parsing library' });          // relevance rank 1
+  const giant = rawItem('g/knowledge-graph', 150000, { pushed_at: daysAgo(0.5), description: 'Knowledge graph library for code, docs and PDFs' }); // only in the stars list
   const { tools } = fakes({ items: [giant, relevant], relevanceItems: [relevant] });
   const r = await tools.recommend({ need: 'pdf parser', limit: 2 });
   assert.equal(r.repos[0].fullName, 'r/pdf-lib');
@@ -150,4 +180,30 @@ test('formatResult: readable text with tier, score, stars and verdict per repo',
   assert.match(text, /\b(Strong|Promising|Watch|Avoid)\b \d{1,3}\b/);
   assert.match(text, /12,345/);
   assert.match(text, /https:\/\/github\.com\/a\/one/);
+});
+
+test('recommend: a candidate that never mentions the need is halved; an application is x0.8 when a library was asked for', async () => {
+  const lib = rawItem('p/click', 3000, { description: 'Composable command line interface toolkit' });
+  const app = rawItem('y/downloader', 3000, { description: 'A feature-rich command-line video downloader' });
+  const silent = rawItem('s/sherlock', 3000, { description: 'Hunt down social media accounts by username' });
+  const { tools } = fakes({ items: [], topicItems: [lib, app, silent] });
+  const r = await tools.recommend({ need: 'cli framework', limit: 3 });
+  const by = Object.fromEntries(r.repos.map((x) => [x.fullName, x]));
+  assert.deepEqual(r.repos.map((x) => x.fullName), ['p/click', 'y/downloader', 's/sherlock']);
+  assert.equal(by['p/click'].relevance, 0.75);
+  assert.deepEqual(by['p/click'].signals, { mention: 'text', looksLikeLibrary: true });
+  assert.equal(by['y/downloader'].relevance, 0.6);
+  assert.deepEqual(by['y/downloader'].signals, { mention: 'text', looksLikeLibrary: false });
+  assert.equal(by['s/sherlock'].relevance, 0.3);
+});
+
+test('recommend: a topic-only candidate that names the subject only in its tags is x0.75 on top of the topic factor', async () => {
+  const tagged = rawItem('r/vision-tools', 3000, { description: 'Reusable computer vision tools', topics: ['image-processing'] });
+  const named = rawItem('p/pillow', 3000, { description: 'Python Imaging Library', topics: ['image-processing'] });
+  const { tools } = fakes({ items: [], topicItems: [tagged, named] });
+  const r = await tools.recommend({ need: 'image processing', limit: 2 });
+  const by = Object.fromEntries(r.repos.map((x) => [x.fullName, x]));
+  assert.equal(by['p/pillow'].relevance, 0.75);
+  assert.equal(by['r/vision-tools'].relevance, 0.563);
+  assert.equal(r.repos[0].fullName, 'p/pillow');
 });

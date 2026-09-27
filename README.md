@@ -98,7 +98,7 @@ The same score, served to coding agents. Three tools over stdio:
 
 | Tool | Input | What it returns |
 |---|---|---|
-| `recommend_repos` | `need` in plain words, optional `language`, `limit` (1–10, default 5) | The best repositories for the need, ranked by score, with npm/PyPI downloads and a verdict each. Candidates come from GitHub's relevance order and its stars order, so both the focused libraries and the big names are considered. |
+| `recommend_repos` | `need` in plain words, optional `language`, `limit` (1–10, default 5) | The best repositories for the need, ranked by fit (score × relevance), with npm/PyPI downloads and a verdict each. Candidates come from GitHub's relevance order, its stars order and a topic query; see "How recommend finds and ranks candidates" below. |
 | `compare_repos` | `repos`: 2–10 names as `owner/repo` | The repositories side by side, best first, same breakdown. |
 | `trending_repos` | `period` day/week/month, optional `language`, `limit` (default 20), `withDownloads` | Most-starred repos created in the period, scored. |
 
@@ -120,7 +120,9 @@ Cursor, Windsurf and others take the same command in their MCP config:
 Environment variables, both optional:
 
 - `GITHUB_TOKEN` raises GitHub's limits (search 10 to 30 per minute). A
-  fine-grained token with no permissions is enough.
+  fine-grained token with no permissions is enough. Recommend makes three
+  searches per call, so without a token it allows about three recommendations
+  per minute.
 - `FRESH_REPOS_DATA_DIR` points at a folder of daily snapshots. The default is
   `github-trending/data/snapshots`, filled by `npm run pull-data`. With two or
   more days present, momentum uses real 7-day stars gained.
@@ -145,20 +147,54 @@ engineer would consider reasonable. `npm run eval` runs them through
 rank 1, 3 and 5, for our ranking and for baselines built from the same
 candidate pool. Reports land in `mcp/eval/results/`.
 
-Result on 2026-09-27:
+Result on 2026-09-27, after query expansion (second report in `results/`):
 
 | Ranking | hit@1 | hit@3 | hit@5 | MRR |
 |---|---|---|---|---|
-| ours (fit = score × relevance) | 75% | 95% | 100% | 0.86 |
-| stars order | 65% | 95% | 95% | 0.79 |
-| score only, no relevance | 65% | 85% | 90% | 0.76 |
-| GitHub relevance order | 50% | 95% | 95% | 0.72 |
+| ours (fit, see below) | 75% | 95% | 100% | 0.85 |
+| GitHub relevance order | 65% | 80% | 95% | 0.76 |
+| stars order | 45% | 65% | 75% | 0.56 |
+| score only, no relevance | 30% | 65% | 70% | 0.46 |
 
-The five needs without a rank-1 hit were retrieval gaps: GitHub search never
-surfaced the best-known answer because of vocabulary ("async" vs
-"asynchronous" hid tokio, "image processing" hid the "Python Imaging
-Library"). Where the right answer was in the pool, our ranking put it first or
-second every time. Query expansion is the next lever, not score tuning.
+The first report, before expansion, had the same hit rates for our ranking
+(75 / 95 / 100, MRR 0.86) on a smaller pool. Expansion raised recall from 53
+to 74 accepted repos across the 20 pools, never fewer on any need, and the
+baselines fell on that noisier pool while ours held. The fit rules are what
+keep the noise out.
+
+### How recommend finds and ranks candidates
+
+Retrieval, three GitHub searches per need:
+
+1. Text search in GitHub's relevance order, with known synonyms OR-ed in
+   (`async OR asynchronous runtime`), so vocabulary differences stop hiding
+   libraries like tokio.
+2. The same text search in stars order, for the big names whose description
+   only mentions the subject.
+3. One topic query sorted by stars (`topic:cli`, `topic:image-processing`),
+   which surfaces what maintainers tagged themselves. The head word is used
+   when it is specific (pdf, cli, orm) and the hyphenated phrase when it is
+   broad (image-processing, state-management). GitHub rejects `OR` between
+   topics, so it is one per request.
+
+Language filters use families: JavaScript includes TypeScript and Python
+includes Jupyter, because many libraries moved to TypeScript.
+
+Ranking key is `fit = score × relevance`:
+
+- relevance is 1.0 at GitHub relevance rank 1 falling to 0.5 at rank 25,
+  0.75 when found only through the topic query, 0.4 when found only in the
+  stars order;
+- ×0.75 when the repo names the subject only in its topic tags and ×0.5 when
+  nowhere in its name, description or topics (it matched README text only);
+- ×0.8 when you asked for a framework, library, parser or client and the repo
+  reads like an application rather than a building block.
+
+Both `score` and `fit` are returned, with the relevance rank, the sources the
+repo came from and the two signals, so an agent can see why.
+
+`node mcp/eval/inspect.mjs "<need>" [language] [wanted/repo ...]` prints the
+whole candidate pool for one need with these values.
 
 ## Nightly snapshot job
 
@@ -206,10 +242,9 @@ docs/superpowers/            implementation plans
    trending tools.
 2. Pick the product name, then publish to npm, the MCP registry and the
    Claude Code plugin marketplace. Add anonymous call counting.
-3. Query expansion for recommend (synonyms, topic search) to close the
-   retrieval gaps the eval found.
-4. Later: Cargo, Go and Maven adoption; release cadence in maintenance;
-   downloads in the dashboard.
+3. Later: Cargo, Go and Maven adoption; release cadence in maintenance
+   (mature libraries such as Pillow score low on momentum); downloads in the
+   dashboard; grow the eval past 20 needs from real usage.
 
 ## License
 

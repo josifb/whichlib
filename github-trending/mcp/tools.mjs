@@ -5,14 +5,35 @@
 import { normalizeRepo } from '../snapshot/src/normalize.mjs';
 import { buildSearchQuery, PERIODS } from '../snapshot/src/query.mjs';
 import scoreLib from '../lib/score.js';
+import { expandNeed, mentionLevel, asksForLibrary, looksLikeLibrary } from './expand.mjs';
 
 const REPO_NAME = /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\/[A-Za-z0-9._-]+$/;
 const RELEVANCE_WINDOW = 25;  // best-match results requested
 const RELEVANCE_DECAY = 0.5;  // rank 1 -> 1.0, rank 25 -> 0.5
+const RELEVANCE_TOPIC = 0.75; // not in the text results, but the maintainers tagged the topic
 const RELEVANCE_ABSENT = 0.4; // present only in the stars-sorted results
+// How strongly the candidate says it is about the subject: in its name or description,
+// only in its topic tags (loose: every result of a topic query has the tag), or nowhere
+// (matched README text only).
+const MENTION_FACTOR = { text: 1, topic: 0.75, none: 0.5 };
+const NOT_LIBRARY_FACTOR = 0.8; // the user asked for a framework/library/parser and the candidate reads like an application
 const LANGUAGE_NEEDS_QUOTES = /[^A-Za-z0-9_-]/;
 
-const languageQualifier = (language) => (language ? `language:${LANGUAGE_NEEDS_QUOTES.test(language) ? `"${language}"` : language}` : null);
+// Repeated language qualifiers act as OR in GitHub search (verified 2026-09-27).
+// Many JavaScript libraries are written in TypeScript now, and Python libraries
+// sometimes show as Jupyter Notebook, so a request for one includes the other.
+const LANGUAGE_FAMILY = {
+  javascript: ['JavaScript', 'TypeScript'],
+  typescript: ['TypeScript', 'JavaScript'],
+  python: ['Python', 'Jupyter Notebook'],
+  'jupyter notebook': ['Jupyter Notebook', 'Python'],
+};
+const quoteLanguage = (l) => `language:${LANGUAGE_NEEDS_QUOTES.test(l) ? `"${l}"` : l}`;
+const languageQualifier = (language) => {
+  if (!language) return null;
+  const family = LANGUAGE_FAMILY[String(language).toLowerCase()] ?? [language];
+  return family.map(quoteLanguage).join(' ');
+};
 
 export function createTools({ github, resolvePackages, history, now = () => Date.now() }) {
   const registryCache = {}; // repo -> package names, for the life of the process
@@ -49,23 +70,37 @@ export function createTools({ github, resolvePackages, history, now = () => Date
       const text = String(need ?? '').trim();
       if (text.length < 2) throw new Error('Describe the need in a few words, for example "python pdf parser".');
       const n = Math.min(Math.max(Number(limit) || 5, 1), 10);
-      const query = [text, languageQualifier(language), 'archived:false', 'fork:false', 'stars:>=20'].filter(Boolean).join(' ');
-      // Two views of the same query: GitHub's relevance order finds the libraries that are
-      // actually about the need; the stars order finds the big names whose description
-      // only mentions it. Union both, then let the score decide.
-      const [relevance, popular] = await Promise.all([
+      const { terms, topic } = expandNeed(text);
+      const langs = languageQualifier(language);
+      const query = [terms, langs, 'archived:false', 'fork:false', 'stars:>=20'].filter(Boolean).join(' ');
+      const topicQuery = topic ? [`topic:${topic}`, langs, 'archived:false', 'fork:false'].filter(Boolean).join(' ') : null;
+      // Three views: GitHub's relevance order finds the libraries that are actually about the
+      // need; the stars order finds the big names whose description only mentions it; the
+      // topic query finds what maintainers tagged themselves, which text search misses when
+      // the vocabulary differs. Union all, then let fit decide.
+      const [relevance, popular, tagged] = await Promise.all([
         github.searchRepos(query, { perPage: 25, sort: 'best-match' }),
         github.searchRepos(query, { perPage: 15, sort: 'stars' }),
+        topicQuery ? github.searchRepos(topicQuery, { perPage: 20, sort: 'stars' }) : Promise.resolve({ items: [], totalCount: 0 }),
       ]);
+      const sources = new Map();
+      const addSource = (items, tag) => { for (const it of items) sources.set(it.full_name, [...(sources.get(it.full_name) ?? []), tag]); };
+      addSource(relevance.items, 'relevance'); addSource(popular.items, 'stars'); addSource(tagged.items, 'topic');
       const seen = new Set();
-      const candidates = [...relevance.items, ...popular.items].filter((it) => !seen.has(it.full_name) && seen.add(it.full_name));
+      const candidates = [...relevance.items, ...popular.items, ...tagged.items].filter((it) => !seen.has(it.full_name) && seen.add(it.full_name));
       const relevanceRank = new Map(relevance.items.map((it, i) => [it.full_name, i + 1]));
       // The score measures health and popularity, not fit to the need. GitHub's relevance
       // order is the best fit signal available, so the ranking key is fit = score x relevance.
+      const wantsLibrary = asksForLibrary(text);
       const withFit = (r) => {
         const rank = relevanceRank.get(r.fullName) ?? null;
-        const relevance = rank === null ? RELEVANCE_ABSENT : 1 - RELEVANCE_DECAY * (rank - 1) / Math.max(1, RELEVANCE_WINDOW - 1);
-        return { ...r, relevanceRank: rank, relevance: Number(relevance.toFixed(3)), fit: Math.round(r.score * relevance) };
+        const src = sources.get(r.fullName) ?? [];
+        let relevance = rank !== null ? 1 - RELEVANCE_DECAY * (rank - 1) / Math.max(1, RELEVANCE_WINDOW - 1)
+          : src.includes('topic') ? RELEVANCE_TOPIC : RELEVANCE_ABSENT;
+        const signals = { mention: mentionLevel(r, text), looksLikeLibrary: looksLikeLibrary(r) };
+        relevance *= MENTION_FACTOR[signals.mention];
+        if (wantsLibrary && !signals.looksLikeLibrary) relevance *= NOT_LIBRARY_FACTOR;
+        return { ...r, relevanceRank: rank, sources: src, signals, relevance: Number(relevance.toFixed(3)), fit: Math.round(r.score * relevance) };
       };
       const byFit = (a, b) => b.fit - a.fit || byScore(a, b);
       // Cheap pass without registry lookups to pick the shortlist, then the full pass with downloads.
@@ -73,13 +108,13 @@ export function createTools({ github, resolvePackages, history, now = () => Date
       const shortlist = prelim.slice(0, Math.max(2 * n, 8)).map((r) => candidates.find((it) => it.full_name === r.fullName));
       const scored = (await enrichAndScore(shortlist, { withDownloads: true })).map(withFit).sort(byFit).slice(0, n);
       const result = {
-        tool: 'recommend_repos', need: text, language, query, totalMatches: relevance.totalCount,
+        tool: 'recommend_repos', need: text, language, query, topicQuery, totalMatches: relevance.totalCount,
         candidatesConsidered: candidates.length, shortlisted: shortlist.length,
-        ranking: 'fit = score x relevance; relevance is 1.0 for GitHub relevance rank 1, 0.5 at rank 25, 0.4 when the repo only appears in the stars-sorted results',
+        ranking: 'fit = score x relevance; relevance is 1.0 for GitHub relevance rank 1, 0.5 at rank 25, 0.75 when found only through the topic query, 0.4 when found only in the stars-sorted results; x0.75 when the repo names the subject only in its topic tags and x0.5 when nowhere in its name, description or topics; x0.8 when you asked for a framework/library and the repo reads like an application',
         generatedAt: new Date(now()).toISOString(), dataNotes: dataNotes(), repos: scored,
       };
       // For the eval: every candidate with its pre-download score, so baselines can be computed from the same pool.
-      if (includeCandidates) result.candidates = prelim.map(({ fullName, stars, score, fit, relevanceRank }) => ({ fullName, stars, score, fit, relevanceRank }));
+      if (includeCandidates) result.candidates = prelim.map(({ fullName, stars, score, fit, relevanceRank, sources: src, signals }) => ({ fullName, stars, score, fit, relevanceRank, sources: src, signals }));
       return result;
     },
 

@@ -57,7 +57,7 @@ top-level README for install commands and environment variables.
 ## Snapshot job
 
 ```
-npm test           # 61 unit tests, no network
+npm test           # 77 unit tests, no network
 npm run snapshot   # 27 queries (3 periods x 9 languages), ~3 min without a token
 npm run enrich     # npm / PyPI packages + weekly downloads for the latest snapshot, ~1.5 min
 npm run score      # top 25 from the latest snapshot with score, downloads and verdict
@@ -109,11 +109,12 @@ snapshot/src/pull-data.mjs    CLI: copy snapshots from the origin/data branch
 snapshot/test/                node:test suites for the above
 mcp/server.mjs                MCP server entry (stdio), zod schemas, text + structuredContent
 mcp/tools.mjs                 recommend / compare / trending logic, formatResult
+mcp/expand.mjs                query expansion: synonyms, topic pick, mention and library signals
 mcp/github-api.mjs            GitHub client with token and 10-minute cache
 mcp/data.mjs                  optional snapshot history provider
 mcp/smoke.mjs                 stdio client that exercises every tool
 mcp/test/                     unit tests with fakes
-mcp/eval/                     needs.json, metrics, run-eval.mjs, results/
+mcp/eval/                     needs.json, metrics, run-eval.mjs, inspect.mjs, results/
 data/snapshots/               one JSON file per day
 ```
 

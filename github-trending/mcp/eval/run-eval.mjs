@@ -6,6 +6,7 @@
 // Usage: GITHUB_TOKEN=... node mcp/eval/run-eval.mjs   (token strongly advised: 40 searches)
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
+import { existsSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createGitHubClient } from '../github-api.mjs';
@@ -20,7 +21,7 @@ const github = createGitHubClient();
 const history = await loadHistoryProvider();
 const tools = createTools({ github, resolvePackages, history });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
-const paceMs = github.hasToken ? 4500 : 13000; // 2 searches per need; 30/min with token, 10/min without
+const paceMs = github.hasToken ? 6500 : 19000; // 3 searches per need; 30/min with token, 10/min without
 
 const STRATEGIES = {
   fit: (c) => [...c].sort((a, b) => b.fit - a.fit || b.score - a.score),
@@ -75,7 +76,9 @@ lines.push('', '## Reading it', '', '- "Accepted repos in pool" empty means GitH
 
 const outDir = join(here, 'results');
 await mkdir(outDir, { recursive: true });
-const outPath = join(outDir, `${date}.md`);
+// Never overwrite an earlier run from the same day: <date>.md, then <date>-2.md, ...
+let outPath = join(outDir, `${date}.md`);
+for (let n = 2; existsSync(outPath); n += 1) outPath = join(outDir, `${date}-${n}.md`);
 await writeFile(outPath, lines.join('\n'));
 console.error(`\nWrote ${outPath}\n`);
 console.log(lines.slice(0, 10).join('\n'));
