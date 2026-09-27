@@ -10,6 +10,7 @@
   },
   "scripts": {
     "test": "node --test \"snapshot/test/**/*.test.mjs\"",
-    "snapshot": "node snapshot/src/run.mjs"
+    "snapshot": "node snapshot/src/run.mjs",
+    "score": "node snapshot/src/score-report.mjs"
   }
 }

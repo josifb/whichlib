@@ -1,0 +1,4 @@
+{
+  "type": "commonjs",
+  "description": "Files in this folder are plain scripts shared by the browser dashboard and Node. Keep them free of imports."
+}

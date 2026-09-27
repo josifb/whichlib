@@ -32,11 +32,20 @@ Tip: pin the file as a browser bookmark or set it as a new-tab page.
 - **Downloads** do not exist for repositories on GitHub, only for release
   files. Forks are the nearest public signal.
 
+## Score
+
+`lib/score.js` turns a repo record plus optional 7-day stars-gained into
+`{ score, tier, verdict, parts, flags }`. Weights: momentum 0.40,
+maintenance 0.25, adoption 0.25, license 0.10. Archived caps at 20. The full
+table is in the top-level README. The file is a plain script so the dashboard
+loads it with a `<script>` tag and Node imports it as CommonJS.
+
 ## Snapshot job
 
 ```
-npm test           # 16 unit tests, no network
+npm test           # 34 unit tests, no network
 npm run snapshot   # 27 queries (3 periods x 9 languages), ~3 min without a token
+npm run score      # top 25 from the latest snapshot with score and verdict
 ```
 
 Set `GITHUB_TOKEN` in the environment to run it in about one minute.
@@ -57,19 +66,22 @@ Remove with `schtasks /Delete /TN "GitHub Trending Snapshot" /F`.
 ## Layout
 
 ```
-dashboard/index.html       the app, single file, no build step
-snapshot/src/query.mjs     what "trending" means: periodStart, buildSearchQuery, searchUrl
-snapshot/src/normalize.mjs raw API item -> stored record
-snapshot/src/github.mjs    fetch with rate-limit wait-and-retry
-snapshot/src/run.mjs       CLI: periods x languages -> data/snapshots/<date>.json
-snapshot/test/             node:test suites for the above
-data/snapshots/            one JSON file per day
+dashboard/index.html          the app, single file, no build step
+lib/score.js                  score, tier, verdict (shared browser + Node)
+snapshot/src/query.mjs        what "trending" means: periodStart, buildSearchQuery, searchUrl
+snapshot/src/normalize.mjs    raw API item -> stored record
+snapshot/src/github.mjs       fetch with rate-limit wait-and-retry
+snapshot/src/run.mjs          CLI: periods x languages -> data/snapshots/<date>.json
+snapshot/src/history.mjs      snapshots -> per-repo star series, starsGained
+snapshot/src/score-report.mjs CLI: top repos from the latest snapshot by score
+snapshot/test/                node:test suites for the above
+data/snapshots/               one JSON file per day
 ```
 
 ## Next steps
 
-1. Score: momentum from consecutive snapshots, maintenance (days since push,
-   issue ratio), license, archived. Show it in the dashboard.
+1. Registry adoption: map repos to npm and PyPI packages, add weekly downloads
+   to the adoption part.
 2. MCP server with three tools: recommend by need, compare named repos,
    trending by period and language.
 3. Publish to npm, the MCP registry and the Claude Code plugin marketplace.

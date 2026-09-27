@@ -42,6 +42,37 @@ permissions is enough. It stays in your browser's local storage.
   files. Forks are shown as the nearest public signal.
 - **Stars/day** is stars divided by the repo's age, floored at one hour.
 
+## Score
+
+Every repo gets a score from 0 to 100, a tier and a one-line verdict. The
+breakdown is always returned so a person or an agent can see why. The same
+file, `github-trending/lib/score.js`, runs in the dashboard and in Node, so
+the two can never disagree.
+
+| Part | Weight | Signal |
+|---|---|---|
+| Momentum | 40% | Stars gained over the last 7 days from our snapshots. Without history, stars per day since creation times 7, with age floored at one day. Log scale: 50 a week is already good, 5,000 is the max. |
+| Maintenance | 25% | Days since last push: full marks up to 7 days, zero at 90, linear between. Minus 0.2 when open issues exceed a tenth of the stars. |
+| Adoption | 25% | 70% total stars (max 100k) plus 30% forks (max 20k), both log scale. Registry downloads will join this part. |
+| License | 10% | Permissive 1.0, weak copyleft 0.75, strong copyleft 0.5, unrecognised 0.5, none 0. |
+
+Tiers: **Strong** 75 and above, **Promising** 50, **Watch** 25, **Avoid**
+below 25. Archived repos are capped at 20 and get the verdict "Archived,
+avoid." A missing license is always named in the verdict.
+
+Verdicts read like "Rising fast, pushed 2 days ago, MIT" or "Slow growth, no
+push in 60 days, GPL-3.0".
+
+Caveat: opened from disk, the dashboard has no snapshot history, so momentum
+uses the fallback. Scores on the Today tab are therefore provisional; the
+report and the MCP server use real stars-gained figures once there are two or
+more days of snapshots.
+
+```
+cd github-trending
+npm run score      # top 25 repos from the latest snapshot with score and verdict
+```
+
 ## Nightly snapshot job
 
 `github-trending/snapshot/` is a zero-dependency Node 22 script that stores the
@@ -61,18 +92,21 @@ Task Scheduler command that runs it every morning.
 ## Repository layout
 
 ```
-github-trending/   the dashboard, the snapshot job and its tests
-docs/ideas/        product one-pager
-docs/superpowers/  implementation plans
+github-trending/dashboard/   the app, one HTML file
+github-trending/lib/         score.js, shared by browser and Node
+github-trending/snapshot/    snapshot job, history builder, score report, tests
+docs/ideas/                  product one-pager
+docs/superpowers/            implementation plans
 ```
 
 ## Roadmap
 
-1. Score: momentum from consecutive snapshots, maintenance signals, license,
-   archived flag, shown in the dashboard.
-2. MCP server with three tools: recommend by need, compare named repos,
+1. Done: dashboard, nightly snapshots, transparent score with tiers and verdicts.
+2. Registry adoption: map repos to npm and PyPI packages and add weekly
+   downloads to the adoption part.
+3. MCP server with three tools: recommend by need, compare named repos,
    trending by period and language.
-3. Publish to npm, the MCP registry and the Claude Code plugin marketplace.
+4. Publish to npm, the MCP registry and the Claude Code plugin marketplace.
 
 ## License
 

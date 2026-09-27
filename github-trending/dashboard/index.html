@@ -24,6 +24,8 @@
     --warn-text: #6b4c00;
     --err-bg: #fbe4e4;
     --err-text: #7a1f1f;
+    --tier-strong-bg: #dcefe1;
+    --tier-strong-text: #1d5a30;
     --focus: #0b6e7a;
     --shadow: 0 1px 2px rgba(20, 30, 40, .06);
     --sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
@@ -46,6 +48,8 @@
       --warn-text: #f1d48a;
       --err-bg: #421c1c;
       --err-text: #f3b1b1;
+      --tier-strong-bg: #173a24;
+      --tier-strong-text: #9ad7ab;
       --focus: #33b3c0;
       --shadow: 0 1px 2px rgba(0, 0, 0, .4);
     }
@@ -66,6 +70,8 @@
     --warn-text: #f1d48a;
     --err-bg: #421c1c;
     --err-text: #f3b1b1;
+    --tier-strong-bg: #173a24;
+    --tier-strong-text: #9ad7ab;
     --focus: #33b3c0;
     --shadow: 0 1px 2px rgba(0, 0, 0, .4);
   }
@@ -160,6 +166,12 @@
   td.date { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
   td.lic { white-space: nowrap; color: var(--muted); font-family: var(--mono); font-size: 12.5px; }
   .archived { color: var(--err-text); font-size: 11.5px; margin-left: 6px; }
+  td.score { cursor: help; }
+  .tier { display: inline-block; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .02em; border-radius: 4px; padding: 1px 6px; margin-right: 4px; border: 1px solid transparent; }
+  .tier-strong { background: var(--tier-strong-bg); color: var(--tier-strong-text); }
+  .tier-promising { background: var(--accent-soft); color: var(--text); }
+  .tier-watch { background: var(--warn-bg); color: var(--warn-text); }
+  .tier-avoid { background: var(--err-bg); color: var(--err-text); }
 
   .empty { padding: 40px 16px; text-align: center; color: var(--muted); }
 
@@ -208,6 +220,7 @@
         <tr>
           <th scope="col" aria-label="Rank by stars">#</th>
           <th scope="col" data-key="fullName"><button type="button">Repository</button></th>
+          <th scope="col" class="num" data-key="score"><button type="button">Score</button></th>
           <th scope="col" data-key="language"><button type="button">Language</button></th>
           <th scope="col" class="num" data-key="stars"><button type="button">Stars</button></th>
           <th scope="col" class="num" data-key="starsPerDay"><button type="button">Stars/day</button></th>
@@ -226,10 +239,12 @@
   <footer>
     <p><strong>How this list is built.</strong> Repositories created in the last 24 hours, 7 days or 30 days, fetched live from the GitHub Search API and ranked by stars. The rank column always shows the stars rank, so you can sort by another column and still see where a repo stands.</p>
     <p><strong>Downloads.</strong> GitHub publishes no download count for repositories, only for release files. Forks are the nearest public signal of people taking a copy. Stars/day is stars divided by the repo's age, a rough velocity.</p>
+    <p><strong>Score.</strong> 0 to 100 from four parts: momentum (40%), maintenance (25%), adoption (25%) and license (10%). Archived repos are capped at 20. Hover a score for the one-line verdict. Opened from disk, momentum uses stars per day; the nightly snapshots give the real stars-gained figure to the report and the upcoming MCP server. Full definition in the README.</p>
     <p>Results are cached in this browser for 60 minutes per tab and language. Refresh forces a new fetch.</p>
   </footer>
 </div>
 
+<script src="../lib/score.js"></script>
 <script>
 (() => {
   'use strict';
@@ -240,7 +255,8 @@
   const LANGUAGES = ['JavaScript', 'TypeScript', 'Python', 'Go', 'Rust', 'Java', 'C++', 'C#', 'C', 'Kotlin', 'Swift', 'Ruby', 'PHP', 'Dart', 'Shell', 'HTML', 'Jupyter Notebook'];
   const LANG_COLORS = { JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5', Go: '#00ADD8', Rust: '#dea584', Java: '#b07219', 'C++': '#f34b7d', 'C#': '#178600', C: '#555555', Kotlin: '#A97BFF', Swift: '#F05138', Ruby: '#701516', PHP: '#4F5D95', Dart: '#00B4AB', Shell: '#89e051', HTML: '#e34c26', 'Jupyter Notebook': '#DA5B0B', Vue: '#41b883', Svelte: '#ff3e00', Lua: '#000080', Zig: '#ec915c', Elixir: '#6e4a7e', Scala: '#c22d40', Haskell: '#5e5086', 'Objective-C': '#438eff', R: '#198CE7' };
   const CACHE_TTL_MS = 60 * 60 * 1000;
-  const NUMERIC = new Set(['stars', 'starsPerDay', 'forks', 'openIssues']);
+  const NUMERIC = new Set(['score', 'stars', 'starsPerDay', 'forks', 'openIssues']);
+  const scorer = typeof FreshReposScore !== 'undefined' ? FreshReposScore : null;
   const DATES = new Set(['createdAt', 'pushedAt']);
 
   // ---- storage (may be unavailable) ----------------------------------------
@@ -267,7 +283,7 @@
   function normalize(item, rank) {
     const created = Date.parse(item.created_at);
     const ageDays = Math.max(1 / 24, (Date.now() - created) / 86400000); // floor at one hour
-    return {
+    const rec = {
       rank,
       fullName: item.full_name,
       url: item.html_url,
@@ -283,6 +299,15 @@
       archived: Boolean(item.archived),
       topics: Array.isArray(item.topics) ? item.topics : [],
     };
+    // Score in fallback mode: a page opened from disk cannot read the snapshot
+    // files, so momentum comes from stars per day rather than stars gained.
+    if (scorer) {
+      const s = scorer.scoreRepo(rec, { starsGained7d: null });
+      rec.score = s.score; rec.tier = s.tier; rec.verdict = s.verdict;
+    } else {
+      rec.score = -1; rec.tier = null; rec.verdict = '';
+    }
+    return rec;
   }
 
   // ---- state ---------------------------------------------------------------
@@ -297,7 +322,7 @@
     loading: false,
   };
   const persistState = () => store.set('gt:state', { period: state.period, language: state.language, sortKey: state.sortKey, sortDir: state.sortDir });
-  const cacheKey = () => `gt:cache:${state.period}:${state.language || 'all'}`;
+  const cacheKey = () => `gt:cache:v2:${state.period}:${state.language || 'all'}`; // bump when the record shape changes
 
   // ---- elements ------------------------------------------------------------
   const $ = (id) => document.getElementById(id);
@@ -372,6 +397,7 @@
           ${r.description ? `<div class="desc">${esc(r.description)}</div>` : ''}
           ${r.topics.length ? `<div class="topics">${r.topics.slice(0, 5).map((t) => `<span>${esc(t)}</span>`).join('')}</div>` : ''}
         </td>
+        <td class="num score" title="${esc(r.verdict)}">${r.tier ? `<span class="tier tier-${r.tier.toLowerCase()}">${r.tier}</span> ${r.score}` : '—'}</td>
         <td class="lang">${r.language ? `<i style="background:${LANG_COLORS[r.language] ?? 'var(--border-strong)'}"></i>${esc(r.language)}` : '<span style="color:var(--muted)">—</span>'}</td>
         <td class="num stars">${fmtInt(r.stars)}</td>
         <td class="num">${fmtRate(r.starsPerDay)}</td>
