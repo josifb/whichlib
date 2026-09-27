@@ -15,3 +15,6 @@ docs/
 
 # wrangler local cache
 .wrangler/
+
+# MCP registry publisher binary
+whichlib/mcp-publisher.exe
