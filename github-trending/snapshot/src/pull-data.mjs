@@ -15,7 +15,8 @@ const BRANCH_PATH = 'github-trending/data/snapshots';
 const git = (...args) => execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
 
 git('fetch', '-q', 'origin', 'data');
-const listing = git('ls-tree', '--name-only', `origin/data:${BRANCH_PATH}`).split('\n').filter((n) => n.endsWith('.json'));
+// --full-tree: without it, git scopes ls-tree to the current subdirectory and finds nothing.
+const listing = git('ls-tree', '--full-tree', '--name-only', `origin/data:${BRANCH_PATH}`).split('\n').filter((n) => n.endsWith('.json'));
 
 await mkdir(OUT_DIR, { recursive: true });
 const have = new Set(await readdir(OUT_DIR));
