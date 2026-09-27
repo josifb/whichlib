@@ -2,6 +2,7 @@ name = "whichlib-telemetry"
 main = "worker.mjs"
 compatibility_date = "2026-09-01"
 
-[[analytics_engine_datasets]]
-binding = "WHICHLIB_EVENTS"
-dataset = "whichlib_events"
+[[d1_databases]]
+binding = "DB"
+database_name = "whichlib-events"
+database_id = "df51224e-40e1-481b-88e2-ffcfab3db39c"

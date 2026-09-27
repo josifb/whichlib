@@ -13,16 +13,11 @@ automated on purpose: publishing is outward-facing and should be a decision.
       marketing context) live in the private repository josifb/whichlib-internal
       and are git-ignored here.
 
-## Call counter (optional but recommended before launch)
+## Call counter
 
-```
-cd telemetry
-npx wrangler login
-npx wrangler deploy          # prints https://whichlib-telemetry.<account>.workers.dev
-```
-
-Then set `DEFAULT_ENDPOINT` in `whichlib/mcp/telemetry.mjs` to that URL,
-run the tests, commit. Without this step the published package counts nothing.
+Deployed 2026-09-27: https://whichlib-telemetry.todorovskijosif.workers.dev
+(`/stats` for the numbers). `DEFAULT_ENDPOINT` in `whichlib/mcp/telemetry.mjs`
+points at it. Redeploy steps are in `telemetry/README.md`.
 
 ## npm
 

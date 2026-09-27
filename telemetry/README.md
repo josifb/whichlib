@@ -1,7 +1,15 @@
 # whichlib call counter
 
 The one number the product plan depends on is whether agents call the tool:
-weekly active installs and calls per install. This folder is the collector.
+weekly active installs and calls per install. This folder is the collector, a
+Cloudflare Worker writing to a D1 (SQLite) database. Both are on the free
+tier. Deployed 2026-09-27 at:
+
+    https://whichlib-telemetry.todorovskijosif.workers.dev
+
+`GET /stats` on that URL returns the aggregate numbers as JSON (weekly
+installs and calls, calls by tool, totals). It is public on purpose: the
+numbers the product is judged by should be visible.
 
 ## What the MCP server sends
 
@@ -12,26 +20,42 @@ One small POST per tool call, fire-and-forget, 2-second timeout:
 ```
 
 Never sent: the query, repository names, results, user names, file paths,
-tokens. The worker does not store IP addresses.
+tokens. The worker does not store IP addresses or headers. Events with an
+unknown tool name or a malformed install id are dropped.
 
-Users turn it off with `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1`. It is
-also off whenever no endpoint is configured, which is the state of the
-published package until this worker is deployed.
+Users turn it off with `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1`.
 
-## Deploy (free Cloudflare account)
+## Files
+
+- `worker.mjs`: the collector and the `/stats` endpoint.
+- `schema.sql`: the `events` table and its indexes, applied once.
+- `wrangler.toml`: worker name and the D1 binding.
+
+## Deploy or redeploy
 
 ```
 cd telemetry
-npx wrangler login
+npx wrangler login                                                  # once
+npx wrangler d1 create whichlib-events                              # once; put the id in wrangler.toml
+npx wrangler d1 execute whichlib-events --remote --file schema.sql  # once
 npx wrangler deploy
 ```
 
-Then set `DEFAULT_ENDPOINT` in `whichlib/mcp/telemetry.mjs` to the worker URL
-and publish a new whichlib version. Until then, test with
-`WHICHLIB_TELEMETRY_URL=https://<worker>.workers.dev`.
+If the worker URL ever changes, update `DEFAULT_ENDPOINT` in
+`whichlib/mcp/telemetry.mjs` and publish a new whichlib version.
 
 ## Read the numbers
 
-Cloudflare dashboard → Analytics Engine, or the SQL API. Queries are at the
-top of `worker.mjs`. The decision rule from the one-pager: watch weekly
-active installs and calls per install for four weeks after launch.
+```
+curl https://whichlib-telemetry.todorovskijosif.workers.dev/stats
+npx wrangler d1 execute whichlib-events --remote --command "SELECT strftime('%Y-%W', ts) AS week, COUNT(DISTINCT install_id) AS installs, COUNT(*) AS calls FROM events GROUP BY week ORDER BY week"
+```
+
+Decision rule from the one-pager: watch weekly active installs and calls per
+install for four weeks after launch.
+
+## Lesson from the first deploy
+
+Creating the schema from inside the worker did not work reliably: D1's
+`exec()` splits statements on newlines, and a cached `batch()` promise hid a
+failure. A schema file applied with wrangler is the dependable way.

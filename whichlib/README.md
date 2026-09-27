@@ -60,7 +60,8 @@ reports live in the repository.
 - `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1`: disables anonymous call
   counting. What is counted: tool name, a random install id, version,
   platform, Node major version. Never queries, repository names or results.
-  Counting is also off whenever no collector endpoint is configured.
+  The aggregate numbers are public at
+  https://whichlib-telemetry.todorovskijosif.workers.dev/stats.
 
 ## Source, dashboard, data
 

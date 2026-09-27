@@ -14,8 +14,9 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
 
-// Set once the collector is deployed (see telemetry/ at the repository root).
-export const DEFAULT_ENDPOINT = null;
+// The collector: a Cloudflare Worker writing to D1 (see telemetry/ at the
+// repository root). GET <endpoint>/stats shows the aggregate numbers publicly.
+export const DEFAULT_ENDPOINT = 'https://whichlib-telemetry.todorovskijosif.workers.dev';
 
 export function telemetryEnabled(env = process.env, endpoint = DEFAULT_ENDPOINT) {
   if (!endpoint && !env.WHICHLIB_TELEMETRY_URL) return false;

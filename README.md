@@ -139,8 +139,9 @@ Environment variables, both optional:
 - `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1` disables anonymous call
   counting. What is counted: tool name, a random install id, version,
   platform and Node major version. Never queries, repository names or
-  results. The collector is a small Cloudflare Worker in `telemetry/`; until
-  it is deployed and its URL is set in `mcp/telemetry.mjs`, counting is off.
+  results. The collector is a small Cloudflare Worker in `telemetry/`, and
+  its aggregate numbers are public at
+  https://whichlib-telemetry.todorovskijosif.workers.dev/stats.
 
 Try it without a client:
 

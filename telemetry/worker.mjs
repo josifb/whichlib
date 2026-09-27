@@ -1,36 +1,52 @@
 // whichlib call counter: a Cloudflare Worker that receives the anonymous
-// events the MCP server sends and writes them to Workers Analytics Engine.
+// events the MCP server sends and stores them in D1 (free SQLite).
 // No IPs, no request bodies beyond the six fields, no cookies.
 //
-// Deploy: `npx wrangler deploy` in this folder (needs a free Cloudflare
-// account), then set DEFAULT_ENDPOINT in whichlib/mcp/telemetry.mjs to the
-// worker URL and publish a new whichlib version.
+// Deploy: `npx wrangler login`, `npx wrangler d1 create whichlib-events` (put the
+// id in wrangler.toml), `npx wrangler d1 execute whichlib-events --remote --file schema.sql`,
+// `npx wrangler deploy`. Then set DEFAULT_ENDPOINT in whichlib/mcp/telemetry.mjs.
 //
-// Query (Cloudflare dashboard > Analytics Engine, or the SQL API):
+// Read the numbers (npx wrangler d1 execute whichlib-events --remote --command "..."):
 //   weekly active installs:
-//     SELECT toStartOfWeek(timestamp) AS week, COUNT(DISTINCT index1) AS installs
-//     FROM whichlib_events GROUP BY week ORDER BY week
+//     SELECT strftime('%Y-%W', ts) AS week, COUNT(DISTINCT install_id) AS installs, COUNT(*) AS calls
+//     FROM events GROUP BY week ORDER BY week
 //   calls per install per week:
-//     SELECT toStartOfWeek(timestamp) AS week, COUNT() / COUNT(DISTINCT index1)
-//     FROM whichlib_events GROUP BY week ORDER BY week
+//     SELECT strftime('%Y-%W', ts) AS week, ROUND(1.0 * COUNT(*) / COUNT(DISTINCT install_id), 1)
+//     FROM events GROUP BY week ORDER BY week
 //   calls by tool:
-//     SELECT blob1 AS tool, COUNT() FROM whichlib_events GROUP BY tool
+//     SELECT tool, COUNT(*) FROM events GROUP BY tool ORDER BY 2 DESC
+// Or GET /stats on the worker for the same three, as JSON.
 
 const TOOLS = new Set(['recommend_repos', 'compare_repos', 'trending_repos']);
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 
+// Schema lives in schema.sql and is applied once:
+//   npx wrangler d1 execute whichlib-events --remote --file schema.sql
+
+async function stats(db) {
+  const weekly = await db.prepare("SELECT strftime('%Y-%W', ts) AS week, COUNT(DISTINCT install_id) AS installs, COUNT(*) AS calls FROM events GROUP BY week ORDER BY week").all();
+  const byTool = await db.prepare('SELECT tool, COUNT(*) AS calls FROM events GROUP BY tool ORDER BY calls DESC').all();
+  const totals = await db.prepare('SELECT COUNT(DISTINCT install_id) AS installs, COUNT(*) AS calls, MIN(ts) AS since FROM events').first();
+  return { totals, weekly: weekly.results, byTool: byTool.results };
+}
+
 export default {
   async fetch(request, env) {
-    if (request.method !== 'POST') return new Response('whichlib call counter', { status: 200 });
+    const url = new URL(request.url);
+
+    if (request.method === 'GET' && url.pathname === '/stats') {
+      return Response.json(await stats(env.DB), { headers: { 'Cache-Control': 'public, max-age=300' } });
+    }
+    if (request.method !== 'POST') return new Response('whichlib call counter. GET /stats for the numbers.', { status: 200 });
+
     let body;
     try { body = await request.json(); } catch { return new Response('bad json', { status: 400 }); }
     const { tool, installId, version = '', platform = '', node = '' } = body ?? {};
     if (!TOOLS.has(tool) || !UUID.test(String(installId))) return new Response('ignored', { status: 202 });
-    env.WHICHLIB_EVENTS.writeDataPoint({
-      blobs: [tool, String(version).slice(0, 20), String(platform).slice(0, 20), String(node).slice(0, 4)],
-      doubles: [1],
-      indexes: [installId],
-    });
+
+    await env.DB.prepare('INSERT INTO events (ts, tool, install_id, version, platform, node) VALUES (?, ?, ?, ?, ?, ?)')
+      .bind(new Date().toISOString(), tool, installId, String(version).slice(0, 20), String(platform).slice(0, 20), String(node).slice(0, 4))
+      .run();
     return new Response(null, { status: 204 });
   },
 };
