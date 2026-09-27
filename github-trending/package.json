@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "description": "Daily dashboard of the most-starred new GitHub repos, plus a nightly snapshot job.",
+  "license": "MIT",
   "type": "module",
   "engines": {
     "node": ">=22"

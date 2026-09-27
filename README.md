@@ -76,4 +76,4 @@ docs/superpowers/  implementation plans
 
 ## License
 
-Not chosen yet.
+[MIT](LICENSE).
