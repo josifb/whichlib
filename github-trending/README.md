@@ -40,10 +40,23 @@ maintenance 0.25, adoption 0.25, license 0.10. Archived caps at 20. The full
 table is in the top-level README. The file is a plain script so the dashboard
 loads it with a `<script>` tag and Node imports it as CommonJS.
 
+## MCP server
+
+```
+npm run mcp          # start the server on stdio (what an MCP client runs)
+npm run mcp:smoke    # end-to-end check against the live APIs
+```
+
+`mcp/server.mjs` registers `recommend_repos`, `compare_repos` and
+`trending_repos`. `mcp/tools.mjs` holds the logic with injected dependencies
+(GitHub client, registry resolver, history provider) and is unit-tested with
+fakes. Logs go to stderr only; stdout is the protocol channel. See the
+top-level README for install commands and environment variables.
+
 ## Snapshot job
 
 ```
-npm test           # 51 unit tests, no network
+npm test           # 61 unit tests, no network
 npm run snapshot   # 27 queries (3 periods x 9 languages), ~3 min without a token
 npm run enrich     # npm / PyPI packages + weekly downloads for the latest snapshot, ~1.5 min
 npm run score      # top 25 from the latest snapshot with score, downloads and verdict
@@ -93,12 +106,18 @@ snapshot/src/enrich.mjs       CLI: enrich the latest snapshot, maintain data/reg
 snapshot/src/score-report.mjs CLI: top repos from the latest snapshot by score
 snapshot/src/pull-data.mjs    CLI: copy snapshots from the origin/data branch
 snapshot/test/                node:test suites for the above
+mcp/server.mjs                MCP server entry (stdio), zod schemas, text + structuredContent
+mcp/tools.mjs                 recommend / compare / trending logic, formatResult
+mcp/github-api.mjs            GitHub client with token and 10-minute cache
+mcp/data.mjs                  optional snapshot history provider
+mcp/smoke.mjs                 stdio client that exercises every tool
+mcp/test/                     unit tests with fakes
 data/snapshots/               one JSON file per day
 ```
 
 ## Next steps
 
-1. MCP server with three tools: recommend by need, compare named repos,
-   trending by period and language.
-2. Publish to npm, the MCP registry and the Claude Code plugin marketplace.
-3. Later: Cargo, Go and Maven adoption; downloads in the dashboard.
+1. Pick the product name, then publish to npm, the MCP registry and the
+   Claude Code plugin marketplace. Add anonymous call counting.
+2. Later: Cargo, Go and Maven adoption; release cadence in maintenance;
+   downloads in the dashboard.

@@ -8,11 +8,20 @@
   "engines": {
     "node": ">=22"
   },
+  "bin": {
+    "fresh-repos-mcp": "mcp/server.mjs"
+  },
   "scripts": {
-    "test": "node --test \"snapshot/test/**/*.test.mjs\"",
+    "test": "node --test \"snapshot/test/**/*.test.mjs\" \"mcp/test/**/*.test.mjs\"",
     "snapshot": "node snapshot/src/run.mjs",
     "enrich": "node snapshot/src/enrich.mjs",
     "score": "node snapshot/src/score-report.mjs",
-    "pull-data": "node snapshot/src/pull-data.mjs"
+    "pull-data": "node snapshot/src/pull-data.mjs",
+    "mcp": "node mcp/server.mjs",
+    "mcp:smoke": "node mcp/smoke.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.1",
+    "zod": "^4.6.5"
   }
 }

@@ -92,6 +92,50 @@ cd github-trending
 npm run score      # top 25 repos from the latest snapshot with score and verdict
 ```
 
+## MCP server
+
+The same score, served to coding agents. Three tools over stdio:
+
+| Tool | Input | What it returns |
+|---|---|---|
+| `recommend_repos` | `need` in plain words, optional `language`, `limit` (1–10, default 5) | The best repositories for the need, ranked by score, with npm/PyPI downloads and a verdict each. Candidates come from GitHub's relevance order and its stars order, so both the focused libraries and the big names are considered. |
+| `compare_repos` | `repos`: 2–10 names as `owner/repo` | The repositories side by side, best first, same breakdown. |
+| `trending_repos` | `period` day/week/month, optional `language`, `limit` (default 20), `withDownloads` | Most-starred repos created in the period, scored. |
+
+Every result carries readable text and `structuredContent` (JSON) with the
+score, tier, verdict, the four subscores, flags, packages and downloads.
+
+Install into Claude Code (replace the path with your clone):
+
+```
+claude mcp add fresh-repos -- node E:\private\github-trending\mcp\server.mjs
+```
+
+Cursor, Windsurf and others take the same command in their MCP config:
+
+```json
+{ "mcpServers": { "fresh-repos": { "command": "node", "args": ["E:\\private\\github-trending\\mcp\\server.mjs"] } } }
+```
+
+Environment variables, both optional:
+
+- `GITHUB_TOKEN` raises GitHub's limits (search 10 to 30 per minute). A
+  fine-grained token with no permissions is enough.
+- `FRESH_REPOS_DATA_DIR` points at a folder of daily snapshots. The default is
+  `github-trending/data/snapshots`, filled by `npm run pull-data`. With two or
+  more days present, momentum uses real 7-day stars gained.
+
+Try it without a client:
+
+```
+cd github-trending
+npm run mcp:smoke   # starts the server over stdio, lists tools, calls each one
+```
+
+Known bias: maintenance drops to zero at 90 days without a push, so a stable,
+finished library scores lower than an active one. Release cadence will soften
+this later.
+
 ## Nightly snapshot job
 
 `github-trending/snapshot/` is a zero-dependency Node 22 script that stores the
@@ -125,7 +169,8 @@ A Windows Task Scheduler alternative is in
 ```
 github-trending/dashboard/   the app, one HTML file
 github-trending/lib/         score.js, shared by browser and Node
-github-trending/snapshot/    snapshot job, history builder, score report, tests
+github-trending/mcp/         MCP server: recommend_repos, compare_repos, trending_repos
+github-trending/snapshot/    snapshot job, enrichment, history builder, score report, tests
 docs/ideas/                  product one-pager
 docs/superpowers/            implementation plans
 ```
@@ -133,11 +178,12 @@ docs/superpowers/            implementation plans
 ## Roadmap
 
 1. Done: dashboard, nightly snapshots, transparent score with tiers and
-   verdicts, npm and PyPI downloads in the score.
-2. MCP server with three tools: recommend by need, compare named repos,
-   trending by period and language.
-3. Publish to npm, the MCP registry and the Claude Code plugin marketplace.
-4. Later: Cargo, Go and Maven adoption; downloads in the dashboard.
+   verdicts, npm and PyPI downloads, MCP server with recommend, compare and
+   trending tools.
+2. Pick the product name, then publish to npm, the MCP registry and the
+   Claude Code plugin marketplace. Add anonymous call counting.
+3. Later: Cargo, Go and Maven adoption; release cadence in maintenance;
+   downloads in the dashboard.
 
 ## License
 

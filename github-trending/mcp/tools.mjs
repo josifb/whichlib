@@ -1,0 +1,137 @@
+// The three MCP tools, with every dependency injected so they can be tested
+// with fakes. Each returns a plain object (the structuredContent) that
+// formatResult() renders as text for clients that only read text.
+
+import { normalizeRepo } from '../snapshot/src/normalize.mjs';
+import { buildSearchQuery, PERIODS } from '../snapshot/src/query.mjs';
+import scoreLib from '../lib/score.js';
+
+const REPO_NAME = /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\/[A-Za-z0-9._-]+$/;
+const RELEVANCE_WINDOW = 25;  // best-match results requested
+const RELEVANCE_DECAY = 0.5;  // rank 1 -> 1.0, rank 25 -> 0.5
+const RELEVANCE_ABSENT = 0.4; // present only in the stars-sorted results
+const LANGUAGE_NEEDS_QUOTES = /[^A-Za-z0-9_-]/;
+
+const languageQualifier = (language) => (language ? `language:${LANGUAGE_NEEDS_QUOTES.test(language) ? `"${language}"` : language}` : null);
+
+export function createTools({ github, resolvePackages, history, now = () => Date.now() }) {
+  const registryCache = {}; // repo -> package names, for the life of the process
+
+  function dataNotes() {
+    const notes = [];
+    notes.push(history.days >= 2
+      ? `Momentum uses real 7-day stars gained from ${history.days} days of snapshots (latest ${history.latestDate}); repos without history fall back to stars per day since creation.`
+      : 'Momentum is estimated from stars per day since creation (fewer than two days of snapshot history).');
+    if (!github.hasToken) notes.push('No GITHUB_TOKEN set: GitHub allows 10 searches per minute; set one to raise it to 30.');
+    return notes;
+  }
+
+  async function enrichAndScore(rawItems, { withDownloads }) {
+    const repos = rawItems.map(normalizeRepo);
+    const packagesByRepo = await Promise.all(repos.map(async (repo) => {
+      if (!withDownloads) return [];
+      try { return await resolvePackages(repo, { cache: registryCache, now: now() }); } catch { return []; }
+    }));
+    return repos.map((repo, i) => {
+      const packages = packagesByRepo[i];
+      const known = packages.filter((p) => typeof p.weeklyDownloads === 'number');
+      const weeklyDownloads = known.length ? known.reduce((s, p) => s + p.weeklyDownloads, 0) : null;
+      const starsGained7d = history.starsGained7d(repo.fullName);
+      const s = scoreLib.scoreRepo({ ...repo, weeklyDownloads }, { starsGained7d, now: now() });
+      return { ...repo, packages, weeklyDownloads, starsGained7d, score: s.score, tier: s.tier, verdict: s.verdict, parts: s.parts, flags: s.flags };
+    });
+  }
+
+  const byScore = (a, b) => b.score - a.score || b.stars - a.stars;
+
+  return {
+    async recommend({ need, language = null, limit = 5 } = {}) {
+      const text = String(need ?? '').trim();
+      if (text.length < 2) throw new Error('Describe the need in a few words, for example "python pdf parser".');
+      const n = Math.min(Math.max(Number(limit) || 5, 1), 10);
+      const query = [text, languageQualifier(language), 'archived:false', 'fork:false', 'stars:>=20'].filter(Boolean).join(' ');
+      // Two views of the same query: GitHub's relevance order finds the libraries that are
+      // actually about the need; the stars order finds the big names whose description
+      // only mentions it. Union both, then let the score decide.
+      const [relevance, popular] = await Promise.all([
+        github.searchRepos(query, { perPage: 25, sort: 'best-match' }),
+        github.searchRepos(query, { perPage: 15, sort: 'stars' }),
+      ]);
+      const seen = new Set();
+      const candidates = [...relevance.items, ...popular.items].filter((it) => !seen.has(it.full_name) && seen.add(it.full_name));
+      const relevanceRank = new Map(relevance.items.map((it, i) => [it.full_name, i + 1]));
+      // The score measures health and popularity, not fit to the need. GitHub's relevance
+      // order is the best fit signal available, so the ranking key is fit = score x relevance.
+      const withFit = (r) => {
+        const rank = relevanceRank.get(r.fullName) ?? null;
+        const relevance = rank === null ? RELEVANCE_ABSENT : 1 - RELEVANCE_DECAY * (rank - 1) / Math.max(1, RELEVANCE_WINDOW - 1);
+        return { ...r, relevanceRank: rank, relevance: Number(relevance.toFixed(3)), fit: Math.round(r.score * relevance) };
+      };
+      const byFit = (a, b) => b.fit - a.fit || byScore(a, b);
+      // Cheap pass without registry lookups to pick the shortlist, then the full pass with downloads.
+      const prelim = (await enrichAndScore(candidates, { withDownloads: false })).map(withFit).sort(byFit);
+      const shortlist = prelim.slice(0, Math.max(2 * n, 8)).map((r) => candidates.find((it) => it.full_name === r.fullName));
+      const scored = (await enrichAndScore(shortlist, { withDownloads: true })).map(withFit).sort(byFit).slice(0, n);
+      return {
+        tool: 'recommend_repos', need: text, language, query, totalMatches: relevance.totalCount,
+        candidatesConsidered: candidates.length, shortlisted: shortlist.length,
+        ranking: 'fit = score x relevance; relevance is 1.0 for GitHub relevance rank 1, 0.5 at rank 25, 0.4 when the repo only appears in the stars-sorted results',
+        generatedAt: new Date(now()).toISOString(), dataNotes: dataNotes(), repos: scored,
+      };
+    },
+
+    async compare({ repos } = {}) {
+      const names = Array.isArray(repos) ? repos.map((r) => String(r).trim()) : [];
+      if (names.length < 2 || names.length > 10) throw new Error('Give between two and ten repositories to compare.');
+      const bad = names.find((n) => !REPO_NAME.test(n));
+      if (bad) throw new Error(`"${bad}" is not an owner/repo name. Use the form owner/repo, for example colinhacks/zod.`);
+      const raw = await Promise.all(names.map(async (name) => {
+        try { return await github.getRepo(name); } catch (err) { throw new Error(`Could not fetch ${name}: ${err.message}`); }
+      }));
+      const scored = (await enrichAndScore(raw, { withDownloads: true })).sort(byScore);
+      return { tool: 'compare_repos', requested: names, generatedAt: new Date(now()).toISOString(), dataNotes: dataNotes(), repos: scored };
+    },
+
+    async trending({ period = 'week', language = null, limit = 20, withDownloads = false } = {}) {
+      if (!PERIODS.includes(period)) throw new Error(`period must be one of ${PERIODS.join(', ')}.`);
+      const n = Math.min(Math.max(Number(limit) || 20, 1), 100);
+      const query = buildSearchQuery({ period, language, now: new Date(now()) });
+      const { items, totalCount } = await github.searchRepos(query, { perPage: Math.min(Math.max(n, 30), 100), sort: 'stars' });
+      const top = items.slice(0, n);
+      const scored = await enrichAndScore(top, { withDownloads: Boolean(withDownloads) });
+      scored.forEach((r, i) => { r.starsRank = i + 1; });
+      scored.sort(byScore);
+      return {
+        tool: 'trending_repos', period, language, query, totalMatches: totalCount,
+        generatedAt: new Date(now()).toISOString(), dataNotes: dataNotes(), repos: scored,
+      };
+    },
+  };
+}
+
+const nf = new Intl.NumberFormat('en-US');
+const compact = (n) => (n >= 1e6 ? `${(n / 1e6).toFixed(1).replace(/\.0$/, '')}M` : n >= 1e3 ? `${(n / 1e3).toFixed(1).replace(/\.0$/, '')}k` : String(n));
+
+/** Plain-text rendering of a tool result for clients that only show text. */
+export function formatResult(result) {
+  const lines = [];
+  if (result.tool === 'recommend_repos') lines.push(`Recommendations for "${result.need}"${result.language ? ` (${result.language})` : ''}: top ${result.repos.length} of ${result.candidatesConsidered} candidates, ${nf.format(result.totalMatches)} matches on GitHub.`);
+  else if (result.tool === 'compare_repos') lines.push(`Comparison of ${result.repos.length} repositories, best first.`);
+  else lines.push(`Most-starred repositories created in the last ${{ day: '24 hours', week: '7 days', month: '30 days' }[result.period]}${result.language ? ` in ${result.language}` : ''}, scored. ${nf.format(result.totalMatches)} repos created in the period.`);
+  lines.push('');
+  result.repos.forEach((r, i) => {
+    const bits = [
+      `★ ${nf.format(r.stars)}${r.starsGained7d !== null && r.starsGained7d !== undefined ? ` (+${nf.format(r.starsGained7d)} in 7d)` : ''}`,
+      typeof r.weeklyDownloads === 'number' ? `${compact(r.weeklyDownloads)} downloads/wk` : null,
+      r.language, r.license ? r.license.toUpperCase() : 'no license',
+    ].filter(Boolean).join(' · ');
+    const head = typeof r.fit === 'number'
+      ? `fit ${r.fit} (${r.tier} ${r.score}, relevance ${r.relevanceRank === null ? 'stars-only' : `#${r.relevanceRank}`})`
+      : `${r.tier} ${r.score}`;
+    lines.push(`${i + 1}. ${r.fullName} — ${head} — ${bits}`);
+    if (r.description) lines.push(`   ${r.description.length > 140 ? `${r.description.slice(0, 137)}...` : r.description}`);
+    lines.push(`   ${r.verdict} ${r.url}`);
+  });
+  if (result.dataNotes?.length) { lines.push(''); for (const n of result.dataNotes) lines.push(`Note: ${n}`); }
+  return lines.join('\n');
+}

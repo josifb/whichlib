@@ -22,10 +22,10 @@ function msUntilReset(res) {
 }
 
 /**
- * Fetch one Search API page.
- * @returns {Promise<{items: object[], totalCount: number}>}
+ * GET any GitHub REST URL as JSON, with the standard headers, optional
+ * token, and one wait-and-retry when the rate limit is exhausted.
  */
-export async function fetchSearch(url, { token = null, fetchImpl = fetch, sleep = defaultSleep } = {}) {
+export async function fetchGitHub(url, { token = null, fetchImpl = fetch, sleep = defaultSleep } = {}) {
   const headers = {
     Accept: 'application/vnd.github+json',
     'User-Agent': USER_AGENT,
@@ -41,8 +41,16 @@ export async function fetchSearch(url, { token = null, fetchImpl = fetch, sleep 
   if (!res.ok) {
     let message = '';
     try { message = (await res.json()).message ?? ''; } catch { /* body not JSON */ }
-    throw new Error(`GitHub search failed: ${res.status} ${message}`.trim());
+    throw new Error(`GitHub request failed: ${res.status} ${message}`.trim());
   }
-  const body = await res.json();
+  return res.json();
+}
+
+/**
+ * Fetch one Search API page.
+ * @returns {Promise<{items: object[], totalCount: number}>}
+ */
+export async function fetchSearch(url, opts = {}) {
+  const body = await fetchGitHub(url, opts);
   return { items: body.items ?? [], totalCount: body.total_count ?? 0 };
 }
