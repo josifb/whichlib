@@ -12,3 +12,6 @@ data-branch/
 # Internal documents live in josifb/whichlib-internal; working copies stay here untracked.
 docs/
 .agents/
+
+# wrangler local cache
+.wrangler/
