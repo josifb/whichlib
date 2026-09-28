@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// Copies the daily snapshots from the `data` branch on origin into
-// data/snapshots/ without touching the index of the current branch.
+// Copies the daily snapshots and star counts from the `data` branch on origin
+// into data/snapshots/ and data/stars/ without touching the index of the
+// current branch.
 // Usage: npm run pull-data
 
 import { execFileSync } from 'node:child_process';
@@ -9,25 +10,32 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
-const OUT_DIR = join(ROOT, 'data', 'snapshots');
-const BRANCH_PATH = 'snapshots'; // layout of the data branch: snapshots/<date>.json, registry-map.json
+// Layout of the data branch: snapshots/<date>.json, stars/<date>.json, registry-map.json
+const FOLDERS = ['snapshots', 'stars'];
 
-const git = (...args) => execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 });
+const git = (...args) => execFileSync('git', args, { cwd: ROOT, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024, stdio: ['ignore', 'pipe', 'pipe'] });
 
 git('fetch', '-q', 'origin', 'data');
-// --full-tree: without it, git scopes ls-tree to the current subdirectory and finds nothing.
-const listing = git('ls-tree', '--full-tree', '--name-only', `origin/data:${BRANCH_PATH}`).split('\n').filter((n) => n.endsWith('.json'));
-
-await mkdir(OUT_DIR, { recursive: true });
-const have = new Set(await readdir(OUT_DIR));
-let copied = 0;
-for (const name of listing) {
-  if (have.has(name)) continue;
-  const content = git('show', `origin/data:${BRANCH_PATH}/${name}`);
-  await writeFile(join(OUT_DIR, name), content);
-  copied += 1;
+for (const folder of FOLDERS) {
+  const outDir = join(ROOT, 'data', folder);
+  let listing = [];
+  try {
+    // --full-tree: without it, git scopes ls-tree to the current subdirectory and finds nothing.
+    listing = git('ls-tree', '--full-tree', '--name-only', `origin/data:${folder}`).split('\n').filter((n) => n.endsWith('.json'));
+  } catch {
+    console.log(`${folder}/ not on the data branch yet`);
+    continue;
+  }
+  await mkdir(outDir, { recursive: true });
+  const have = new Set(await readdir(outDir));
+  let copied = 0;
+  for (const name of listing) {
+    if (have.has(name)) continue;
+    await writeFile(join(outDir, name), git('show', `origin/data:${folder}/${name}`));
+    copied += 1;
+  }
+  console.log(`data branch has ${listing.length} file(s) in ${folder}/; copied ${copied} new to ${outDir}`);
 }
-console.log(`data branch has ${listing.length} snapshot(s); copied ${copied} new file(s) to ${OUT_DIR}`);
 
 // The registry map (repo -> package names) is small and changes daily: always refresh it.
 try {

@@ -35,7 +35,7 @@ function fakes({ items = [], relevanceItems = null, topicItems = [], repos = {},
     const dl = downloads[repo.fullName];
     return dl === undefined ? [] : [{ registry: 'npm', name: repo.fullName.split('/')[1], weeklyDownloads: dl }];
   };
-  const history = { days: Object.keys(gained).length ? 3 : 0, latestDate: '2026-09-27', starsGained7d: (n) => gained[n] ?? null };
+  const history = { days: Object.keys(gained).length ? 3 : 0, spanDays: Object.keys(gained).length ? 7 : 0, latestDate: '2026-09-27', starsGained7d: (n) => gained[n] ?? null };
   const tools = createTools({ github, resolvePackages, history, now: () => NOW });
   return { tools, calls };
 }

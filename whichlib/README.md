@@ -55,8 +55,13 @@ reports live in the repository.
 - `GITHUB_TOKEN`: raises GitHub's search limit from 10 to 30 per minute. A
   fine-grained token with no permissions is enough. Recommend makes three
   searches per call.
-- `FRESH_REPOS_DATA_DIR`: a folder of daily snapshots for real 7-day momentum
-  (see the repository's data branch).
+- `WHICHLIB_HISTORY=off`: do not download daily star counts. By default the
+  server keeps the last 10 days in `~/.whichlib/stars/`, refreshed in the
+  background at most every 12 hours from `raw.githubusercontent.com`, so
+  momentum uses real stars gained per week for the top 1,000 repos per
+  language and new trending repos. Nothing is sent with that download.
+- `FRESH_REPOS_DATA_DIR`: a folder of daily snapshots or star counts to use
+  instead (see the repository's data branch).
 - `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1`: disables anonymous call
   counting. What is counted: tool name, a random install id, version,
   platform, Node major version. Never queries, repository names or results.
