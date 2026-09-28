@@ -26,7 +26,7 @@ The plugin contains:
 ```
 
 Requires Node.js 22 or newer. On first use the server is downloaded from npm
-as the exact version `whichlib@0.1.0`.
+as the exact version `whichlib@0.1.1`.
 
 ## Settings
 
@@ -37,7 +37,7 @@ and only sent to GitHub.
 
 ## What it runs, sends and stores
 
-- Runs `npx -y whichlib@0.1.0`, a local Node.js process speaking MCP over
+- Runs `npx -y whichlib@0.1.1`, a local Node.js process speaking MCP over
   stdio. Source: https://github.com/josifb/whichlib (MIT).
 - Reads public data over HTTPS from `api.github.com` (repository search and
   details), `registry.npmjs.org` and `api.npmjs.org` (package metadata and
