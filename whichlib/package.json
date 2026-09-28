@@ -49,7 +49,8 @@
     "mcp": "node mcp/server.mjs",
     "mcp:smoke": "node mcp/smoke.mjs",
     "eval": "node mcp/eval/run-eval.mjs",
-    "bundle": "node mcpb/build.mjs"
+    "bundle": "node mcpb/build.mjs",
+    "publish:smithery": "node mcpb/publish-smithery.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.1",
