@@ -114,18 +114,21 @@ The same score, served to coding agents. Three tools over stdio:
 Every result carries readable text and `structuredContent` (JSON) with the
 score, tier, verdict, the four subscores, flags, packages and downloads.
 
-Install into Claude Code (replace the path with your clone; `npx whichlib`
-once it is published to npm):
+Requires Node 22 or newer. Install into Claude Code (`-s user` makes it
+available in every project):
 
 ```
-claude mcp add whichlib -- node E:\private\whichlib\mcp\server.mjs
+claude mcp add whichlib -s user -- npx -y whichlib
 ```
 
-Cursor, Windsurf and others take the same command in their MCP config:
+Cursor, Windsurf, Claude Desktop and others take the same command in their
+MCP config:
 
 ```json
-{ "mcpServers": { "whichlib": { "command": "node", "args": ["E:\\private\\whichlib\\mcp\\server.mjs"] } } }
+{ "mcpServers": { "whichlib": { "command": "npx", "args": ["-y", "whichlib"] } } }
 ```
+
+To run from a clone instead: `node whichlib/mcp/server.mjs`.
 
 Environment variables, both optional:
 
