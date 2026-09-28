@@ -2,11 +2,17 @@
   "manifest_version": "0.3",
   "name": "whichlib",
   "display_name": "whichlib",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The dependency picker for coding agents: scored, verified library picks instead of a guess.",
   "long_description": "whichlib answers \"which library should I use?\" with evidence. Give it a need in plain words and it returns GitHub repositories ranked by a transparent 0-100 score (momentum 40%, maintenance 25%, adoption including npm and PyPI weekly downloads 25%, license 10%), each with a tier and a one-line verdict. Every part of the score is returned, so the pick can be justified.",
-  "author": { "name": "Josif Todorovski", "url": "https://github.com/josifb" },
-  "repository": { "type": "git", "url": "https://github.com/josifb/whichlib.git" },
+  "author": {
+    "name": "Josif Todorovski",
+    "url": "https://github.com/josifb"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/josifb/whichlib.git"
+  },
   "homepage": "https://github.com/josifb/whichlib",
   "documentation": "https://github.com/josifb/whichlib#mcp-server",
   "support": "https://github.com/josifb/whichlib/issues",
@@ -15,20 +21,47 @@
     "entry_point": "server/mcp/server.mjs",
     "mcp_config": {
       "command": "node",
-      "args": ["${__dirname}/server/mcp/server.mjs"],
-      "env": { "GITHUB_TOKEN": "${user_config.github_token}" }
+      "args": [
+        "${__dirname}/server/mcp/server.mjs"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "${user_config.github_token}"
+      }
     }
   },
   "tools": [
-    { "name": "recommend_repos", "description": "Best open-source repositories for a need in plain words, ranked by score and relevance, with downloads and a verdict each." },
-    { "name": "compare_repos", "description": "Two to ten repositories (owner/repo) side by side with score, tier, downloads and verdict." },
-    { "name": "trending_repos", "description": "Most-starred repositories created in the last day, week or month, each scored." }
+    {
+      "name": "recommend_repos",
+      "description": "Best open-source repositories for a need in plain words, ranked by score and relevance, with downloads and a verdict each."
+    },
+    {
+      "name": "compare_repos",
+      "description": "Two to ten repositories (owner/repo) side by side with score, tier, downloads and verdict."
+    },
+    {
+      "name": "trending_repos",
+      "description": "Most-starred repositories created in the last day, week or month, each scored."
+    }
   ],
-  "keywords": ["dependencies", "libraries", "github", "npm", "pypi", "open-source", "developer-tools"],
+  "keywords": [
+    "dependencies",
+    "libraries",
+    "github",
+    "npm",
+    "pypi",
+    "open-source",
+    "developer-tools"
+  ],
   "license": "MIT",
   "compatibility": {
-    "platforms": ["darwin", "win32", "linux"],
-    "runtimes": { "node": ">=22.0.0" }
+    "platforms": [
+      "darwin",
+      "win32",
+      "linux"
+    ],
+    "runtimes": {
+      "node": ">=22.0.0"
+    }
   },
   "user_config": {
     "github_token": {

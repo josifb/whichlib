@@ -1,6 +1,6 @@
 {
   "name": "whichlib",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The dependency picker for coding agents: an MCP server that recommends, compares and scores GitHub repositories, plus a daily dashboard of the most-starred new repos.",
   "keywords": [
     "mcp",
