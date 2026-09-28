@@ -49,6 +49,34 @@ test('fetchSearch: on rate limit, waits until reset and retries once', async () 
   assert.ok(slept[0] > 0 && slept[0] <= 7000, `slept ${slept[0]}ms`);
 });
 
+test('fetchSearch: with maxWaitMs, a longer reset fails fast with an actionable message', async () => {
+  const resetAt = Math.floor(Date.now() / 1000) + 30 * 60;
+  let n = 0;
+  const slept = [];
+  const fetchImpl = async () => {
+    n += 1;
+    return response(403, { message: 'rate limited' }, { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': String(resetAt) });
+  };
+  await assert.rejects(
+    fetchSearch('https://api.github.com/x', { fetchImpl, maxWaitMs: 15_000, sleep: async (ms) => { slept.push(ms); } }),
+    /rate limit.*resets in about 31 minutes.*GITHUB_TOKEN/i
+  );
+  assert.equal(n, 1);
+  assert.deepEqual(slept, []);
+});
+
+test('fetchSearch: with maxWaitMs, a short reset still waits and retries', async () => {
+  const resetAt = Math.floor(Date.now() / 1000) + 5;
+  let n = 0;
+  const fetchImpl = async () => {
+    n += 1;
+    if (n === 1) return response(429, {}, { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': String(resetAt) });
+    return response(200, { total_count: 0, items: [] });
+  };
+  await fetchSearch('https://api.github.com/x', { fetchImpl, maxWaitMs: 15_000, sleep: async () => {} });
+  assert.equal(n, 2);
+});
+
 test('fetchSearch: non-rate-limit error throws with status and message', async () => {
   const fetchImpl = async () => response(422, { message: 'Validation Failed' });
   await assert.rejects(

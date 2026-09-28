@@ -24,8 +24,10 @@ function msUntilReset(res) {
 /**
  * GET any GitHub REST URL as JSON, with the standard headers, optional
  * token, and one wait-and-retry when the rate limit is exhausted.
+ * maxWaitMs caps that wait: an interactive caller (the MCP server) would
+ * rather fail with a clear message than block until an hourly limit resets.
  */
-export async function fetchGitHub(url, { token = null, fetchImpl = fetch, sleep = defaultSleep } = {}) {
+export async function fetchGitHub(url, { token = null, fetchImpl = fetch, sleep = defaultSleep, maxWaitMs = Infinity } = {}) {
   const headers = {
     Accept: 'application/vnd.github+json',
     'User-Agent': USER_AGENT,
@@ -35,7 +37,13 @@ export async function fetchGitHub(url, { token = null, fetchImpl = fetch, sleep 
 
   let res = await fetchImpl(url, { headers });
   if (isRateLimited(res)) {
-    await sleep(msUntilReset(res));
+    const wait = msUntilReset(res);
+    if (wait > maxWaitMs) {
+      const minutes = Math.ceil(wait / 60_000);
+      throw new Error(`GitHub rate limit reached; it resets in about ${minutes} minute${minutes === 1 ? '' : 's'}.`
+        + (token ? '' : ' Set a GITHUB_TOKEN (a fine-grained token with no permissions is enough) to raise the limit.'));
+    }
+    await sleep(wait);
     res = await fetchImpl(url, { headers });
   }
   if (!res.ok) {

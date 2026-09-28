@@ -150,6 +150,8 @@ test('compare: validates count and name shape', async () => {
   await assert.rejects(tools.compare({ repos: ['only/one'] }), /two/i);
   await assert.rejects(tools.compare({ repos: ['bad name', 'b/two'] }), /owner\/repo/);
   await assert.rejects(tools.compare({ repos: ['https://github.com/a/b', 'b/two'] }), /owner\/repo/);
+  await assert.rejects(tools.compare({ repos: ['a/..', 'b/two'] }), /owner\/repo/);
+  await assert.rejects(tools.compare({ repos: ['a/.', 'b/two'] }), /owner\/repo/);
 });
 
 test('trending: period query, history-backed momentum, no registry lookups unless asked', async () => {

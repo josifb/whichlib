@@ -7,7 +7,7 @@ import { buildSearchQuery, PERIODS } from '../snapshot/src/query.mjs';
 import scoreLib from '../lib/score.js';
 import { expandNeed, mentionLevel, asksForLibrary, looksLikeLibrary } from './expand.mjs';
 
-const REPO_NAME = /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\/[A-Za-z0-9._-]+$/;
+const REPO_NAME = /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\/(?!\.\.?$)[A-Za-z0-9._-]+$/;
 const RELEVANCE_WINDOW = 25;  // best-match results requested
 const RELEVANCE_DECAY = 0.5;  // rank 1 -> 1.0, rank 25 -> 0.5
 const RELEVANCE_TOPIC = 0.75; // not in the text results, but the maintainers tagged the topic
