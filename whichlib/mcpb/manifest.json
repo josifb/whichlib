@@ -2,7 +2,7 @@
   "manifest_version": "0.3",
   "name": "whichlib",
   "display_name": "whichlib",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "The dependency picker for coding agents: scored, verified library picks instead of a guess.",
   "long_description": "whichlib answers \"which library should I use?\" with evidence. Give it a need in plain words and it returns GitHub repositories ranked by a transparent 0-100 score (momentum 40%, maintenance 25%, adoption including npm and PyPI weekly downloads 25%, license 10%), each with a tier and a one-line verdict. Every part of the score is returned, so the pick can be justified.",
   "author": {
