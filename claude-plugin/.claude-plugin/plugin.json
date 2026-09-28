@@ -3,9 +3,29 @@
   "displayName": "whichlib",
   "version": "0.1.0",
   "description": "The dependency picker for coding agents: recommends and compares GitHub repositories with a transparent 0-100 score and a one-line verdict.",
-  "author": { "name": "Josif Todorovski", "url": "https://github.com/josifb" },
+  "author": {
+    "name": "Josif Todorovski",
+    "url": "https://github.com/josifb"
+  },
   "homepage": "https://github.com/josifb/whichlib",
   "repository": "https://github.com/josifb/whichlib",
   "license": "MIT",
-  "keywords": ["dependencies", "mcp", "github", "npm", "pypi", "open-source"]
+  "keywords": [
+    "dependencies",
+    "mcp",
+    "github",
+    "npm",
+    "pypi",
+    "open-source"
+  ],
+  "userConfig": {
+    "github_token": {
+      "type": "string",
+      "title": "GitHub token (optional)",
+      "description": "Raises GitHub search limits from 10 to 30 requests per minute. A fine-grained token with no permissions is enough. Leave empty to run without one.",
+      "sensitive": true,
+      "required": false,
+      "default": ""
+    }
+  }
 }

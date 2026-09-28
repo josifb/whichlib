@@ -57,6 +57,13 @@ Check: https://registry.modelcontextprotocol.io/v0/servers?search=whichlib
 
 ## Each later release
 
-1. Bump `version` in `whichlib/package.json` and `whichlib/server.json` (same value).
-2. `npm test`, `npm run mcp:smoke`, commit, tag `v<version>`, push.
-3. `npm publish`, then `mcp-publisher publish`.
+1. Bump `version` in `whichlib/package.json` and `whichlib/server.json` (same value),
+   in `whichlib/mcpb/manifest.json`, and in `claude-plugin/.claude-plugin/plugin.json`
+   plus the pinned `whichlib@<version>` in `claude-plugin/.mcp.json` (the Claude
+   plugin directory rejects an unpinned npx package).
+2. `npm test`, `npm run mcp:smoke`, `claude plugin validate ./claude-plugin --strict`,
+   commit, tag `v<version>`, push.
+3. `npm publish`, then `mcp-publisher publish`. Only after npm has the new
+   version: push the plugin pin (the directory picks up the new commit).
+4. `npm run bundle`, then `SMITHERY_API_KEY=... npm run publish:smithery`.
+   Glama builds a new release itself from the GitHub release.
