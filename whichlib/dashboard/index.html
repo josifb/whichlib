@@ -238,7 +238,7 @@
 
   <footer>
     <p><strong>How this list is built.</strong> Repositories created in the last 24 hours, 7 days or 30 days, fetched live from the GitHub Search API and ranked by stars. The rank column always shows the stars rank, so you can sort by another column and still see where a repo stands.</p>
-    <p><strong>Downloads.</strong> GitHub publishes no download count for repositories, only for release files. Forks are the nearest public signal of people taking a copy. Stars/day is stars divided by the repo's age, a rough velocity.</p>
+    <p><strong>Downloads.</strong> GitHub publishes no download count for repositories, only for release files. Forks are the nearest public signal of people taking a copy. Stars/day is stars divided by the repo's age in days, counting anything younger than a day as one day, so it never exceeds the stars. A rough velocity.</p>
     <p><strong>Score.</strong> 0 to 100 from four parts: momentum (40%), maintenance (25%), adoption (25%) and license (10%). Archived repos are capped at 20. Hover a score for the one-line verdict. Opened from disk, momentum uses stars per day; the nightly snapshots give the real stars-gained figure to the report and the whichlib MCP server. Full definition in the README.</p>
     <p>Results are cached in this browser for 60 minutes per tab and language. Refresh forces a new fetch.</p>
   </footer>
@@ -282,7 +282,9 @@
   }
   function normalize(item, rank) {
     const created = Date.parse(item.created_at);
-    const ageDays = Math.max(1 / 24, (Date.now() - created) / 86400000); // floor at one hour
+    // Floor at one day, like the score: an hours-old repo would otherwise show
+    // more stars per day than it has stars.
+    const ageDays = Math.max(1, (Date.now() - created) / 86400000);
     const rec = {
       rank,
       fullName: item.full_name,

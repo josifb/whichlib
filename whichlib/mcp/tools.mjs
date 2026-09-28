@@ -44,13 +44,19 @@ function combinedTrend(packages) {
   return Math.round((recent / baseline) * 100) / 100;
 }
 
+/** "(+70 in 7d)" when measured over a week, "(~+210/wk, estimated)" when scaled up from fewer days. */
+function gainText(r) {
+  if (r.starsGained7d === null || r.starsGained7d === undefined) return '';
+  return r.starsGainedEstimated ? ` (~+${nf.format(r.starsGained7d)}/wk, estimated)` : ` (+${nf.format(r.starsGained7d)} in 7d)`;
+}
+
 export function createTools({ github, resolvePackages, history, now = () => Date.now() }) {
   const registryCache = {}; // repo -> package names, for the life of the process
 
   function dataNotes() {
     const notes = [];
     notes.push(history.spanDays >= 3
-      ? `Momentum uses real stars gained per week from ${history.days} days of daily star counts (latest ${history.latestDate}; the top 1,000 repos per language plus new trending repos); other repos fall back to stars per day since creation.`
+      ? `Momentum uses real stars gained per week from ${history.days} days of daily star counts (latest ${history.latestDate}; the top 1,000 repos per language plus new trending repos); other repos fall back to stars per day since creation.${history.spanDays < 7 ? " With under 7 days of history, gains are scaled to a week, capped at the repo's stars, and marked as estimated." : ''}`
       : 'Momentum is estimated from stars per day since creation (under three days of star history so far).');
     if (!github.hasToken) notes.push('No GITHUB_TOKEN set: GitHub allows 10 searches per minute; set one to raise it to 30.');
     return notes;
@@ -68,8 +74,9 @@ export function createTools({ github, resolvePackages, history, now = () => Date
       const weeklyDownloads = known.length ? known.reduce((s, p) => s + p.weeklyDownloads, 0) : null;
       const downloadsTrend = combinedTrend(packages);
       const starsGained7d = history.starsGained7d(repo.fullName);
+      const starsGainedEstimated = starsGained7d !== null && Boolean(history.starsGainedEstimated?.(repo.fullName));
       const s = scoreLib.scoreRepo({ ...repo, weeklyDownloads }, { starsGained7d, downloadsTrend, now: now() });
-      return { ...repo, packages, weeklyDownloads, downloadsTrend, starsGained7d, score: s.score, tier: s.tier, verdict: s.verdict, parts: s.parts, flags: s.flags };
+      return { ...repo, packages, weeklyDownloads, downloadsTrend, starsGained7d, starsGainedEstimated, score: s.score, tier: s.tier, verdict: s.verdict, parts: s.parts, flags: s.flags };
     });
   }
 
@@ -169,7 +176,7 @@ export function formatResult(result) {
   lines.push('');
   result.repos.forEach((r, i) => {
     const bits = [
-      `★ ${nf.format(r.stars)}${r.starsGained7d !== null && r.starsGained7d !== undefined ? ` (+${nf.format(r.starsGained7d)} in 7d)` : ''}`,
+      `★ ${nf.format(r.stars)}${gainText(r)}`,
       typeof r.weeklyDownloads === 'number' ? `${compact(r.weeklyDownloads)} downloads/wk${typeof r.downloadsTrend === 'number' ? ` (trend ${r.downloadsTrend >= 1 ? '+' : ''}${Math.round((r.downloadsTrend - 1) * 100)}%)` : ''}` : null,
       r.language, r.license ? r.license.toUpperCase() : 'no license',
     ].filter(Boolean).join(' · ');

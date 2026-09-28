@@ -14,7 +14,7 @@ import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { homedir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { historyFromStars, weeklyGain } from '../snapshot/src/history.mjs';
+import { historyFromStars, weeklyGain, isWeeklyEstimate } from '../snapshot/src/history.mjs';
 import { starsFromSnapshot } from '../snapshot/src/stars.mjs';
 
 export const STARS_URL = 'https://raw.githubusercontent.com/josifb/whichlib/data/stars';
@@ -25,7 +25,7 @@ const STAMP = '.refreshed';
 const DATE_FILE = /^(\d{4}-\d{2}-\d{2})\.json$/;
 const REPO_DIR = join(dirname(fileURLToPath(import.meta.url)), '..');
 
-export const emptyHistory = { days: 0, spanDays: 0, latestDate: null, source: null, starsGained7d: () => null };
+export const emptyHistory = { days: 0, spanDays: 0, latestDate: null, source: null, starsGained7d: () => null, starsGainedEstimated: () => false };
 
 /** History values from stars files ({ date, stars }). */
 export function buildProvider(files, source) {
@@ -39,6 +39,7 @@ export function buildProvider(files, source) {
     latestDate,
     source,
     starsGained7d: (fullName) => weeklyGain(history.get(fullName), latestDate),
+    starsGainedEstimated: (fullName) => isWeeklyEstimate(history.get(fullName), latestDate),
   };
 }
 

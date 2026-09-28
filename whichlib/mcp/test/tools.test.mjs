@@ -250,3 +250,22 @@ test('compare: with several packages the trend is weighted by downloads', async 
   const r = await tools.compare({ repos: ['a/multi', 'b/other'] });
   assert.equal(r.repos.find((x) => x.fullName === 'a/multi').downloadsTrend, 1); // 40000 / 40000
 });
+
+test('format: measured gains read "in 7d", scaled ones are marked as estimates', async () => {
+  const repos = { 'a/measured': rawItem('a/measured', 900), 'b/scaled': rawItem('b/scaled', 800) };
+  const tools = createTools({
+    github: { hasToken: true, getRepo: async (n) => repos[n] },
+    resolvePackages: async () => [],
+    history: {
+      days: 4, spanDays: 3, latestDate: '2026-09-27',
+      starsGained7d: (n) => ({ 'a/measured': 70, 'b/scaled': 210 })[n],
+      starsGainedEstimated: (n) => n === 'b/scaled',
+    },
+    now: () => NOW,
+  });
+  const r = await tools.compare({ repos: ['a/measured', 'b/scaled'] });
+  assert.equal(r.repos.find((x) => x.fullName === 'b/scaled').starsGainedEstimated, true);
+  const text = formatResult(r);
+  assert.match(text, /★ 900 \(\+70 in 7d\)/);
+  assert.match(text, /★ 800 \(~\+210\/wk, estimated\)/);
+});

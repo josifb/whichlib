@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildHistory, starsGained, latestRepos, historyFromStars, weeklyGain } from '../src/history.mjs';
+import { buildHistory, starsGained, latestRepos, historyFromStars, weeklyGain, isWeeklyEstimate } from '../src/history.mjs';
 
 const repo = (fullName, stars, extra = {}) => ({
   fullName, url: `https://github.com/${fullName}`, description: '', language: 'Go',
@@ -82,4 +82,15 @@ test('weeklyGain: under 3 days of span, one point, or no series is null', () => 
 
 test('weeklyGain: never negative (unstars or a renamed repo)', () => {
   assert.equal(weeklyGain([day('2026-09-21', 100), day('2026-09-28', 90)], '2026-09-28'), 0);
+});
+
+test('weeklyGain: a scaled estimate never exceeds the repo\'s current stars', () => {
+  // 10 -> 100 in 3 days scales to 210 a week, more than the 100 it has
+  assert.equal(weeklyGain([day('2026-09-25', 10), day('2026-09-28', 100)], '2026-09-28'), 100);
+});
+
+test('isWeeklyEstimate: true only when the window spans 3-6 days', () => {
+  assert.equal(isWeeklyEstimate([day('2026-09-25', 10), day('2026-09-28', 100)], '2026-09-28'), true);
+  assert.equal(isWeeklyEstimate([day('2026-09-21', 10), day('2026-09-28', 100)], '2026-09-28'), false);
+  assert.equal(isWeeklyEstimate([day('2026-09-27', 10), day('2026-09-28', 100)], '2026-09-28'), false);
 });

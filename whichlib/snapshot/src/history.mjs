@@ -93,12 +93,8 @@ export function historyFromStars(files) {
 
 const MIN_SPAN_DAYS = 3;
 
-/**
- * Stars gained per week, from the points inside the 7 days up to asOfDate.
- * A span of 3-6 days is scaled up to a week; under 3 days it is null, so a
- * single day's gain is never reported as a week's. Never negative.
- */
-export function weeklyGain(series, asOfDate) {
+/** First and last point inside the 7 days up to asOfDate, and the days between them; null under two points. */
+function weekWindow(series, asOfDate) {
   if (!series || series.length < 2) return null;
   const asOf = Date.parse(`${asOfDate}T00:00:00Z`);
   const inWindow = series.filter((p) => {
@@ -108,8 +104,25 @@ export function weeklyGain(series, asOfDate) {
   if (inWindow.length < 2) return null;
   const first = inWindow[0];
   const last = inWindow[inWindow.length - 1];
-  const span = (Date.parse(`${last.date}T00:00:00Z`) - Date.parse(`${first.date}T00:00:00Z`)) / DAY_MS;
-  if (span < MIN_SPAN_DAYS) return null;
-  const gain = Math.max(0, last.stars - first.stars);
-  return span >= 7 ? gain : Math.round((gain * 7) / span);
+  return { first, last, span: (Date.parse(`${last.date}T00:00:00Z`) - Date.parse(`${first.date}T00:00:00Z`)) / DAY_MS };
+}
+
+/**
+ * Stars gained per week, from the points inside the 7 days up to asOfDate.
+ * A span of 3-6 days is scaled up to a week (an estimate, capped at the
+ * repo's current stars so it never claims more than exists); under 3 days
+ * it is null, so a single day's gain is never reported as a week's. Never
+ * negative.
+ */
+export function weeklyGain(series, asOfDate) {
+  const w = weekWindow(series, asOfDate);
+  if (!w || w.span < MIN_SPAN_DAYS) return null;
+  const gain = Math.max(0, w.last.stars - w.first.stars);
+  return w.span >= 7 ? gain : Math.min(w.last.stars, Math.round((gain * 7) / w.span));
+}
+
+/** True when weeklyGain is scaled up from 3-6 days rather than measured over 7. */
+export function isWeeklyEstimate(series, asOfDate) {
+  const w = weekWindow(series, asOfDate);
+  return Boolean(w && w.span >= MIN_SPAN_DAYS && w.span < 7);
 }

@@ -151,3 +151,10 @@ test('loadHistoryProvider: FRESH_REPOS_DATA_DIR with trending snapshots still wo
   const { provider } = await loadHistoryProvider({ env: { FRESH_REPOS_DATA_DIR: dir }, homeDir: tmp(), repoDir: tmp(), now: NOW, log: quiet, fetchImpl: fakeFetch([]) });
   assert.equal(provider.starsGained7d('a/one'), 20);
 });
+
+test('buildProvider: flags scaled gains as estimates', () => {
+  const p = buildProvider([file('2026-09-25', { 'a/one': 10, 'b/two': 1 }), file('2026-09-28', { 'a/one': 40, 'b/two': 1 })], 'cache');
+  assert.equal(p.starsGained7d('a/one'), 40); // 30 in 3 days -> 70 a week, capped at 40 stars
+  assert.equal(p.starsGainedEstimated('a/one'), true);
+  assert.equal(p.starsGainedEstimated('x/none'), false);
+});
