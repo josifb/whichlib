@@ -59,15 +59,31 @@ Check: https://registry.modelcontextprotocol.io/v0/servers?search=whichlib
 - [ ] Announce (`/launch` skill, uses `.agents/product-marketing.md`).
 - [ ] Four weeks later: weekly active installs and calls per install decide the team tier.
 
-## Each later release
+## Each later release (automated)
 
-1. Bump `version` in `whichlib/package.json` and `whichlib/server.json` (same value),
-   in `whichlib/mcpb/manifest.json`, and in `claude-plugin/.claude-plugin/plugin.json`
-   plus the pinned `whichlib@<version>` in `claude-plugin/.mcp.json` (the Claude
-   plugin directory rejects an unpinned npx package).
-2. `npm test`, `npm run mcp:smoke`, `claude plugin validate ./claude-plugin --strict`,
-   commit, tag `v<version>`, push.
-3. `npm publish`, then `mcp-publisher publish`. Only after npm has the new
-   version: push the plugin pin (the directory picks up the new commit).
-4. `npm run bundle`, then `SMITHERY_API_KEY=... npm run publish:smithery`.
-   Glama builds a new release itself from the GitHub release.
+From `whichlib/`, on a clean `main`:
+
+```
+npm run mcp:smoke                 # optional live check
+npm run release -- 0.1.2          # sets the version in every file, tests, commits, tags v0.1.2
+git push origin main v0.1.2       # starts .github/workflows/release.yml
+```
+
+The workflow publishes to npm (trusted publishing, no token), waits until npm
+serves the version, publishes to the MCP registry (GitHub OIDC), builds the
+MCPB bundle, publishes to Smithery (secret `SMITHERY_API_KEY`), creates the
+GitHub release with the `.mcpb` attached, and commits the Claude Code plugin
+pin to `main` (the plugin directory picks it up and reviews it). Glama builds
+its own release from the GitHub release. Each step skips what is already
+published, so a failed run can be re-run from the Actions tab.
+
+Check without publishing: Actions → release → Run workflow (dry run is on by default).
+
+One-time setup for the workflow:
+- npmjs.com → whichlib → Settings → Trusted publishing: GitHub Actions,
+  owner `josifb`, repository `whichlib`, workflow `release.yml`.
+- GitHub → josifb/whichlib → Settings → Secrets → Actions: `SMITHERY_API_KEY`.
+
+Manual fallback, if the workflow cannot run: the same order by hand
+(`npm publish`; `mcp-publisher login github` then `publish`; `npm run bundle`
+and `npm run publish:smithery`; `gh release create`; `node scripts/pin-plugin.mjs <version>`).

@@ -41,7 +41,7 @@
     "whichlib": "mcp/server.mjs"
   },
   "scripts": {
-    "test": "node --test \"snapshot/test/**/*.test.mjs\" \"mcp/test/**/*.test.mjs\"",
+    "test": "node --test \"snapshot/test/**/*.test.mjs\" \"mcp/test/**/*.test.mjs\" \"scripts/test/**/*.test.mjs\"",
     "snapshot": "node snapshot/src/run.mjs",
     "enrich": "node snapshot/src/enrich.mjs",
     "score": "node snapshot/src/score-report.mjs",
@@ -50,7 +50,8 @@
     "mcp:smoke": "node mcp/smoke.mjs",
     "eval": "node mcp/eval/run-eval.mjs",
     "bundle": "node mcpb/build.mjs",
-    "publish:smithery": "node mcpb/publish-smithery.mjs"
+    "publish:smithery": "node mcpb/publish-smithery.mjs",
+    "release": "node scripts/release.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.1",

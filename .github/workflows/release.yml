@@ -1,0 +1,134 @@
+name: release
+
+# Publishes a release everywhere once `npm run release -- x.y.z` has tagged it
+# and the tag is pushed:
+#   npm (trusted publishing, no token) -> MCP registry (GitHub OIDC)
+#   -> MCPB bundle -> Smithery (if SMITHERY_API_KEY is set) -> GitHub release
+#   -> Claude Code plugin pin on main (only after npm serves the version).
+# Every step skips itself when its part is already published, so a failed
+# run can simply be re-run. Run it by hand with dry_run to check everything
+# without publishing. Glama builds its own release from the GitHub release.
+
+on:
+  push:
+    tags: ["v*.*.*"]
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Check and build everything, publish nothing"
+        type: boolean
+        default: true
+
+permissions:
+  contents: write   # GitHub release and the plugin pin commit
+  id-token: write   # npm trusted publishing and MCP registry login
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run }}
+    defaults:
+      run:
+        working-directory: whichlib
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.x   # no registry-url: its placeholder token would sidestep trusted publishing
+
+      - name: npm with trusted publishing (11.5.1+)
+        run: npm install -g npm@^11.5.1 && npm --version
+
+      - name: Version
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          if [ "$GITHUB_REF_TYPE" = "tag" ] && [ "$GITHUB_REF_NAME" != "v$VERSION" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $VERSION"; exit 1
+          fi
+          for f in server.json mcpb/manifest.json; do
+            node -e "const j=require('./$f'); const v=[j.version,...(j.packages||[]).map(p=>p.version)]; if (v.some(x=>x!=='$VERSION')) { console.error('$f has', v.join(', ')); process.exit(1) }"
+          done
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Releasing $VERSION (dry run: $DRY_RUN)"
+
+      - name: Install and test
+        run: npm ci && npm test
+
+      - name: Publish to npm
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then npm publish --dry-run; exit 0; fi
+          if npm view "whichlib@$VERSION" version >/dev/null 2>&1; then
+            echo "whichlib@$VERSION is already on npm, skipping"; exit 0
+          fi
+          npm publish
+
+      - name: Wait until npm serves the version
+        if: env.DRY_RUN != 'true'
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          for i in $(seq 1 40); do
+            if npm view "whichlib@$VERSION" version --prefer-online >/dev/null 2>&1; then echo "available"; exit 0; fi
+            sleep 15
+          done
+          echo "::error::whichlib@$VERSION not visible on npm after 10 minutes"; exit 1
+
+      - name: Publish to the MCP registry
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          curl -sL "https://github.com/modelcontextprotocol/registry/releases/latest/download/mcp-publisher_$(uname -s | tr '[:upper:]' '[:lower:]')_$(uname -m | sed 's/x86_64/amd64/;s/aarch64/arm64/').tar.gz" | tar xz mcp-publisher
+          ./mcp-publisher --help >/dev/null
+          if [ "$DRY_RUN" = "true" ]; then echo "dry run: mcp-publisher installed, not publishing"; exit 0; fi
+          PUBLISHED=$(curl -s "https://registry.modelcontextprotocol.io/v0/servers?search=whichlib" \
+            | node -e "let s='';process.stdin.on('data',d=>s+=d).on('end',()=>console.log(JSON.parse(s).servers.filter(x=>x.server.name==='io.github.josifb/whichlib').map(x=>x.server.version).join(' ')))")
+          if echo " $PUBLISHED " | grep -q " $VERSION "; then echo "MCP registry already has $VERSION, skipping"; exit 0; fi
+          ./mcp-publisher login github-oidc
+          ./mcp-publisher publish
+
+      - name: Build the MCPB bundle
+        run: npm run bundle
+
+      - name: Publish to Smithery
+        env:
+          SMITHERY_API_KEY: ${{ secrets.SMITHERY_API_KEY }}
+        run: |
+          if [ -z "$SMITHERY_API_KEY" ]; then echo "::warning::SMITHERY_API_KEY secret not set, skipping Smithery"; exit 0; fi
+          if [ "$DRY_RUN" = "true" ]; then echo "dry run: bundle built, not publishing"; exit 0; fi
+          npm run publish:smithery
+
+      - name: GitHub release with the bundle
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          if [ "$DRY_RUN" = "true" ]; then ls -l dist/*.mcpb; exit 0; fi
+          if gh release view "v$VERSION" >/dev/null 2>&1; then
+            gh release upload "v$VERSION" "dist/whichlib-$VERSION.mcpb" --clobber
+          else
+            gh release create "v$VERSION" "dist/whichlib-$VERSION.mcpb" --title "whichlib $VERSION" --generate-notes
+          fi
+
+      - name: Pin the Claude Code plugin to the new version
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          git fetch origin main && git checkout -B main origin/main
+          RESULT=$(node scripts/pin-plugin.mjs "$VERSION")
+          echo "plugin: $RESULT"
+          git diff --stat
+          if [ "$RESULT" != "changed" ] || [ "$DRY_RUN" = "true" ]; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -am "feat(plugin): pin whichlib@$VERSION"
+          git push origin main
