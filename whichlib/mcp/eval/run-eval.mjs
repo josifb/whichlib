@@ -18,7 +18,8 @@ import { firstHitRank, summarize, pct, norm } from './metrics.mjs';
 const here = dirname(fileURLToPath(import.meta.url));
 const { needs } = JSON.parse(await readFile(join(here, 'needs.json'), 'utf8'));
 const github = createGitHubClient();
-const history = await loadHistoryProvider();
+const { provider: history, refreshed } = await loadHistoryProvider();
+await refreshed; // an eval must not race the background download
 const tools = createTools({ github, resolvePackages, history });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const paceMs = github.hasToken ? 6500 : 19000; // 3 searches per need; 30/min with token, 10/min without

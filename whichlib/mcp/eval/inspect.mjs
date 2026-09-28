@@ -11,7 +11,7 @@ import { resolvePackages } from '../../snapshot/src/registry.mjs';
 const [need, language = null, ...want] = process.argv.slice(2);
 if (!need) { console.error('usage: node mcp/eval/inspect.mjs "<need>" [language] [wanted/repo ...]'); process.exit(1); }
 
-const tools = createTools({ github: createGitHubClient(), resolvePackages, history: await loadHistoryProvider() });
+const tools = createTools({ github: createGitHubClient(), resolvePackages, history: (await loadHistoryProvider()).provider });
 const r = await tools.recommend({ need, language: language || null, limit: 5, includeCandidates: true });
 console.log(`need: ${need} | language: ${language ?? 'any'}\nquery: ${r.query}\ntopic query: ${r.topicQuery}\ncandidates: ${r.candidatesConsidered}\n`);
 console.log(' fit score  rel  sources               repo                                        stars');
