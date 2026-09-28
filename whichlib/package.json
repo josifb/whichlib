@@ -2,7 +2,17 @@
   "name": "whichlib",
   "version": "0.1.0",
   "description": "The dependency picker for coding agents: an MCP server that recommends, compares and scores GitHub repositories, plus a daily dashboard of the most-starred new repos.",
-  "keywords": ["mcp", "mcp-server", "model-context-protocol", "dependencies", "github", "recommendation", "claude-code", "cursor", "developer-tools"],
+  "keywords": [
+    "mcp",
+    "mcp-server",
+    "model-context-protocol",
+    "dependencies",
+    "github",
+    "recommendation",
+    "claude-code",
+    "cursor",
+    "developer-tools"
+  ],
   "homepage": "https://github.com/josifb/whichlib#readme",
   "repository": {
     "type": "git",
@@ -38,7 +48,8 @@
     "pull-data": "node snapshot/src/pull-data.mjs",
     "mcp": "node mcp/server.mjs",
     "mcp:smoke": "node mcp/smoke.mjs",
-    "eval": "node mcp/eval/run-eval.mjs"
+    "eval": "node mcp/eval/run-eval.mjs",
+    "bundle": "node mcpb/build.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.30.1",

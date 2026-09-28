@@ -18,3 +18,4 @@ docs/
 
 # MCP registry publisher binary
 whichlib/mcp-publisher.exe
+dist/
