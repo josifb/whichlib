@@ -18,6 +18,9 @@
     "pypi",
     "open-source"
   ],
+  "documentationUrl": "https://github.com/josifb/whichlib/tree/main/claude-plugin#readme",
+  "supportUrl": "https://github.com/josifb/whichlib/issues",
+  "privacyPolicyUrl": "https://github.com/josifb/whichlib/blob/main/PRIVACY.md",
   "userConfig": {
     "github_token": {
       "type": "string",
