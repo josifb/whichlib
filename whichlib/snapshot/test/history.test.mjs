@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildHistory, starsGained, latestRepos } from '../src/history.mjs';
+import { buildHistory, starsGained, latestRepos, historyFromStars, weeklyGain } from '../src/history.mjs';
 
 const repo = (fullName, stars, extra = {}) => ({
   fullName, url: `https://github.com/${fullName}`, description: '', language: 'Go',
@@ -53,4 +53,33 @@ test('latestRepos: unique repos from the newest snapshot, keeping the record wit
   const latest = latestRepos(snapshots);
   assert.deepEqual(latest.map((r) => r.fullName).sort(), ['a/one', 'c/three']);
   assert.equal(latest.find((r) => r.fullName === 'a/one').stars, 160);
+});
+
+const day = (date, stars) => ({ date, stars });
+
+test('historyFromStars: one date-sorted series per repo from stars files', () => {
+  const h = historyFromStars([
+    { date: '2026-09-28', stars: { 'a/one': 20, 'b/two': 3 } },
+    { date: '2026-09-21', stars: { 'a/one': 10 } },
+  ]);
+  assert.deepEqual(h.get('a/one'), [day('2026-09-21', 10), day('2026-09-28', 20)]);
+  assert.deepEqual(h.get('b/two'), [day('2026-09-28', 3)]);
+});
+
+test('weeklyGain: full 7-day window is the plain difference', () => {
+  assert.equal(weeklyGain([day('2026-09-20', 5), day('2026-09-21', 10), day('2026-09-28', 70)], '2026-09-28'), 60);
+});
+
+test('weeklyGain: 3 to 6 days of span is scaled to a week', () => {
+  assert.equal(weeklyGain([day('2026-09-25', 100), day('2026-09-28', 130)], '2026-09-28'), 70);
+});
+
+test('weeklyGain: under 3 days of span, one point, or no series is null', () => {
+  assert.equal(weeklyGain([day('2026-09-27', 100), day('2026-09-28', 130)], '2026-09-28'), null);
+  assert.equal(weeklyGain([day('2026-09-28', 100)], '2026-09-28'), null);
+  assert.equal(weeklyGain(undefined, '2026-09-28'), null);
+});
+
+test('weeklyGain: never negative (unstars or a renamed repo)', () => {
+  assert.equal(weeklyGain([day('2026-09-21', 100), day('2026-09-28', 90)], '2026-09-28'), 0);
 });

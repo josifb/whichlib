@@ -17,7 +17,7 @@ whichlib/            the npm package (run all npm scripts from here)
   mcp/               server.mjs, tools.mjs, expand.mjs, telemetry.mjs, github-api.mjs, data.mjs, smoke.mjs
   mcp/eval/          needs.json, run-eval.mjs, inspect.mjs, results/
   lib/score.js       the score: momentum 40, maintenance 25, adoption 25, license 10
-  snapshot/src/      query, normalize, github, registry, enrich, history, run, score-report, pull-data
+  snapshot/src/      query, normalize, github, registry, enrich, history, run, stars, score-report, pull-data
   dashboard/         index.html (single file)
   server.json        MCP registry manifest (description max 100 chars)
 telemetry/           Cloudflare Worker + D1 call counter (live)

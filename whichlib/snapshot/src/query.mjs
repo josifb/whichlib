@@ -26,7 +26,8 @@ export function buildSearchQuery({ period, language = null, now = new Date() }) 
 }
 
 /** Full Search API URL, sorted by stars descending. */
-export function searchUrl(query, { perPage = 100 } = {}) {
+export function searchUrl(query, { perPage = 100, page = null } = {}) {
   const params = new URLSearchParams({ q: query, sort: 'stars', order: 'desc', per_page: String(perPage) });
+  if (page) params.set('page', String(page));
   return `https://api.github.com/search/repositories?${params.toString()}`;
 }

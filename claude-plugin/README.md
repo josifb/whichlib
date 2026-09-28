@@ -43,14 +43,17 @@ and only sent to GitHub.
   details), `registry.npmjs.org` and `api.npmjs.org` (package metadata and
   weekly downloads), and `pypi.org` and `pypistats.org` (package metadata and
   downloads). Your search text is sent to GitHub as a search query.
+- At most every 12 hours, downloads public daily star counts (for momentum)
+  from `raw.githubusercontent.com/josifb/whichlib/data/stars/`. Nothing is
+  sent. Turn it off with `WHICHLIB_HISTORY=off`.
 - Sends anonymous call counts to
   `https://whichlib-telemetry.todorovskijosif.workers.dev`: the tool name, a
   random install id, the whichlib version, platform and Node major version.
   Never queries, repository names, results, user names or paths. The totals
   are public at that address under `/stats`. Turn it off by setting
   `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1` in your environment.
-- Stores the random install id in `~/.whichlib/install-id`. Nothing else is
-  written.
+- Stores the random install id in `~/.whichlib/install-id` and the last 10
+  days of star counts in `~/.whichlib/stars/`. Nothing else is written.
 
 ## License
 

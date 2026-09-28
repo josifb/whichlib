@@ -144,9 +144,15 @@ Environment variables, both optional:
   fine-grained token with no permissions is enough. Recommend makes three
   searches per call, so without a token it allows about three recommendations
   per minute.
-- `FRESH_REPOS_DATA_DIR` points at a folder of daily snapshots. The default is
-  `whichlib/data/snapshots`, filled by `npm run pull-data`. With two or
-  more days present, momentum uses real 7-day stars gained.
+- Star history: momentum uses real stars gained per week for the top 1,000
+  repos per language plus new trending repos, from daily star counts on the
+  `data` branch. Installed from npm, the server keeps the last 10 days in
+  `~/.whichlib/stars/` and refreshes them in the background at most every
+  12 hours from `raw.githubusercontent.com` (public files, no token, nothing
+  sent). `WHICHLIB_HISTORY=off` turns the download off; repos without history
+  fall back to stars per day since creation. In a clone, `npm run pull-data`
+  fills `whichlib/data/stars` instead, and `FRESH_REPOS_DATA_DIR` points at
+  any folder of daily files.
 - `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1` disables anonymous call
   counting. What is counted: tool name, a random install id, version,
   platform and Node major version. Never queries, repository names or

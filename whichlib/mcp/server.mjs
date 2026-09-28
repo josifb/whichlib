@@ -3,7 +3,8 @@
 // trending_repos. stdout is the protocol channel: log to stderr only.
 //
 //   GITHUB_TOKEN           optional, raises GitHub rate limits
-//   FRESH_REPOS_DATA_DIR   optional, folder of daily snapshots for real momentum
+//   FRESH_REPOS_DATA_DIR   optional, folder of daily snapshots or stars files for real momentum
+//   WHICHLIB_HISTORY=off   do not download star history to ~/.whichlib/stars
 //   WHICHLIB_TELEMETRY=off or DO_NOT_TRACK=1  disable anonymous call counting
 
 import { readFile } from 'node:fs/promises';
@@ -22,7 +23,7 @@ const here = dirname(fileURLToPath(import.meta.url));
 const pkg = JSON.parse(await readFile(join(here, '..', 'package.json'), 'utf8'));
 
 const github = createGitHubClient();
-const history = await loadHistoryProvider();
+const { provider: history } = await loadHistoryProvider();
 const tools = createTools({ github, resolvePackages, history });
 const telemetry = createTelemetry({ version: pkg.version });
 

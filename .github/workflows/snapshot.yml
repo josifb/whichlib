@@ -19,7 +19,7 @@ concurrency:
 jobs:
   snapshot:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - name: Check out main
         uses: actions/checkout@v5
@@ -55,21 +55,34 @@ jobs:
           fi
           npm run enrich
 
+      - name: Daily star counts (all-time top repos + trending), for momentum
+        working-directory: whichlib
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          # Earlier days let stars.mjs backfill any snapshot date without a stars file.
+          mkdir -p data/stars
+          cp -n ../data-branch/snapshots/*.json data/snapshots/ 2>/dev/null || true
+          cp -n ../data-branch/stars/*.json data/stars/ 2>/dev/null || true
+          npm run stars
+
       - name: Commit snapshot to data branch
         run: |
           set -euo pipefail
-          mkdir -p data-branch/snapshots
+          mkdir -p data-branch/snapshots data-branch/stars
           cp whichlib/data/snapshots/*.json data-branch/snapshots/
+          cp whichlib/data/stars/*.json data-branch/stars/
           cp whichlib/data/registry-map.json data-branch/registry-map.json
           cd data-branch
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add snapshots registry-map.json
+          git add snapshots stars registry-map.json
           if git diff --cached --quiet; then
             echo "Nothing new to commit."
             exit 0
           fi
-          FILES=$(git diff --cached --name-only -- snapshots | xargs -n1 basename | tr '\n' ' ')
+          FILES=$(git diff --cached --name-only -- snapshots stars | xargs -n1 basename | sort -u | tr '\n' ' ')
           git commit -m "snapshot: ${FILES}"
           git push origin data
 

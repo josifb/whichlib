@@ -33,6 +33,11 @@ search text is sent to GitHub as a search query), `registry.npmjs.org`,
 `api.npmjs.org`, `pypi.org` and `pypistats.org`. An optional GitHub token you
 provide is only sent to GitHub.
 
+At most every 12 hours it also downloads public daily star counts from
+`raw.githubusercontent.com/josifb/whichlib/data/stars/` into
+`~/.whichlib/stars/` (the last 10 days, a few hundred KB each). Nothing is
+sent with that request. Set `WHICHLIB_HISTORY=off` to skip it.
+
 ## Contact
 
 Questions or deletion requests for an install id:

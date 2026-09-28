@@ -1,9 +1,10 @@
 node_modules/
 *.log
 
-# Daily snapshots grow ~1.4 MB per day; they live on the `data` branch,
+# Daily snapshots (~1.6 MB) and star counts grow every day; they live on the `data` branch,
 # written by .github/workflows/snapshot.yml. Keep them off main.
 whichlib/data/snapshots/*.json
+whichlib/data/stars/*.json
 whichlib/data/registry-map.json
 
 # Local checkout of the data branch made by the workflow (never on a dev box, but just in case)

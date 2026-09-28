@@ -40,9 +40,9 @@ export function createTools({ github, resolvePackages, history, now = () => Date
 
   function dataNotes() {
     const notes = [];
-    notes.push(history.days >= 2
-      ? `Momentum uses real 7-day stars gained from ${history.days} days of snapshots (latest ${history.latestDate}); repos without history fall back to stars per day since creation.`
-      : 'Momentum is estimated from stars per day since creation (fewer than two days of snapshot history).');
+    notes.push(history.spanDays >= 3
+      ? `Momentum uses real stars gained per week from ${history.days} days of daily star counts (latest ${history.latestDate}; the top 1,000 repos per language plus new trending repos); other repos fall back to stars per day since creation.`
+      : 'Momentum is estimated from stars per day since creation (under three days of star history so far).');
     if (!github.hasToken) notes.push('No GITHUB_TOKEN set: GitHub allows 10 searches per minute; set one to raise it to 30.');
     return notes;
   }

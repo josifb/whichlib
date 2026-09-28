@@ -69,3 +69,47 @@ export function latestRepos(snapshots) {
   }
   return [...best.values()];
 }
+
+/** Read every <date>.json stars file ({ date, stars: { fullName: n } }), sorted by date. */
+export async function loadStarsFiles(dir) {
+  const names = (await readdir(dir)).filter((n) => /^\d{4}-\d{2}-\d{2}\.json$/.test(n)).sort();
+  const out = [];
+  for (const name of names) out.push(JSON.parse(await readFile(join(dir, name), 'utf8')));
+  return out;
+}
+
+/** Map fullName -> [{ date, stars }] sorted by date, from stars files. */
+export function historyFromStars(files) {
+  const history = new Map();
+  for (const file of [...files].sort((a, b) => a.date.localeCompare(b.date))) {
+    for (const [name, stars] of Object.entries(file.stars)) {
+      let series = history.get(name);
+      if (!series) { series = []; history.set(name, series); }
+      series.push({ date: file.date, stars });
+    }
+  }
+  return history;
+}
+
+const MIN_SPAN_DAYS = 3;
+
+/**
+ * Stars gained per week, from the points inside the 7 days up to asOfDate.
+ * A span of 3-6 days is scaled up to a week; under 3 days it is null, so a
+ * single day's gain is never reported as a week's. Never negative.
+ */
+export function weeklyGain(series, asOfDate) {
+  if (!series || series.length < 2) return null;
+  const asOf = Date.parse(`${asOfDate}T00:00:00Z`);
+  const inWindow = series.filter((p) => {
+    const t = Date.parse(`${p.date}T00:00:00Z`);
+    return t >= asOf - 7 * DAY_MS && t <= asOf;
+  });
+  if (inWindow.length < 2) return null;
+  const first = inWindow[0];
+  const last = inWindow[inWindow.length - 1];
+  const span = (Date.parse(`${last.date}T00:00:00Z`) - Date.parse(`${first.date}T00:00:00Z`)) / DAY_MS;
+  if (span < MIN_SPAN_DAYS) return null;
+  const gain = Math.max(0, last.stars - first.stars);
+  return span >= 7 ? gain : Math.round((gain * 7) / span);
+}
