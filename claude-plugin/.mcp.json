@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "whichlib": {
+      "command": "npx",
+      "args": ["-y", "whichlib"]
+    }
+  }
+}

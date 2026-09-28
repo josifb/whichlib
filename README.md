@@ -121,6 +121,14 @@ available in every project):
 claude mcp add whichlib -s user -- npx -y whichlib
 ```
 
+Or as a Claude Code plugin, which adds a skill that makes Claude check a
+library with whichlib before adding it:
+
+```
+/plugin marketplace add josifb/whichlib
+/plugin install whichlib@whichlib
+```
+
 Cursor, Windsurf, Claude Desktop and others take the same command in their
 MCP config:
 
