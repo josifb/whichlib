@@ -66,7 +66,8 @@ jobs:
         env:
           VERSION: ${{ steps.version.outputs.version }}
         run: |
-          if [ "$DRY_RUN" = "true" ]; then npm publish --dry-run; exit 0; fi
+          # pack, not publish --dry-run: the latter fails when the version already exists
+          if [ "$DRY_RUN" = "true" ]; then npm pack --dry-run; exit 0; fi
           if npm view "whichlib@$VERSION" version >/dev/null 2>&1; then
             echo "whichlib@$VERSION is already on npm, skipping"; exit 0
           fi
