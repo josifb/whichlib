@@ -58,7 +58,7 @@ the two can never disagree.
 
 | Part | Weight | Signal |
 |---|---|---|
-| Momentum | 40% | Stars gained over the last 7 days from our snapshots. Without history, stars per day since creation times 7, with age floored at one day. Log scale: 50 a week is already good, 5,000 is the max. |
+| Momentum | 40% | Stars gained over the last 7 days from our daily star counts (top 1,000 repos per language plus new trending repos). Without history, stars per day since creation times 7, with age floored at one day, scaled by the npm/PyPI download trend when known (last week against the three weeks before, clamped to 0.5–2x). Log scale: 50 a week is already good, 5,000 is the max. |
 | Maintenance | 25% | Days since last push: full marks up to 30 days, zero at 365, linear between. Minus 0.2 when open issues exceed a tenth of the stars. Stability guard: a repo with 10k+ stars or 100k+ weekly downloads, pushed within the last year and not archived, never drops below 0.5 here. Heavy use plus silence is stability, not decay. |
 | Adoption | 25% | With weekly downloads known: 50% stars (max 100k), 20% forks (max 20k), 30% downloads (max 1M). Otherwise 70% stars, 30% forks. All log scale. |
 | License | 10% | Permissive 1.0, weak copyleft 0.75, strong copyleft 0.5, unrecognised 0.5, none 0. |

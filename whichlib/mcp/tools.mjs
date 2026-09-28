@@ -35,6 +35,15 @@ const languageQualifier = (language) => {
   return family.map(quoteLanguage).join(' ');
 };
 
+/** Download trend over all of a repo's packages that have one: total last week over total baseline week. */
+function combinedTrend(packages) {
+  const withTrend = packages.filter((p) => typeof p.downloadsTrend === 'number' && p.downloadsTrend > 0 && typeof p.weeklyDownloads === 'number');
+  if (withTrend.length === 0) return null;
+  const recent = withTrend.reduce((s, p) => s + p.weeklyDownloads, 0);
+  const baseline = withTrend.reduce((s, p) => s + p.weeklyDownloads / p.downloadsTrend, 0);
+  return Math.round((recent / baseline) * 100) / 100;
+}
+
 export function createTools({ github, resolvePackages, history, now = () => Date.now() }) {
   const registryCache = {}; // repo -> package names, for the life of the process
 
@@ -57,9 +66,10 @@ export function createTools({ github, resolvePackages, history, now = () => Date
       const packages = packagesByRepo[i];
       const known = packages.filter((p) => typeof p.weeklyDownloads === 'number');
       const weeklyDownloads = known.length ? known.reduce((s, p) => s + p.weeklyDownloads, 0) : null;
+      const downloadsTrend = combinedTrend(packages);
       const starsGained7d = history.starsGained7d(repo.fullName);
-      const s = scoreLib.scoreRepo({ ...repo, weeklyDownloads }, { starsGained7d, now: now() });
-      return { ...repo, packages, weeklyDownloads, starsGained7d, score: s.score, tier: s.tier, verdict: s.verdict, parts: s.parts, flags: s.flags };
+      const s = scoreLib.scoreRepo({ ...repo, weeklyDownloads }, { starsGained7d, downloadsTrend, now: now() });
+      return { ...repo, packages, weeklyDownloads, downloadsTrend, starsGained7d, score: s.score, tier: s.tier, verdict: s.verdict, parts: s.parts, flags: s.flags };
     });
   }
 
@@ -160,7 +170,7 @@ export function formatResult(result) {
   result.repos.forEach((r, i) => {
     const bits = [
       `★ ${nf.format(r.stars)}${r.starsGained7d !== null && r.starsGained7d !== undefined ? ` (+${nf.format(r.starsGained7d)} in 7d)` : ''}`,
-      typeof r.weeklyDownloads === 'number' ? `${compact(r.weeklyDownloads)} downloads/wk` : null,
+      typeof r.weeklyDownloads === 'number' ? `${compact(r.weeklyDownloads)} downloads/wk${typeof r.downloadsTrend === 'number' ? ` (trend ${r.downloadsTrend >= 1 ? '+' : ''}${Math.round((r.downloadsTrend - 1) * 100)}%)` : ''}` : null,
       r.language, r.license ? r.license.toUpperCase() : 'no license',
     ].filter(Boolean).join(' · ');
     const head = typeof r.fit === 'number'

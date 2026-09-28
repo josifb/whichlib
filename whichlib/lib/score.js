@@ -2,10 +2,12 @@
  * whichlib score. Shared by the browser dashboard (plain <script> tag)
  * and Node (CommonJS import). Keep this file free of imports.
  *
- * scoreRepo(repo, { starsGained7d, now }) -> { score, tier, verdict, parts, flags, weights }
+ * scoreRepo(repo, { starsGained7d, downloadsTrend, now }) -> { score, tier, verdict, parts, flags, weights }
  *   repo: { stars, forks, openIssues, license, createdAt, pushedAt, archived,
  *           weeklyDownloads? (number when known from npm/PyPI, else null/absent) }
  *   starsGained7d: stars gained over the last 7 days from snapshots, or null
+ *   downloadsTrend: npm/PyPI last week over the weeks before (1 = flat), or null;
+ *     scales the stars-per-day fallback only, never real stars gained
  *
  * See README "Score" for the definition.
  */
@@ -35,6 +37,10 @@
   const STABLE_FLOOR = 0.5;
   const ARCHIVED_CAP = 20;
   const MIN_AGE_DAYS = 1; // never extrapolate less than a day of evidence into a week
+  // Without star history the fallback is a lifetime average; the download trend
+  // says whether use is rising or falling now. Clamped so it nudges, not decides.
+  const TREND_MIN = 0.5;
+  const TREND_MAX = 2;
   const DAY_MS = 86400000;
 
   const PERMISSIVE = new Set(['mit', 'apache-2.0', 'bsd-2-clause', 'bsd-3-clause', 'bsd-3-clause-clear', 'isc', '0bsd', 'unlicense', 'zlib', 'cc0-1.0', 'bsl-1.0', 'wtfpl', 'postgresql', 'ncsa', 'artistic-2.0', 'ms-pl', 'upl-1.0', 'blueoak-1.0.0']);
@@ -72,10 +78,11 @@
     return (repo.stars || 0) >= STABLE_STARS || (typeof repo.weeklyDownloads === 'number' && repo.weeklyDownloads >= STABLE_DOWNLOADS);
   }
 
-  function momentumScore(repo, starsGained7d, now) {
+  function momentumScore(repo, starsGained7d, now, downloadsTrend) {
     if (starsGained7d !== null && starsGained7d !== undefined) return logScale(starsGained7d, MOMENTUM_MAX_PER_WEEK);
     const ageDays = Math.max(MIN_AGE_DAYS, (now - Date.parse(repo.createdAt)) / DAY_MS);
-    return logScale((repo.stars / ageDays) * 7, MOMENTUM_MAX_PER_WEEK);
+    const trend = typeof downloadsTrend === 'number' ? Math.min(TREND_MAX, Math.max(TREND_MIN, downloadsTrend)) : 1;
+    return logScale((repo.stars / ageDays) * 7 * trend, MOMENTUM_MAX_PER_WEEK);
   }
 
   function maintenanceScore(repo, now) {
@@ -133,7 +140,7 @@
     const starsGained7d = o.starsGained7d === undefined ? null : o.starsGained7d;
 
     const parts = {
-      momentum: momentumScore(repo, starsGained7d, now),
+      momentum: momentumScore(repo, starsGained7d, now, o.downloadsTrend),
       maintenance: maintenanceScore(repo, now),
       adoption: adoptionScore(repo),
       license: licenseScore(repo.license),

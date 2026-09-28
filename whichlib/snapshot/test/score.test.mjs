@@ -174,3 +174,17 @@ test('verdict names weekly downloads when known', () => {
   const small = scoreRepo({ ...base, pushedAt: daysAgo(1), weeklyDownloads: 42 }, { starsGained7d: 2000, now: NOW });
   assert.equal(small.verdict, 'Rising fast, 42 downloads/wk, pushed 1 day ago, MIT.');
 });
+
+test('momentum fallback: scaled by the downloads trend, clamped to 0.5-2x', () => {
+  const old = { ...base, stars: 7000, createdAt: daysAgo(700) }; // 70 stars/week over its life
+  const m = (downloadsTrend) => scoreRepo(old, { now: NOW, downloadsTrend }).parts.momentum;
+  assert.equal(m(1.5), logScale(105, 5000));
+  assert.equal(m(9), logScale(140, 5000));
+  assert.equal(m(0.1), logScale(35, 5000));
+  assert.equal(m(null), logScale(70, 5000));
+  assert.equal(m(undefined), logScale(70, 5000));
+});
+
+test('momentum: real stars gained ignore the downloads trend', () => {
+  assert.equal(scoreRepo(base, { now: NOW, starsGained7d: 50, downloadsTrend: 2 }).parts.momentum, logScale(50, 5000));
+});

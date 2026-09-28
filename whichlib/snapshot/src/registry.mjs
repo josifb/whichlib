@@ -1,4 +1,5 @@
-// Maps a GitHub repo to its npm or PyPI package and fetches weekly downloads.
+// Maps a GitHub repo to its npm or PyPI package and fetches weekly downloads
+// and their trend (last week against the weeks before).
 // A package only counts when the registry's own metadata links back to the
 // repo; a matching name alone is never enough.
 
@@ -88,24 +89,43 @@ export async function findPypiPackage(fullName, fetchImpl) {
   return null;
 }
 
-export async function npmWeeklyDownloads(name, fetchImpl) {
-  const data = await getJson(`https://api.npmjs.org/downloads/point/last-week/${npmPath(name)}`, fetchImpl);
-  return typeof data?.downloads === 'number' ? data.downloads : null;
+// Below this many downloads a week the ratio is mostly noise.
+export const MIN_TREND_BASE = 1000;
+
+/** Last week's downloads over the baseline week, 2 decimals; null when the baseline is too small. */
+export function downloadsTrend(recentWeek, baselineWeek) {
+  if (typeof recentWeek !== 'number' || !(baselineWeek >= MIN_TREND_BASE)) return null;
+  return Math.round((recentWeek / baselineWeek) * 100) / 100;
 }
 
-export async function pypiWeeklyDownloads(name, fetchImpl) {
-  const data = await getJson(`https://pypistats.org/api/packages/${encodeURIComponent(name)}/recent`, fetchImpl);
-  return typeof data?.data?.last_week === 'number' ? data.data.last_week : null;
+const sum = (xs) => xs.reduce((a, b) => a + b, 0);
+
+/** npm: the last 30 days in one call. Last 7 days vs the average of the 3 whole weeks before. */
+export async function npmDownloads(name, fetchImpl) {
+  const data = await getJson(`https://api.npmjs.org/downloads/range/last-month/${npmPath(name)}`, fetchImpl);
+  const days = Array.isArray(data?.downloads) ? data.downloads.map((d) => d.downloads).filter((n) => typeof n === 'number') : [];
+  if (days.length < 7) return null;
+  const weekly = sum(days.slice(-7));
+  const before = days.slice(-28, -7);
+  return { weekly, trend: before.length === 21 ? downloadsTrend(weekly, sum(before) / 3) : null };
+}
+
+/** PyPI (pypistats): last week vs the rest of the last 30 days, per week. */
+export async function pypiDownloads(name, fetchImpl) {
+  const data = (await getJson(`https://pypistats.org/api/packages/${encodeURIComponent(name)}/recent`, fetchImpl))?.data;
+  if (typeof data?.last_week !== 'number') return null;
+  const rest = typeof data.last_month === 'number' ? ((data.last_month - data.last_week) / 23) * 7 : null;
+  return { weekly: data.last_week, trend: downloadsTrend(data.last_week, rest) };
 }
 
 const FINDERS = { npm: findNpmPackage, pypi: findPypiPackage };
-const DOWNLOADS = { npm: npmWeeklyDownloads, pypi: pypiWeeklyDownloads };
+const DOWNLOADS = { npm: npmDownloads, pypi: pypiDownloads };
 
 /**
  * Resolve the packages for one repo, using and updating `cache`
  * (fullName -> { npm?: name|null, pypi?: name|null, checkedAt }).
  * Positives are kept forever; negatives are re-checked after NEGATIVE_TTL_MS.
- * @returns {Promise<Array<{registry: string, name: string, weeklyDownloads: number|null}>>}
+ * @returns {Promise<Array<{registry: string, name: string, weeklyDownloads: number|null, downloadsTrend: number|null}>>}
  */
 export async function resolvePackages(repo, { fetchImpl = fetch, cache, now = Date.now() }) {
   const registries = registriesFor(repo.language);
@@ -131,9 +151,9 @@ export async function resolvePackages(repo, { fetchImpl = fetch, cache, now = Da
     const name = entry[registry];
     if (!name) continue;
     // A failed download lookup must not lose the mapping: record the package with unknown downloads.
-    let weeklyDownloads = null;
-    try { weeklyDownloads = await DOWNLOADS[registry](name, fetchImpl); } catch { weeklyDownloads = null; }
-    out.push({ registry, name, weeklyDownloads });
+    let d = null;
+    try { d = await DOWNLOADS[registry](name, fetchImpl); } catch { d = null; }
+    out.push({ registry, name, weeklyDownloads: d?.weekly ?? null, downloadsTrend: d?.trend ?? null });
   }
   return out;
 }
