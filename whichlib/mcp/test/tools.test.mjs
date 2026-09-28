@@ -15,7 +15,7 @@ function rawItem(fullName, stars, extra = {}) {
   };
 }
 
-function fakes({ items = [], relevanceItems = null, topicItems = [], repos = {}, gained = {}, downloads = {} } = {}) {
+function fakes({ items = [], relevanceItems = null, topicItems = [], repos = {}, gained = {}, downloads = {}, trends = {} } = {}) {
   const calls = { search: [], getRepo: [], resolve: [] };
   const github = {
     hasToken: false,
@@ -33,7 +33,9 @@ function fakes({ items = [], relevanceItems = null, topicItems = [], repos = {},
   const resolvePackages = async (repo) => {
     calls.resolve.push(repo.fullName);
     const dl = downloads[repo.fullName];
-    return dl === undefined ? [] : [{ registry: 'npm', name: repo.fullName.split('/')[1], weeklyDownloads: dl }];
+    if (dl === undefined) return [];
+    const pkg = { registry: 'npm', name: repo.fullName.split('/')[1], weeklyDownloads: dl };
+    return [repo.fullName in trends ? { ...pkg, downloadsTrend: trends[repo.fullName] } : pkg];
   };
   const history = { days: Object.keys(gained).length ? 3 : 0, spanDays: Object.keys(gained).length ? 7 : 0, latestDate: '2026-09-27', starsGained7d: (n) => gained[n] ?? null };
   const tools = createTools({ github, resolvePackages, history, now: () => NOW });
@@ -219,4 +221,32 @@ test('formatResult: labels the relevance source as #rank, topic or stars-only', 
   assert.match(text, /a\/ranked — fit \d+ \(\w+ \d+, relevance #1\)/);
   assert.match(text, /b\/tagged — fit \d+ \(\w+ \d+, relevance topic\)/);
   assert.match(text, /c\/popular — fit \d+ \(\w+ \d+, relevance stars-only\)/);
+});
+
+test('compare: download trend is returned, shown, and lifts momentum when there is no star history', async () => {
+  const repos = { 'a/rising': rawItem('a/rising', 5000), 'b/flat': rawItem('b/flat', 5000) };
+  const { tools } = fakes({ repos, downloads: { 'a/rising': 50000, 'b/flat': 50000 }, trends: { 'a/rising': 1.5, 'b/flat': null } });
+  const r = await tools.compare({ repos: ['a/rising', 'b/flat'] });
+  const rising = r.repos.find((x) => x.fullName === 'a/rising');
+  const flat = r.repos.find((x) => x.fullName === 'b/flat');
+  assert.equal(rising.downloadsTrend, 1.5);
+  assert.equal(flat.downloadsTrend, null);
+  assert.ok(rising.parts.momentum > flat.parts.momentum);
+  assert.match(formatResult(r), /50k downloads\/wk \(trend \+50%\)/);
+});
+
+test('compare: with several packages the trend is weighted by downloads', async () => {
+  const repos = { 'a/multi': rawItem('a/multi', 5000), 'b/other': rawItem('b/other', 5000) };
+  const tools = createTools({
+    github: { hasToken: true, getRepo: async (n) => repos[n] },
+    resolvePackages: async (repo) => (repo.fullName !== 'a/multi' ? [] : [
+      { registry: 'npm', name: 'x', weeklyDownloads: 30000, downloadsTrend: 1.5 }, // baseline 20000
+      { registry: 'npm', name: 'y', weeklyDownloads: 10000, downloadsTrend: 0.5 }, // baseline 20000
+      { registry: 'npm', name: 'z', weeklyDownloads: 999, downloadsTrend: null }, // no trend: left out
+    ]),
+    history: { days: 0, spanDays: 0, latestDate: null, starsGained7d: () => null },
+    now: () => NOW,
+  });
+  const r = await tools.compare({ repos: ['a/multi', 'b/other'] });
+  assert.equal(r.repos.find((x) => x.fullName === 'a/multi').downloadsTrend, 1); // 40000 / 40000
 });

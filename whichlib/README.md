@@ -40,7 +40,7 @@ MinerU, pdfplumber, pypdf with scores, weekly downloads and verdicts like
 
 | Part | Weight | Signal |
 |---|---|---|
-| Momentum | 40% | Stars gained over 7 days (from daily snapshots when available), else stars per day since creation. Log scale. |
+| Momentum | 40% | Stars gained over 7 days (from daily star counts when available), else stars per day since creation, scaled by the npm/PyPI download trend when known (0.5–2x). Log scale. |
 | Maintenance | 25% | Days since last push, full marks to 30 days, zero at a year. Widely used repos (10k+ stars or 100k+ weekly downloads) never drop below half. |
 | Adoption | 25% | Stars, forks and npm / PyPI weekly downloads, log scale. |
 | License | 10% | Permissive 1.0, weak copyleft 0.75, strong copyleft 0.5, none 0. |

@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
   candidateNames, urlsMentionRepo, registriesFor,
-  findNpmPackage, findPypiPackage, npmWeeklyDownloads, pypiWeeklyDownloads,
+  findNpmPackage, findPypiPackage, npmDownloads, pypiDownloads, downloadsTrend, MIN_TREND_BASE,
   resolvePackages, NEGATIVE_TTL_MS,
 } from '../src/registry.mjs';
 
@@ -71,26 +71,39 @@ test('findPypiPackage: matches through project_urls or home_page; null otherwise
   assert.equal(await findPypiPackage('encode/httpx', wrong), null);
 });
 
-test('weekly downloads: npm and pypistats parsing, scoped npm names encoded, null on 404', async () => {
-  const f = fakeFetch({
-    'https://api.npmjs.org/downloads/point/last-week/@acme%2Fwidget': { downloads: 1234, package: '@acme/widget' },
-    'https://pypistats.org/api/packages/httpx/recent': { data: { last_day: 1, last_week: 777, last_month: 9 } },
-  });
-  assert.equal(await npmWeeklyDownloads('@acme/widget', f), 1234);
-  assert.equal(await pypiWeeklyDownloads('httpx', f), 777);
-  assert.equal(await npmWeeklyDownloads('nope', f), null);
-  assert.equal(await pypiWeeklyDownloads('nope', f), null);
+// 30 daily npm counts: 2 ignored, 21 baseline days at `base`, the last 7 at `recent`.
+const npmRange = (base, recent) => ({
+  downloads: [...Array(2).fill(999999), ...Array(21).fill(base), ...Array(7).fill(recent)].map((downloads, i) => ({ downloads, day: `d${i}` })),
+});
+
+test('downloadsTrend: recent week over baseline week, null below the minimum baseline', () => {
+  assert.equal(downloadsTrend(3000, 2000), 1.5);
+  assert.equal(downloadsTrend(3000, MIN_TREND_BASE - 1), null);
+  assert.equal(downloadsTrend(null, 5000), null);
+});
+
+test('npmDownloads: last 7 days summed, trend against the 3 weeks before, scoped names encoded', async () => {
+  const f = fakeFetch({ 'https://api.npmjs.org/downloads/range/last-month/@acme%2Fwidget': npmRange(1000, 1500) });
+  assert.deepEqual(await npmDownloads('@acme/widget', f), { weekly: 10500, trend: 1.5 });
+  assert.equal(await npmDownloads('nope', f), null);
+});
+
+test('pypiDownloads: last_week, trend against the rest of the month per week', async () => {
+  const f = fakeFetch({ 'https://pypistats.org/api/packages/httpx/recent': { data: { last_day: 1, last_week: 14000, last_month: 37000 } } });
+  // rest of month: 23000 over 23 days = 7000 per week
+  assert.deepEqual(await pypiDownloads('httpx', f), { weekly: 14000, trend: 2 });
+  assert.equal(await pypiDownloads('nope', f), null);
 });
 
 test('resolvePackages: looks up, records a positive in the cache, returns packages with downloads', async () => {
   const f = fakeFetch({
     'https://registry.npmjs.org/widget': { name: 'widget', repository: { url: 'https://github.com/acme/widget' } },
-    'https://api.npmjs.org/downloads/point/last-week/widget': { downloads: 500 },
+    'https://api.npmjs.org/downloads/range/last-month/widget': npmRange(1000, 1000),
   });
   const cache = {};
   const now = Date.parse('2026-09-27T00:00:00Z');
   const out = await resolvePackages({ fullName: 'acme/widget', language: 'TypeScript' }, { fetchImpl: f, cache, now });
-  assert.deepEqual(out, [{ registry: 'npm', name: 'widget', weeklyDownloads: 500 }]);
+  assert.deepEqual(out, [{ registry: 'npm', name: 'widget', weeklyDownloads: 7000, downloadsTrend: 1 }]);
   assert.deepEqual(cache['acme/widget'], { npm: 'widget', checkedAt: '2026-09-27T00:00:00.000Z' });
 });
 
@@ -109,11 +122,11 @@ test('resolvePackages: fresh negative is not re-queried; stale negative is', asy
 });
 
 test('resolvePackages: cached positive skips the registry lookup but still refreshes downloads', async () => {
-  const f = fakeFetch({ 'https://api.npmjs.org/downloads/point/last-week/widget': { downloads: 9 } });
+  const f = fakeFetch({ 'https://api.npmjs.org/downloads/range/last-month/widget': npmRange(1, 1) });
   const cache = { 'acme/widget': { npm: 'widget', checkedAt: '2026-01-01T00:00:00.000Z' } };
   const out = await resolvePackages({ fullName: 'acme/widget', language: 'JavaScript' }, { fetchImpl: f, cache, now: Date.now() });
-  assert.deepEqual(out, [{ registry: 'npm', name: 'widget', weeklyDownloads: 9 }]);
-  assert.deepEqual(f.calls, ['https://api.npmjs.org/downloads/point/last-week/widget']);
+  assert.deepEqual(out, [{ registry: 'npm', name: 'widget', weeklyDownloads: 7, downloadsTrend: null }]);
+  assert.deepEqual(f.calls, ['https://api.npmjs.org/downloads/range/last-month/widget']);
 });
 
 test('resolvePackages: languages outside npm/pypi make no requests and return []', async () => {
@@ -150,5 +163,5 @@ test('resolvePackages: a failing download lookup keeps the package with null dow
     return { ok: false, status: 400, headers: { get: () => null }, json: async () => ({}) };
   };
   const out = await resolvePackages({ fullName: 'acme/widget', language: 'JavaScript' }, { fetchImpl: f, cache: {}, now: Date.now() });
-  assert.deepEqual(out, [{ registry: 'npm', name: 'widget', weeklyDownloads: null }]);
+  assert.deepEqual(out, [{ registry: 'npm', name: 'widget', weeklyDownloads: null, downloadsTrend: null }]);
 });
