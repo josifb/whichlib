@@ -18,6 +18,8 @@ import { historyFromStars, weeklyGain, isWeeklyEstimate } from '../snapshot/src/
 import { starsFromSnapshot } from '../snapshot/src/stars.mjs';
 
 export const STARS_URL = 'https://raw.githubusercontent.com/josifb/whichlib/data/stars';
+export const RISING_URL = 'https://raw.githubusercontent.com/josifb/whichlib/data/rising.json';
+const RISING_TTL_MS = 3600_000;
 const REFRESH_EVERY_MS = 12 * 3600_000;
 const KEEP_DAYS = 10;
 const DAY_MS = 86400000;
@@ -129,4 +131,22 @@ export async function loadHistoryProvider({
     })
     .catch((err) => log(`whichlib history: refresh skipped (${err.message}); momentum uses what is cached`));
   return { provider, refreshed };
+}
+
+/**
+ * Loader for the rising list (repos of any age by stars gained this week),
+ * rebuilt daily by the snapshot job. One download per hour at most; only
+ * called when an agent asks trending_repos for period "rising".
+ */
+export function createRisingLoader({ fetchImpl = fetch, now = Date.now } = {}) {
+  let cached = null;
+  let fetchedAt = 0;
+  return async function loadRising() {
+    if (cached && now() - fetchedAt < RISING_TTL_MS) return cached;
+    const res = await fetchImpl(RISING_URL, { signal: AbortSignal.timeout(20_000) });
+    if (!res.ok) throw new Error(`Could not download the rising list: HTTP ${res.status}`);
+    cached = await res.json();
+    fetchedAt = now();
+    return cached;
+  };
 }

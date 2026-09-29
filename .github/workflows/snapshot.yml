@@ -55,7 +55,7 @@ jobs:
           fi
           npm run enrich
 
-      - name: Daily star counts (all-time top repos + trending), for momentum
+      - name: Daily star counts (all-time top repos + trending) and the rising list
         working-directory: whichlib
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -74,10 +74,11 @@ jobs:
           cp whichlib/data/snapshots/*.json data-branch/snapshots/
           cp whichlib/data/stars/*.json data-branch/stars/
           cp whichlib/data/registry-map.json data-branch/registry-map.json
+          cp whichlib/data/rising.json data-branch/rising.json
           cd data-branch
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add snapshots stars registry-map.json
+          git add snapshots stars registry-map.json rising.json
           if git diff --cached --quiet; then
             echo "Nothing new to commit."
             exit 0

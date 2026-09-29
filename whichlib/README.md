@@ -35,7 +35,7 @@ Requires Node 22 or newer. No account, no API key.
 |---|---|---|
 | `recommend_repos` | `need` in plain words, optional `language`, `limit` 1–10 | The best repositories for the need, ranked by fit (score × relevance), with downloads and a verdict each |
 | `compare_repos` | `repos`: 2–10 names as `owner/repo` | The repositories side by side, best first, same breakdown |
-| `trending_repos` | `period` day / week / month, optional `language`, `limit` | Most-starred repositories created in the period, scored |
+| `trending_repos` | `period` day / week / month / rising, optional `language`, `limit` | Most-starred repositories created in the period, scored; `rising`: repositories of any age by stars gained this week |
 
 Example, in Claude Code: "which Python PDF parser should I use?" →
 MinerU, pdfplumber, pypdf with scores, weekly downloads and verdicts like

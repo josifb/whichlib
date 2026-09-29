@@ -45,7 +45,9 @@ and only sent to GitHub.
   downloads). Your search text is sent to GitHub as a search query.
 - At most every 12 hours, downloads public daily star counts (for momentum)
   from `raw.githubusercontent.com/josifb/whichlib/data/stars/`. Nothing is
-  sent. Turn it off with `WHICHLIB_HISTORY=off`.
+  sent. Turn it off with `WHICHLIB_HISTORY=off`. `trending_repos` with
+  `period: "rising"` also downloads the public daily `rising.json` from the
+  same place (at most once an hour).
 - Sends anonymous call counts to
   `https://whichlib-telemetry.todorovskijosif.workers.dev`: the tool name, a
   random install id, the whichlib version, platform and Node major version.

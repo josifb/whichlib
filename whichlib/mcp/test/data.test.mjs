@@ -158,3 +158,25 @@ test('buildProvider: flags scaled gains as estimates', () => {
   assert.equal(p.starsGainedEstimated('a/one'), true);
   assert.equal(p.starsGainedEstimated('x/none'), false);
 });
+
+test('createRisingLoader: downloads rising.json once per hour', async () => {
+  const { createRisingLoader, RISING_URL } = await import('../data.mjs');
+  const calls = [];
+  let t = NOW;
+  const load = createRisingLoader({
+    now: () => t,
+    fetchImpl: async (url) => { calls.push(url); return { ok: true, status: 200, json: async () => ({ date: '2026-09-28', lists: { all: [] } }) }; },
+  });
+  assert.equal((await load()).date, '2026-09-28');
+  await load();
+  assert.deepEqual(calls, [RISING_URL]);
+  t += 3601_000;
+  await load();
+  assert.equal(calls.length, 2);
+});
+
+test('createRisingLoader: a failed download is a clear error', async () => {
+  const { createRisingLoader } = await import('../data.mjs');
+  const load = createRisingLoader({ now: () => NOW, fetchImpl: async () => ({ ok: false, status: 404 }) });
+  await assert.rejects(load(), /rising list.*404/i);
+});

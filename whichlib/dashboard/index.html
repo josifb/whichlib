@@ -196,6 +196,7 @@
       <button type="button" data-period="day" id="tab-day">Today</button>
       <button type="button" data-period="week" id="tab-week">This week</button>
       <button type="button" data-period="month" id="tab-month">This month</button>
+      <button type="button" data-period="rising" id="tab-rising" title="Repos of any age, by stars gained this week">Rising</button>
     </div>
     <select id="language" aria-label="Language filter"></select>
     <input type="search" id="filter" placeholder="Filter results by name, description or topic" aria-label="Filter results">
@@ -238,6 +239,7 @@
 
   <footer>
     <p><strong>How this list is built.</strong> Repositories created in the last 24 hours, 7 days or 30 days, fetched live from the GitHub Search API and ranked by stars. The rank column always shows the stars rank, so you can sort by another column and still see where a repo stands.</p>
+    <p><strong>Rising.</strong> Repositories of any age ranked by stars gained over the last week, like GitHub Trending. It comes from whichlib's daily star counts of the top 1,000 repos per language plus new trending repos, rebuilt once a day, so smaller libraries are not in it. There, Stars/day is the last week's average, and the rank is the rising rank. With fewer than 7 days of counts the gains are scaled to a week and marked with ~.</p>
     <p><strong>Downloads.</strong> GitHub publishes no download count for repositories, only for release files. Forks are the nearest public signal of people taking a copy. Stars/day is stars divided by the repo's age in days, counting anything younger than a day as one day, so it never exceeds the stars. A rough velocity.</p>
     <p><strong>Score.</strong> 0 to 100 from four parts: momentum (40%), maintenance (25%), adoption (25%) and license (10%). Archived repos are capped at 20. Hover a score for the one-line verdict. Opened from disk, momentum uses stars per day; the nightly snapshots give the real stars-gained figure to the report and the whichlib MCP server. Full definition in the README.</p>
     <p>Results are cached in this browser for 60 minutes per tab and language. Refresh forces a new fetch.</p>
@@ -255,6 +257,9 @@
   const LANGUAGES = ['JavaScript', 'TypeScript', 'Python', 'Go', 'Rust', 'Java', 'C++', 'C#', 'C', 'Kotlin', 'Swift', 'Ruby', 'PHP', 'Dart', 'Shell', 'HTML', 'Jupyter Notebook'];
   const LANG_COLORS = { JavaScript: '#f1e05a', TypeScript: '#3178c6', Python: '#3572A5', Go: '#00ADD8', Rust: '#dea584', Java: '#b07219', 'C++': '#f34b7d', 'C#': '#178600', C: '#555555', Kotlin: '#A97BFF', Swift: '#F05138', Ruby: '#701516', PHP: '#4F5D95', Dart: '#00B4AB', Shell: '#89e051', HTML: '#e34c26', 'Jupyter Notebook': '#DA5B0B', Vue: '#41b883', Svelte: '#ff3e00', Lua: '#000080', Zig: '#ec915c', Elixir: '#6e4a7e', Scala: '#c22d40', Haskell: '#5e5086', 'Objective-C': '#438eff', R: '#198CE7' };
   const CACHE_TTL_MS = 60 * 60 * 1000;
+  // Rebuilt daily by the snapshot job. ?rising=<url> overrides it (local testing).
+  const RISING_URL = new URLSearchParams(location.search).get('rising') || 'https://raw.githubusercontent.com/josifb/whichlib/data/rising.json';
+  const isPeriod = (p) => Boolean(PERIOD_DAYS[p]) || p === 'rising';
   const NUMERIC = new Set(['score', 'stars', 'starsPerDay', 'forks', 'openIssues']);
   const scorer = typeof WhichlibScore !== 'undefined' ? WhichlibScore : null;
   const DATES = new Set(['createdAt', 'pushedAt']);
@@ -311,11 +316,27 @@
     }
     return rec;
   }
+  // A rising-list entry (already normalized by the snapshot job, plus gained/estimated).
+  function fromRising(r, rank) {
+    const rec = {
+      rank, fullName: r.fullName, url: r.url, description: r.description ?? '', language: r.language ?? null,
+      stars: r.stars, starsPerDay: r.gained / 7, estimated: Boolean(r.estimated), forks: r.forks, openIssues: r.openIssues,
+      license: r.license ? String(r.license).toUpperCase() : null, createdAt: r.createdAt, pushedAt: r.pushedAt,
+      archived: Boolean(r.archived), topics: Array.isArray(r.topics) ? r.topics : [],
+    };
+    if (scorer) {
+      const s = scorer.scoreRepo(rec, { starsGained7d: r.gained });
+      rec.score = s.score; rec.tier = s.tier; rec.verdict = s.verdict;
+    } else {
+      rec.score = -1; rec.tier = null; rec.verdict = '';
+    }
+    return rec;
+  }
 
   // ---- state ---------------------------------------------------------------
   const saved = store.get('gt:state') ?? {};
   const state = {
-    period: PERIOD_DAYS[saved.period] ? saved.period : 'day',
+    period: isPeriod(saved.period) ? saved.period : 'day',
     language: saved.language ?? '',
     sortKey: saved.sortKey ?? 'stars',
     sortDir: saved.sortDir ?? 'desc',
@@ -368,7 +389,9 @@
     if (!state.data) { els.status.textContent = state.loading ? 'Loading…' : 'No data yet'; return; }
     const age = Math.round((Date.now() - Date.parse(state.data.fetchedAt)) / 60000);
     const when = age < 1 ? 'just now' : `${age} min ago`;
-    els.status.textContent = `Top ${state.data.items.length} of ${fmtInt(state.data.totalCount)} repos created in the ${PERIOD_LABEL[state.period]} · updated ${when}`;
+    els.status.textContent = state.period === 'rising'
+      ? (state.data.asOf ? `Top ${state.data.items.length} rising repos, any age · stars gained in the week to ${state.data.asOf}${state.data.estimated ? ' (estimated)' : ''} · updated ${when}` : `Rising · no list yet · updated ${when}`)
+      : `Top ${state.data.items.length} of ${fmtInt(state.data.totalCount)} repos created in the ${PERIOD_LABEL[state.period]} · updated ${when}`;
   }
 
   function sortedFilteredItems() {
@@ -402,7 +425,7 @@
         <td class="num score" title="${esc(r.verdict)}">${r.tier ? `<span class="tier tier-${r.tier.toLowerCase()}">${r.tier}</span> ${r.score}` : '—'}</td>
         <td class="lang">${r.language ? `<i style="background:${LANG_COLORS[r.language] ?? 'var(--border-strong)'}"></i>${esc(r.language)}` : '<span style="color:var(--muted)">—</span>'}</td>
         <td class="num stars">${fmtInt(r.stars)}</td>
-        <td class="num">${fmtRate(r.starsPerDay)}</td>
+        <td class="num"${r.estimated ? ' title="Estimated: scaled to a week from fewer days of star counts"' : ''}>${r.estimated ? '~' : ''}${fmtRate(r.starsPerDay)}</td>
         <td class="num">${fmtInt(r.forks)}</td>
         <td class="num">${fmtInt(r.openIssues)}</td>
         <td class="date" title="${esc(dtf.format(new Date(r.createdAt)))}">${relTime(r.createdAt)}</td>
@@ -422,6 +445,7 @@
     if (fresh && !force) { setBanner(null); renderAll(); return; }
 
     state.loading = true; renderAll();
+    if (state.period === 'rising') return fetchRising(key, cached);
     const token = store.get('gt:token');
     const headers = { Accept: 'application/vnd.github+json' };
     if (token) headers.Authorization = `Bearer ${token}`;
@@ -455,9 +479,39 @@
     }
   }
 
+  // The rising list is one public file, no GitHub API call and no token.
+  async function fetchRising(requestedKey, cached) {
+    try {
+      const res = await fetch(RISING_URL, { cache: 'no-cache' });
+      if (!res.ok) throw new Error(`The rising list could not be loaded (HTTP ${res.status}).`);
+      const body = await res.json();
+      const lists = body.lists ?? {};
+      const lang = state.language;
+      const list = !lang ? (lists.all ?? []) : (lists[lang] ?? (lists.all ?? []).filter((r) => r.language === lang));
+      const data = { fetchedAt: new Date().toISOString(), totalCount: list.length, asOf: list.length ? body.date : null, estimated: Boolean(body.estimated), items: list.map((r, i) => fromRising(r, i + 1)) };
+      if (requestedKey !== cacheKey()) { store.set(requestedKey, data); return; }
+      state.data = data;
+      store.set(requestedKey, data);
+      if (list.length) setBanner(lang && !lists[lang] ? 'warn' : null, `${esc(lang)} has no rising list of its own; showing the ${esc(lang)} repos in the overall top 100.`);
+      else if ((body.spanDays ?? 0) < 3) setBanner('warn', `Rising needs daily star counts covering at least 3 days; so far they cover ${body.spanDays ?? 0} (latest ${esc(body.date ?? 'none')}). Check back in a few days.`);
+      else setBanner('warn', `No rising ${esc(lang)} repos in the tracked set this week.`);
+    } catch (err) {
+      const text = err instanceof TypeError ? 'Could not reach raw.githubusercontent.com. Check your connection.' : err.message;
+      if (cached) setBanner('warn', `${esc(text)} Showing results from ${relTime(cached.fetchedAt)}.`);
+      else setBanner('err', esc(text));
+    } finally {
+      if (requestedKey === cacheKey()) { state.loading = false; renderAll(); }
+    }
+  }
+
   // ---- events --------------------------------------------------------------
   for (const b of document.querySelectorAll('.seg button')) {
-    b.addEventListener('click', () => { state.period = b.dataset.period; persistState(); fetchCurrent(); });
+    b.addEventListener('click', () => {
+      state.period = b.dataset.period;
+      // Rising is about recent pace: start sorted by it rather than by total stars.
+      if (state.period === 'rising') { state.sortKey = 'starsPerDay'; state.sortDir = 'desc'; }
+      persistState(); fetchCurrent();
+    });
   }
   els.language.addEventListener('change', () => { state.language = els.language.value; persistState(); fetchCurrent(); });
   els.filter.addEventListener('input', () => { state.filter = els.filter.value; renderRows(); });

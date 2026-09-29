@@ -6,6 +6,7 @@ node_modules/
 whichlib/data/snapshots/*.json
 whichlib/data/stars/*.json
 whichlib/data/registry-map.json
+whichlib/data/rising.json
 
 # Local checkout of the data branch made by the workflow (never on a dev box, but just in case)
 data-branch/

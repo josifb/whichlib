@@ -37,6 +37,14 @@ for (const folder of FOLDERS) {
   console.log(`data branch has ${listing.length} file(s) in ${folder}/; copied ${copied} new to ${outDir}`);
 }
 
+// The rising list (repos of any age by stars gained this week) is rebuilt daily: always refresh it.
+try {
+  await writeFile(join(ROOT, 'data', 'rising.json'), git('show', 'origin/data:rising.json'));
+  console.log('rising.json refreshed');
+} catch {
+  console.log('rising.json not on the data branch yet');
+}
+
 // The registry map (repo -> package names) is small and changes daily: always refresh it.
 try {
   const map = git('show', 'origin/data:registry-map.json');

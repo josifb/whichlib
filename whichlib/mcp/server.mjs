@@ -14,7 +14,7 @@ import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
 import { z } from 'zod';
 import { createGitHubClient } from './github-api.mjs';
-import { loadHistoryProvider } from './data.mjs';
+import { loadHistoryProvider, createRisingLoader } from './data.mjs';
 import { createTools, formatResult } from './tools.mjs';
 import { createTelemetry } from './telemetry.mjs';
 import { resolvePackages } from '../snapshot/src/registry.mjs';
@@ -24,7 +24,7 @@ const pkg = JSON.parse(await readFile(join(here, '..', 'package.json'), 'utf8'))
 
 const github = createGitHubClient();
 const { provider: history } = await loadHistoryProvider();
-const tools = createTools({ github, resolvePackages, history });
+const tools = createTools({ github, resolvePackages, history, loadRising: createRisingLoader() });
 const telemetry = createTelemetry({ version: pkg.version });
 
 const server = new McpServer({ name: 'whichlib', version: pkg.version });
@@ -66,9 +66,9 @@ server.registerTool('compare_repos', {
 
 server.registerTool('trending_repos', {
   title: 'Trending repositories',
-  description: `Discover new projects: the most-starred GitHub repositories created in the last day, week or month, optionally in one language, each scored and returned sorted by score (starsRank keeps the stars order). ${SCORE} Not the right tool for picking a dependency, since new repositories have little maintenance history; use recommend_repos for that. One GitHub search, plus one npm/PyPI lookup per repository when withDownloads is true. ${RATE}`,
+  description: `Discover projects: the most-starred GitHub repositories created in the last day, week or month, or with period "rising" repositories of any age that gained the most stars this week (like GitHub Trending; risingRank keeps that order). Optionally one language; each scored and returned sorted by score (starsRank keeps the stars order). ${SCORE} Not the right tool for picking a dependency, since new repositories have little maintenance history; use recommend_repos for that. One GitHub search (rising: one download of the daily list from raw.githubusercontent.com instead), plus one npm/PyPI lookup per repository when withDownloads is true. ${RATE}`,
   inputSchema: {
-    period: z.enum(['day', 'week', 'month']).default('week').describe('Creation window: "day" (last 24 hours), "week" (last 7 days) or "month" (last 30 days).'),
+    period: z.enum(['day', 'week', 'month', 'rising']).default('week').describe('"day", "week" or "month": repos created in the last 24 hours, 7 days or 30 days. "rising": repos of any age by stars gained this week (the top 1,000 repos per language plus new ones are tracked).'),
     language: z.string().min(1).max(40).optional().describe('GitHub language name, e.g. "TypeScript", "Python", "Rust". Matches that language only. Omit for all languages.'),
     limit: z.number().int().min(1).max(100).default(20).describe('How many repositories to return, 1-100.'),
     withDownloads: z.boolean().default(false).describe('Also look up npm/PyPI weekly downloads for each repository. Slower: one registry lookup per repository.'),

@@ -4,7 +4,8 @@
 // Covers the all-time top 1,000 repos per language (GitHub search stops at
 // 1,000 results per query) plus every repo in that day's trending snapshot,
 // so mature libraries get real stars-gained figures too. Snapshot dates
-// without a stars file are backfilled from the snapshot alone.
+// without a stars file are backfilled from the snapshot alone. Also writes
+// data/rising.json: repos of any age ranked by stars gained this week.
 // Usage: node snapshot/src/stars.mjs   (run after `npm run snapshot`; set GITHUB_TOKEN)
 
 import { mkdir, readdir, readFile, writeFile } from 'node:fs/promises';
@@ -13,6 +14,8 @@ import { fileURLToPath } from 'node:url';
 import { searchUrl } from './query.mjs';
 import { fetchSearch, paceDelayMs } from './github.mjs';
 import { LANGUAGES } from './run.mjs';
+import { normalizeRepo } from './normalize.mjs';
+import { buildRising } from './rising.mjs';
 
 export const MIN_STARS = 1000;
 const PAGES = 10; // 10 x 100 = the 1,000-result cap of the Search API
@@ -20,6 +23,7 @@ const PAGES = 10; // 10 x 100 = the 1,000-result cap of the Search API
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SNAP_DIR = join(ROOT, 'data', 'snapshots');
 const OUT_DIR = join(ROOT, 'data', 'stars');
+const RISING_PATH = join(ROOT, 'data', 'rising.json');
 const DATE_FILE = /^(\d{4}-\d{2}-\d{2})\.json$/;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -87,9 +91,11 @@ async function main() {
   const jobs = LANGUAGES.flatMap((language) => Array.from({ length: PAGES }, (_, i) => ({ language, page: i + 1 })));
   console.log(`Stars ${today} | ${jobs.length} searches | token: ${token ? 'yes' : 'no'}`);
   const maps = [];
+  const details = new Map(); // fullName -> normalized repo, for rising.json
   for (const [i, { language, page }] of jobs.entries()) {
     const { items } = await fetchSearch(searchUrl(allTimeQuery(language), { page }), { token });
     maps.push(starsFromItems(items));
+    for (const item of items) details.set(item.full_name, normalizeRepo(item));
     if (page === PAGES) console.log(`  ${(language ?? 'all').padEnd(11)} done`);
     if (items.length < 100) {
       // Fewer than 1,000 repos above the floor: skip this language's remaining pages.
@@ -99,11 +105,19 @@ async function main() {
   }
 
   if (snapshotDates.includes(today)) {
-    maps.push(starsFromSnapshot(JSON.parse(await readFile(join(SNAP_DIR, `${today}.json`), 'utf8'))).stars);
+    const snapshot = JSON.parse(await readFile(join(SNAP_DIR, `${today}.json`), 'utf8'));
+    maps.push(starsFromSnapshot(snapshot).stars);
+    for (const result of snapshot.results) for (const item of result.items) if (!details.has(item.fullName)) details.set(item.fullName, item);
   }
   const stars = mergeStars(...maps);
   await writeStars({ date: today, stars });
   console.log(`Wrote data/stars/${today}.json (${Object.keys(stars).length} repos)`);
+
+  const files = [];
+  for (const date of await datesIn(OUT_DIR)) files.push(JSON.parse(await readFile(join(OUT_DIR, `${date}.json`), 'utf8')));
+  const rising = buildRising({ files, repos: details, languages: LANGUAGES.filter(Boolean) });
+  await writeFile(RISING_PATH, JSON.stringify(rising));
+  console.log(`Wrote data/rising.json (${rising.spanDays} day span${rising.estimated ? ', estimated' : ''}, ${rising.lists.all.length} repos overall)`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {

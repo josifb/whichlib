@@ -50,7 +50,7 @@ function gainText(r) {
   return r.starsGainedEstimated ? ` (~+${nf.format(r.starsGained7d)}/wk, estimated)` : ` (+${nf.format(r.starsGained7d)} in 7d)`;
 }
 
-export function createTools({ github, resolvePackages, history, now = () => Date.now() }) {
+export function createTools({ github, resolvePackages, history, loadRising = null, now = () => Date.now() }) {
   const registryCache = {}; // repo -> package names, for the life of the process
 
   function dataNotes() {
@@ -62,8 +62,13 @@ export function createTools({ github, resolvePackages, history, now = () => Date
     return notes;
   }
 
-  async function enrichAndScore(rawItems, { withDownloads }) {
-    const repos = rawItems.map(normalizeRepo);
+  function enrichAndScore(rawItems, opts) {
+    return scoreRepos(rawItems.map(normalizeRepo), opts);
+  }
+
+  // gains: optional Map fullName -> { gained, estimated } that replaces the
+  // history lookup (the rising list carries its own, fresher gains).
+  async function scoreRepos(repos, { withDownloads, gains = null }) {
     const packagesByRepo = await Promise.all(repos.map(async (repo) => {
       if (!withDownloads) return [];
       try { return await resolvePackages(repo, { cache: registryCache, now: now() }); } catch { return []; }
@@ -73,14 +78,42 @@ export function createTools({ github, resolvePackages, history, now = () => Date
       const known = packages.filter((p) => typeof p.weeklyDownloads === 'number');
       const weeklyDownloads = known.length ? known.reduce((s, p) => s + p.weeklyDownloads, 0) : null;
       const downloadsTrend = combinedTrend(packages);
-      const starsGained7d = history.starsGained7d(repo.fullName);
-      const starsGainedEstimated = starsGained7d !== null && Boolean(history.starsGainedEstimated?.(repo.fullName));
+      const given = gains?.get(repo.fullName);
+      const starsGained7d = given ? given.gained : history.starsGained7d(repo.fullName);
+      const starsGainedEstimated = starsGained7d !== null && (given ? Boolean(given.estimated) : Boolean(history.starsGainedEstimated?.(repo.fullName)));
       const s = scoreLib.scoreRepo({ ...repo, weeklyDownloads }, { starsGained7d, downloadsTrend, now: now() });
       return { ...repo, packages, weeklyDownloads, downloadsTrend, starsGained7d, starsGainedEstimated, score: s.score, tier: s.tier, verdict: s.verdict, parts: s.parts, flags: s.flags };
     });
   }
 
   const byScore = (a, b) => b.score - a.score || b.stars - a.stars;
+
+  // Repos of any age by stars gained this week, from the daily rising list:
+  // one download, no GitHub search. Languages without their own list filter
+  // the overall top 100.
+  async function rising({ language, limit, withDownloads }) {
+    if (!loadRising) throw new Error('The rising list is not available in this build.');
+    const n = Math.min(Math.max(Number(limit) || 20, 1), 100);
+    const data = await loadRising();
+    const lists = data.lists ?? {};
+    const key = language ? Object.keys(lists).find((k) => k.toLowerCase() === String(language).toLowerCase()) : 'all';
+    const list = key ? lists[key] : (lists.all ?? []).filter((r) => (r.language ?? '').toLowerCase() === String(language).toLowerCase());
+    const top = list.slice(0, n);
+    const gains = new Map(top.map((r) => [r.fullName, { gained: r.gained, estimated: r.estimated }]));
+    const scored = await scoreRepos(top.map(({ gained, estimated, ...repo }) => repo), { withDownloads: Boolean(withDownloads), gains });
+    scored.forEach((r, i) => { r.risingRank = i + 1; });
+    scored.sort(byScore);
+    const notes = [
+      top.length || (data.spanDays ?? 0) >= 3
+        ? `Rising ranks repos of any age by stars gained in the week to ${data.date}${data.estimated ? `, estimated from ${data.spanDays} days of daily star counts` : ''}. Tracked: the top 1,000 repos per language plus new trending repos, so smaller libraries are not in it.${language && !key ? ` ${language} has no list of its own; these are the ${language} repos in the overall top 100.` : ''}`
+        : `Rising needs daily star counts covering at least 3 days; so far they cover ${data.spanDays ?? 0} (latest ${data.date ?? 'none'}). Try again in a few days, or use period "week".`,
+      ...dataNotes().filter((note) => !note.startsWith('Momentum')),
+    ];
+    return {
+      tool: 'trending_repos', period: 'rising', language, asOf: data.date, estimated: Boolean(data.estimated), totalMatches: list.length,
+      generatedAt: new Date(now()).toISOString(), dataNotes: notes, repos: scored,
+    };
+  }
 
   return {
     async recommend({ need, language = null, limit = 5, includeCandidates = false } = {}) {
@@ -154,7 +187,8 @@ export function createTools({ github, resolvePackages, history, now = () => Date
     },
 
     async trending({ period = 'week', language = null, limit = 20, withDownloads = false } = {}) {
-      if (!PERIODS.includes(period)) throw new Error(`period must be one of ${PERIODS.join(', ')}.`);
+      if (period === 'rising') return rising({ language, limit, withDownloads });
+      if (!PERIODS.includes(period)) throw new Error(`period must be one of ${[...PERIODS, 'rising'].join(', ')}.`);
       const n = Math.min(Math.max(Number(limit) || 20, 1), 100);
       const query = buildSearchQuery({ period, language, now: new Date(now()) });
       const { items, totalCount } = await github.searchRepos(query, { perPage: Math.min(Math.max(n, 30), 100), sort: 'stars' });
@@ -178,6 +212,7 @@ export function formatResult(result) {
   const lines = [];
   if (result.tool === 'recommend_repos') lines.push(`Recommendations for "${result.need}"${result.language ? ` (${result.language})` : ''}: top ${result.repos.length} of ${result.candidatesConsidered} candidates, ${nf.format(result.totalMatches)} matches on GitHub.`);
   else if (result.tool === 'compare_repos') lines.push(`Comparison of ${result.repos.length} repositories, best first.`);
+  else if (result.period === 'rising') lines.push(`Rising: ${result.repos.length} repos of any age with the most stars gained in the week to ${result.asOf ?? 'n/a'}${result.estimated ? ' (estimated)' : ''}${result.language ? ` in ${result.language}` : ''}, scored.`);
   else lines.push(`Most-starred repositories created in the last ${{ day: '24 hours', week: '7 days', month: '30 days' }[result.period]}${result.language ? ` in ${result.language}` : ''}, scored. ${nf.format(result.totalMatches)} repos created in the period.`);
   lines.push('');
   result.repos.forEach((r, i) => {

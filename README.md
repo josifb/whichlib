@@ -114,7 +114,7 @@ The same score, served to coding agents. Three tools over stdio:
 |---|---|---|
 | `recommend_repos` | `need` in plain words, optional `language`, `limit` (1–10, default 5) | The best repositories for the need, ranked by fit (score × relevance), with npm/PyPI downloads and a verdict each. Candidates come from GitHub's relevance order, its stars order and a topic query; see "How recommend finds and ranks candidates" below. |
 | `compare_repos` | `repos`: 2–10 names as `owner/repo` | The repositories side by side, best first, same breakdown. |
-| `trending_repos` | `period` day/week/month, optional `language`, `limit` (default 20), `withDownloads` | Most-starred repos created in the period, scored. |
+| `trending_repos` | `period` day/week/month/rising, optional `language`, `limit` (default 20), `withDownloads` | Most-starred repos created in the period, scored. `rising`: repos of any age by stars gained this week (top 1,000 per language plus new repos are tracked). |
 
 Every result carries readable text and `structuredContent` (JSON) with the
 score, tier, verdict, the four subscores, flags, packages and downloads.

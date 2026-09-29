@@ -283,3 +283,56 @@ test('format: measured gains read "in 7d", scaled ones are marked as estimates',
   assert.match(text, /★ 900 \(\+70 in 7d\)/);
   assert.match(text, /★ 800 \(~\+210\/wk, estimated\)/);
 });
+
+const risingRepo = (fullName, language, stars, gained, estimated = false) => ({
+  fullName, url: `https://github.com/${fullName}`, description: `${fullName} does things`, language, stars, forks: 10, openIssues: 1,
+  license: 'mit', createdAt: daysAgo(2000), pushedAt: daysAgo(3), archived: false, topics: [], gained, estimated,
+});
+const risingData = {
+  date: '2026-10-05', days: 8, spanDays: 7, estimated: false,
+  lists: {
+    all: [risingRepo('big/lib', 'Python', 90000, 5000), risingRepo('mid/lib', 'Go', 20000, 800), risingRepo('small/lib', 'Kotlin', 12000, 300)],
+    Python: [risingRepo('big/lib', 'Python', 90000, 5000)],
+  },
+};
+
+function risingTools(data, calls = { search: 0, load: 0 }) {
+  const github = { hasToken: true, async searchRepos() { calls.search += 1; return { items: [], totalCount: 0 }; } };
+  const history = { days: 0, spanDays: 0, latestDate: null, starsGained7d: () => null };
+  const loadRising = async () => { calls.load += 1; return data; };
+  return createTools({ github, resolvePackages: async () => [], history, loadRising, now: () => NOW });
+}
+
+test('trending rising: uses the rising list, no GitHub search, gains feed momentum', async () => {
+  const calls = { search: 0, load: 0 };
+  const r = await risingTools(risingData, calls).trending({ period: 'rising', limit: 2 });
+  assert.equal(calls.search, 0);
+  assert.equal(r.period, 'rising');
+  assert.equal(r.asOf, '2026-10-05');
+  assert.deepEqual(r.repos.map((x) => x.risingRank).sort(), [1, 2]);
+  const big = r.repos.find((x) => x.fullName === 'big/lib');
+  assert.equal(big.starsGained7d, 5000);
+  assert.equal(big.parts.momentum, 1); // 5000 a week is the momentum max
+  assert.match(formatResult(r), /Rising/);
+  assert.match(formatResult(r), /\+5,000 in 7d/);
+});
+
+test('trending rising: language uses its own list, else filters the overall list, case-insensitive', async () => {
+  const tools = risingTools(risingData);
+  assert.deepEqual((await tools.trending({ period: 'rising', language: 'python' })).repos.map((x) => x.fullName), ['big/lib']);
+  assert.deepEqual((await tools.trending({ period: 'rising', language: 'Kotlin' })).repos.map((x) => x.fullName), ['small/lib']);
+});
+
+test('trending rising: estimated gains are passed through and labelled', async () => {
+  const data = { ...risingData, spanDays: 4, estimated: true, lists: { all: [risingRepo('big/lib', 'Python', 90000, 3000, true)] } };
+  const r = await risingTools(data).trending({ period: 'rising' });
+  assert.equal(r.repos[0].starsGainedEstimated, true);
+  assert.match(formatResult(r), /~\+3,000\/wk, estimated/);
+});
+
+test('trending rising: too little history gives an empty list with a note, not an error', async () => {
+  const data = { date: '2026-09-29', days: 3, spanDays: 2, estimated: false, lists: { all: [] } };
+  const r = await risingTools(data).trending({ period: 'rising' });
+  assert.deepEqual(r.repos, []);
+  assert.match(r.dataNotes.join(' '), /covering at least 3 days; so far they cover 2/);
+});

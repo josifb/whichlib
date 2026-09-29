@@ -36,7 +36,10 @@ provide is only sent to GitHub.
 At most every 12 hours it also downloads public daily star counts from
 `raw.githubusercontent.com/josifb/whichlib/data/stars/` into
 `~/.whichlib/stars/` (the last 10 days, a few hundred KB each). Nothing is
-sent with that request. Set `WHICHLIB_HISTORY=off` to skip it.
+sent with that request. Set `WHICHLIB_HISTORY=off` to skip it. When an
+agent asks `trending_repos` for `period: "rising"`, it downloads the public
+rising list `raw.githubusercontent.com/josifb/whichlib/data/rising.json`
+(at most once an hour); nothing is sent with that either.
 
 ## Contact
 
