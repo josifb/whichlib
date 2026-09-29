@@ -50,8 +50,9 @@ MinerU, pdfplumber, pypdf with scores, weekly downloads and verdicts like
 | Adoption | 25% | Stars, forks and npm / PyPI weekly downloads, log scale. |
 | License | 10% | Permissive 1.0, weak copyleft 0.75, strong copyleft 0.5, none 0. |
 
-Tiers: Strong ≥ 75, Solid ≥ 50, Watch ≥ 25, Avoid. Archived repos are capped
-at 20. On a 20-need eval the top recommendation is an accepted answer 75% of
+Tiers: Strong ≥ 75, Solid ≥ 50, Watch ≥ 25, Avoid; repos younger than 30
+days are New ("Too new to judge"), whatever their score. Archived repos are
+capped at 20. On a 20-need eval the top recommendation is an accepted answer 75% of
 the time and the top five contain one 100% of the time; the eval and its
 reports live in the repository.
 

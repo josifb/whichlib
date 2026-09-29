@@ -17,6 +17,8 @@ const base = {
   pushedAt: daysAgo(1),
   archived: false,
 };
+// Old enough to be graded (not "New"): for tests about verdict wording and flags.
+const mature = { ...base, createdAt: daysAgo(400) };
 
 test('logScale: 0 at zero, 1 at max, clamped above max, monotonic', () => {
   assert.equal(logScale(0, 5000), 0);
@@ -46,7 +48,7 @@ test('weights sum to 1', () => {
 });
 
 test('scoreRepo: returns score, tier, verdict, parts and flags; score equals weighted parts', () => {
-  const r = scoreRepo(base, { starsGained7d: 800, now: NOW });
+  const r = scoreRepo(mature, { starsGained7d: 800, now: NOW });
   assert.ok(Number.isInteger(r.score) && r.score >= 0 && r.score <= 100);
   assert.deepEqual(Object.keys(r.parts).sort(), ['adoption', 'license', 'maintenance', 'momentum']);
   const expected = Math.round(100 * Object.entries(WEIGHTS).reduce((acc, [k, w]) => acc + w * r.parts[k], 0));
@@ -122,7 +124,7 @@ test('archived: score capped at 20, flagged, verdict says avoid', () => {
 });
 
 test('no license: flagged and named in the verdict', () => {
-  const r = scoreRepo({ ...base, license: null }, { now: NOW });
+  const r = scoreRepo({ ...mature, license: null }, { now: NOW });
   assert.deepEqual(r.flags, ['no-license']);
   assert.match(r.verdict, /no license\.$/);
   assert.equal(r.parts.license, 0);
@@ -138,15 +140,15 @@ test('tierFor: boundaries', () => {
 });
 
 test('verdict wording: momentum phrase, push phrase, license', () => {
-  const fast = scoreRepo({ ...base, pushedAt: daysAgo(0.2) }, { starsGained7d: 2000, now: NOW });
+  const fast = scoreRepo({ ...mature, pushedAt: daysAgo(0.2) }, { starsGained7d: 2000, now: NOW });
   assert.equal(fast.verdict, 'Rising fast, pushed today, MIT.');
-  const steady = scoreRepo({ ...base, pushedAt: daysAgo(12) }, { starsGained7d: 100, now: NOW });
+  const steady = scoreRepo({ ...mature, pushedAt: daysAgo(12) }, { starsGained7d: 100, now: NOW });
   assert.equal(steady.verdict, 'Gaining steadily, pushed 12 days ago, MIT.');
-  const slow = scoreRepo({ ...base, pushedAt: daysAgo(60), license: 'gpl-3.0' }, { starsGained7d: 10, now: NOW });
+  const slow = scoreRepo({ ...mature, pushedAt: daysAgo(60), license: 'gpl-3.0' }, { starsGained7d: 10, now: NOW });
   assert.equal(slow.verdict, 'Slow growth, no push in 60 days, GPL-3.0.');
-  const quietButUsed = scoreRepo({ ...base, stars: 30000, pushedAt: daysAgo(45) }, { starsGained7d: 10, now: NOW });
+  const quietButUsed = scoreRepo({ ...mature, stars: 30000, pushedAt: daysAgo(45) }, { starsGained7d: 10, now: NOW });
   assert.equal(quietButUsed.verdict, 'Slow growth, quiet for 1 month, widely used, MIT.');
-  const none = scoreRepo({ ...base, pushedAt: daysAgo(2) }, { starsGained7d: 0, now: NOW });
+  const none = scoreRepo({ ...mature, pushedAt: daysAgo(2) }, { starsGained7d: 0, now: NOW });
   assert.equal(none.verdict, 'Little traction, pushed 2 days ago, MIT.');
 });
 
@@ -167,11 +169,11 @@ test('adoption without downloads is unchanged: 70% stars, 30% forks', () => {
 });
 
 test('verdict names weekly downloads when known', () => {
-  const r = scoreRepo({ ...base, pushedAt: daysAgo(1), weeklyDownloads: 12345 }, { starsGained7d: 2000, now: NOW });
+  const r = scoreRepo({ ...mature, pushedAt: daysAgo(1), weeklyDownloads: 12345 }, { starsGained7d: 2000, now: NOW });
   assert.equal(r.verdict, 'Rising fast, 12.3k downloads/wk, pushed 1 day ago, MIT.');
-  const big = scoreRepo({ ...base, pushedAt: daysAgo(1), weeklyDownloads: 2500000 }, { starsGained7d: 2000, now: NOW });
+  const big = scoreRepo({ ...mature, pushedAt: daysAgo(1), weeklyDownloads: 2500000 }, { starsGained7d: 2000, now: NOW });
   assert.equal(big.verdict, 'Rising fast, 2.5M downloads/wk, pushed 1 day ago, MIT.');
-  const small = scoreRepo({ ...base, pushedAt: daysAgo(1), weeklyDownloads: 42 }, { starsGained7d: 2000, now: NOW });
+  const small = scoreRepo({ ...mature, pushedAt: daysAgo(1), weeklyDownloads: 42 }, { starsGained7d: 2000, now: NOW });
   assert.equal(small.verdict, 'Rising fast, 42 downloads/wk, pushed 1 day ago, MIT.');
 });
 
@@ -187,4 +189,29 @@ test('momentum fallback: scaled by the downloads trend, clamped to 0.5-2x', () =
 
 test('momentum: real stars gained ignore the downloads trend', () => {
   assert.equal(scoreRepo(base, { now: NOW, starsGained7d: 50, downloadsTrend: 2 }).parts.momentum, logScale(50, 5000));
+});
+
+test('too new: under 30 days old the tier is New, flagged, and the verdict says so; the score is unchanged', () => {
+  const young = { ...base, stars: 2000, createdAt: new Date(NOW - 10 * 3600000).toISOString() };
+  const r = scoreRepo(young, { now: NOW });
+  const asOld = scoreRepo({ ...young, createdAt: daysAgo(400) }, { now: NOW, starsGained7d: null });
+  assert.equal(r.tier, 'New');
+  assert.ok(r.flags.includes('too-new'));
+  assert.match(r.verdict, /^Too new to judge \(10 hours old\): /);
+  assert.equal(r.score, Math.round(100 * Object.keys(WEIGHTS).reduce((a, k) => a + WEIGHTS[k] * r.parts[k], 0)));
+  assert.notEqual(asOld.tier, 'New');
+});
+
+test('too new: ages read in days from one day on; 30 days and older is judged normally', () => {
+  assert.match(scoreRepo({ ...base, createdAt: daysAgo(12) }, { now: NOW }).verdict, /^Too new to judge \(12 days old\)/);
+  assert.match(scoreRepo({ ...base, createdAt: daysAgo(1) }, { now: NOW }).verdict, /\(1 day old\)/);
+  const month = scoreRepo({ ...base, createdAt: daysAgo(30) }, { now: NOW });
+  assert.notEqual(month.tier, 'New');
+  assert.ok(!month.flags.includes('too-new'));
+});
+
+test('too new: archived still wins (Avoid)', () => {
+  const r = scoreRepo({ ...base, archived: true }, { now: NOW });
+  assert.equal(r.tier, 'Avoid');
+  assert.match(r.verdict, /^Archived/);
 });

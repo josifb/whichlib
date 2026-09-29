@@ -41,7 +41,7 @@ const run = (name, fn) => async (args) => {
 
 // Every tool only reads public data from GitHub, npm and PyPI.
 const annotations = { readOnlyHint: true, openWorldHint: true };
-const SCORE = 'Each result has a 0-100 score (momentum 40% (stars gained per week; without history, lifetime stars per week scaled by the npm/PyPI download trend), maintenance 25%, adoption incl. npm/PyPI weekly downloads 25%, license 10%), a tier (Strong >=75, Solid >=50, Watch >=25, Avoid <25), a one-line verdict and the full breakdown.';
+const SCORE = 'Each result has a 0-100 score (momentum 40% (stars gained per week; without history, lifetime stars per week scaled by the npm/PyPI download trend), maintenance 25%, adoption incl. npm/PyPI weekly downloads 25%, license 10%), a tier (Strong >=75, Solid >=50, Watch >=25, Avoid <25; New for repos under 30 days old, too new to judge), a one-line verdict and the full breakdown.';
 const RATE = 'Without a GitHub token GitHub allows about 10 searches per minute; when the limit is hit the tool returns an error saying when it resets.';
 
 server.registerTool('recommend_repos', {

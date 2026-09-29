@@ -37,6 +37,10 @@
   const STABLE_FLOOR = 0.5;
   const ARCHIVED_CAP = 20;
   const MIN_AGE_DAYS = 1; // never extrapolate less than a day of evidence into a week
+  // Under this age a burst of launch stars and a push today say nothing about
+  // whether the repo will still be maintained: tier "New" instead of a grade.
+  // The score itself is unchanged, so rankings do not move.
+  const NEW_REPO_DAYS = 30;
   // Without star history the fallback is a lifetime average; the download trend
   // says whether use is rising or falling now. Clamped so it nudges, not decides.
   const TREND_MIN = 0.5;
@@ -130,6 +134,15 @@
     return `no push in ${days} days`;
   }
 
+  function agePhrase(days) {
+    if (days < 1) {
+      const hours = Math.max(1, Math.floor(days * 24));
+      return `${hours} hour${hours === 1 ? '' : 's'}`;
+    }
+    const d = Math.floor(days);
+    return `${d} day${d === 1 ? '' : 's'}`;
+  }
+
   function licensePhrase(key) {
     return key ? String(key).toUpperCase() : 'no license';
   }
@@ -153,13 +166,17 @@
       score = Math.min(score, ARCHIVED_CAP);
     }
     if (!repo.license) flags.push('no-license');
+    const ageDays = (now - Date.parse(repo.createdAt)) / DAY_MS;
+    const tooNew = !repo.archived && ageDays < NEW_REPO_DAYS;
+    if (tooNew) flags.push('too-new');
 
     const downloads = typeof repo.weeklyDownloads === 'number' ? `${compactNumber(repo.weeklyDownloads)} downloads/wk, ` : '';
+    const summary = `${momentumPhrase(parts.momentum)}, ${downloads}${pushPhrase(repo, now)}, ${licensePhrase(repo.license)}.`;
     const verdict = repo.archived
       ? 'Archived, avoid.'
-      : `${momentumPhrase(parts.momentum)}, ${downloads}${pushPhrase(repo, now)}, ${licensePhrase(repo.license)}.`;
+      : tooNew ? `Too new to judge (${agePhrase(ageDays)} old): ${summary}` : summary;
 
-    return { score, tier: tierFor(score), verdict, parts, flags, weights: WEIGHTS };
+    return { score, tier: tooNew ? 'New' : tierFor(score), verdict, parts, flags, weights: WEIGHTS };
   }
 
   return { scoreRepo, tierFor, logScale, licenseScore, WEIGHTS };

@@ -69,7 +69,10 @@ the two can never disagree.
 | License | 10% | Permissive 1.0, weak copyleft 0.75, strong copyleft 0.5, unrecognised 0.5, none 0. |
 
 Tiers: **Strong** 75 and above, **Solid** 50, **Watch** 25, **Avoid**
-below 25. The names are chosen to read correctly for a six-week-old project
+below 25. Repos younger than 30 days get **New** instead, with the flag
+`too-new` and a verdict that starts "Too new to judge": a launch burst of
+stars and a push today say nothing yet about upkeep. Their 0-100 score is
+still computed, so rankings do not change. The names are chosen to read correctly for a six-week-old project
 and a six-year-old library alike. Archived repos are capped at 20 and get the
 verdict "Archived, avoid." A missing license is always named in the verdict.
 
