@@ -2,8 +2,13 @@
   "mcpServers": {
     "whichlib": {
       "command": "npx",
-      "args": ["-y", "whichlib@0.1.1"],
-      "env": { "GITHUB_TOKEN": "${user_config.github_token}" }
+      "args": [
+        "-y",
+        "whichlib@0.1.2"
+      ],
+      "env": {
+        "GITHUB_TOKEN": "${user_config.github_token}"
+      }
     }
   }
 }
