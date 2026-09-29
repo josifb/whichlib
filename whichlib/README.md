@@ -8,6 +8,11 @@ carries a transparent 0–100 score (momentum, maintenance, adoption including
 npm and PyPI downloads, license), a tier, a one-line verdict and the full
 breakdown, so the agent can justify the pick and you can read why.
 
+**For teams (waitlist):** alerts when a dependency your repos use goes stale,
+and rules your team's coding agents must follow when they add one. Add a 👍
+to [the waitlist issue](https://github.com/josifb/whichlib/issues/1); at 20
+signups it gets built. whichlib itself stays free.
+
 ## Install
 
 Claude Code:

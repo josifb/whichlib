@@ -10,6 +10,11 @@ month. Every repository gets a transparent 0–100 score from momentum,
 maintenance, adoption (stars, forks, npm and PyPI downloads) and license,
 plus a one-line verdict.
 
+**For teams (waitlist):** alerts when a dependency your repos use goes stale,
+and rules your team's coding agents must follow when they add one. Add a 👍
+to [the waitlist issue](https://github.com/josifb/whichlib/issues/1); at 20
+signups it gets built. whichlib itself stays free.
+
 ## Quick start
 
 Agents: see [MCP server](#mcp-server) below for the one-line install.
