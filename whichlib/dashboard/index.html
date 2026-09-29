@@ -441,7 +441,8 @@
     const key = cacheKey();
     const cached = store.get(key);
     const fresh = cached && Date.now() - Date.parse(cached.fetchedAt) < CACHE_TTL_MS;
-    if (cached) { state.data = cached; }
+    // Never leave the previous tab's rows on screen under this tab's name.
+    state.data = cached ?? null;
     if (fresh && !force) { setBanner(null); renderAll(); return; }
 
     state.loading = true; renderAll();
