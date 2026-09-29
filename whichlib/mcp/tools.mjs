@@ -140,11 +140,17 @@ export function createTools({ github, resolvePackages, history, now = () => Date
       if (names.length < 2 || names.length > 10) throw new Error('Give between two and ten repositories to compare.');
       const bad = names.find((n) => !REPO_NAME.test(n));
       if (bad) throw new Error(`"${bad}" is not an owner/repo name. Use the form owner/repo, for example colinhacks/zod.`);
-      const raw = await Promise.all(names.map(async (name) => {
-        try { return await github.getRepo(name); } catch (err) { throw new Error(`Could not fetch ${name}: ${err.message}`); }
+      // One misspelled or deleted repo should not sink the whole comparison:
+      // compare the rest and say which ones could not be fetched.
+      const fetched = await Promise.all(names.map(async (name) => {
+        try { return { name, item: await github.getRepo(name) }; } catch (err) { return { name, error: err.message }; }
       }));
-      const scored = (await enrichAndScore(raw, { withDownloads: true })).sort(byScore);
-      return { tool: 'compare_repos', requested: names, generatedAt: new Date(now()).toISOString(), dataNotes: dataNotes(), repos: scored };
+      const notFound = fetched.filter((f) => f.error).map((f) => ({ repo: f.name, error: f.error }));
+      if (notFound.length === names.length) {
+        throw new Error(`Could not fetch any of the repositories: ${notFound.map((f) => `${f.repo} (${f.error})`).join('; ')}`);
+      }
+      const scored = (await enrichAndScore(fetched.filter((f) => f.item).map((f) => f.item), { withDownloads: true })).sort(byScore);
+      return { tool: 'compare_repos', requested: names, generatedAt: new Date(now()).toISOString(), dataNotes: dataNotes(), repos: scored, notFound };
     },
 
     async trending({ period = 'week', language = null, limit = 20, withDownloads = false } = {}) {
@@ -187,6 +193,7 @@ export function formatResult(result) {
     if (r.description) lines.push(`   ${r.description.length > 140 ? `${r.description.slice(0, 137)}...` : r.description}`);
     lines.push(`   ${r.verdict} ${r.url}`);
   });
+  if (result.notFound?.length) { lines.push(''); for (const f of result.notFound) lines.push(`Could not fetch ${f.repo}: ${f.error}`); }
   if (result.dataNotes?.length) { lines.push(''); for (const n of result.dataNotes) lines.push(`Note: ${n}`); }
   return lines.join('\n');
 }

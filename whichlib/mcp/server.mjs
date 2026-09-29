@@ -57,7 +57,7 @@ server.registerTool('recommend_repos', {
 
 server.registerTool('compare_repos', {
   title: 'Compare repositories',
-  description: `Compare 2-10 known GitHub repositories side by side, best score first: score and tier, stars, forks, open issues, last push, license, npm/PyPI weekly downloads (only when the registry links back to the repository) and a verdict. ${SCORE} Use this to choose between candidates you already have (for example zod vs valibot) or to check a dependency the project already uses; use recommend_repos to find candidates. One GitHub API call per repository plus npm/PyPI lookups; fails if any repository does not exist.`,
+  description: `Compare 2-10 known GitHub repositories side by side, best score first: score and tier, stars, forks, open issues, last push, license, npm/PyPI weekly downloads (only when the registry links back to the repository) and a verdict. ${SCORE} Use this to choose between candidates you already have (for example zod vs valibot) or to check a dependency the project already uses; use recommend_repos to find candidates. One GitHub API call per repository plus npm/PyPI lookups. A repository that does not exist is listed under notFound and the rest are still compared; the call fails only if none can be fetched.`,
   inputSchema: {
     repos: z.array(z.string().min(3).max(140)).min(2).max(10).describe('Repository names as owner/repo, e.g. ["colinhacks/zod", "fabian-hiller/valibot"]. Not URLs or npm/PyPI package names.'),
   },

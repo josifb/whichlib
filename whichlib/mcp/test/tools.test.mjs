@@ -144,7 +144,21 @@ test('compare: fetches each repo, ranks by score, and reports which repo could n
   assert.equal(r.tool, 'compare_repos');
   assert.deepEqual(calls.getRepo.sort(), ['a/one', 'b/two']);
   assert.deepEqual(r.repos.map((x) => x.fullName), ['b/two', 'a/one']);
-  await assert.rejects(tools.compare({ repos: ['a/one', 'zz/missing'] }), /zz\/missing/);
+});
+
+test('compare: a repo that cannot be fetched is reported, the rest are still compared', async () => {
+  const repos = { 'a/one': rawItem('a/one', 100), 'b/two': rawItem('b/two', 200) };
+  const { tools } = fakes({ repos });
+  const r = await tools.compare({ repos: ['a/one', 'zz/missing', 'b/two'] });
+  assert.deepEqual(r.repos.map((x) => x.fullName).sort(), ['a/one', 'b/two']);
+  assert.deepEqual(r.notFound.map((x) => x.repo), ['zz/missing']);
+  assert.match(r.notFound[0].error, /404/);
+  assert.match(formatResult(r), /Could not fetch zz\/missing/);
+});
+
+test('compare: fails only when no repo at all can be fetched', async () => {
+  const { tools } = fakes({ repos: {} });
+  await assert.rejects(tools.compare({ repos: ['x/one', 'y/two'] }), /could not fetch any.*x\/one.*y\/two/i);
 });
 
 test('compare: validates count and name shape', async () => {
