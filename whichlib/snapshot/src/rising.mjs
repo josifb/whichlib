@@ -14,7 +14,7 @@ function windowInfo(sorted) {
   const windowStart = Date.parse(date) - 7 * DAY_MS;
   const inWindow = sorted.filter((f) => Date.parse(f.date) >= windowStart);
   const spanDays = (Date.parse(date) - Date.parse(inWindow[0].date)) / DAY_MS;
-  return { date, days: sorted.length, spanDays, estimated: spanDays >= MIN_SPAN_DAYS && spanDays < 7 };
+  return { date, days: inWindow.length, spanDays, estimated: spanDays >= MIN_SPAN_DAYS && spanDays < 7 };
 }
 
 /**

@@ -74,3 +74,16 @@ test('buildWeeklyGains: under 3 days of span there are no gains; 3-6 days are es
 test('buildWeeklyGains: no files', () => {
   assert.deepEqual(buildWeeklyGains([]), { date: null, days: 0, spanDays: 0, estimated: false, gains: {} });
 });
+
+test('buildRising and buildWeeklyGains: days counts only files inside the 7-day window', () => {
+  const olderFiles = [
+    { date: '2026-09-01', stars: { 'a/py': 100 } },
+    { date: '2026-09-10', stars: { 'a/py': 200 } },
+    { date: '2026-09-21', stars: { 'a/py': 1000 } },
+    { date: '2026-09-28', stars: { 'a/py': 1400 } },
+  ];
+  const r = buildRising({ files: olderFiles, repos, languages: [] });
+  assert.equal(r.days, 2);
+  const w = buildWeeklyGains(olderFiles);
+  assert.equal(w.days, 2);
+});
