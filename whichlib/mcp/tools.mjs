@@ -6,6 +6,7 @@ import { normalizeRepo } from '../snapshot/src/normalize.mjs';
 import { buildSearchQuery, PERIODS } from '../snapshot/src/query.mjs';
 import scoreLib from '../lib/score.js';
 import { expandNeed, mentionLevel, asksForLibrary, looksLikeLibrary } from './expand.mjs';
+import { GitHubRateLimitError, GitHubAuthError } from '../snapshot/src/github.mjs';
 
 const REPO_NAME = /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\/(?!\.\.?$)[A-Za-z0-9._-]+$/;
 const RELEVANCE_WINDOW = 25;  // best-match results requested
@@ -50,7 +51,7 @@ function gainText(r) {
   return r.starsGainedEstimated ? ` (~+${nf.format(r.starsGained7d)}/wk, estimated)` : ` (+${nf.format(r.starsGained7d)} in 7d)`;
 }
 
-export function createTools({ github, resolvePackages, history, loadRising = null, now = () => Date.now() }) {
+export function createTools({ github, resolvePackages, history, loadRising = null, limitNote = null, now = () => Date.now() }) {
   const registryCache = {}; // repo -> package names, for the life of the process
 
   function dataNotes() {
@@ -58,7 +59,9 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
     notes.push(history.spanDays >= 3
       ? `Momentum uses real stars gained per week from ${history.days} days of daily star counts (latest ${history.latestDate}; the top 1,000 repos per language plus new trending repos); other repos fall back to stars per day since creation.${history.spanDays < 7 ? " With under 7 days of history, gains are scaled to a week, capped at the repo's stars, and marked as estimated." : ''}`
       : 'Momentum is estimated from stars per day since creation (under three days of star history so far).');
-    if (!github.hasToken) notes.push('No GITHUB_TOKEN set: GitHub allows 10 searches per minute; set one to raise it to 30.');
+    // Hosted: the Worker says how its own limits work instead of the local token hint.
+    if (limitNote) notes.push(limitNote);
+    else if (!github.hasToken) notes.push('No GITHUB_TOKEN set: GitHub allows 10 searches per minute; set one to raise it to 30.');
     return notes;
   }
 
@@ -176,7 +179,11 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
       // One misspelled or deleted repo should not sink the whole comparison:
       // compare the rest and say which ones could not be fetched.
       const fetched = await Promise.all(names.map(async (name) => {
-        try { return { name, item: await github.getRepo(name) }; } catch (err) { return { name, error: err.message }; }
+        try { return { name, item: await github.getRepo(name) }; } catch (err) {
+          // A rejected token or an exhausted limit is not "this repo is missing": fail the call.
+          if (err instanceof GitHubRateLimitError || err instanceof GitHubAuthError) throw err;
+          return { name, error: err.message };
+        }
       }));
       const notFound = fetched.filter((f) => f.error).map((f) => ({ repo: f.name, error: f.error }));
       if (notFound.length === names.length) {

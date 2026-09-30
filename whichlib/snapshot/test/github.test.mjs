@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { fetchSearch, paceDelayMs } from '../src/github.mjs';
+import { fetchSearch, fetchGitHub, paceDelayMs, GitHubRateLimitError, GitHubAuthError } from '../src/github.mjs';
 
 function response(status, body, headers = {}) {
   return {
@@ -88,4 +88,35 @@ test('fetchSearch: non-rate-limit error throws with status and message', async (
 test('paceDelayMs: slower without a token', () => {
   assert.equal(paceDelayMs(false), 6500);
   assert.equal(paceDelayMs(true), 2100);
+});
+
+test('fetchGitHub: rate limit beyond maxWaitMs throws GitHubRateLimitError with resetSeconds, same message', async () => {
+  const resetAt = Math.floor(Date.now() / 1000) + 600;
+  const fetchImpl = async () => response(403, { message: 'API rate limit exceeded' }, { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': String(resetAt) });
+  const err = await fetchGitHub('https://api.github.com/x', { fetchImpl, sleep: async () => {}, maxWaitMs: 0 }).catch((e) => e);
+  assert.ok(err instanceof GitHubRateLimitError);
+  assert.ok(err.resetSeconds >= 599 && err.resetSeconds <= 602);
+  // wait = 600 s + 1 s margin, rounded up to whole minutes (same rule as the existing 31-minute test)
+  assert.match(err.message, /rate limit reached; it resets in about 11 minutes/);
+});
+
+test('fetchGitHub: secondary rate limit (retry-after) is a GitHubRateLimitError too', async () => {
+  const fetchImpl = async () => response(403, { message: 'You have exceeded a secondary rate limit' }, { 'retry-after': '30' });
+  const err = await fetchGitHub('https://api.github.com/x', { fetchImpl, sleep: async () => {}, maxWaitMs: 0 }).catch((e) => e);
+  assert.ok(err instanceof GitHubRateLimitError);
+  assert.equal(err.resetSeconds, 31);
+});
+
+test('fetchGitHub: still limited after the one retry is a GitHubRateLimitError', async () => {
+  const resetAt = Math.floor(Date.now() / 1000) + 2;
+  const fetchImpl = async () => response(429, { message: 'limit' }, { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': String(resetAt) });
+  const err = await fetchGitHub('https://api.github.com/x', { fetchImpl, sleep: async () => {}, maxWaitMs: 60_000 }).catch((e) => e);
+  assert.ok(err instanceof GitHubRateLimitError);
+});
+
+test('fetchGitHub: 401 throws GitHubAuthError with the usual message', async () => {
+  const fetchImpl = async () => response(401, { message: 'Bad credentials' });
+  const err = await fetchGitHub('https://api.github.com/x', { token: 'bad', fetchImpl, sleep: async () => {} }).catch((e) => e);
+  assert.ok(err instanceof GitHubAuthError);
+  assert.equal(err.message, 'GitHub request failed: 401 Bad credentials');
 });

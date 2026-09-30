@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { buildRising } from '../src/rising.mjs';
+import { buildRising, buildWeeklyGains } from '../src/rising.mjs';
 
 const repo = (fullName, language, stars) => ({
   fullName, url: `https://github.com/${fullName}`, description: '', language, stars, forks: 1, openIssues: 0,
@@ -52,4 +52,38 @@ test('buildRising: 3-6 days of span marks the lists as estimated', () => {
 test('buildRising: no files gives empty lists', () => {
   const r = buildRising({ files: [], repos, languages: ['Go'] });
   assert.deepEqual(r, { date: null, days: 0, spanDays: 0, estimated: false, lists: { all: [], Go: [] } });
+});
+
+test('buildWeeklyGains: every repo with a positive weekly gain, with the estimate flag', () => {
+  const w = buildWeeklyGains(files);
+  assert.equal(w.date, '2026-09-28');
+  assert.equal(w.days, 2);
+  assert.equal(w.spanDays, 7);
+  assert.equal(w.estimated, false);
+  assert.deepEqual(w.gains, { 'a/py': [400, false], 'b/js': [100, false], 'c/go': [600, false], 'd/py': [1, false] });
+});
+
+test('buildWeeklyGains: under 3 days of span there are no gains; 3-6 days are estimates', () => {
+  const short = buildWeeklyGains([{ date: '2026-09-27', stars: { 'a/py': 1 } }, { date: '2026-09-28', stars: { 'a/py': 9 } }]);
+  assert.deepEqual(short.gains, {});
+  const est = buildWeeklyGains([{ date: '2026-09-25', stars: { 'a/py': 1000 } }, { date: '2026-09-28', stars: { 'a/py': 1030 } }]);
+  assert.equal(est.estimated, true);
+  assert.deepEqual(est.gains, { 'a/py': [70, true] });
+});
+
+test('buildWeeklyGains: no files', () => {
+  assert.deepEqual(buildWeeklyGains([]), { date: null, days: 0, spanDays: 0, estimated: false, gains: {} });
+});
+
+test('buildRising and buildWeeklyGains: days counts only files inside the 7-day window', () => {
+  const olderFiles = [
+    { date: '2026-09-01', stars: { 'a/py': 100 } },
+    { date: '2026-09-10', stars: { 'a/py': 200 } },
+    { date: '2026-09-21', stars: { 'a/py': 1000 } },
+    { date: '2026-09-28', stars: { 'a/py': 1400 } },
+  ];
+  const r = buildRising({ files: olderFiles, repos, languages: [] });
+  assert.equal(r.days, 2);
+  const w = buildWeeklyGains(olderFiles);
+  assert.equal(w.days, 2);
 });
