@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createService, HostedError, HOSTED_DEFINITIONS, REPO_FIELDS, TOOL_SUBREQUESTS, BudgetError } from '../src/service.mjs';
+import { createService, HostedError, HOSTED_DEFINITIONS, REPO_FIELDS, TOOL_SUBREQUESTS, BudgetError, createBudget } from '../src/service.mjs';
 import { createCache, cacheKey } from '../src/cache.mjs';
 import { createDailyCounter } from '../src/limits.mjs';
 import { fakeD1, fakeBurst, fakeCacheApi } from './helpers.mjs';
@@ -269,4 +269,40 @@ test('whole-result cache keys ignore language case and need whitespace', async (
   const searches = calls.search;
   await service.call('recommend_repos', { need: ' http  client ', language: 'python', limit: 2 }, anon);
   assert.equal(calls.search, searches);
+});
+
+test('budget fetch: registry 429/5xx throws at once, GitHub responses pass through', async () => {
+  const responses = { 'https://pypistats.org/x': 429, 'https://registry.npmjs.org/y': 503, 'https://api.github.com/z': 429, 'https://pypi.org/ok': 200 };
+  const budget = createBudget(async (url) => new Response('{}', { status: responses[url] }), 10);
+  await assert.rejects(budget.fetch('https://pypistats.org/x'), /registry busy: pypistats\.org 429/);
+  await assert.rejects(budget.fetch('https://registry.npmjs.org/y'), /registry busy: registry\.npmjs\.org 503/);
+  assert.equal((await budget.fetch('https://api.github.com/z')).status, 429);
+  assert.equal((await budget.fetch('https://pypi.org/ok')).status, 200);
+  assert.equal(budget.busy, true);
+});
+
+test('real resolvePackages with pypistats answering 429: no waiting, downloads null', async () => {
+  const started = Date.now();
+  const json = (body) => new Response(JSON.stringify(body), { status: 200 });
+  const fetchImpl = async (url) => {
+    if (url.startsWith('https://pypistats.org/')) return new Response('slow down', { status: 429 });
+    const m = /^https:\/\/pypi\.org\/pypi\/([^/]+)\/json$/.exec(url);
+    if (m && ['httpx', 'requests'].includes(m[1])) return json({ info: { name: m[1], project_urls: { Source: `https://github.com/${m[1] === 'httpx' ? 'encode' : 'psf'}/${m[1]}` } } });
+    return new Response('', { status: 404 });
+  };
+  const cacheApi = fakeCacheApi(() => NOW);
+  const svc = createService({
+    env: { GITHUB_TOKEN: 'server-token', IP_SALT: 'salt' },
+    cache: createCache({ cacheApi, now: () => NOW }), itemCache: createCache({ cacheApi: null, now: () => NOW }),
+    counter: createDailyCounter(fakeD1()),
+    loadHistory: async () => ({ days: 0, spanDays: 0, latestDate: null, starsGained7d: () => null, starsGainedEstimated: () => false }),
+    loadRising: async () => ({ date: '2026-10-01', spanDays: 3, lists: { all: [] } }),
+    makeGitHub: () => ({ hasToken: true, async getRepo(name) { return { ...item(name), language: 'Python' }; } }),
+    fetchImpl, now: () => NOW,
+  });
+  const { result } = await svc.call('compare_repos', { repos: ['encode/httpx', 'psf/requests'] }, anon);
+  assert.ok(Date.now() - started < 1000, `took ${Date.now() - started} ms`);
+  const pkgs = result.repos.flatMap((r) => r.packages ?? []);
+  assert.ok(pkgs.length >= 1);
+  for (const p of pkgs) assert.equal(p.weeklyDownloads, null);
 });

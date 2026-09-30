@@ -38,6 +38,28 @@ export class HostedError extends Error {
   }
 }
 
+/**
+ * Per-call fetch wrapper: counts subrequests (BudgetError past `max`) and, for non-GitHub hosts,
+ * turns 429 and 5xx into an immediate error. The package's getJson would otherwise sleep and
+ * retry for up to 43 s, which a hosted call must never do. GitHub responses pass through
+ * (fetchGitHub has its own rate-limit handling). `busy` records that a registry refused.
+ */
+export function createBudget(fetchImpl, max = TOOL_SUBREQUESTS) {
+  const budget = { used: 0, exhausted: false, busy: false };
+  budget.fetch = async (url, ...rest) => {
+    if (budget.used >= max) { budget.exhausted = true; throw new BudgetError(); }
+    budget.used++;
+    const res = await fetchImpl(url, ...rest);
+    const host = new URL(typeof url === 'string' ? url : url.url).hostname;
+    if (host !== 'api.github.com' && (res.status === 429 || res.status >= 500)) {
+      budget.busy = true;
+      throw new Error(`registry busy: ${host} ${res.status}`);
+    }
+    return res;
+  };
+  return budget;
+}
+
 export function limitMessage(limit, msUntilReset) {
   const hours = Math.max(1, Math.ceil(msUntilReset / 3600_000));
   return `Daily free limit reached (${limit}). It resets in ${hours} h. For unlimited use add your own GitHub token (header X-GitHub-Token) or run the npm package locally: npx -y whichlib`;
@@ -148,12 +170,7 @@ export function createService({
     async call(name, args, caller) {
       if (!METHODS[name]) throw new HostedError(400, `Unknown tool "${name}".`);
       const { quota, user, day, counted } = await checkLimits(caller);
-      const budget = { used: 0, exhausted: false };
-      budget.fetch = (...a) => {
-        if (budget.used >= TOOL_SUBREQUESTS) { budget.exhausted = true; throw new BudgetError(); }
-        budget.used++;
-        return fetchImpl(...a);
-      };
+      const budget = createBudget(fetchImpl);
       try {
         const run = async () => {
           const result = await (await buildTools(caller, budget))[METHODS[name]](args);
@@ -162,7 +179,7 @@ export function createService({
         };
         const result = name === 'compare_repos'
           ? await run() // per-repo entries are cached inside
-          : await through(cache, caller)(await cacheKey({ tool: name, args: normaliseArgs(args) }), (r) => (budget.exhausted ? TTL.degraded : wholeResultTtl(name, args, r)), run);
+          : await through(cache, caller)(await cacheKey({ tool: name, args: normaliseArgs(args) }), (r) => (budget.exhausted || budget.busy ? TTL.degraded : wholeResultTtl(name, args, r)), run);
         return { result, quota };
       } catch (err) {
         const hosted = toHostedError(err, caller);
