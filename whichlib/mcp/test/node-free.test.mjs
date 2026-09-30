@@ -24,6 +24,7 @@ export const WORKER_MODULES = [
   'lib/score.js',
   'snapshot/src/history-core.mjs',
   'snapshot/src/rising.mjs',
+  'mcp/history-provider.mjs',
 ];
 
 function nodeImports(file, seen = new Set()) {

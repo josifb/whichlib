@@ -1,5 +1,5 @@
-// Turns the daily snapshot files into per-repo star series so momentum can
-// use real stars-gained figures instead of the stars-per-day fallback.
+// Disk loaders for the daily snapshot and star files. The pure star-history
+// functions live in history-core.mjs (Node-free) and are re-exported here.
 
 import { readdir, readFile } from 'node:fs/promises';
 import { join } from 'node:path';
