@@ -24,6 +24,7 @@ test('success: 200, the structured result, rate headers for anonymous callers', 
   const res = await handleApi(get('/api/trending?period=day&limit=5'), service, anon);
   assert.equal(res.status, 200);
   assert.deepEqual(await res.json(), { tool: 'trending_repos', repos: [] });
+  assert.equal(res.headers.get('Cache-Control'), 'no-store');
   assert.equal(res.headers.get('X-RateLimit-Limit'), '50');
   assert.equal(res.headers.get('X-RateLimit-Remaining'), '42');
   assert.equal(res.headers.get('X-RateLimit-Reset'), String(RESET / 1000));
@@ -70,4 +71,12 @@ test('HEAD is 405 and unknown query keys are a 400 naming the key', async () => 
   assert.equal(res.status, 400);
   assert.match((await res.json()).error, /lang/);
   assert.equal(service.seen.length, 0);
+});
+
+test('errors are no-store too', async () => {
+  const res = await handleApi(get('/api/compare?repos=a'), fakeService(new Error('x')), anon);
+  assert.equal(res.status, 400);
+  assert.equal(res.headers.get('Cache-Control'), 'no-store');
+  const nf = await handleApi(get('/api/nope'), fakeService(new Error('x')), anon);
+  assert.equal(nf.headers.get('Cache-Control'), 'no-store');
 });

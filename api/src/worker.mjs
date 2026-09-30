@@ -19,10 +19,9 @@ const CORS = {
   'Access-Control-Max-Age': '86400',
 };
 
-// Lives as long as the isolate: the caches, the counter, history and the rising list.
-let shared = null;
-function sharedState(hostname, env) {
-  shared ??= {
+// One per isolate (see createWorker); tests create their own.
+function makeSharedState(hostname, env) {
+  return {
     // caches.default is a no-op on *.workers.dev: skip it there (saves a match and a put per miss).
     cache: createCache({ cacheApi: hostname.endsWith('.workers.dev') ? null : globalThis.caches?.default ?? null }),
     // Per-repo entries stay in memory only: Cache API calls count against the 50 subrequests per request.
@@ -32,7 +31,6 @@ function sharedState(hostname, env) {
     loadHistory: createHistoryLoader(),
     loadRising: createRisingLoader(),
   };
-  return shared;
 }
 
 function withCors(response) {
@@ -42,23 +40,34 @@ function withCors(response) {
 }
 
 /** X-GitHub-Token, with an optional "Bearer " / "token " prefix; null when absent. Never logged. */
-function ownToken(request) {
-  const raw = request.headers.get('X-GitHub-Token')?.trim().replace(/^(bearer|token)\s+/i, '');
+export function ownToken(request) {
+  const raw = request.headers.get('X-GitHub-Token')?.trim().replace(/^(bearer|token)(\s+|$)/i, '');
   return raw || null;
 }
 
-export default {
-  async fetch(request, env) {
-    if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
-    const { pathname, hostname } = new URL(request.url);
-    const caller = { ip: clientIp(request), ownToken: ownToken(request) };
-    const service = () => createService({ env, ...sharedState(hostname, env) });
+/** The Worker with its own shared state: the caches, the counter, history and the rising list live as long as the isolate. */
+export function createWorker() {
+  let shared = null;
+  return {
+    async fetch(request, env) {
+      try {
+        if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
+        const { pathname, hostname } = new URL(request.url);
+        const caller = { ip: clientIp(request), ownToken: ownToken(request) };
+        const service = () => createService({ env, ...(shared ??= makeSharedState(hostname, env)) });
 
-    if (pathname.startsWith('/api/')) return withCors(await handleApi(request, service(), caller));
-    if (pathname === '/mcp') return withCors(await handleMcp(request, service(), caller));
-    if (pathname === '/') {
-      return withCors(new Response('whichlib hosted API: GET /api/recommend, /api/compare, /api/trending; remote MCP at /mcp. Docs: https://github.com/josifb/whichlib\n', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } }));
-    }
-    return withCors(Response.json({ error: 'Not found.' }, { status: 404 }));
-  },
-};
+        if (pathname.startsWith('/api/')) return withCors(await handleApi(request, service(), caller));
+        if (pathname === '/mcp') return withCors(await handleMcp(request, service(), caller));
+        if (pathname === '/') {
+          return withCors(new Response('whichlib hosted API: GET /api/recommend, /api/compare, /api/trending; remote MCP at /mcp. Docs: https://github.com/josifb/whichlib\n', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } }));
+        }
+        return withCors(Response.json({ error: 'Not found.' }, { status: 404 }));
+      } catch (err) {
+        console.error('worker error', err?.stack ?? err);
+        return withCors(Response.json({ error: 'Internal error.' }, { status: 500 }));
+      }
+    },
+  };
+}
+
+export default createWorker();

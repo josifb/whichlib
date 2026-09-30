@@ -13,8 +13,15 @@ const serverPath = join(dirname(fileURLToPath(import.meta.url)), 'server.mjs');
 // --url <address>: run the same calls against a remote MCP server (Streamable HTTP), e.g. wrangler dev.
 const urlArg = process.argv.indexOf('--url');
 const remote = urlArg > -1 ? process.argv[urlArg + 1] : null;
+if (urlArg > -1 && !remote) {
+  console.error('Usage: npm run mcp:smoke [-- --url <mcp-address>]');
+  process.exit(1);
+}
+// With GITHUB_TOKEN set, send it as the caller's own token (skips the free-tier limit); never printed.
+const ownToken = remote ? process.env.GITHUB_TOKEN : null;
+if (ownToken) console.log('(sending X-GitHub-Token)');
 const transport = remote
-  ? new StreamableHTTPClientTransport(new URL(remote))
+  ? new StreamableHTTPClientTransport(new URL(remote), ownToken ? { requestInit: { headers: { 'X-GitHub-Token': ownToken } } } : undefined)
   : new StdioClientTransport({ command: process.execPath, args: [serverPath], env: process.env, stderr: 'inherit' });
 const client = new Client({ name: 'whichlib-smoke', version: '0.0.0' });
 await client.connect(transport);

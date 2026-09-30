@@ -23,7 +23,18 @@ export async function userHash(ip, salt, day) {
   return sha256Hex(`${ip}|${salt}|${day}`);
 }
 
+/** IPv6 -> its /64 ("a:b:c:d::/64"): one user controls a whole /64, so per-address ids would bypass the limits. */
+function ipv6Prefix(ip) {
+  const [head, tail] = ip.toLowerCase().split('::');
+  const left = head ? head.split(':') : [];
+  const right = tail ? tail.split(':') : [];
+  const groups = tail === undefined ? left : [...left, ...Array(Math.max(0, 8 - left.length - right.length)).fill('0'), ...right];
+  const first4 = groups.slice(0, 4).map((g) => g.replace(/^0+(?=.)/, ''));
+  return `${first4.join(':')}::/64`;
+}
+
 export function clientIp(request) {
   // Cloudflare always sets CF-Connecting-IP; only local runs (wrangler dev, tests) share the 'unknown' bucket.
-  return request.headers.get('CF-Connecting-IP') ?? 'unknown';
+  const ip = request.headers.get('CF-Connecting-IP') ?? 'unknown';
+  return ip.includes(':') ? ipv6Prefix(ip) : ip;
 }

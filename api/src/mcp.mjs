@@ -26,8 +26,10 @@ export async function handleMcp(request, service, caller) {
   }
   // Batches would run concurrently, each with its own subrequest budget (the Worker allows 50 in total);
   // MCP 2025-06-18 dropped batching anyway.
+  // Refuse on the declared size before reading; the exact byte count is checked after.
+  if (Number(request.headers.get('content-length')) > MAX_BODY) return rpcError(413, -32600, 'Request body too large.');
   const text = await request.text();
-  if (text.length > MAX_BODY) return rpcError(413, -32600, 'Request body too large.');
+  if (new TextEncoder().encode(text).length > MAX_BODY) return rpcError(413, -32600, 'Request body too large.');
   let parsedBody;
   try { parsedBody = JSON.parse(text); } catch { return rpcError(400, -32700, 'Parse error.'); }
   if (Array.isArray(parsedBody)) return rpcError(400, -32600, 'Batch requests are not supported; send one JSON-RPC message per POST.');

@@ -83,6 +83,10 @@ test('oversized body 413, invalid JSON 400 -32700', async () => {
   const big = await handleMcp(post('x'.repeat(64 * 1024 + 1)), never(), anon);
   assert.equal(big.status, 413);
   assert.equal((await big.json()).error.code, -32600);
+  const declared = await handleMcp(post('{}', { 'content-length': String(64 * 1024 + 1) }), never(), anon);
+  assert.equal(declared.status, 413);
+  const multibyte = await handleMcp(post('é'.repeat(40 * 1024)), never(), anon); // 80 KiB in bytes, 40k chars
+  assert.equal(multibyte.status, 413);
   const bad = await handleMcp(post('{nope'), never(), anon);
   assert.equal(bad.status, 400);
   assert.equal((await bad.json()).error.code, -32700);

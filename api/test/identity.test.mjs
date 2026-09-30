@@ -32,3 +32,15 @@ test('clientIp reads CF-Connecting-IP', () => {
   assert.equal(clientIp(new Request('https://x/', { headers: { 'CF-Connecting-IP': '198.51.100.1' } })), '198.51.100.1');
   assert.equal(clientIp(new Request('https://x/')), 'unknown');
 });
+
+test('clientIp buckets IPv6 by /64 (one user controls a whole /64)', () => {
+  const ip = (v) => clientIp(new Request('https://x/', { headers: { 'CF-Connecting-IP': v } }));
+  assert.equal(ip('2001:db8:1:2::1'), '2001:db8:1:2::/64');
+  assert.equal(ip('2001:0db8:0001:0002:ffff:0:0:1'), ip('2001:db8:1:2::1'));
+  assert.equal(ip('2001:DB8:1:2:a:b:c:d'), ip('2001:db8:1:2::1'));
+  assert.notEqual(ip('2001:db8:1:3::1'), ip('2001:db8:1:2::1'));
+  assert.equal(ip('::1'), '0:0:0:0::/64');
+  assert.equal(ip('2001:db8::1'), '2001:db8:0:0::/64');
+  assert.equal(ip('203.0.113.7'), '203.0.113.7');
+  assert.equal(ip('unknown'), 'unknown');
+});

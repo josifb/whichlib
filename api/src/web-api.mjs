@@ -10,7 +10,8 @@ const ROUTES = { '/api/recommend': 'recommend_repos', '/api/compare': 'compare_r
 const SCHEMAS = Object.fromEntries(HOSTED_DEFINITIONS.map((d) => [d.name, inputObject(d).strict()]));
 const BOOL = { true: true, 1: true, false: false, 0: false };
 
-const json = (status, body, headers = {}) => Response.json(body, { status, headers });
+// no-store: responses carry per-caller rate headers and must not be shared by caches.
+const json = (status, body, headers = {}) => Response.json(body, { status, headers: { ...headers, 'Cache-Control': 'no-store' } });
 
 /** Query string -> tool arguments, before validation. Unknown values pass through for zod to reject. */
 export function parseArgs(name, params) {
