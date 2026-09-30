@@ -17,7 +17,18 @@ export function fakeD1() {
   });
   return {
     prepare: (sql) => statement(sql),
-    async batch(list) { const out = []; for (const s of list) out.push(await s.all()); return out; },
+    async batch(list) {
+      db.exec('BEGIN');
+      try {
+        const out = [];
+        for (const s of list) out.push(await s.all());
+        db.exec('COMMIT');
+        return out;
+      } catch (err) {
+        db.exec('ROLLBACK');
+        throw err;
+      }
+    },
     rows: () => db.prepare('SELECT user_hash, day, calls FROM daily_usage ORDER BY day').all().map((r) => ({ ...r })),
     exec: (sql) => db.exec(sql),
   };

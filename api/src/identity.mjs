@@ -18,10 +18,12 @@ export async function sha256Hex(text) {
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('');
 }
 
-export function userHash(ip, salt, day) {
+export async function userHash(ip, salt, day) {
+  if (!salt) throw new Error('IP_SALT is not set');
   return sha256Hex(`${ip}|${salt}|${day}`);
 }
 
 export function clientIp(request) {
+  // Cloudflare always sets CF-Connecting-IP; only local runs (wrangler dev, tests) share the 'unknown' bucket.
   return request.headers.get('CF-Connecting-IP') ?? 'unknown';
 }
