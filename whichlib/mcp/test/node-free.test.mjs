@@ -15,6 +15,13 @@ const SPECIFIER = /(?:import|export)\s[^'"]*?from\s*['"]([^'"]+)['"]|import\s*['
 // require('node:fs') or await import('path/posix'). Specifiers built at
 // runtime (non-literal import()/require() arguments) are not detected.
 const DYNAMIC_SPECIFIER = /\b(?:require|import)\s*\(\s*['"]([^'"]+)['"]\s*\)/g;
+// Bare uses of Node-only globals that a Worker (no nodejs_compat) does not
+// have. `globalThis.process` / `?.`-guarded access is fine and excluded by
+// the lookbehind, since it requires the char right before the match not be
+// part of an identifier, a dot or `$`.
+const NODE_GLOBAL = /(?<![\w.$])(?:process\.|Buffer\b|__dirname\b|__filename\b)/g;
+const LINE_COMMENT = /\/\/[^\n]*/g;
+const BLOCK_COMMENT = /\/\*[\s\S]*?\*\//g;
 
 export const WORKER_MODULES = [
   'mcp/tools.mjs',
@@ -26,6 +33,9 @@ export const WORKER_MODULES = [
   'snapshot/src/rising.mjs',
   'mcp/history-provider.mjs',
   'mcp/definitions.mjs',
+  'snapshot/src/github.mjs',
+  'snapshot/src/normalize.mjs',
+  'snapshot/src/query.mjs',
 ];
 
 function nodeImports(file, seen = new Set()) {
@@ -43,9 +53,19 @@ function nodeImports(file, seen = new Set()) {
   return found;
 }
 
+// Bare Node-only globals in a file (comments stripped first, so a doc
+// comment mentioning `process.env` does not trip it).
+function nodeGlobalUses(file) {
+  const source = readFileSync(file, 'utf8').replace(BLOCK_COMMENT, '').replace(LINE_COMMENT, '');
+  const found = [];
+  for (const m of source.matchAll(NODE_GLOBAL)) found.push(`${file.slice(PKG.length + 1)} -> ${m[0]}`);
+  return found;
+}
+
 for (const mod of WORKER_MODULES) {
   test(`node-free: ${mod}`, () => {
     assert.deepEqual(nodeImports(join(PKG, mod)), []);
+    assert.deepEqual(nodeGlobalUses(join(PKG, mod)), []);
   });
 }
 
@@ -96,5 +116,41 @@ test('node-free: a clean file with no built-ins reports nothing', () => {
     const file = join(dir, 'a.mjs');
     writeFileSync(file, "import { z } from 'zod';\nexport const x = 1;\n");
     assert.deepEqual(nodeImports(file), []);
+  });
+});
+
+test('node-free: flags a bare process.env access', () => {
+  withTempDir((dir) => {
+    const file = join(dir, 'a.mjs');
+    writeFileSync(file, "const t = process.env.X;\n");
+    const found = nodeGlobalUses(file);
+    assert.equal(found.length, 1);
+    assert.match(found[0], /process\./);
+  });
+});
+
+test('node-free: does not flag globalThis.process?. access', () => {
+  withTempDir((dir) => {
+    const file = join(dir, 'a.mjs');
+    writeFileSync(file, "const t = globalThis.process?.env?.X;\n");
+    assert.deepEqual(nodeGlobalUses(file), []);
+  });
+});
+
+test('node-free: does not flag process.env mentioned only in a comment', () => {
+  withTempDir((dir) => {
+    const file = join(dir, 'a.mjs');
+    writeFileSync(file, "// uses process.env\nexport const x = 1;\n");
+    assert.deepEqual(nodeGlobalUses(file), []);
+  });
+});
+
+test('node-free: flags Buffer.from', () => {
+  withTempDir((dir) => {
+    const file = join(dir, 'a.mjs');
+    writeFileSync(file, "const b = Buffer.from('x');\n");
+    const found = nodeGlobalUses(file);
+    assert.equal(found.length, 1);
+    assert.match(found[0], /Buffer\b/);
   });
 });

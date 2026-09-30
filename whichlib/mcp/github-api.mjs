@@ -9,7 +9,7 @@ import { searchUrl } from '../snapshot/src/query.mjs';
 // agent gets an error it can act on instead of a call that hangs.
 const MAX_RATE_LIMIT_WAIT_MS = 15_000;
 
-export function createGitHubClient({ token = process.env.GITHUB_TOKEN || null, fetchImpl = fetch, ttlMs = 10 * 60 * 1000, now = Date.now, maxWaitMs = MAX_RATE_LIMIT_WAIT_MS } = {}) {
+export function createGitHubClient({ token = globalThis.process?.env?.GITHUB_TOKEN || null, fetchImpl = fetch, ttlMs = 10 * 60 * 1000, now = Date.now, maxWaitMs = MAX_RATE_LIMIT_WAIT_MS } = {}) {
   const cache = new Map();
 
   async function cached(key, produce) {
