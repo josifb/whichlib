@@ -12,6 +12,13 @@ test('toolDefinitions: the three tools, read-only annotations', () => {
   }
 });
 
+test('toolDefinitions: each tool gets its own annotations object, not a shared reference', () => {
+  const defs = toolDefinitions();
+  assert.notEqual(defs[0].config.annotations, defs[1].config.annotations);
+  const again = toolDefinitions();
+  assert.notEqual(defs[0].config.annotations, again[0].config.annotations);
+});
+
 test('toolDefinitions: the limit sentence is a parameter (local by default, hosted on request)', () => {
   const local = toolDefinitions();
   const hosted = toolDefinitions({ limitNote: HOSTED_LIMIT_NOTE });

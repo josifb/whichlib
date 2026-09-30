@@ -21,15 +21,15 @@ export function toolDefinitions({ limitNote = LOCAL_LIMIT_NOTE } = {}) {
         language: z.string().min(1).max(40).optional().describe('GitHub language name, e.g. "TypeScript", "Python", "Rust", "C++". JavaScript also matches TypeScript repositories and the reverse; Python also matches Jupyter Notebook. Omit to search all languages.'),
         limit: z.number().int().min(1).max(10).default(5).describe('How many repositories to return, 1-10.'),
       },
-      annotations,
+      annotations: { ...annotations },
     } },
     { name: 'compare_repos', config: {
       title: 'Compare repositories',
-      description: `Compare 2-10 known GitHub repositories side by side, best score first: score and tier, stars, forks, open issues, last push, license, npm/PyPI weekly downloads (only when the registry links back to the repository) and a verdict. ${SCORE} Use this to choose between candidates you already have (for example zod vs valibot) or to check a dependency the project already uses; use recommend_repos to find candidates. One GitHub API call per repository plus npm/PyPI lookups. A repository that does not exist is listed under notFound and the rest are still compared; the call fails only if none can be fetched.`,
+      description: `Compare 2-10 known GitHub repositories side by side, best score first: score and tier, stars, forks, open issues, last push, license, npm/PyPI weekly downloads (only when the registry links back to the repository) and a verdict. ${SCORE} Use this to choose between candidates you already have (for example zod vs valibot) or to check a dependency the project already uses; use recommend_repos to find candidates. One GitHub API call per repository plus npm/PyPI lookups. A repository that does not exist is listed under notFound and the rest are still compared; the call fails only if none can be fetched, or when GitHub's rate limit is reached or the token is rejected.`,
       inputSchema: {
         repos: z.array(z.string().min(3).max(140)).min(2).max(10).describe('Repository names as owner/repo, e.g. ["colinhacks/zod", "fabian-hiller/valibot"]. Not URLs or npm/PyPI package names.'),
       },
-      annotations,
+      annotations: { ...annotations },
     } },
     { name: 'trending_repos', config: {
       title: 'Trending repositories',
@@ -40,7 +40,7 @@ export function toolDefinitions({ limitNote = LOCAL_LIMIT_NOTE } = {}) {
         limit: z.number().int().min(1).max(100).default(20).describe('How many repositories to return, 1-100.'),
         withDownloads: z.boolean().default(false).describe('Also look up npm/PyPI weekly downloads for each repository. Slower: one registry lookup per repository.'),
       },
-      annotations,
+      annotations: { ...annotations },
     } },
   ];
 }

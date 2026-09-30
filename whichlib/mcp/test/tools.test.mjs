@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { createTools, formatResult } from '../tools.mjs';
+import { GitHubRateLimitError, GitHubAuthError } from '../../snapshot/src/github.mjs';
 
 const NOW = Date.parse('2026-09-27T12:00:00Z');
 const daysAgo = (d) => new Date(NOW - d * 86400000).toISOString();
@@ -335,4 +336,45 @@ test('trending rising: too little history gives an empty list with a note, not a
   const r = await risingTools(data).trending({ period: 'rising' });
   assert.deepEqual(r.repos, []);
   assert.match(r.dataNotes.join(' '), /covering at least 3 days; so far they cover 2/);
+});
+
+function typedErrorTools(errorFor) {
+  const repos = { 'a/one': rawItem('a/one', 100) };
+  return createTools({
+    github: { hasToken: true, getRepo: async (n) => { if (repos[n]) return repos[n]; throw errorFor(n); } },
+    resolvePackages: async () => [],
+    history: { days: 0, spanDays: 0, latestDate: null, starsGained7d: () => null },
+    now: () => NOW,
+  });
+}
+
+test('compare: a rate-limit error fails the whole call instead of "not found"', async () => {
+  const tools = typedErrorTools(() => new GitHubRateLimitError('GitHub rate limit reached; it resets in about 1 minute.', 60));
+  await assert.rejects(tools.compare({ repos: ['a/one', 'b/two'] }), (err) => err instanceof GitHubRateLimitError && err.resetSeconds === 60);
+});
+
+test('compare: an auth error fails the whole call', async () => {
+  const tools = typedErrorTools(() => new GitHubAuthError('GitHub request failed: 401 Bad credentials'));
+  await assert.rejects(tools.compare({ repos: ['a/one', 'b/two'] }), (err) => err instanceof GitHubAuthError);
+});
+
+test('compare: other errors (404) still go under notFound', async () => {
+  const tools = typedErrorTools(() => new Error('GitHub request failed: 404 Not Found'));
+  const r = await tools.compare({ repos: ['a/one', 'b/two'] });
+  assert.deepEqual(r.notFound.map((f) => f.repo), ['b/two']);
+});
+
+test('limitNote replaces the no-token note', async () => {
+  const { tools: local } = fakes({ items: [rawItem('a/one', 100)] });
+  assert.match((await local.recommend({ need: 'thing' })).dataNotes.join(' '), /No GITHUB_TOKEN set/);
+  const hosted = createTools({
+    github: { hasToken: true, searchRepos: async () => ({ items: [rawItem('a/one', 100)], totalCount: 1 }) },
+    resolvePackages: async () => [],
+    history: { days: 0, spanDays: 0, latestDate: null, starsGained7d: () => null },
+    limitNote: 'Hosted: 50 free tool calls per day.',
+    now: () => NOW,
+  });
+  const notes = (await hosted.recommend({ need: 'thing' })).dataNotes.join(' ');
+  assert.match(notes, /Hosted: 50 free tool calls per day/);
+  assert.doesNotMatch(notes, /GITHUB_TOKEN/);
 });
