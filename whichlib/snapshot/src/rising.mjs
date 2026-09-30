@@ -2,7 +2,7 @@
 // the daily star counts. Written by stars.mjs as data/rising.json and read by
 // the dashboard and the MCP server (trending_repos, period "rising").
 
-import { historyFromStars, weeklyGain, isWeeklyEstimate } from './history.mjs';
+import { historyFromStars, weeklyGain, isWeeklyEstimate } from './history-core.mjs';
 
 const MIN_SPAN_DAYS = 3; // same rule as weeklyGain: under 3 days there is no gain
 const DAY_MS = 86400000;

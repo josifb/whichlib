@@ -22,6 +22,8 @@ export const WORKER_MODULES = [
   'mcp/github-api.mjs',
   'snapshot/src/registry.mjs',
   'lib/score.js',
+  'snapshot/src/history-core.mjs',
+  'snapshot/src/rising.mjs',
 ];
 
 function nodeImports(file, seen = new Set()) {
