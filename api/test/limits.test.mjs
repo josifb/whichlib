@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createDailyCounter, checkBurst, DAILY_LIMIT } from '../src/limits.mjs';
+import { createDailyCounter, checkBurst, DAILY_LIMIT, BURST_LIMIT } from '../src/limits.mjs';
 import { fakeD1, fakeBurst } from './helpers.mjs';
 import { userHash } from '../src/identity.mjs';
 
@@ -64,4 +64,28 @@ test('checkBurst passes the key and returns success; no binding means allowed', 
   assert.equal(await checkBurst(burst, 'k'), false);
   assert.deepEqual(burst.keys, ['k', 'k']);
   assert.equal(await checkBurst(undefined, 'k'), true);
+});
+
+test('once over the limit, refusals come from memory without touching D1', async () => {
+  const db = fakeD1();
+  const counter = createDailyCounter(db, { limit: 2 });
+  for (let i = 0; i < 3; i++) await counter.hit('u', '2026-10-01');
+  const before = db.rows()[0].calls;
+  const refused = await counter.hit('u', '2026-10-01');
+  assert.deepEqual(refused, { allowed: false, calls: 3, remaining: 0 });
+  assert.equal(db.rows()[0].calls, before);
+  // a new day starts clean
+  assert.equal((await counter.hit('u', '2026-10-02')).allowed, true);
+});
+
+test('refund gives one count back and never goes below zero', async () => {
+  const db = fakeD1();
+  const counter = createDailyCounter(db);
+  await counter.hit('u', '2026-10-01');
+  await counter.hit('u', '2026-10-01');
+  await counter.refund('u', '2026-10-01');
+  assert.equal(db.rows()[0].calls, 1);
+  await counter.refund('u', '2026-10-01');
+  await counter.refund('u', '2026-10-01');
+  assert.equal(db.rows()[0].calls, 0);
 });

@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createService, HostedError, HOSTED_DEFINITIONS, REPO_FIELDS } from '../src/service.mjs';
-import { createCache } from '../src/cache.mjs';
+import { createService, HostedError, HOSTED_DEFINITIONS, REPO_FIELDS, TOOL_SUBREQUESTS } from '../src/service.mjs';
+import { createCache, cacheKey } from '../src/cache.mjs';
 import { createDailyCounter } from '../src/limits.mjs';
 import { fakeD1, fakeBurst, fakeCacheApi } from './helpers.mjs';
 import { GitHubRateLimitError, GitHubAuthError } from '../../whichlib/snapshot/src/github.mjs';
@@ -19,29 +19,41 @@ function item(fullName, stars = 1000) {
   };
 }
 
-function setup({ getRepoError = null, searchError = null, packages = [], burstLimit = 20 } = {}) {
-  const calls = { tokens: [], search: 0, getRepo: [], resolve: 0 };
-  const makeGitHub = (token) => {
+function setup({ getRepoError = null, searchError = null, packages = [], burstLimit = 20, nItems = 2, fetchesPerRepo = 0, counter = null } = {}) {
+  const calls = { tokens: [], search: 0, getRepo: [], resolve: 0, fetches: 0 };
+  const makeGitHub = (token, fetchImpl) => {
     calls.tokens.push(token);
     return {
       hasToken: Boolean(token),
-      async searchRepos() { calls.search++; if (searchError) throw searchError; return { items: [item('a/one'), item('b/two', 500)], totalCount: 2 }; },
-      async getRepo(name) { calls.getRepo.push(name); if (getRepoError) throw getRepoError; return item(name); },
+      async searchRepos() {
+        calls.search++;
+        await fetchImpl('https://api.github.com/search/repositories'); // the real client fetches once per search
+        if (searchError) throw searchError;
+        const items = nItems === 2 ? [item('a/one'), item('b/two', 500)] : Array.from({ length: nItems }, (_, i) => item(`o/r${i}`, 1000 - i));
+        return { items, totalCount: items.length };
+      },
+      async getRepo(name) { calls.getRepo.push(name); if (getRepoError) throw getRepoError; return { ...item(name), private: name === 'acme/secret' }; },
     };
   };
-  const resolvePackages = async () => { calls.resolve++; return packages; };
+  const resolvePackages = async (repo, opts) => {
+    calls.resolve++;
+    for (let i = 0; i < fetchesPerRepo; i++) await opts.fetchImpl('https://registry.npmjs.org/x');
+    return packages;
+  };
+  const fetchImpl = async () => { calls.fetches++; return {}; };
   const cacheApi = fakeCacheApi(() => NOW);
   const cache = createCache({ cacheApi, now: () => NOW });
+  const itemCache = createCache({ cacheApi: null, now: () => NOW });
   const burst = fakeBurst(burstLimit);
   const db = fakeD1();
   const service = createService({
     env: { GITHUB_TOKEN: 'server-token', IP_SALT: 'salt', BURST: burst },
-    cache, counter: createDailyCounter(db),
+    cache, itemCache, counter: counter ?? createDailyCounter(db), fetchImpl,
     loadHistory: async () => ({ days: 0, spanDays: 0, latestDate: null, starsGained7d: () => null, starsGainedEstimated: () => false }),
     loadRising: async () => ({ date: '2026-10-01', spanDays: 3, lists: { all: [] } }),
     makeGitHub, resolvePackages, now: () => NOW,
   });
-  return { service, calls, cacheApi, cache, burst, db };
+  return { service, calls, cacheApi, cache, itemCache, burst, db };
 }
 const anon = { ip: '203.0.113.7', ownToken: null };
 const own = { ip: '203.0.113.7', ownToken: OWN };
@@ -89,11 +101,15 @@ test('burst: call 21 in a minute is refused with 429', async () => {
 });
 
 test('the token never reaches cache keys or cached values', async () => {
-  const { service, cacheApi } = setup();
-  await service.call('recommend_repos', { need: 'http client', limit: 2 }, own);
-  await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, own);
+  const { service, cacheApi, itemCache } = setup();
+  await service.call('recommend_repos', { need: 'http client', limit: 2 }, anon);
+  await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon);
+  await service.call('recommend_repos', { need: 'other thing', limit: 2 }, own);
+  await service.call('compare_repos', { repos: ['a/one', 'c/three'] }, own);
   assert.ok(cacheApi.store.size > 0);
-  for (const [url, { body }] of cacheApi.store) {
+  const bodies = [...cacheApi.store].map(([url, { body }]) => [url, body]);
+  for (const name of ['a/one', 'b/two']) bodies.push(['', JSON.stringify(await itemCache.get(await cacheKey({ item: 'repo', name })))]);
+  for (const [url, body] of bodies) {
     assert.ok(!url.includes(OWN) && !body.includes(OWN));
     assert.ok(!body.includes('server-token'));
   }
@@ -150,12 +166,78 @@ test('unknown tool name is a 400', async () => {
 });
 
 test('cached repo entries are slimmed to the fields normalizeRepo reads', async () => {
-  const { service, cacheApi } = setup();
+  const { service, itemCache } = setup();
   await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon);
-  const repoEntries = [...cacheApi.store.values()].map(({ body }) => JSON.parse(body)).filter((v) => v && v.full_name);
-  assert.equal(repoEntries.length, 2);
-  for (const entry of repoEntries) {
+  for (const name of ['a/one', 'b/two']) {
+    const entry = await itemCache.get(await cacheKey({ item: 'repo', name }));
+    assert.ok(entry && entry.full_name === name);
     assert.deepEqual(Object.keys(entry).filter((k) => !REPO_FIELDS.includes(k)), []);
     assert.deepEqual(entry.license, { key: 'mit' });
   }
+});
+
+test('own token: may read the caches but never writes to them (private repos must not leak)', async () => {
+  const { service, calls, cacheApi, itemCache } = setup();
+  await service.call('compare_repos', { repos: ['acme/secret', 'a/one'] }, own);
+  await service.call('recommend_repos', { need: 'http client', limit: 2 }, own);
+  assert.equal(cacheApi.store.size, 0);
+  assert.equal(await itemCache.get(await cacheKey({ item: 'repo', name: 'acme/secret' })), undefined);
+  await service.call('compare_repos', { repos: ['acme/secret', 'a/one'] }, anon);
+  assert.equal(calls.getRepo.filter((n) => n === 'acme/secret').length, 2); // fetched again, not served from cache
+  // reads still work: the anon call cached a/one, so an own-token call reuses it
+  const before = calls.getRepo.length;
+  await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, own);
+  assert.deepEqual(calls.getRepo.slice(before), ['b/two']);
+});
+
+test('subrequest budget: a big recommend stays within TOOL_SUBREQUESTS, is noted, and cached for 1 h', async () => {
+  assert.equal(TOOL_SUBREQUESTS, 40);
+  const { service, calls, cacheApi } = setup({ nItems: 15, fetchesPerRepo: 5 });
+  const { result } = await service.call('recommend_repos', { need: 'http client', limit: 10 }, anon);
+  assert.ok(calls.fetches > 0 && calls.fetches <= TOOL_SUBREQUESTS, String(calls.fetches));
+  assert.ok(result.dataNotes.includes('Download counts were skipped for some repositories to stay within the hosted request limit; run the npm package locally for full data.'));
+  const ttls = [...cacheApi.store.values()].map(({ headers }) => headers.get('Cache-Control'));
+  assert.deepEqual(ttls, ['max-age=3600']);
+});
+
+test('over the daily limit: refused without further D1 writes', async () => {
+  const { service, db } = setup({ burstLimit: Infinity });
+  for (let i = 0; i < 52; i++) await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon).catch(() => {});
+  const calls = db.rows()[0].calls;
+  await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon).catch(() => {});
+  assert.equal(db.rows()[0].calls, calls);
+});
+
+test('502 and 503 refund the daily count; 400 still counts', async () => {
+  const busy = setup({ getRepoError: new GitHubRateLimitError('x', 90) });
+  await busy.service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon).catch(() => {});
+  assert.equal(busy.db.rows()[0].calls, 0);
+  const bad = setup({ getRepoError: new Error('GitHub request failed: 404 Not Found') });
+  await bad.service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon).catch(() => {});
+  assert.equal(bad.db.rows()[0].calls, 0);
+  const invalid = setup();
+  await invalid.service.call('compare_repos', { repos: ['not a name', 'a/one'] }, anon).catch(() => {});
+  assert.equal(invalid.db.rows()[0].calls, 1);
+});
+
+test('limit infrastructure failures become a 503 and are logged', async () => {
+  const logged = [];
+  const orig = console.error;
+  console.error = (...a) => logged.push(a.join(' '));
+  try {
+    const counter = { limit: 50, async hit() { throw new Error('D1 down'); } };
+    const err = await setup({ counter }).service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon).catch((e) => e);
+    assert.ok(err instanceof HostedError);
+    assert.equal(err.status, 503);
+    assert.match(err.message, /temporarily unavailable/);
+    assert.ok(logged.some((l) => l.includes('D1 down')));
+  } finally { console.error = orig; }
+});
+
+test('whole-result cache keys ignore language case and need whitespace', async () => {
+  const { service, calls } = setup();
+  await service.call('recommend_repos', { need: 'http client', language: 'Python', limit: 2 }, anon);
+  const searches = calls.search;
+  await service.call('recommend_repos', { need: ' http  client ', language: 'python', limit: 2 }, anon);
+  assert.equal(calls.search, searches);
 });

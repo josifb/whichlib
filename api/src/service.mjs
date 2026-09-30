@@ -8,10 +8,14 @@ import { toolDefinitions, HOSTED_LIMIT_NOTE } from '../../whichlib/mcp/definitio
 import { resolvePackages as realResolvePackages } from '../../whichlib/snapshot/src/registry.mjs';
 import { GitHubRateLimitError, GitHubAuthError } from '../../whichlib/snapshot/src/github.mjs';
 import { utcDay, nextUtcMidnight, userHash } from './identity.mjs';
-import { checkBurst } from './limits.mjs';
+import { checkBurst, BURST_LIMIT } from './limits.mjs';
 import { cacheKey, TTL } from './cache.mjs';
 
 export const HOSTED_DEFINITIONS = toolDefinitions({ limitNote: HOSTED_LIMIT_NOTE, compareNote: HOSTED_LIMIT_NOTE });
+
+/** Free plan allows 50 subrequests per request; the rest is for the D1, Cache API, history and rising calls. */
+export const TOOL_SUBREQUESTS = 40;
+const BUDGET_NOTE = 'Download counts were skipped for some repositories to stay within the hosted request limit; run the npm package locally for full data.';
 
 const METHODS = { recommend_repos: 'recommend', compare_repos: 'compare', trending_repos: 'trending' };
 
@@ -37,6 +41,15 @@ const slimRepo = (item) => Object.fromEntries(REPO_FIELDS.map((k) => [k, k === '
 /** Any download lookup that failed (package known, downloads unknown). */
 const degraded = (repos) => repos.some((r) => (r.packages ?? []).some((p) => typeof p.weeklyDownloads !== 'number'));
 
+// Whole results are keyed on the normalised question, so 'Python' and 'python' share an entry.
+function normaliseArgs(args) {
+  const out = { ...args };
+  if (typeof out.language === 'string') out.language = out.language.toLowerCase();
+  if (typeof out.need === 'string') out.need = out.need.trim().replace(/\s+/g, ' ');
+  return out;
+}
+
+// Period 'rising' deliberately uses TTL.trending (6 h): the list itself changes once a day.
 function wholeResultTtl(name, args, result) {
   if (degraded(result.repos ?? [])) return TTL.degraded;
   if (name === 'recommend_repos') return TTL.recommend;
@@ -56,42 +69,61 @@ function toHostedError(err, caller) {
     if (caller.ownToken) return new HostedError(429, `Your GitHub token's rate limit is reached; try again in ${err.resetSeconds} seconds.`, { headers });
     return new HostedError(503, `whichlib is busy, try again in ${err.resetSeconds} seconds, or use your own GitHub token (header X-GitHub-Token).`, { headers });
   }
+  if (!/^(Could not fetch|GitHub )/.test(err?.message ?? '')) console.error('upstream error', err?.stack ?? err);
   return new HostedError(502, err?.message || 'Upstream request failed.');
 }
 
 export function createService({
-  env, cache, counter, loadHistory, loadRising,
-  makeGitHub = (token) => createGitHubClient({ token, maxWaitMs: 0 }),
+  env, cache, itemCache, counter, loadHistory, loadRising,
+  makeGitHub = (token, fetchImpl) => createGitHubClient({ token, fetchImpl, maxWaitMs: 0 }),
+  fetchImpl = fetch,
   resolvePackages = realResolvePackages,
   now = Date.now,
 }) {
   async function checkLimits(caller) {
-    const t = now();
-    const user = await userHash(caller.ip, env.IP_SALT ?? '', utcDay(t));
-    if (!(await checkBurst(env.BURST, user))) {
-      throw new HostedError(429, 'Too many calls: at most 20 calls per minute. Try again in a minute.', { headers: { 'Retry-After': '60' } });
+    try {
+      const t = now();
+      const day = utcDay(t);
+      const user = await userHash(caller.ip, env.IP_SALT ?? '', day);
+      if (!(await checkBurst(env.BURST, user))) {
+        throw new HostedError(429, `Too many calls: at most ${BURST_LIMIT} calls per minute. Try again in a minute.`, { headers: { 'Retry-After': '60' } });
+      }
+      if (caller.ownToken) return { quota: null, user, day, counted: false };
+      const { allowed, remaining } = await counter.hit(user, day);
+      const resetAt = nextUtcMidnight(t);
+      const quota = { limit: counter.limit, remaining, resetAt };
+      if (!allowed) throw new HostedError(429, limitMessage(counter.limit, resetAt - t), { quota, headers: { 'Retry-After': String(Math.ceil((resetAt - t) / 1000)) } });
+      return { quota, user, day, counted: true };
+    } catch (err) {
+      if (err instanceof HostedError) throw err;
+      console.error('limits error', err?.message);
+      throw new HostedError(503, 'whichlib is temporarily unavailable; please try again in a minute.');
     }
-    if (caller.ownToken) return null;
-    const { allowed, remaining } = await counter.hit(user, utcDay(t));
-    const resetAt = nextUtcMidnight(t);
-    const quota = { limit: counter.limit, remaining, resetAt };
-    if (!allowed) throw new HostedError(429, limitMessage(counter.limit, resetAt - t), { quota, headers: { 'Retry-After': String(Math.ceil((resetAt - t) / 1000)) } });
-    return quota;
   }
 
-  async function buildTools(caller) {
-    // Never undefined: createGitHubClient's default reads process.env, which a Worker lacks.
-    const github = makeGitHub(caller.ownToken ?? env.GITHUB_TOKEN ?? null);
+  // Own-token callers may read the caches but never write to them or share in-flight work:
+  // their token can see private repos, and whatever it fetched must not reach anyone else.
+  const through = (c, caller) => (caller.ownToken
+    ? async (key, _ttl, produce) => {
+      const hit = await c.get(key);
+      return hit !== undefined ? hit : produce();
+    }
+    : (key, ttl, produce) => c.wrap(key, ttl, produce));
+
+  async function buildTools(caller, budget) {
+    const github = makeGitHub(caller.ownToken ?? env.GITHUB_TOKEN ?? null, budget.fetch);
+    const item = through(itemCache, caller);
     const cachedGitHub = {
       hasToken: github.hasToken,
       searchRepos: (query, opts) => github.searchRepos(query, opts),
-      // Keyed by name only: results are public, whoever's token fetched them.
-      getRepo: async (name) => cache.wrap(await cacheKey({ item: 'repo', name: name.toLowerCase() }), TTL.repo, async () => slimRepo(await github.getRepo(name))),
+      // Keyed by name only: results are public, whoever's token fetched them (own-token callers never write).
+      getRepo: async (name) => item(await cacheKey({ item: 'repo', name: name.toLowerCase() }), TTL.repo, async () => slimRepo(await github.getRepo(name))),
     };
-    const cachedResolve = async (repo, opts) => cache.wrap(
+    const cachedResolve = async (repo, opts) => item(
       await cacheKey({ item: 'packages', repo: repo.fullName.toLowerCase() }),
-      (packages) => (degraded([{ packages }]) ? TTL.degraded : TTL.packages),
-      () => resolvePackages(repo, opts),
+      // 0 = not cached: a lookup cut short by the budget must not stick.
+      (packages) => (budget.exhausted ? 0 : degraded([{ packages }]) ? TTL.degraded : TTL.packages),
+      () => resolvePackages(repo, { ...opts, fetchImpl: budget.fetch }),
     );
     return createTools({ github: cachedGitHub, resolvePackages: cachedResolve, history: await loadHistory(), loadRising, limitNote: HOSTED_LIMIT_NOTE, now });
   }
@@ -99,15 +131,30 @@ export function createService({
   return {
     async call(name, args, caller) {
       if (!METHODS[name]) throw new HostedError(400, `Unknown tool "${name}".`);
-      const quota = await checkLimits(caller);
+      const { quota, user, day, counted } = await checkLimits(caller);
+      const budget = { used: 0, exhausted: false };
+      budget.fetch = (...a) => {
+        if (budget.used >= TOOL_SUBREQUESTS) { budget.exhausted = true; throw new Error('subrequest budget reached'); }
+        budget.used++;
+        return fetchImpl(...a);
+      };
       try {
-        const run = async () => (await buildTools(caller))[METHODS[name]](args);
+        const run = async () => {
+          const result = await (await buildTools(caller, budget))[METHODS[name]](args);
+          // A new object: the one above may be shared with a cache.
+          return budget.exhausted ? { ...result, dataNotes: [...(result.dataNotes ?? []), BUDGET_NOTE] } : result;
+        };
         const result = name === 'compare_repos'
           ? await run() // per-repo entries are cached inside
-          : await cache.wrap(await cacheKey({ tool: name, args }), (r) => wholeResultTtl(name, args, r), run);
+          : await through(cache, caller)(await cacheKey({ tool: name, args: normaliseArgs(args) }), (r) => (budget.exhausted ? TTL.degraded : wholeResultTtl(name, args, r)), run);
         return { result, quota };
       } catch (err) {
-        throw toHostedError(err, caller);
+        const hosted = toHostedError(err, caller);
+        // Our fault or GitHub's, not the user's: give the call back.
+        if (counted && (hosted.status === 502 || hosted.status === 503)) {
+          await counter.refund(user, day).catch((e) => console.error('refund failed', e?.message));
+        }
+        throw hosted;
       }
     },
   };
