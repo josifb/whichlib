@@ -21,27 +21,48 @@ export function cacheKey(parts) {
   return sha256Hex(JSON.stringify(canonical(parts)));
 }
 
-export function createCache({ cacheApi = null, now = Date.now, maxEntries = 500 } = {}) {
-  const memory = new Map(); // key -> { expires, value }; insertion order = age
+export function createCache({
+  cacheApi = null, now = Date.now, maxEntries = 500, maxBytes = 24 * 1024 * 1024, maxEntryBytes = 256 * 1024,
+} = {}) {
+  // key -> { expires, value, bytes }. Insertion order is age: eviction drops the
+  // oldest entry first (not LRU, a read never reorders). Values are shared
+  // references between callers, so treat them as immutable.
+  const memory = new Map();
+  let totalBytes = 0;
+  const inflight = new Map(); // key -> promise of the running produce(), see wrap()
 
-  function remember(key, value, expires) {
+  function forget(key) {
+    const entry = memory.get(key);
+    if (!entry) return;
+    totalBytes -= entry.bytes;
     memory.delete(key);
-    memory.set(key, { expires, value });
-    while (memory.size > maxEntries) memory.delete(memory.keys().next().value);
+  }
+
+  function remember(key, value, expires, bytes) {
+    forget(key);
+    if (bytes > maxEntryBytes) return; // too big for the isolate; still goes to the Cache API
+    memory.set(key, { expires, value, bytes });
+    totalBytes += bytes;
+    while ((totalBytes > maxBytes || memory.size > maxEntries) && memory.size > 0) {
+      forget(memory.keys().next().value);
+    }
   }
 
   async function get(key) {
     const hit = memory.get(key);
     if (hit && hit.expires > now()) return hit.value;
-    if (hit) memory.delete(key);
+    if (hit) forget(key);
     if (!cacheApi) return undefined;
+    // Also after an expired memory entry: another isolate may have written a fresher copy.
     try {
       const res = await cacheApi.match(new Request(KEY_ORIGIN + key));
       if (!res) return undefined;
       const expires = Number(res.headers.get('X-Expires'));
       if (!(expires > now())) return undefined;
-      const value = await res.json();
-      remember(key, value, expires);
+      const body = await res.text();
+      const value = JSON.parse(body);
+      console.log('cache: shared hit');
+      remember(key, value, expires, body.length); // original expiry, not a fresh TTL
       return value;
     } catch {
       return undefined;
@@ -49,23 +70,38 @@ export function createCache({ cacheApi = null, now = Date.now, maxEntries = 500 
   }
 
   async function put(key, value, ttlSeconds) {
+    if (!(ttlSeconds > 0)) return; // zero, negative or NaN: do not cache
     const expires = now() + ttlSeconds * 1000;
-    remember(key, value, expires);
+    const body = JSON.stringify(value);
+    remember(key, value, expires, body.length);
     if (!cacheApi) return;
     try {
-      await cacheApi.put(new Request(KEY_ORIGIN + key), new Response(JSON.stringify(value), {
+      await cacheApi.put(new Request(KEY_ORIGIN + key), new Response(body, {
         headers: { 'Content-Type': 'application/json', 'Cache-Control': `max-age=${ttlSeconds}`, 'X-Expires': String(expires) },
       }));
     } catch { /* a cache write failure must not fail the call */ }
   }
 
-  /** Cached value for key, or produce() it and cache it. ttl: seconds, or a function of the value. */
+  /**
+   * Cached value for key, or produce() it and cache it. ttl: seconds, or a function of the value.
+   * Concurrent misses for one key share a single produce(); a rejection is shared too and never cached.
+   */
   async function wrap(key, ttl, produce) {
     const hit = await get(key);
     if (hit !== undefined) return hit;
-    const value = await produce();
-    await put(key, value, typeof ttl === 'function' ? ttl(value) : ttl);
-    return value;
+    const running = inflight.get(key);
+    if (running) return running;
+    const promise = (async () => {
+      const value = await produce();
+      await put(key, value, typeof ttl === 'function' ? ttl(value) : ttl);
+      return value;
+    })();
+    inflight.set(key, promise);
+    try {
+      return await promise;
+    } finally {
+      inflight.delete(key);
+    }
   }
 
   return { get, put, wrap };
