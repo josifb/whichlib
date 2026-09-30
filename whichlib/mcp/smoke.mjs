@@ -1,15 +1,21 @@
 #!/usr/bin/env node
 // End-to-end check: start the server over stdio like a real client would,
 // list the tools, and call each one against the live APIs.
-// Usage: npm run mcp:smoke
+// Usage: npm run mcp:smoke [-- --url http://localhost:8787/mcp]
 
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
+import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
 const serverPath = join(dirname(fileURLToPath(import.meta.url)), 'server.mjs');
-const transport = new StdioClientTransport({ command: process.execPath, args: [serverPath], env: process.env, stderr: 'inherit' });
+// --url <address>: run the same calls against a remote MCP server (Streamable HTTP), e.g. wrangler dev.
+const urlArg = process.argv.indexOf('--url');
+const remote = urlArg > -1 ? process.argv[urlArg + 1] : null;
+const transport = remote
+  ? new StreamableHTTPClientTransport(new URL(remote))
+  : new StdioClientTransport({ command: process.execPath, args: [serverPath], env: process.env, stderr: 'inherit' });
 const client = new Client({ name: 'whichlib-smoke', version: '0.0.0' });
 await client.connect(transport);
 
