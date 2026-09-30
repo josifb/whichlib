@@ -154,6 +154,8 @@ test('errors map to statuses', async () => {
     assert.equal(err.status, status, err.message);
     assert.match(err.message, message);
   }
+  const odd = await setup({ searchError: new Error('socket hang up') }).service.call('trending_repos', { period: 'day', limit: 2, withDownloads: false }, anon).catch((e) => e);
+  assert.deepEqual([odd.status, odd.message], [502, 'Upstream request failed.']);
   const busy = await setup({ searchError: new GitHubRateLimitError('x', 90) }).service.call('trending_repos', { period: 'day', limit: 2, withDownloads: false }, anon).catch((e) => e);
   assert.equal(busy.headers['Retry-After'], '90');
   const bad = await setup().service.call('compare_repos', { repos: ['not a name', 'a/one'] }, anon).catch((e) => e);

@@ -6,7 +6,8 @@ import { inputObject } from '../../whichlib/mcp/definitions.mjs';
 import { HostedError, HOSTED_DEFINITIONS } from './service.mjs';
 
 const ROUTES = { '/api/recommend': 'recommend_repos', '/api/compare': 'compare_repos', '/api/trending': 'trending_repos' };
-const SCHEMAS = Object.fromEntries(HOSTED_DEFINITIONS.map((d) => [d.name, inputObject(d)]));
+// Strict: a typo like ?lang= is a 400 naming the key, not a silently ignored filter.
+const SCHEMAS = Object.fromEntries(HOSTED_DEFINITIONS.map((d) => [d.name, inputObject(d).strict()]));
 const BOOL = { true: true, 1: true, false: false, 0: false };
 
 const json = (status, body, headers = {}) => Response.json(body, { status, headers });
@@ -32,7 +33,7 @@ export async function handleApi(request, service, caller) {
   const url = new URL(request.url);
   const name = ROUTES[url.pathname];
   if (!name) return json(404, { error: 'Unknown endpoint. Use /api/recommend, /api/compare or /api/trending.' });
-  if (request.method !== 'GET' && request.method !== 'HEAD') return json(405, { error: 'Use GET.' }, { Allow: 'GET' });
+  if (request.method !== 'GET') return json(405, { error: 'Use GET.' }, { Allow: 'GET' });
 
   const parsed = SCHEMAS[name].safeParse(parseArgs(name, url.searchParams));
   if (!parsed.success) {

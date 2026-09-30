@@ -81,7 +81,8 @@ function toHostedError(err, caller) {
   // tools.mjs reports nothing-found as a plain Error; that is the caller's input, not an outage.
   if (err?.message?.startsWith('Could not fetch any of the repositories')) return new HostedError(404, err.message);
   if (!/^(Could not fetch|GitHub )/.test(err?.message ?? '')) console.error('upstream error', err?.stack ?? err);
-  return new HostedError(502, err?.message || 'Upstream request failed.');
+  const known = /^(Could not fetch|GitHub )/.test(err?.message ?? '');
+  return new HostedError(502, known ? err.message : 'Upstream request failed.');
 }
 
 export function createService({

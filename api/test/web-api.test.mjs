@@ -62,3 +62,12 @@ test('unknown endpoint 404, wrong method 405, unexpected error 500', async () =>
   assert.equal((await handleApi(new Request('https://w.test/api/trending', { method: 'POST' }), fakeService({}), anon)).status, 405);
   assert.equal((await handleApi(get('/api/trending'), fakeService(new TypeError('bug')), anon)).status, 500);
 });
+
+test('HEAD is 405 and unknown query keys are a 400 naming the key', async () => {
+  const service = fakeService({ result: {}, quota: null });
+  assert.equal((await handleApi(new Request('https://w.test/api/trending', { method: 'HEAD' }), service, anon)).status, 405);
+  const res = await handleApi(get('/api/recommend?need=pdf&lang=python'), service, anon);
+  assert.equal(res.status, 400);
+  assert.match((await res.json()).error, /lang/);
+  assert.equal(service.seen.length, 0);
+});

@@ -60,3 +60,53 @@ test('GET and DELETE are 405 (no SSE stream, no sessions)', async () => {
     assert.equal(res.headers.get('Allow'), 'POST');
   }
 });
+
+const post = (body, headers = {}) => new Request('https://w.test/mcp', {
+  method: 'POST',
+  headers: { 'content-type': 'application/json', accept: 'application/json, text/event-stream', ...headers },
+  body: typeof body === 'string' ? body : JSON.stringify(body),
+});
+const never = () => { const s = { calls: 0, call: async () => { s.calls++; return { result: RESULT, quota: null }; } }; return s; };
+
+test('JSON-RPC batch: 400 -32600, the service is not called', async () => {
+  const service = never();
+  const batch = [1, 2].map((id) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name: 'compare_repos', arguments: { repos: ['a/b', 'c/d'] } } }));
+  const res = await handleMcp(post(batch), service, anon);
+  assert.equal(res.status, 400);
+  const body = await res.json();
+  assert.equal(body.error.code, -32600);
+  assert.match(body.error.message, /Batch requests are not supported/);
+  assert.equal(service.calls, 0);
+});
+
+test('oversized body 413, invalid JSON 400 -32700', async () => {
+  const big = await handleMcp(post('x'.repeat(64 * 1024 + 1)), never(), anon);
+  assert.equal(big.status, 413);
+  assert.equal((await big.json()).error.code, -32600);
+  const bad = await handleMcp(post('{nope'), never(), anon);
+  assert.equal(bad.status, 400);
+  assert.equal((await bad.json()).error.code, -32700);
+});
+
+test('notification-only POST is 202; missing Accept is 406', async () => {
+  const res = await handleMcp(post({ jsonrpc: '2.0', method: 'notifications/initialized' }), never(), anon);
+  assert.equal(res.status, 202);
+  const noAccept = await handleMcp(new Request('https://w.test/mcp', { method: 'POST', headers: { 'content-type': 'application/json' }, body: '{}' }), never(), anon);
+  assert.equal(noAccept.status, 406);
+});
+
+test('unexpected error becomes a generic tool error', async () => {
+  const client = await connect({ call: async () => { throw new TypeError('secret detail'); } });
+  const res = await client.callTool({ name: 'compare_repos', arguments: { repos: ['a/b', 'c/d'] } });
+  assert.equal(res.isError, true);
+  assert.equal(res.content[0].text, 'Internal error.');
+  await client.close();
+});
+
+test('last free call: the text says so', async () => {
+  const resetAt = Date.now() + 2 * 3600_000 - 60_000;
+  const client = await connect({ call: async () => ({ result: RESULT, quota: { limit: 50, remaining: 0, resetAt } }) });
+  const res = await client.callTool({ name: 'compare_repos', arguments: { repos: ['a/b', 'c/d'] } });
+  assert.match(res.content[0].text, /Note: this was your last free call today; the limit resets in 2 h\./);
+  await client.close();
+});
