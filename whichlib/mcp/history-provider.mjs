@@ -53,12 +53,17 @@ export const WEEKLY_GAINS_URL = 'https://raw.githubusercontent.com/josifb/whichl
 export function providerFromGains(file, source) {
   if (!file || typeof file.date !== 'string' || !file.gains || typeof file.gains !== 'object') return { ...emptyHistory, source };
   const gains = file.gains;
+  const entry = (name) => {
+    const e = gains[name];
+    return Array.isArray(e) && Number.isFinite(e[0]) ? e : null;
+  };
+  const num = (v) => (Number.isFinite(v) ? v : 0);
   return {
-    days: file.days ?? 0,
-    spanDays: file.spanDays ?? 0,
+    days: num(file.days),
+    spanDays: num(file.spanDays),
     latestDate: file.date,
     source,
-    starsGained7d: (fullName) => gains[fullName]?.[0] ?? null,
-    starsGainedEstimated: (fullName) => Boolean(gains[fullName]?.[1]),
+    starsGained7d: (fullName) => entry(fullName)?.[0] ?? null,
+    starsGainedEstimated: (fullName) => Boolean(entry(fullName)?.[1]),
   };
 }

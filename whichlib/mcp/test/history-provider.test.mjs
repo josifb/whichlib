@@ -29,3 +29,32 @@ test('providerFromGains: missing or malformed file is the empty history', () => 
 test('WEEKLY_GAINS_URL points at the data branch root', () => {
   assert.equal(WEEKLY_GAINS_URL, 'https://raw.githubusercontent.com/josifb/whichlib/data/weekly-gains.json');
 });
+
+test('providerFromGains: a malformed gains entry gives null/false, a valid entry next to it still works', () => {
+  const p = providerFromGains({
+    date: '2026-10-05',
+    days: 8,
+    spanDays: 7,
+    gains: {
+      'bad/string': '40,false',
+      'bad/number': 40,
+      'bad/null': null,
+      'bad/first-item': ['not a number', false],
+      'good/one': [40, false],
+    },
+  }, 'hosted');
+  for (const name of ['bad/string', 'bad/number', 'bad/null', 'bad/first-item']) {
+    assert.equal(p.starsGained7d(name), null);
+    assert.equal(p.starsGainedEstimated(name), false);
+  }
+  assert.equal(p.starsGained7d('good/one'), 40);
+  assert.equal(p.starsGainedEstimated('good/one'), false);
+});
+
+test('providerFromGains: non-finite days/spanDays become 0', () => {
+  for (const bad of [{}, { days: '7', spanDays: '7' }, { days: NaN, spanDays: NaN }]) {
+    const p = providerFromGains({ date: '2026-10-05', gains: {}, ...bad }, 'hosted');
+    assert.equal(p.days, 0);
+    assert.equal(p.spanDays, 0);
+  }
+});
