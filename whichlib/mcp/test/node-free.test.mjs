@@ -25,6 +25,7 @@ export const WORKER_MODULES = [
   'snapshot/src/history-core.mjs',
   'snapshot/src/rising.mjs',
   'mcp/history-provider.mjs',
+  'mcp/definitions.mjs',
 ];
 
 function nodeImports(file, seen = new Set()) {
