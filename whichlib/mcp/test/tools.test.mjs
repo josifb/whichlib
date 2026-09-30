@@ -366,12 +366,19 @@ test('compare: other errors (404) still go under notFound', async () => {
 
 test('input errors are ToolInputError; other failures are not', async () => {
   const { tools } = fakes(); // the existing helper returns { tools, calls }; with no repos every getRepo is a 404
-  for (const p of [tools.recommend({ need: 'x' }), tools.compare({ repos: ['a/b'] }), tools.compare({ repos: ['not a name', 'a/b'] }), tools.trending({ period: 'year' })]) {
-    const err = await p.catch((e) => e);
+  const calls = [
+    () => tools.recommend({ need: 'x' }),
+    () => tools.compare({ repos: ['a/b'] }),
+    () => tools.compare({ repos: ['not a name', 'a/b'] }),
+    () => tools.trending({ period: 'year' }),
+  ];
+  for (const call of calls) {
+    const err = await call().catch((e) => e);
     assert.ok(err instanceof ToolInputError, err.message);
   }
   const all404 = await tools.compare({ repos: ['a/b', 'c/d'] }).catch((e) => e);
   assert.ok(!(all404 instanceof ToolInputError));
+  assert.match(all404.message, /Could not fetch any/);
 });
 
 test('limitNote replaces the no-token note', async () => {

@@ -40,7 +40,7 @@ function msUntilReset(res) {
     const retryAfter = Number(raw);
     if (Number.isFinite(retryAfter) && retryAfter > 0) return retryAfter * 1000 + 1000;
     // "retry-after: 0" on a secondary limit: the hourly reset header says nothing about it.
-    if (raw.trim() === '0') return 60_000;
+    if (raw.trim() !== '' && retryAfter === 0) return 60_000;
   }
   const reset = Number(res.headers.get('x-ratelimit-reset'));
   if (!Number.isFinite(reset) || reset <= 0) return 60_000;

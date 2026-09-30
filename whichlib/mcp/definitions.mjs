@@ -10,6 +10,8 @@ const SCORE = 'Each result has a 0-100 score (momentum 40% (stars gained per wee
 export const LOCAL_LIMIT_NOTE = 'Without a GitHub token GitHub allows about 10 searches per minute; when the limit is hit the tool returns an error saying when it resets.';
 export const HOSTED_LIMIT_NOTE = 'Hosted: 50 free tool calls per day per user; send header X-GitHub-Token with your own GitHub token for unlimited use, or run the npm package locally (npx -y whichlib).';
 
+// compareNote: text appended to compare_repos only (it makes no searches, so it has no
+// limitNote; the hosted Worker passes its daily-limit sentence here instead).
 export function toolDefinitions({ limitNote = LOCAL_LIMIT_NOTE, compareNote = '' } = {}) {
   const RATE = limitNote;
   return [

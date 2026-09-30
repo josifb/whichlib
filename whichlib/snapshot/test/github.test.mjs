@@ -127,6 +127,10 @@ test('fetchGitHub: retry-after: 0 is treated as 60 seconds, not the hourly reset
   const err = await fetchGitHub('https://api.github.com/x', { fetchImpl, sleep: async () => {}, maxWaitMs: 0 }).catch((e) => e);
   assert.ok(err instanceof GitHubRateLimitError);
   assert.equal(err.resetSeconds, 60);
+  const fetchImpl00 = async () => response(403, { message: 'secondary' }, { 'retry-after': '00', 'x-ratelimit-reset': String(resetAt) });
+  const err00 = await fetchGitHub('https://api.github.com/x', { fetchImpl: fetchImpl00, sleep: async () => {}, maxWaitMs: 0 }).catch((e) => e);
+  assert.ok(err00 instanceof GitHubRateLimitError);
+  assert.equal(err00.resetSeconds, 60);
 });
 
 test('fetchGitHub: the GITHUB_TOKEN hint is only added to primary-limit errors', async () => {
