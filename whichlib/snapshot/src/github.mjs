@@ -35,8 +35,13 @@ function isRateLimited(res) {
 }
 
 function msUntilReset(res) {
-  const retryAfter = Number(res.headers.get('retry-after'));
-  if (Number.isFinite(retryAfter) && retryAfter > 0) return retryAfter * 1000 + 1000;
+  const raw = res.headers.get('retry-after');
+  if (raw !== null) {
+    const retryAfter = Number(raw);
+    if (Number.isFinite(retryAfter) && retryAfter > 0) return retryAfter * 1000 + 1000;
+    // "retry-after: 0" on a secondary limit: the hourly reset header says nothing about it.
+    if (raw.trim() === '0') return 60_000;
+  }
   const reset = Number(res.headers.get('x-ratelimit-reset'));
   if (!Number.isFinite(reset) || reset <= 0) return 60_000;
   return Math.max(1000, reset * 1000 - Date.now() + 1000);
@@ -61,8 +66,9 @@ export async function fetchGitHub(url, { token = null, fetchImpl = fetch, sleep 
     const wait = msUntilReset(res);
     if (wait > maxWaitMs) {
       const minutes = Math.ceil(wait / 60_000);
+      const primary = res.headers.get('x-ratelimit-remaining') === '0';
       throw new GitHubRateLimitError(`GitHub rate limit reached; it resets in about ${minutes} minute${minutes === 1 ? '' : 's'}.`
-        + (token ? '' : ' Set a GITHUB_TOKEN (a fine-grained token with no permissions is enough) to raise the limit.'), Math.ceil(wait / 1000));
+        + (token || !primary ? '' : ' Set a GITHUB_TOKEN (a fine-grained token with no permissions is enough) to raise the limit.'), Math.ceil(wait / 1000));
     }
     await sleep(wait);
     res = await fetchImpl(url, { headers });
