@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createService, HostedError, HOSTED_DEFINITIONS, REPO_FIELDS, TOOL_SUBREQUESTS } from '../src/service.mjs';
+import { createService, HostedError, HOSTED_DEFINITIONS, REPO_FIELDS, TOOL_SUBREQUESTS, BudgetError } from '../src/service.mjs';
 import { createCache, cacheKey } from '../src/cache.mjs';
 import { createDailyCounter } from '../src/limits.mjs';
 import { fakeD1, fakeBurst, fakeCacheApi } from './helpers.mjs';
@@ -146,7 +146,7 @@ test('errors map to statuses', async () => {
     [{ getRepoError: new GitHubAuthError('GitHub request failed: 401 Bad credentials') }, anon, 502, /could not authenticate with GitHub/],
     [{ getRepoError: new GitHubRateLimitError('GitHub rate limit reached; it resets in about 2 minutes.', 90) }, anon, 503, /whichlib is busy, try again in 90 seconds, or use your own GitHub token/],
     [{ getRepoError: new GitHubRateLimitError('GitHub rate limit reached; it resets in about 2 minutes.', 90) }, own, 429, /Your GitHub token's rate limit/],
-    [{ getRepoError: new Error('GitHub request failed: 404 Not Found') }, anon, 502, /Could not fetch any of the repositories/],
+    [{ getRepoError: new Error('GitHub request failed: 404 Not Found') }, anon, 404, /Could not fetch any of the repositories/],
   ];
   for (const [opts, caller, status, message] of cases) {
     const err = await setup(opts).service.call('compare_repos', { repos: ['a/one', 'b/two'] }, caller).catch((e) => e);
@@ -191,7 +191,7 @@ test('own token: may read the caches but never writes to them (private repos mus
 });
 
 test('subrequest budget: a big recommend stays within TOOL_SUBREQUESTS, is noted, and cached for 1 h', async () => {
-  assert.equal(TOOL_SUBREQUESTS, 40);
+  assert.equal(TOOL_SUBREQUESTS, 35);
   const { service, calls, cacheApi } = setup({ nItems: 15, fetchesPerRepo: 5 });
   const { result } = await service.call('recommend_repos', { need: 'http client', limit: 10 }, anon);
   assert.ok(calls.fetches > 0 && calls.fetches <= TOOL_SUBREQUESTS, String(calls.fetches));
@@ -208,16 +208,43 @@ test('over the daily limit: refused without further D1 writes', async () => {
   assert.equal(db.rows()[0].calls, calls);
 });
 
-test('502 and 503 refund the daily count; 400 still counts', async () => {
-  const busy = setup({ getRepoError: new GitHubRateLimitError('x', 90) });
-  await busy.service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon).catch(() => {});
-  assert.equal(busy.db.rows()[0].calls, 0);
-  const bad = setup({ getRepoError: new Error('GitHub request failed: 404 Not Found') });
-  await bad.service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon).catch(() => {});
-  assert.equal(bad.db.rows()[0].calls, 0);
+test('only whichlib-side failures refund the daily count', async () => {
+  const count = async (opts) => {
+    const t = setup(opts);
+    const err = await t.service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon).catch((e) => e);
+    return [err.status, t.db.rows()[0].calls];
+  };
+  assert.deepEqual(await count({ getRepoError: new GitHubRateLimitError('x', 90) }), [503, 0]); // shared limit: refunded
+  assert.deepEqual(await count({ getRepoError: new GitHubAuthError('401 Bad credentials') }), [502, 0]); // server token rejected: refunded
+  assert.deepEqual(await count({ getRepoError: new Error('GitHub request failed: 404 Not Found') }), [404, 1]); // missing repos: counted
+  const other = setup({ searchError: new Error('socket hang up') });
+  const err = await other.service.call('trending_repos', { period: 'day', limit: 2, withDownloads: false }, anon).catch((e) => e);
+  assert.deepEqual([err.status, other.db.rows()[0].calls], [502, 1]); // unknown cause: counted
   const invalid = setup();
   await invalid.service.call('compare_repos', { repos: ['not a name', 'a/one'] }, anon).catch(() => {});
   assert.equal(invalid.db.rows()[0].calls, 1);
+});
+
+test('a caller that joins a budget-starved lookup is also marked degraded', async () => {
+  const cacheApi = fakeCacheApi(() => NOW);
+  const gate = () => new Promise((r) => setTimeout(r, 5));
+  const cache = createCache({ cacheApi, now: () => NOW });
+  const itemCache = createCache({ cacheApi: null, now: () => NOW });
+  let resolves = 0;
+  const svc = createService({
+    env: { GITHUB_TOKEN: 'server-token', IP_SALT: 'salt' }, cache, itemCache, counter: createDailyCounter(fakeD1()),
+    loadHistory: async () => ({ days: 0, spanDays: 0, latestDate: null, starsGained7d: () => null, starsGainedEstimated: () => false }),
+    loadRising: async () => ({ date: '2026-10-01', spanDays: 3, lists: { all: [] } }),
+    makeGitHub: () => ({ hasToken: true, async searchRepos() { return { items: [item('a/one')], totalCount: 1 }; } }),
+    resolvePackages: async () => { resolves++; await gate(); throw new BudgetError(); },
+    fetchImpl: async () => ({}), now: () => NOW,
+  });
+  const [x, y] = await Promise.all([
+    svc.call('recommend_repos', { need: 'http client', limit: 2 }, anon),
+    svc.call('recommend_repos', { need: 'http client two', limit: 2 }, { ...anon, ip: '203.0.113.8' }),
+  ]);
+  assert.equal(resolves, 1); // the second call joined the first one's lookup
+  for (const { result } of [x, y]) assert.ok(result.dataNotes.some((n) => n.startsWith('Download counts were skipped')));
 });
 
 test('limit infrastructure failures become a 503 and are logged', async () => {

@@ -89,3 +89,24 @@ test('refund gives one count back and never goes below zero', async () => {
   await counter.refund('u', '2026-10-01');
   assert.equal(db.rows()[0].calls, 0);
 });
+
+test('refund also clears the over-limit mark', async () => {
+  const db = fakeD1();
+  const counter = createDailyCounter(db, { limit: 1 });
+  await counter.hit('u', '2026-10-01');
+  assert.equal((await counter.hit('u', '2026-10-01')).allowed, false);
+  await counter.refund('u', '2026-10-01');
+  await counter.refund('u', '2026-10-01');
+  assert.equal((await counter.hit('u', '2026-10-01')).allowed, true);
+});
+
+test('a failing prune does not fail a counted call', async () => {
+  const db = fakeD1();
+  const real = db.prepare;
+  db.prepare = (sql) => (sql.startsWith('DELETE') ? { bind: () => ({ run: async () => { throw new Error('prune failed'); } }) } : real(sql));
+  const orig = console.error;
+  console.error = () => {};
+  try {
+    assert.equal((await createDailyCounter(db).hit('u', '2026-10-01')).allowed, true);
+  } finally { console.error = orig; }
+});

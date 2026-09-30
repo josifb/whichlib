@@ -13,8 +13,17 @@ import { cacheKey, TTL } from './cache.mjs';
 
 export const HOSTED_DEFINITIONS = toolDefinitions({ limitNote: HOSTED_LIMIT_NOTE, compareNote: HOSTED_LIMIT_NOTE });
 
-/** Free plan allows 50 subrequests per request; the rest is for the D1, Cache API, history and rising calls. */
-export const TOOL_SUBREQUESTS = 40;
+/**
+ * Free plan allows 50 subrequests per request. The rest is for what sits outside the budget:
+ * the whole-result Cache API match + put (2), history and rising downloads on a cold isolate (~2);
+ * D1 queries do not count as fetch subrequests.
+ */
+export const TOOL_SUBREQUESTS = 35;
+
+/** Thrown by the budget fetch; cachedResolve uses it to mark a caller degraded even when it only joined the lookup. */
+export class BudgetError extends Error {
+  constructor() { super('subrequest budget reached'); this.name = 'BudgetError'; }
+}
 const BUDGET_NOTE = 'Download counts were skipped for some repositories to stay within the hosted request limit; run the npm package locally for full data.';
 
 const METHODS = { recommend_repos: 'recommend', compare_repos: 'compare', trending_repos: 'trending' };
@@ -69,6 +78,8 @@ function toHostedError(err, caller) {
     if (caller.ownToken) return new HostedError(429, `Your GitHub token's rate limit is reached; try again in ${err.resetSeconds} seconds.`, { headers });
     return new HostedError(503, `whichlib is busy, try again in ${err.resetSeconds} seconds, or use your own GitHub token (header X-GitHub-Token).`, { headers });
   }
+  // tools.mjs reports nothing-found as a plain Error; that is the caller's input, not an outage.
+  if (err?.message?.startsWith('Could not fetch any of the repositories')) return new HostedError(404, err.message);
   if (!/^(Could not fetch|GitHub )/.test(err?.message ?? '')) console.error('upstream error', err?.stack ?? err);
   return new HostedError(502, err?.message || 'Upstream request failed.');
 }
@@ -124,7 +135,11 @@ export function createService({
       // 0 = not cached: a lookup cut short by the budget must not stick.
       (packages) => (budget.exhausted ? 0 : degraded([{ packages }]) ? TTL.degraded : TTL.packages),
       () => resolvePackages(repo, { ...opts, fetchImpl: budget.fetch }),
-    );
+    ).catch((err) => {
+      // Covers a caller that only joined someone else's starved lookup, too.
+      if (err instanceof BudgetError) budget.exhausted = true;
+      throw err;
+    });
     return createTools({ github: cachedGitHub, resolvePackages: cachedResolve, history: await loadHistory(), loadRising, limitNote: HOSTED_LIMIT_NOTE, now });
   }
 
@@ -134,7 +149,7 @@ export function createService({
       const { quota, user, day, counted } = await checkLimits(caller);
       const budget = { used: 0, exhausted: false };
       budget.fetch = (...a) => {
-        if (budget.used >= TOOL_SUBREQUESTS) { budget.exhausted = true; throw new Error('subrequest budget reached'); }
+        if (budget.used >= TOOL_SUBREQUESTS) { budget.exhausted = true; throw new BudgetError(); }
         budget.used++;
         return fetchImpl(...a);
       };
@@ -150,8 +165,9 @@ export function createService({
         return { result, quota };
       } catch (err) {
         const hosted = toHostedError(err, caller);
-        // Our fault or GitHub's, not the user's: give the call back.
-        if (counted && (hosted.status === 502 || hosted.status === 503)) {
+        // Give the call back only when whichlib's own setup failed (shared GitHub limit, rejected server token).
+        // Other 502s stay counted: otherwise callers could spend the server token for free.
+        if (counted && (err instanceof GitHubRateLimitError || err instanceof GitHubAuthError)) {
           await counter.refund(user, day).catch((e) => console.error('refund failed', e?.message));
         }
         throw hosted;

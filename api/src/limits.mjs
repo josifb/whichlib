@@ -26,13 +26,18 @@ export function createDailyCounter(db, { limit = DAILY_LIMIT } = {}) {
       const calls = Number(results[0].calls);
       if (calls === 1) {
         const yesterday = utcDay(Date.parse(day) - DAY_MS);
-        await db.prepare(PRUNE).bind(yesterday).run();
+        try {
+          await db.prepare(PRUNE).bind(yesterday).run();
+        } catch (err) {
+          console.error('prune failed', err?.message); // best effort: the call is already counted
+        }
       }
       if (calls > limit) over.add(user);
       return { allowed: calls <= limit, calls, remaining: Math.max(0, limit - calls) };
     },
     /** Give back one count (the call failed through no fault of the user). */
     async refund(user, day) {
+      over.delete(user);
       await db.prepare(REFUND).bind(user, day).run();
     },
   };
