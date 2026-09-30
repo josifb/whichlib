@@ -75,10 +75,11 @@ jobs:
           cp whichlib/data/stars/*.json data-branch/stars/
           cp whichlib/data/registry-map.json data-branch/registry-map.json
           cp whichlib/data/rising.json data-branch/rising.json
+          cp whichlib/data/weekly-gains.json data-branch/weekly-gains.json
           cd data-branch
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add snapshots stars registry-map.json rising.json
+          git add snapshots stars registry-map.json rising.json weekly-gains.json
           if git diff --cached --quiet; then
             echo "Nothing new to commit."
             exit 0

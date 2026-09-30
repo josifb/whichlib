@@ -15,7 +15,7 @@ import { searchUrl } from './query.mjs';
 import { fetchSearch, paceDelayMs } from './github.mjs';
 import { LANGUAGES } from './run.mjs';
 import { normalizeRepo } from './normalize.mjs';
-import { buildRising } from './rising.mjs';
+import { buildRising, buildWeeklyGains } from './rising.mjs';
 
 export const MIN_STARS = 1000;
 const PAGES = 10; // 10 x 100 = the 1,000-result cap of the Search API
@@ -24,6 +24,7 @@ const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..', '..');
 const SNAP_DIR = join(ROOT, 'data', 'snapshots');
 const OUT_DIR = join(ROOT, 'data', 'stars');
 const RISING_PATH = join(ROOT, 'data', 'rising.json');
+const GAINS_PATH = join(ROOT, 'data', 'weekly-gains.json');
 const DATE_FILE = /^(\d{4}-\d{2}-\d{2})\.json$/;
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -118,6 +119,10 @@ async function main() {
   const rising = buildRising({ files, repos: details, languages: LANGUAGES.filter(Boolean) });
   await writeFile(RISING_PATH, JSON.stringify(rising));
   console.log(`Wrote data/rising.json (${rising.spanDays} day span${rising.estimated ? ', estimated' : ''}, ${rising.lists.all.length} repos overall)`);
+
+  const weekly = buildWeeklyGains(files);
+  await writeFile(GAINS_PATH, JSON.stringify(weekly));
+  console.log(`Wrote data/weekly-gains.json (${Object.keys(weekly.gains).length} repos)`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === process.argv[1]) {

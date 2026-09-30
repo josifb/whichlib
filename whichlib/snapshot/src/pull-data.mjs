@@ -45,6 +45,14 @@ try {
   console.log('rising.json not on the data branch yet');
 }
 
+// The weekly gains summary (small precomputed file for the hosted Worker) is rebuilt daily: always refresh it.
+try {
+  await writeFile(join(ROOT, 'data', 'weekly-gains.json'), git('show', 'origin/data:weekly-gains.json'));
+  console.log('weekly-gains.json refreshed');
+} catch {
+  console.log('weekly-gains.json not on the data branch yet');
+}
+
 // The registry map (repo -> package names) is small and changes daily: always refresh it.
 try {
   const map = git('show', 'origin/data:registry-map.json');
