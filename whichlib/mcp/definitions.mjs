@@ -10,7 +10,7 @@ const SCORE = 'Each result has a 0-100 score (momentum 40% (stars gained per wee
 export const LOCAL_LIMIT_NOTE = 'Without a GitHub token GitHub allows about 10 searches per minute; when the limit is hit the tool returns an error saying when it resets.';
 export const HOSTED_LIMIT_NOTE = 'Hosted: 50 free tool calls per day per user; send header X-GitHub-Token with your own GitHub token for unlimited use, or run the npm package locally (npx -y whichlib).';
 
-export function toolDefinitions({ limitNote = LOCAL_LIMIT_NOTE } = {}) {
+export function toolDefinitions({ limitNote = LOCAL_LIMIT_NOTE, compareNote = '' } = {}) {
   const RATE = limitNote;
   return [
     { name: 'recommend_repos', config: {
@@ -25,7 +25,7 @@ export function toolDefinitions({ limitNote = LOCAL_LIMIT_NOTE } = {}) {
     } },
     { name: 'compare_repos', config: {
       title: 'Compare repositories',
-      description: `Compare 2-10 known GitHub repositories side by side, best score first: score and tier, stars, forks, open issues, last push, license, npm/PyPI weekly downloads (only when the registry links back to the repository) and a verdict. ${SCORE} Use this to choose between candidates you already have (for example zod vs valibot) or to check a dependency the project already uses; use recommend_repos to find candidates. One GitHub API call per repository plus npm/PyPI lookups. A repository that does not exist is listed under notFound and the rest are still compared; the call fails only if none can be fetched, or when GitHub's rate limit is reached or the token is rejected.`,
+      description: `Compare 2-10 known GitHub repositories side by side, best score first: score and tier, stars, forks, open issues, last push, license, npm/PyPI weekly downloads (only when the registry links back to the repository) and a verdict. ${SCORE} Use this to choose between candidates you already have (for example zod vs valibot) or to check a dependency the project already uses; use recommend_repos to find candidates. One GitHub API call per repository plus npm/PyPI lookups. A repository that does not exist is listed under notFound and the rest are still compared; the call fails only if none can be fetched, or when GitHub's rate limit is reached or the token is rejected.${compareNote ? ` ${compareNote}` : ''}`,
       inputSchema: {
         repos: z.array(z.string().min(3).max(140)).min(2).max(10).describe('Repository names as owner/repo, e.g. ["colinhacks/zod", "fabian-hiller/valibot"]. Not URLs or npm/PyPI package names.'),
       },
@@ -43,4 +43,9 @@ export function toolDefinitions({ limitNote = LOCAL_LIMIT_NOTE } = {}) {
       annotations: { ...annotations },
     } },
   ];
+}
+
+/** One tool's inputs as a zod object, built with this module's zod (for callers outside MCP, such as the hosted web API). */
+export function inputObject(definition) {
+  return z.object(definition.config.inputSchema);
 }
