@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createTools, formatResult } from '../tools.mjs';
+import { createTools, formatResult, ToolInputError } from '../tools.mjs';
 import { GitHubRateLimitError, GitHubAuthError } from '../../snapshot/src/github.mjs';
 
 const NOW = Date.parse('2026-09-27T12:00:00Z');
@@ -362,6 +362,23 @@ test('compare: other errors (404) still go under notFound', async () => {
   const tools = typedErrorTools(() => new Error('GitHub request failed: 404 Not Found'));
   const r = await tools.compare({ repos: ['a/one', 'b/two'] });
   assert.deepEqual(r.notFound.map((f) => f.repo), ['b/two']);
+});
+
+test('input errors are ToolInputError; other failures are not', async () => {
+  const { tools } = fakes(); // the existing helper returns { tools, calls }; with no repos every getRepo is a 404
+  const calls = [
+    () => tools.recommend({ need: 'x' }),
+    () => tools.compare({ repos: ['a/b'] }),
+    () => tools.compare({ repos: ['not a name', 'a/b'] }),
+    () => tools.trending({ period: 'year' }),
+  ];
+  for (const call of calls) {
+    const err = await call().catch((e) => e);
+    assert.ok(err instanceof ToolInputError, err.message);
+  }
+  const all404 = await tools.compare({ repos: ['a/b', 'c/d'] }).catch((e) => e);
+  assert.ok(!(all404 instanceof ToolInputError));
+  assert.match(all404.message, /Could not fetch any/);
 });
 
 test('limitNote replaces the no-token note', async () => {

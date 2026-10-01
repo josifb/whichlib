@@ -21,6 +21,7 @@ whichlib/            the npm package (run all npm scripts from here)
   dashboard/         index.html (single file)
   server.json        MCP registry manifest (description max 100 chars)
 telemetry/           Cloudflare Worker + D1 call counter (live)
+api/                 hosted Worker: /api/* and /mcp (wrangler); npm test, npm run dev, npm run check
 .github/workflows/   daily snapshot -> data branch
 RELEASING.md         release steps and what has been published
 ```
@@ -35,6 +36,9 @@ npm run snapshot / enrich / score / pull-data
 ```
 
 `GITHUB_TOKEN="$(gh auth token)"` gives 30 searches/min for eval runs.
+
+Hosted Worker (from `api/`): `npm test` / `npm run dev` / `npm run check` (bundle dry run).
+Local secrets live in `api/.dev.vars` (git-ignored).
 
 ## Working rules that have served this project
 

@@ -8,6 +8,14 @@ import scoreLib from '../lib/score.js';
 import { expandNeed, mentionLevel, asksForLibrary, looksLikeLibrary } from './expand.mjs';
 import { GitHubRateLimitError, GitHubAuthError } from '../snapshot/src/github.mjs';
 
+/** Bad tool input (as opposed to a failure upstream). The hosted API answers these with HTTP 400. */
+export class ToolInputError extends Error {
+  constructor(message) {
+    super(message);
+    this.name = 'ToolInputError';
+  }
+}
+
 const REPO_NAME = /^[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?\/(?!\.\.?$)[A-Za-z0-9._-]+$/;
 const RELEVANCE_WINDOW = 25;  // best-match results requested
 const RELEVANCE_DECAY = 0.5;  // rank 1 -> 1.0, rank 25 -> 0.5
@@ -121,7 +129,7 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
   return {
     async recommend({ need, language = null, limit = 5, includeCandidates = false } = {}) {
       const text = String(need ?? '').trim();
-      if (text.length < 2) throw new Error('Describe the need in a few words, for example "python pdf parser".');
+      if (text.length < 2) throw new ToolInputError('Describe the need in a few words, for example "python pdf parser".');
       const n = Math.min(Math.max(Number(limit) || 5, 1), 10);
       const { terms, topic } = expandNeed(text);
       const langs = languageQualifier(language);
@@ -173,9 +181,9 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
 
     async compare({ repos } = {}) {
       const names = Array.isArray(repos) ? repos.map((r) => String(r).trim()) : [];
-      if (names.length < 2 || names.length > 10) throw new Error('Give between two and ten repositories to compare.');
+      if (names.length < 2 || names.length > 10) throw new ToolInputError('Give between two and ten repositories to compare.');
       const bad = names.find((n) => !REPO_NAME.test(n));
-      if (bad) throw new Error(`"${bad}" is not an owner/repo name. Use the form owner/repo, for example colinhacks/zod.`);
+      if (bad) throw new ToolInputError(`"${bad}" is not an owner/repo name. Use the form owner/repo, for example colinhacks/zod.`);
       // One misspelled or deleted repo should not sink the whole comparison:
       // compare the rest and say which ones could not be fetched.
       const fetched = await Promise.all(names.map(async (name) => {
@@ -195,7 +203,7 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
 
     async trending({ period = 'week', language = null, limit = 20, withDownloads = false } = {}) {
       if (period === 'rising') return rising({ language, limit, withDownloads });
-      if (!PERIODS.includes(period)) throw new Error(`period must be one of ${[...PERIODS, 'rising'].join(', ')}.`);
+      if (!PERIODS.includes(period)) throw new ToolInputError(`period must be one of ${[...PERIODS, 'rising'].join(', ')}.`);
       const n = Math.min(Math.max(Number(limit) || 20, 1), 100);
       const query = buildSearchQuery({ period, language, now: new Date(now()) });
       const { items, totalCount } = await github.searchRepos(query, { perPage: Math.min(Math.max(n, 30), 100), sort: 'stars' });

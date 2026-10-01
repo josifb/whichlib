@@ -1,0 +1,46 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+import { utcDay, nextUtcMidnight, userHash, clientIp, sha256Hex } from '../src/identity.mjs';
+
+const T = Date.parse('2026-10-01T23:30:00Z');
+
+test('utcDay and nextUtcMidnight use UTC', () => {
+  assert.equal(utcDay(T), '2026-10-01');
+  assert.equal(nextUtcMidnight(T), Date.parse('2026-10-02T00:00:00Z'));
+  assert.equal(nextUtcMidnight(Date.parse('2026-12-31T00:00:00Z')), Date.parse('2027-01-01T00:00:00Z'));
+});
+
+test('userHash: 64 hex chars, changes with day, IP and salt', async () => {
+  const a = await userHash('203.0.113.7', 'salt', '2026-10-01');
+  assert.match(a, /^[0-9a-f]{64}$/);
+  assert.notEqual(a, await userHash('203.0.113.7', 'salt', '2026-10-02'));
+  assert.notEqual(a, await userHash('203.0.113.8', 'salt', '2026-10-01'));
+  assert.notEqual(a, await userHash('203.0.113.7', 'other', '2026-10-01'));
+  assert.equal(a, await userHash('203.0.113.7', 'salt', '2026-10-01'));
+});
+
+test('userHash requires IP_SALT (an unsalted hash of an IP is reversible)', async () => {
+  await assert.rejects(userHash('203.0.113.7', '', '2026-10-01'), /IP_SALT is not set/);
+  await assert.rejects(userHash('203.0.113.7', undefined, '2026-10-01'), /IP_SALT is not set/);
+});
+
+test('sha256Hex matches a known vector', async () => {
+  assert.equal(await sha256Hex('abc'), 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad');
+});
+
+test('clientIp reads CF-Connecting-IP', () => {
+  assert.equal(clientIp(new Request('https://x/', { headers: { 'CF-Connecting-IP': '198.51.100.1' } })), '198.51.100.1');
+  assert.equal(clientIp(new Request('https://x/')), 'unknown');
+});
+
+test('clientIp buckets IPv6 by /64 (one user controls a whole /64)', () => {
+  const ip = (v) => clientIp(new Request('https://x/', { headers: { 'CF-Connecting-IP': v } }));
+  assert.equal(ip('2001:db8:1:2::1'), '2001:db8:1:2::/64');
+  assert.equal(ip('2001:0db8:0001:0002:ffff:0:0:1'), ip('2001:db8:1:2::1'));
+  assert.equal(ip('2001:DB8:1:2:a:b:c:d'), ip('2001:db8:1:2::1'));
+  assert.notEqual(ip('2001:db8:1:3::1'), ip('2001:db8:1:2::1'));
+  assert.equal(ip('::1'), '0:0:0:0::/64');
+  assert.equal(ip('2001:db8::1'), '2001:db8:0:0::/64');
+  assert.equal(ip('203.0.113.7'), '203.0.113.7');
+  assert.equal(ip('unknown'), 'unknown');
+});

@@ -1,0 +1,22 @@
+{
+  "name": "whichlib-api",
+  "private": true,
+  "type": "module",
+  "description": "whichlib hosted API: web API and remote MCP on one Cloudflare Worker.",
+  "engines": { "node": ">=22.13" },
+  "scripts": {
+    "test": "node --test --disable-warning=ExperimentalWarning \"test/**/*.test.mjs\"",
+    "dev": "wrangler dev",
+    "check": "wrangler deploy --dry-run --outdir .wrangler/dry-run",
+    "deploy": "wrangler deploy",
+    "db:local": "wrangler d1 execute whichlib-events --local --file schema.sql",
+    "db:remote": "wrangler d1 execute whichlib-events --remote --file schema.sql"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.1",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "wrangler": "4.144.0"
+  }
+}

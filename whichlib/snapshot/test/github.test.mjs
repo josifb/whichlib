@@ -120,3 +120,26 @@ test('fetchGitHub: 401 throws GitHubAuthError with the usual message', async () 
   assert.ok(err instanceof GitHubAuthError);
   assert.equal(err.message, 'GitHub request failed: 401 Bad credentials');
 });
+
+test('fetchGitHub: retry-after: 0 is treated as 60 seconds, not the hourly reset', async () => {
+  const resetAt = Math.floor(Date.now() / 1000) + 3000;
+  const fetchImpl = async () => response(403, { message: 'secondary' }, { 'retry-after': '0', 'x-ratelimit-reset': String(resetAt) });
+  const err = await fetchGitHub('https://api.github.com/x', { fetchImpl, sleep: async () => {}, maxWaitMs: 0 }).catch((e) => e);
+  assert.ok(err instanceof GitHubRateLimitError);
+  assert.equal(err.resetSeconds, 60);
+  const fetchImpl00 = async () => response(403, { message: 'secondary' }, { 'retry-after': '00', 'x-ratelimit-reset': String(resetAt) });
+  const err00 = await fetchGitHub('https://api.github.com/x', { fetchImpl: fetchImpl00, sleep: async () => {}, maxWaitMs: 0 }).catch((e) => e);
+  assert.ok(err00 instanceof GitHubRateLimitError);
+  assert.equal(err00.resetSeconds, 60);
+});
+
+test('fetchGitHub: the GITHUB_TOKEN hint is only added to primary-limit errors', async () => {
+  const secondary = async () => response(403, { message: 'secondary' }, { 'retry-after': '120' });
+  const err = await fetchGitHub('https://api.github.com/x', { fetchImpl: secondary, sleep: async () => {}, maxWaitMs: 0 }).catch((e) => e);
+  assert.ok(err instanceof GitHubRateLimitError);
+  assert.doesNotMatch(err.message, /GITHUB_TOKEN/);
+  const resetAt = Math.floor(Date.now() / 1000) + 600;
+  const primary = async () => response(403, { message: 'limit' }, { 'x-ratelimit-remaining': '0', 'x-ratelimit-reset': String(resetAt) });
+  const err2 = await fetchGitHub('https://api.github.com/x', { fetchImpl: primary, sleep: async () => {}, maxWaitMs: 0 }).catch((e) => e);
+  assert.match(err2.message, /GITHUB_TOKEN/);
+});

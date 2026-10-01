@@ -19,6 +19,9 @@ docs/
 # wrangler local cache
 .wrangler/
 
+# Worker secrets for local dev
+api/.dev.vars
+
 # MCP registry publisher binary
 whichlib/mcp-publisher.exe
 dist/

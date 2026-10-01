@@ -1,0 +1,23 @@
+# whichlib hosted API: /api/* (JSON) and /mcp (remote MCP, stateless).
+# Secrets (never in this file): GITHUB_TOKEN (fine-grained, no permissions;
+# the owner runs `npx wrangler secret put GITHUB_TOKEN` in their own terminal)
+# and IP_SALT (random). Local dev reads them from api/.dev.vars (git-ignored).
+name = "whichlib"
+main = "src/worker.mjs"
+compatibility_date = "2026-09-01"
+workers_dev = true
+
+# Same database as the call counter (telemetry/); this Worker adds daily_usage (schema.sql).
+[[d1_databases]]
+binding = "DB"
+database_name = "whichlib-events"
+database_id = "df51224e-40e1-481b-88e2-ffcfab3db39c"
+
+# Burst guard: 20 tool calls per 60 s per hashed user id.
+[[ratelimits]]
+name = "BURST"
+namespace_id = "1001"
+
+  [ratelimits.simple]
+  limit = 20
+  period = 60

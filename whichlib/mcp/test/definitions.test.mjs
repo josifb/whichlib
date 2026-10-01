@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { z } from 'zod';
-import { toolDefinitions, LOCAL_LIMIT_NOTE, HOSTED_LIMIT_NOTE } from '../definitions.mjs';
+import { toolDefinitions, LOCAL_LIMIT_NOTE, HOSTED_LIMIT_NOTE, inputObject } from '../definitions.mjs';
 
 test('toolDefinitions: the three tools, read-only annotations', () => {
   const defs = toolDefinitions();
@@ -39,4 +39,20 @@ test('toolDefinitions: input schemas validate and apply defaults', () => {
   const t = z.object(trending.config.inputSchema).parse({ period: 'rising' });
   assert.equal(t.limit, 20);
   assert.equal(t.withDownloads, false);
+});
+
+test('compareNote is appended to the compare description only', () => {
+  const plain = toolDefinitions();
+  const hosted = toolDefinitions({ limitNote: HOSTED_LIMIT_NOTE, compareNote: HOSTED_LIMIT_NOTE });
+  const compare = (defs) => defs.find((d) => d.name === 'compare_repos').config.description;
+  assert.ok(!compare(plain).includes(HOSTED_LIMIT_NOTE));
+  assert.ok(compare(hosted).endsWith(` ${HOSTED_LIMIT_NOTE}`));
+});
+
+test('inputObject validates and applies defaults with the definition schema', () => {
+  const trending = toolDefinitions().find((d) => d.name === 'trending_repos');
+  const ok = inputObject(trending).safeParse({ period: 'day' });
+  assert.equal(ok.success, true);
+  assert.deepEqual(ok.data, { period: 'day', limit: 20, withDownloads: false });
+  assert.equal(inputObject(trending).safeParse({ limit: 500 }).success, false);
 });
