@@ -34,6 +34,13 @@ jobs:
         uses: actions/setup-node@v5
         with:
           node-version: 22
+          cache: npm
+          cache-dependency-path: whichlib/package-lock.json
+
+      # The tests import zod and the MCP SDK (mcp/definitions.mjs since 2026-09-30).
+      - name: Install dependencies
+        working-directory: whichlib
+        run: npm ci
 
       - name: Run tests
         working-directory: whichlib
