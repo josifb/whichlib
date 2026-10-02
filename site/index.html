@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>whichlib · the dependency picker for coding agents</title>
+<meta name="description" content="whichlib recommends, compares and scores open-source libraries for coding agents, from real star momentum, maintenance, adoption and license. Free remote MCP.">
+<meta property="og:title" content="whichlib · the dependency picker for coding agents">
+<meta property="og:description" content="Ask your coding agent for a library and get a ranked, scored answer from real GitHub and npm/PyPI data. Free remote MCP server.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://whichlib.com/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="wrap">
+  <nav class="site-nav" aria-label="Main">
+    <a class="brand" href="/">whichlib</a>
+    <a href="/" aria-current="page">Home</a>
+    <a href="/repos/">Dashboard</a>
+    <a href="/docs/">Docs</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="https://github.com/josifb/whichlib">GitHub</a>
+  </nav>
+</header>
+<main class="wrap">
+  <h1>The dependency picker for coding agents</h1>
+  <p class="lead">Before your agent adds a library, whichlib finds the candidates on GitHub and ranks them by a transparent score: real momentum, maintenance, adoption and license.</p>
+
+  <section aria-labelledby="example-h">
+    <h2 id="example-h">A real answer</h2>
+    <p class="muted">Asked: “Python http client”. Saved from the hosted API on 2026-10-02.</p>
+    <div class="table-scroll card">
+      <table>
+        <thead><tr><th>Repository</th><th class="num">Fit</th><th>Score</th><th class="num">Stars</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><td><a href="https://github.com/psf/requests">psf/requests</a></td><td class="num">73</td><td><span class="tier strong">Strong 75</span></td><td class="num">54,374</td><td>Gaining steadily, pushed 3 days ago, Apache-2.0.</td></tr>
+          <tr><td><a href="https://github.com/aio-libs/aiohttp">aio-libs/aiohttp</a></td><td class="num">68</td><td><span class="tier">Solid 72</span></td><td class="num">16,565</td><td>Gaining steadily, 109.3M downloads/wk, pushed today, Apache-2.0.</td></tr>
+          <tr><td><a href="https://github.com/encode/httpx">encode/httpx</a></td><td class="num">66</td><td><span class="tier">Solid 66</span></td><td class="num">15,523</td><td>Slow growth, pushed today, BSD-3-Clause.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted">Fit = score × relevance to the question. Every part of the score comes back with the answer, see <a href="/docs/#score">how the score works</a>.</p>
+  </section>
+
+  <section aria-labelledby="install-h" id="install">
+    <h2 id="install-h">Install</h2>
+    <div class="tabs" role="tablist" aria-label="Install options">
+      <button type="button" role="tab" id="tab-remote" aria-controls="panel-remote" aria-selected="true">Remote MCP</button>
+      <button type="button" role="tab" id="tab-plugin" aria-controls="panel-plugin" aria-selected="false">Claude Code plugin</button>
+      <button type="button" role="tab" id="tab-npm" aria-controls="panel-npm" aria-selected="false">npm (local)</button>
+    </div>
+    <div id="panel-remote" role="tabpanel" aria-labelledby="tab-remote">
+      <p>Nothing to install. Claude Code:</p>
+      <div class="cmd"><pre><code id="cmd-remote" data-origin>claude mcp add --transport http whichlib https://whichlib.com/mcp</code></pre><button type="button" class="copy" data-copy="cmd-remote">Copy</button></div>
+      <p class="muted">Cursor, VS Code and other clients: see <a href="/docs/#remote-mcp">the docs</a>. Free for 50 calls a day; add your own GitHub token for unlimited use.</p>
+    </div>
+    <div id="panel-plugin" role="tabpanel" aria-labelledby="tab-plugin" hidden>
+      <p>Adds the MCP server and a skill that makes Claude check a library before adding it:</p>
+      <div class="cmd"><pre><code id="cmd-plugin">/plugin marketplace add josifb/whichlib
+/plugin install whichlib@whichlib</code></pre><button type="button" class="copy" data-copy="cmd-plugin">Copy</button></div>
+      <p class="muted">Runs the npm package on your machine (Node 22 or newer).</p>
+    </div>
+    <div id="panel-npm" role="tabpanel" aria-labelledby="tab-npm" hidden>
+      <p>Runs on your machine, no limits beyond GitHub's own (Node 22 or newer):</p>
+      <div class="cmd"><pre><code id="cmd-npm">claude mcp add whichlib -- npx -y whichlib</code></pre><button type="button" class="copy" data-copy="cmd-npm">Copy</button></div>
+      <p class="muted">Cursor, Windsurf and others: <code>{ "mcpServers": { "whichlib": { "command": "npx", "args": ["-y", "whichlib"] } } }</code></p>
+    </div>
+  </section>
+
+  <section aria-labelledby="why-h">
+    <h2 id="why-h">Why trust the ranking</h2>
+    <div class="grid3">
+      <div class="card"><h3>Real momentum</h3><p>Stars gained this week from daily star counts (the top 1,000 repositories per language plus new ones); other repositories fall back to stars per week adjusted by their download trend.</p></div>
+      <div class="card"><h3>Transparent score</h3><p>Momentum 40%, maintenance 25%, adoption 25%, license 10%. Every part is in the answer, and the formula is <a href="https://github.com/josifb/whichlib/blob/main/whichlib/lib/score.js">open source</a>.</p></div>
+      <div class="card"><h3>No paid placement</h3><p>Nobody can buy a better rank. The data is public GitHub, npm and PyPI data.</p></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="teams-h">
+    <h2 id="teams-h">Teams</h2>
+    <p>Shared limits, an allow-list for your organisation and usage reports are coming. <a href="https://github.com/josifb/whichlib/issues/1">Join the waitlist</a> (a thumbs-up on the issue is enough).</p>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    whichlib is open source (MIT) · <a href="https://github.com/josifb/whichlib/blob/main/PRIVACY.md">Privacy</a> · Teams: <a href="https://github.com/josifb/whichlib/issues/1">join the waitlist</a>
+  </div>
+</footer>
+<script src="/site.js" defer></script>
+</body>
+</html>

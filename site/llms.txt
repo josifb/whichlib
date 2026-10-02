@@ -1,0 +1,9 @@
+# whichlib
+
+> The dependency picker for coding agents: recommends, compares and scores open-source GitHub repositories (score 0-100 from star momentum, maintenance, adoption and license).
+
+- [Docs](https://whichlib.com/docs/): tools, remote MCP, web API, score, limits
+- [Remote MCP](https://whichlib.com/mcp): Streamable HTTP; tools recommend_repos, compare_repos, trending_repos
+- [Web API](https://whichlib.com/docs/#web-api): GET /api/recommend, /api/compare, /api/trending (JSON)
+- [Dashboard](https://whichlib.com/repos/): most-starred new and rising repositories
+- [Source](https://github.com/josifb/whichlib): MIT
