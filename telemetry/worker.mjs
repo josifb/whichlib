@@ -9,10 +9,12 @@
 // Read the numbers (npx wrangler d1 execute whichlib-events --remote --command "..."):
 //   weekly active installs:
 //     SELECT strftime('%Y-%W', ts) AS week, COUNT(DISTINCT install_id) AS installs, COUNT(*) AS calls
-//     FROM events GROUP BY week ORDER BY week
+//     FROM events WHERE source = 'npm' GROUP BY week ORDER BY week
 //   calls per install per week:
 //     SELECT strftime('%Y-%W', ts) AS week, ROUND(1.0 * COUNT(*) / COUNT(DISTINCT install_id), 1)
-//     FROM events GROUP BY week ORDER BY week
+//     FROM events WHERE source = 'npm' GROUP BY week ORDER BY week
+//   hosted calls per week:
+//     SELECT strftime('%Y-%W', ts) AS week, COUNT(*) FROM events WHERE source = 'hosted' GROUP BY week
 //   calls by tool:
 //     SELECT tool, COUNT(*) FROM events GROUP BY tool ORDER BY 2 DESC
 // Or GET /stats on the worker for the same three, as JSON.
@@ -23,11 +25,14 @@ const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
 // Schema lives in schema.sql and is applied once:
 //   npx wrangler d1 execute whichlib-events --remote --file schema.sql
 
+// installs and calls count the npm package only (source 'npm'), so calls per install stays meaningful;
+// hosted calls (source 'hosted', one constant install id) are reported as their own number.
 async function stats(db) {
-  const weekly = await db.prepare("SELECT strftime('%Y-%W', ts) AS week, COUNT(DISTINCT install_id) AS installs, COUNT(*) AS calls FROM events GROUP BY week ORDER BY week").all();
-  const byTool = await db.prepare('SELECT tool, COUNT(*) AS calls FROM events GROUP BY tool ORDER BY calls DESC').all();
-  const totals = await db.prepare('SELECT COUNT(DISTINCT install_id) AS installs, COUNT(*) AS calls, MIN(ts) AS since FROM events').first();
-  return { totals, weekly: weekly.results, byTool: byTool.results };
+  const weekly = await db.prepare("SELECT strftime('%Y-%W', ts) AS week, COUNT(DISTINCT CASE WHEN source = 'npm' THEN install_id END) AS installs, SUM(source = 'npm') AS calls, SUM(source = 'hosted') AS hostedCalls FROM events GROUP BY week ORDER BY week").all();
+  const byTool = await db.prepare('SELECT tool, COUNT(*) AS calls FROM events GROUP BY tool ORDER BY calls DESC, tool').all();
+  const bySource = await db.prepare('SELECT source, COUNT(*) AS calls FROM events GROUP BY source ORDER BY calls DESC, source').all();
+  const totals = await db.prepare("SELECT COUNT(DISTINCT CASE WHEN source = 'npm' THEN install_id END) AS installs, COALESCE(SUM(source = 'npm'), 0) AS calls, COALESCE(SUM(source = 'hosted'), 0) AS hostedCalls, MIN(ts) AS since FROM events").first();
+  return { totals, weekly: weekly.results, byTool: byTool.results, bySource: bySource.results };
 }
 
 export default {
