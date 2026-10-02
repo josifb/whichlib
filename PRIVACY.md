@@ -49,6 +49,14 @@ a hosted request:
 
 - Your search text and repository names go to GitHub as with the npm package,
   using the service's GitHub token, or yours when you send `X-GitHub-Token`.
+- For recommend_repos called without your own GitHub token, your need text
+  and language, plus the public name, description and topics of each
+  candidate repository, go to TypeSafe (typesafe.ai, hosted in the US), which
+  judges how well each candidate fits the need. TypeSafe does not train on
+  this input and keeps it as long as necessary under its data processing
+  terms (no fixed period is stated). Your GitHub token and IP address are
+  never sent to TypeSafe, and calls made with your own token are never sent
+  there. The npm package does not use TypeSafe.
 - Stored: hashed cache keys and cached results (public GitHub, npm and PyPI
   data, plus the question asked, kept for up to a day); a per-day call counter per hashed IP address (SHA-256 of the
   address, a secret salt and the date, so the raw address is never stored and
