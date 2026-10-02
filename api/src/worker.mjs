@@ -1,5 +1,6 @@
 // whichlib hosted API (Cloudflare Worker): /api/* JSON and /mcp remote MCP.
-// Pages (site/) arrive in phase 3. Bindings: DB (D1), BURST (rate limit);
+// Pages are static assets (site/), served without running this code;
+// wrangler.toml routes only /api/* and /mcp here. Bindings: DB (D1), BURST (rate limit);
 // secrets: GITHUB_TOKEN, IP_SALT.
 
 import { createRisingLoader } from '../../whichlib/mcp/history-provider.mjs';
@@ -58,9 +59,6 @@ export function createWorker() {
 
         if (pathname.startsWith('/api/')) return withCors(await handleApi(request, service(), caller));
         if (pathname === '/mcp') return withCors(await handleMcp(request, service(), caller));
-        if (pathname === '/') {
-          return withCors(new Response('whichlib hosted API: GET /api/recommend, /api/compare, /api/trending; remote MCP at /mcp. Docs: https://github.com/josifb/whichlib\n', { headers: { 'Content-Type': 'text/plain; charset=utf-8' } }));
-        }
         return withCors(Response.json({ error: 'Not found.' }, { status: 404 }));
       } catch (err) {
         console.error('worker error', err?.stack ?? err);
