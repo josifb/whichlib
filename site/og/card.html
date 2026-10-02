@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>whichlib share card</title>
+<!-- Source of /og.png (1200x630). Not served: site/.assetsignore lists og/.
+     Re-render after a change: node api/scripts/og-image.mjs
+     Colours are the light-theme tokens of site/style.css; the rows are the
+     Home example (site/index.html). System fonts only, no external requests. -->
+<style>
+  :root {
+    --bg: #f5f7f9; --surface: #ffffff; --text: #1a1f26; --muted: #5b6673;
+    --border: #d9dfe6; --accent: #0b6e7a; --accent-soft: #d6eef0;
+    --tier-strong-bg: #dcefe1; --tier-strong-text: #1d5a30;
+    --sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); position: relative; }
+  .bar { position: absolute; left: 0; top: 0; width: 100%; height: 12px; background: var(--accent); }
+  .brand { position: absolute; left: 72px; top: 64px; font-size: 76px; font-weight: 700; letter-spacing: -1px; line-height: 1; }
+  .line { position: absolute; left: 72px; top: 160px; font-size: 38px; color: var(--muted); line-height: 1.2; }
+  .card { position: absolute; left: 72px; right: 72px; top: 248px; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; box-shadow: 0 2px 4px rgba(20, 30, 40, .08); padding: 10px 32px; }
+  table { width: 100%; border-collapse: collapse; font-size: 28px; }
+  td { padding: 18px 0; border-bottom: 1px solid var(--border); white-space: nowrap; }
+  tr:last-child td { border-bottom: 0; }
+  td.repo { color: var(--accent); font-weight: 600; width: 360px; }
+  td.tier { width: 240px; }
+  td.verdict { color: var(--muted); font-size: 24px; }
+  .pill { display: inline-block; padding: 4px 18px; border-radius: 999px; background: var(--accent-soft); font-size: 24px; }
+  .pill.strong { background: var(--tier-strong-bg); color: var(--tier-strong-text); }
+  .domain { position: absolute; right: 72px; bottom: 40px; font-size: 30px; font-weight: 600; color: var(--accent); }
+</style>
+</head>
+<body>
+  <div class="bar"></div>
+  <div class="brand">whichlib</div>
+  <div class="line">The dependency picker for coding agents</div>
+  <div class="card">
+    <table>
+      <tr><td class="repo">psf/requests</td><td class="tier"><span class="pill strong">Strong 75</span></td><td class="verdict">Gaining steadily, pushed 3 days ago</td></tr>
+      <tr><td class="repo">aio-libs/aiohttp</td><td class="tier"><span class="pill">Solid 72</span></td><td class="verdict">Gaining steadily, 109.3M downloads/wk</td></tr>
+      <tr><td class="repo">encode/httpx</td><td class="tier"><span class="pill">Solid 66</span></td><td class="verdict">Slow growth, pushed today</td></tr>
+    </table>
+  </div>
+  <div class="domain">whichlib.com</div>
+</body>
+</html>

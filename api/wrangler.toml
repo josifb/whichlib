@@ -7,10 +7,15 @@
 name = "whichlib"
 main = "src/worker.mjs"
 compatibility_date = "2026-09-01"
-workers_dev = true
 
-# Runs before every `wrangler dev` / `wrangler deploy`: copies score.js and
-# generates site/repos/ from the dashboard (api/scripts/build-site.mjs).
+# Registered at Cloudflare 2026-10-02 (same account). No www yet: see the phase 5 plan.
+routes = [{ pattern = "whichlib.com", custom_domain = true }]
+# the workers.dev address is off since whichlib.com went live; it was never listed
+workers_dev = false
+preview_urls = false
+
+# Runs before every `wrangler dev` / `wrangler deploy`: copies score.js
+# (api/scripts/build-site.mjs).
 [build]
 command = "node scripts/build-site.mjs"
 
