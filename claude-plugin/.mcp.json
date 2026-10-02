@@ -4,7 +4,7 @@
       "command": "npx",
       "args": [
         "-y",
-        "whichlib@0.1.2"
+        "whichlib@0.1.3"
       ],
       "env": {
         "GITHUB_TOKEN": "${user_config.github_token}"
