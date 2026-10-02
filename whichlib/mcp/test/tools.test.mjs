@@ -459,6 +459,8 @@ test('recommend with judgeFit: a failing judge falls back to the word-match rule
   assert.equal(withJudge.fitJudge, 'rules (judge unavailable)');
   assert.ok(withJudge.dataNotes.some((n) => n.startsWith('The fit judgment (TypeSafe Jev) was unavailable')));
   assert.deepEqual(withJudge.repos.map((x) => [x.fullName, x.fit]), without.repos.map((x) => [x.fullName, x.fit]));
+  assert.deepEqual(withJudge.repos.map((x) => [x.fullName, x.signals]), without.repos.map((x) => [x.fullName, x.signals]));
+  assert.equal(withJudge.ranking, without.ranking);
   assert.equal(without.fitJudge, 'rules');
 });
 
@@ -467,4 +469,37 @@ test('recommend without judgeFit: unchanged, no jevFit signal, no weak-fit flag'
   const r = await fakes({ items }).tools.recommend({ need: 'pdf parser', limit: 1 });
   assert.equal(r.repos[0].signals.jevFit, undefined);
   assert.ok(!r.repos[0].flags.includes('weak-fit'));
+});
+
+test('recommend with judgeFit: a malformed answer (not a Map) falls back to the rules', async () => {
+  const items = [rawItem('a/one', 1000)];
+  const judgeFit = async () => ({ 'a/one': 0.9 });
+  const r = await fakes({ items, judgeFit }).tools.recommend({ need: 'pdf parser', limit: 1 });
+  assert.equal(r.fitJudge, 'rules (judge unavailable)');
+  assert.equal(r.repos[0].signals.jevFit, undefined);
+});
+
+test('recommend with judgeFit: a NaN probability counts as 0 and the call succeeds', async () => {
+  const items = [rawItem('a/one', 1000), rawItem('b/two', 900)];
+  const judgeFit = async () => new Map([['a/one', 0.9], ['b/two', NaN]]);
+  const r = await fakes({ items, judgeFit }).tools.recommend({ need: 'pdf parser', limit: 2 });
+  assert.equal(r.repos.find((x) => x.fullName === 'b/two').relevance, 0);
+  assert.ok(r.repos.find((x) => x.fullName === 'a/one').relevance > 0);
+});
+
+test('recommend with judgeFit: a candidate at 0.6 means no no-strong-match note', async () => {
+  const items = [rawItem('a/one', 1000)];
+  const { judgeFit } = fakeJudge({ 'a/one': 0.6 });
+  const r = await fakes({ items, judgeFit }).tools.recommend({ need: 'pdf parser', limit: 2 });
+  assert.ok(!r.dataNotes.some((n) => n.startsWith('No candidate is clearly a library for this need')));
+});
+
+test('recommend with judgeFit: judging the whole pool lets a low-ranked candidate reach the shortlist', async () => {
+  const items = Array.from({ length: 10 }, (_, i) => rawItem(`o/r${i}`, 10000 - i * 500));
+  const probabilities = Object.fromEntries(items.map((_, i) => [`o/r${i}`, i === 9 ? 0.95 : 0.05]));
+  const { judgeFit } = fakeJudge(probabilities);
+  const judged = await fakes({ items, judgeFit }).tools.recommend({ need: 'pdf parser', limit: 1 });
+  const plain = await fakes({ items }).tools.recommend({ need: 'pdf parser', limit: 1 });
+  assert.equal(judged.repos[0].fullName, 'o/r9');
+  assert.notEqual(plain.repos[0].fullName, 'o/r9');
 });

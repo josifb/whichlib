@@ -167,7 +167,10 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
       let jev = null;
       let judgeFailed = false;
       if (judgeFit) {
-        try { jev = await judgeFit(text, language, pool); } catch { judgeFailed = true; }
+        try {
+          jev = await judgeFit(text, language, pool);
+          if (!(jev instanceof Map)) { jev = null; judgeFailed = true; }
+        } catch { jev = null; judgeFailed = true; }
       }
       const withFit = (r) => {
         const rank = relevanceRank.get(r.fullName) ?? null;
@@ -176,7 +179,7 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
           : src.includes('topic') ? RELEVANCE_TOPIC : RELEVANCE_ABSENT;
         let relevance; let signals; let flags = r.flags;
         if (jev) {
-          const p = jev.get(r.fullName) ?? 0;
+          const raw = jev.get(r.fullName); const p = Number.isFinite(raw) ? Math.min(1, Math.max(0, raw)) : 0;
           relevance = position * p;
           signals = { jevFit: Number(p.toFixed(2)) };
           if (p < WEAK_FIT) flags = [...flags, 'weak-fit'];
@@ -193,7 +196,7 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
       const scored = (await enrichAndScore(shortlist, { withDownloads: true })).map(withFit).sort(byFit).slice(0, n);
       const notes = dataNotes();
       if (judgeFailed) notes.push(JEV_UNAVAILABLE_NOTE);
-      if (jev && pool.length && Math.max(...pool.map((r) => jev.get(r.fullName) ?? 0)) < WEAK_FIT) notes.push(NO_STRONG_MATCH_NOTE);
+      if (jev && pool.length && !pool.some((r) => (jev.get(r.fullName) ?? 0) >= WEAK_FIT)) notes.push(NO_STRONG_MATCH_NOTE);
       const result = {
         tool: 'recommend_repos', need: text, language, query, topicQuery, totalMatches: relevance.totalCount,
         candidatesConsidered: candidates.length, shortlisted: shortlist.length,
