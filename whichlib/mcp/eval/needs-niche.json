@@ -1,0 +1,25 @@
+{
+  "description": "Held-out set for the Jev spike (2026-10-02): 20 narrower needs, written before any run with Jev and never used to tune the ranking or the question. Accepted = repositories a senior engineer would consider a reasonable pick today.",
+  "needs": [
+    { "need": "toml parser", "language": "Go", "accept": ["BurntSushi/toml", "pelletier/go-toml"] },
+    { "need": "rate limiter", "language": "Python", "accept": ["laurentS/slowapi", "alisaifee/limits", "alisaifee/flask-limiter", "vutran1710/PyrateLimiter", "tomasbasham/ratelimit"] },
+    { "need": "retry library", "language": "Python", "accept": ["jd/tenacity", "litl/backoff", "invl/retry"] },
+    { "need": "retry with backoff", "language": "Go", "accept": ["avast/retry-go", "cenkalti/backoff", "hashicorp/go-retryablehttp", "sethvargo/go-retry"] },
+    { "need": "fuzzy string matching", "language": "Python", "accept": ["rapidfuzz/RapidFuzz", "seatgeek/thefuzz", "seatgeek/fuzzywuzzy"] },
+    { "need": "fuzzy search", "language": "JavaScript", "accept": ["krisk/Fuse", "farzher/fuzzysort", "leeoniya/uFuzzy", "nextapps-de/flexsearch", "olivernn/lunr.js"] },
+    { "need": "yaml parser", "language": "Rust", "accept": ["dtolnay/serde-yaml", "acatton/serde-yaml-ng", "saphyr-rs/saphyr", "chyh1990/yaml-rust", "Ethiraric/yaml-rust2"] },
+    { "need": "job queue", "language": "TypeScript", "accept": ["taskforcesh/bullmq", "OptimalBits/bull", "timgit/pg-boss", "agenda/agenda", "graphile/worker"] },
+    { "need": "task queue", "language": "Python", "accept": ["celery/celery", "rq/rq", "coleifer/huey", "Bogdanp/dramatiq", "python-arq/arq", "samuelcolvin/arq"] },
+    { "need": "websocket", "language": "Go", "accept": ["gorilla/websocket", "coder/websocket", "nhooyr/websocket", "gobwas/ws", "lxzan/gws"] },
+    { "need": "text diff", "language": "JavaScript", "accept": ["kpdecker/jsdiff", "google/diff-match-patch"] },
+    { "need": "html sanitizer", "language": "JavaScript", "accept": ["cure53/DOMPurify", "apostrophecms/sanitize-html", "leizongmin/js-xss"] },
+    { "need": "configuration loader", "language": "Go", "accept": ["spf13/viper", "knadh/koanf", "kelseyhightower/envconfig", "caarlos0/env", "ilyakaznacheev/cleanenv"] },
+    { "need": "progress bar", "language": "Python", "accept": ["tqdm/tqdm", "Textualize/rich", "rsalmei/alive-progress", "WoLpH/python-progressbar", "verigak/progress"] },
+    { "need": "error handling", "language": "Rust", "accept": ["dtolnay/anyhow", "dtolnay/thiserror", "eyre-rs/eyre", "yaahc/eyre", "shepmaster/snafu", "zkat/miette"] },
+    { "need": "image resizing", "language": "Go", "accept": ["disintegration/imaging", "h2non/bimg", "nfnt/resize", "davidbyttow/govips"] },
+    { "need": "csv parser", "language": "JavaScript", "accept": ["mholt/PapaParse", "adaltas/node-csv", "mafintosh/csv-parser", "C2FO/fast-csv"] },
+    { "need": "dependency injection", "language": "TypeScript", "accept": ["inversify/InversifyJS", "microsoft/tsyringe", "typestack/typedi", "jeffijoe/awilix"] },
+    { "need": "msgpack serialization", "language": "Python", "accept": ["msgpack/msgpack-python", "jcrist/msgspec", "msgspec/msgspec"] },
+    { "need": "jwt", "language": "Go", "accept": ["golang-jwt/jwt", "lestrrat-go/jwx", "go-jose/go-jose"] }
+  ]
+}

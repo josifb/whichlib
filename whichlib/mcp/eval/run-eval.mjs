@@ -14,13 +14,21 @@ import { loadHistoryProvider } from '../data.mjs';
 import { createTools } from '../tools.mjs';
 import { resolvePackages } from '../../snapshot/src/registry.mjs';
 import { firstHitRank, summarize, pct, norm } from './metrics.mjs';
+import { createJevJudge } from '../jev.mjs';
 
 const here = dirname(fileURLToPath(import.meta.url));
-const { needs } = JSON.parse(await readFile(join(here, 'needs.json'), 'utf8'));
+const args = process.argv.slice(2);
+const flag = (name) => { const i = args.indexOf(name); return i === -1 ? null : args[i + 1] ?? true; };
+const needsFile = flag('--needs') ?? 'needs.json';
+if (typeof needsFile !== 'string') throw new Error('--needs takes a file name, e.g. --needs needs-niche.json');
+const useJev = args.includes('--jev');
+if (useJev && !process.env.TYPESAFE_API_KEY) throw new Error('--jev needs TYPESAFE_API_KEY');
+const { needs } = JSON.parse(await readFile(join(here, needsFile), 'utf8'));
 const github = createGitHubClient();
 const { provider: history, refreshed } = await loadHistoryProvider();
 await refreshed; // an eval must not race the background download
-const tools = createTools({ github, resolvePackages, history });
+const judgeFit = useJev ? createJevJudge({ apiKey: process.env.TYPESAFE_API_KEY }) : null;
+const tools = createTools({ github, resolvePackages, history, judgeFit });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const paceMs = github.hasToken ? 6500 : 19000; // 3 searches per need; 30/min with token, 10/min without
 
@@ -39,6 +47,7 @@ console.error(`Eval: ${needs.length} needs | token: ${github.hasToken ? 'yes' : 
 for (const [i, item] of needs.entries()) {
   const started = Date.now();
   const r = await tools.recommend({ need: item.need, language: item.language ?? null, limit: 5, includeCandidates: true });
+  if (useJev && r.fitJudge !== judgeFit.model) throw new Error(`Jev was unavailable for "${item.need}" (fitJudge: ${r.fitJudge}); rerun later`);
   const accept = new Set(item.accept.map(norm));
   const finalNames = r.repos.map((x) => x.fullName);
   const finalRank = firstHitRank(finalNames, item.accept);
@@ -60,7 +69,7 @@ const date = new Date().toISOString().slice(0, 10);
 const sums = Object.fromEntries(Object.entries(ranks).map(([k, v]) => [k, summarize(v)]));
 const lines = [];
 lines.push(`# Recommendation eval ${date}`, '');
-lines.push(`${needs.length} needs, live GitHub + registry data, snapshot history: ${history.days} day(s). A hit is any repo in the need's accepted set. Baselines are computed from the same candidate pool (relevance top 25 ∪ stars top 15).`, '');
+lines.push(`${needs.length} needs (${needsFile}${useJev ? `, fit judge ${judgeFit.model}` : ''}), live GitHub + registry data, snapshot history: ${history.days} day(s). A hit is any repo in the need's accepted set. Baselines are computed from the same candidate pool (relevance top 25 ∪ stars top 15).`, '');
 lines.push('| Ranking | hit@1 | hit@3 | hit@5 | MRR |', '|---|---|---|---|---|');
 const label = { final: '**ours: fit, with downloads (what the tool returns)**', fit: 'fit, pre-download scores', scoreOnly: 'score only (no relevance)', relevance: 'GitHub relevance order', stars: 'stars order' };
 for (const k of ['final', 'fit', 'scoreOnly', 'relevance', 'stars']) {
@@ -78,8 +87,10 @@ lines.push('', '## Reading it', '', '- "Accepted repos in pool" empty means GitH
 const outDir = join(here, 'results');
 await mkdir(outDir, { recursive: true });
 // Never overwrite an earlier run from the same day: <date>.md, then <date>-2.md, ...
-let outPath = join(outDir, `${date}.md`);
-for (let n = 2; existsSync(outPath); n += 1) outPath = join(outDir, `${date}-${n}.md`);
+const suffix = `${useJev ? '-jev' : ''}${needsFile === 'needs.json' ? '' : `-${needsFile.replace(/^needs-|\.json$/g, '')}`}`;
+const base = `${date}${suffix}`;
+let outPath = join(outDir, `${base}.md`);
+for (let n = 2; existsSync(outPath); n += 1) outPath = join(outDir, `${base}-${n}.md`);
 await writeFile(outPath, lines.join('\n'));
 console.error(`\nWrote ${outPath}\n`);
 console.log(lines.slice(0, 10).join('\n'));

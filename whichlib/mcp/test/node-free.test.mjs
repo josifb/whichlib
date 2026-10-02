@@ -33,6 +33,7 @@ export const WORKER_MODULES = [
   'snapshot/src/rising.mjs',
   'mcp/history-provider.mjs',
   'mcp/definitions.mjs',
+  'mcp/jev.mjs',
   'snapshot/src/github.mjs',
   'snapshot/src/normalize.mjs',
   'snapshot/src/query.mjs',

@@ -1,7 +1,9 @@
 # whichlib hosted API: /api/* (JSON) and /mcp (remote MCP, stateless).
 # Secrets (never in this file): GITHUB_TOKEN (fine-grained, no permissions;
-# the owner runs `npx wrangler secret put GITHUB_TOKEN` in their own terminal)
-# and IP_SALT (random). Local dev reads them from api/.dev.vars (git-ignored).
+# the owner runs `npx wrangler secret put GITHUB_TOKEN` in their own terminal),
+# IP_SALT (random), and TYPESAFE_API_KEY (TypeSafe System One; optional:
+# without it recommend uses the word-match ranking). Local dev reads them
+# from api/.dev.vars (git-ignored).
 name = "whichlib"
 main = "src/worker.mjs"
 compatibility_date = "2026-09-01"

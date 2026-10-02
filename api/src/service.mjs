@@ -10,6 +10,7 @@ import { GitHubRateLimitError, GitHubAuthError } from '../../whichlib/snapshot/s
 import { utcDay, nextUtcMidnight, userHash } from './identity.mjs';
 import { checkBurst, BURST_LIMIT } from './limits.mjs';
 import { cacheKey, TTL } from './cache.mjs';
+import { createJevJudge, JEV_MODEL } from '../../whichlib/mcp/jev.mjs';
 
 export const HOSTED_DEFINITIONS = toolDefinitions({ limitNote: HOSTED_LIMIT_NOTE, compareNote: HOSTED_LIMIT_NOTE });
 
@@ -53,7 +54,7 @@ export function createBudget(fetchImpl, max = TOOL_SUBREQUESTS) {
     const host = new URL(typeof url === 'string' ? url : url.url).hostname;
     if (host !== 'api.github.com' && (res.status === 429 || res.status >= 500)) {
       budget.busy = true;
-      throw new Error(`registry busy: ${host} ${res.status}`);
+      throw Object.assign(new Error(`registry busy: ${host} ${res.status}`), { status: res.status });
     }
     return res;
   };
@@ -83,6 +84,7 @@ function normaliseArgs(args) {
 // Period 'rising' deliberately uses TTL.trending (6 h): the list itself changes once a day.
 function wholeResultTtl(name, args, result) {
   if (degraded(result.repos ?? [])) return TTL.degraded;
+  if (result.fitJudge === 'rules (judge unavailable)') return TTL.degraded;
   if (name === 'recommend_repos') return TTL.recommend;
   return args.period === 'day' ? TTL.trendingDay : TTL.trending;
 }
@@ -144,6 +146,8 @@ export function createService({
     }
     : (key, ttl, produce) => c.wrap(key, ttl, produce));
 
+  const judgeEnabled = (caller) => Boolean(env.TYPESAFE_API_KEY) && !caller.ownToken;
+
   async function buildTools(caller, budget) {
     const github = makeGitHub(caller.ownToken ?? env.GITHUB_TOKEN ?? null, budget.fetch);
     const item = through(itemCache, caller);
@@ -163,7 +167,20 @@ export function createService({
       if (err instanceof BudgetError) budget.exhausted = true;
       throw err;
     });
-    return createTools({ github: cachedGitHub, resolvePackages: cachedResolve, history: await loadHistory(), loadRising, limitNote: HOSTED_LIMIT_NOTE, now });
+    // Hosted only: TypeSafe Jev judges each candidate's fit (whichlib/mcp/jev.mjs). Its requests go
+    // through the budget fetch, so they count against TOOL_SUBREQUESTS (~3 per recommend) and a
+    // 429/5xx fails at once; recommend then falls back to the word-match rules for this call.
+    // Never for own-token callers: their token can see private repos, whose metadata must not go to
+    // TypeSafe (it also keeps unmetered callers off the service's TypeSafe key). They get the rules ranking.
+    const judge = judgeEnabled(caller) ? createJevJudge({ apiKey: env.TYPESAFE_API_KEY, fetchImpl: budget.fetch }) : null;
+    // tools.mjs swallows judge failures (it falls back); log them here so they show in `wrangler tail`.
+    const judgeFit = judge && Object.assign(async (...a) => {
+      try { return await judge(...a); } catch (err) {
+        console.error('jev failed', err?.status ?? '', err?.requestId ?? '', err?.message);
+        throw err;
+      }
+    }, { model: judge.model });
+    return createTools({ github: cachedGitHub, resolvePackages: cachedResolve, history: await loadHistory(), loadRising, limitNote: HOSTED_LIMIT_NOTE, judgeFit, now });
   }
 
   return {
@@ -179,7 +196,7 @@ export function createService({
         };
         const result = name === 'compare_repos'
           ? await run() // per-repo entries are cached inside
-          : await through(cache, caller)(await cacheKey({ tool: name, args: normaliseArgs(args) }), (r) => (budget.exhausted || budget.busy ? TTL.degraded : wholeResultTtl(name, args, r)), run);
+          : await through(cache, caller)(await cacheKey({ tool: name, args: normaliseArgs(args), ...(name === 'recommend_repos' && judgeEnabled(caller) ? { judge: JEV_MODEL } : {}) }), (r) => (budget.exhausted || budget.busy ? TTL.degraded : wholeResultTtl(name, args, r)), run);
         return { result, quota };
       } catch (err) {
         const hosted = toHostedError(err, caller);

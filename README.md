@@ -233,6 +233,12 @@ Ranking key is `fit = score × relevance`:
 - ×0.8 when you asked for a framework, library, parser or client and the repo
   reads like an application rather than a building block.
 
+On the hosted service (whichlib.com), relevance instead uses a TypeSafe Jev
+judgment of whether each candidate is an installable library whose main
+purpose is the need (returned as `signals.jevFit`, with a weak-fit flag below
+0.5) in place of the word-match factors; the npm package and own-token calls
+use the word-match rules above.
+
 Both `score` and `fit` are returned, with the relevance rank, the sources the
 repo came from and the two signals, so an agent can see why.
 
