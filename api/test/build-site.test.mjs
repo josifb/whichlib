@@ -61,7 +61,7 @@ test('buildSite: writes site/score.js and site/repos/index.html from the sources
   }
 });
 
-test('the real dashboard still has all four anchors', () => {
+test('the real dashboard still has all five anchors', () => {
   const real = readFileSync(new URL('../../whichlib/dashboard/index.html', import.meta.url), 'utf8');
   assert.doesNotThrow(() => dashboardForSite(real));
 });

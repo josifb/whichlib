@@ -1,0 +1,5 @@
+# Never upload stray editor/OS files as public assets
+.DS_Store
+Thumbs.db
+*.swp
+*~

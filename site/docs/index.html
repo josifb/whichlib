@@ -66,10 +66,10 @@ curl "https://whichlib.com/api/trending?period=rising&amp;language=Rust&amp;limi
       <tr><td>400</td><td>Bad input, including unknown parameters.</td></tr>
       <tr><td>401</td><td>Your <code>X-GitHub-Token</code> was rejected by GitHub.</td></tr>
       <tr><td>404</td><td>None of the repositories to compare exist.</td></tr>
-      <tr><td>429</td><td>Daily free limit, the per-minute limit, or the rate limit of your own GitHub token reached; see <code>Retry-After</code>.</td></tr>
-      <tr><td>502 / 503</td><td>GitHub failed (or the rising list could not be downloaded), or the shared GitHub limit is used up; try again shortly or use your own token.</td></tr>
       <tr><td>405</td><td>Only GET is allowed.</td></tr>
+      <tr><td>429</td><td>Daily free limit, the per-minute limit, or the rate limit of your own GitHub token reached; see <code>Retry-After</code>.</td></tr>
       <tr><td>500</td><td>Internal error.</td></tr>
+      <tr><td>502 / 503</td><td>GitHub failed (or the rising list could not be downloaded), or the shared GitHub limit is used up; try again shortly or use your own token.</td></tr>
     </tbody>
   </table></div>
   <p>Errors are JSON: <code>{ "error": "..." }</code>. CORS is open (read-only, no cookies).</p>
@@ -89,14 +89,14 @@ curl "https://whichlib.com/api/trending?period=rising&amp;language=Rust&amp;limi
 
   <h2 id="limits">Limits and your own token</h2>
   <ul>
-    <li>Free: 50 tool calls per day per user (per IP address; IPv6 by /64) (UTC day), at most 20 per minute. Listing tools and initializing are free.</li>
+    <li>Free: 50 tool calls per day per user per UTC day (per IP address; IPv6 by /64), at most 20 per minute. Listing tools and initializing are free.</li>
     <li>Your own GitHub token: send header <code>X-GitHub-Token</code> for unlimited use (the per-minute limit still applies). A fine-grained token with no permissions is enough. It is used for that request only and never stored, cached or logged.</li>
     <li>Web API responses for free calls carry <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code> and <code>X-RateLimit-Reset</code>. Over MCP the answer says so when fewer than 10 calls are left.</li>
     <li>Or run whichlib locally: <code>npx -y whichlib</code>, limited only by GitHub's own rate limits.</li>
   </ul>
 
   <h2 id="privacy">Privacy</h2>
-  <p>Your search text goes to GitHub as a search query, as with the npm package. whichlib stores hashed cache keys and cached results (public GitHub, npm and PyPI data, plus the question asked, kept for up to a day), and a per-day call counter per hashed IP address (the raw address is never stored, and the hash changes every day). Your own GitHub token is used for your request only and never stored; results fetched with it are not shared with other callers. Details: <a href="https://github.com/josifb/whichlib/blob/main/PRIVACY.md">PRIVACY.md</a>.</p>
+  <p>Your search text goes to GitHub as a search query, as with the npm package. whichlib stores hashed cache keys and cached results (public GitHub, npm and PyPI data, plus the question asked, kept for up to a day), and a per-day call counter per hashed IP address (the raw address is never stored, and the hash changes every day). Your own GitHub token is used for your request only and never stored; results fetched with it are not shared with other callers. The website's pages load their fonts from Google Fonts, so your browser sends its IP address to Google when you open them. Details: <a href="https://github.com/josifb/whichlib/blob/main/PRIVACY.md">PRIVACY.md</a>.</p>
 </main>
 <footer class="site-footer">
   <div class="wrap">

@@ -52,11 +52,12 @@ a hosted request:
 - Stored: hashed cache keys and cached results (public GitHub, npm and PyPI
   data, plus the question asked, kept for up to a day); a per-day call counter per hashed IP address (SHA-256 of the
   address, a secret salt and the date, so the raw address is never stored and
-  ids cannot be linked across days; only today's and yesterday's counters
-  exist).
+  ids cannot be linked across days; older counters are deleted with the
+  first call of each day).
 - Your own GitHub token is used for your request only. It is never stored,
   cached or logged, and results fetched with it are never shared with other
   callers.
+- The website's pages load their fonts from Google Fonts, so your browser sends its IP address to Google when you open them.
 - Cloudflare, which runs the service, processes requests under its own
   privacy policy.
 
