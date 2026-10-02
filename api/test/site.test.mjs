@@ -98,6 +98,14 @@ test('pricing: free, own token, teams waitlist', () => {
   for (const s of [`${DAILY_LIMIT}`, 'X-GitHub-Token', 'Teams', 'https://github.com/josifb/whichlib/issues/1']) assert.ok(html.includes(s), s);
 });
 
+const CANONICAL = { 'index.html': '/', 'docs/index.html': '/docs/', 'pricing/index.html': '/pricing/', '404.html': '/' };
+
+test('every page has a canonical link to the apex matching its path', () => {
+  for (const [file, path] of Object.entries(CANONICAL)) {
+    assert.ok(read(file).includes(`<link rel="canonical" href="https://whichlib.com${path}">`), file);
+  }
+});
+
 test('sitemap lists the four pages; robots points at it; llms.txt links the docs', () => {
   const sitemap = read('sitemap.xml');
   for (const p of ['https://whichlib.com/', 'https://whichlib.com/repos/', 'https://whichlib.com/docs/', 'https://whichlib.com/pricing/']) assert.ok(sitemap.includes(`<loc>${p}</loc>`), p);
