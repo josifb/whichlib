@@ -3,6 +3,8 @@
 whichlib runs on your machine. It has no accounts and stores nothing about
 you on a server, with one exception: anonymous call counting (and, if you
 use the hosted service, what is listed under "The hosted service" below).
+The sections "What is sent" and "Turning it off" describe the npm package;
+the hosted service is covered at the end.
 
 ## What is sent
 
@@ -24,8 +26,9 @@ calls per anonymous install and nothing else.
 
 ## Turning it off
 
-Set `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1` in the environment of the
-process that starts the server.
+For the npm package, set `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1` in the
+environment of the process that starts the server. These settings apply to
+the npm package only, not to the hosted service.
 
 ## Other network access
 
@@ -61,7 +64,11 @@ a hosted request:
   data, plus the question asked, kept for up to a day); a per-day call counter per hashed IP address (SHA-256 of the
   address, a secret salt and the date, so the raw address is never stored and
   ids cannot be linked across days; older counters are deleted with the
-  first call of each day).
+  first call of each day); and one anonymous row per tool call in the call
+  counter (tool name, whichlib version, the time and the word "hosted" as source and platform: no IP
+  address, hash, token or query), kept indefinitely; only aggregate counts are
+  public. This counting cannot be turned off for the hosted service, since the
+  row holds nothing about the caller.
 - Your own GitHub token is used for your request only. It is never stored,
   cached or logged, and results fetched with it are never shared with other
   callers.

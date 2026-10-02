@@ -1,6 +1,6 @@
 // whichlib hosted API (Cloudflare Worker): /api/* JSON and /mcp remote MCP.
 // Pages are static assets (site/), served without running this code;
-// wrangler.toml routes only /api/* and /mcp here. Bindings: DB (D1), BURST (rate limit);
+// wrangler.toml routes only /api/* and /mcp here. Bindings: DB (D1: daily_usage and the call counter's events), BURST (rate limit);
 // secrets: GITHUB_TOKEN, IP_SALT.
 
 import { createRisingLoader } from '../../whichlib/mcp/history-provider.mjs';
@@ -50,12 +50,13 @@ export function ownToken(request) {
 export function createWorker() {
   let shared = null;
   return {
-    async fetch(request, env) {
+    async fetch(request, env, ctx) {
       try {
         if (request.method === 'OPTIONS') return new Response(null, { status: 204, headers: CORS });
         const { pathname, hostname } = new URL(request.url);
         const caller = { ip: clientIp(request), ownToken: ownToken(request) };
-        const service = () => createService({ env, ...(shared ??= makeSharedState(hostname, env)) });
+        const waitUntil = ctx?.waitUntil ? (p) => ctx.waitUntil(p) : null;
+        const service = () => createService({ env, waitUntil, ...(shared ??= makeSharedState(hostname, env)) });
 
         if (pathname.startsWith('/api/')) return withCors(await handleApi(request, service(), caller));
         if (pathname === '/mcp') return withCors(await handleMcp(request, service(), caller));

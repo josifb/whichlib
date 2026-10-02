@@ -25,6 +25,28 @@ unknown tool name or a malformed install id are dropped.
 
 Users turn it off with `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1`.
 
+## Hosted calls
+
+The hosted Worker (`api/`) shares this database. For every tool call that
+passes its limits it writes one row directly to D1 (no POST):
+`install_id = 'hosted'`, `source = 'hosted'`, `platform = 'hosted'`, the tool
+name and the whichlib version. No IP, hash, token or query is stored.
+The npm collector's rows have `source = 'npm'` (the column default).
+
+In `/stats`, `installs` and `calls` count npm rows only; `hostedCalls` (in
+`totals` and each `weekly` entry) and `bySource` are new. `byTool` and `bySource` count all sources, while `totals.calls` and weekly `calls` are npm only, so do not add them up.
+
+The `source` column needs a one-time migration on the live database (a fresh
+install gets it from `schema.sql`):
+
+```
+npx wrangler d1 execute whichlib-events --remote --file migrations/2026-10-02-source.sql
+```
+
+Applied to the live database on 2026-10-02 at 16:57 UTC (98 existing rows, all labelled `npm`).
+
+Applied: not yet (Task 6 Step 3 adds the date it was applied).
+
 ## Files
 
 - `worker.mjs`: the collector and the `/stats` endpoint.

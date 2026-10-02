@@ -4,11 +4,14 @@ import { readFileSync } from 'node:fs';
 import { DatabaseSync } from 'node:sqlite';
 
 const SCHEMA = readFileSync(new URL('../schema.sql', import.meta.url), 'utf8');
+// The call counter's events table (owned by telemetry/; the hosted Worker writes to it too).
+const EVENTS_SCHEMA = readFileSync(new URL('../../telemetry/schema.sql', import.meta.url), 'utf8');
 
 /** Minimal D1: prepare().bind().all()/first()/run() and batch(), over an in-memory SQLite. */
 export function fakeD1() {
   const db = new DatabaseSync(':memory:');
   db.exec(SCHEMA);
+  db.exec(EVENTS_SCHEMA);
   const statement = (sql, params = []) => ({
     bind: (...p) => statement(sql, p),
     async all() { return { results: db.prepare(sql).all(...params) }; },
@@ -30,6 +33,7 @@ export function fakeD1() {
       }
     },
     rows: () => db.prepare('SELECT user_hash, day, calls FROM daily_usage ORDER BY day').all().map((r) => ({ ...r })),
+    events: () => db.prepare('SELECT ts, tool, install_id, version, platform, node, source FROM events ORDER BY rowid').all().map((r) => ({ ...r })),
     exec: (sql) => db.exec(sql),
   };
 }
