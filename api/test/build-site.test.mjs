@@ -17,6 +17,9 @@ const DASHBOARD = `<!doctype html>
   <header class="top">
     <h1>Fresh Repos</h1>
   </header>
+<style>
+.later {}
+</style>
 <script src="../lib/score.js"></script>
 </body>
 </html>`;
@@ -25,17 +28,22 @@ test('dashboardForSite: loads /score.js, links to the site, keeps everything els
   const out = dashboardForSite(DASHBOARD);
   assert.match(out, /<script src="\/score\.js"><\/script>/);
   assert.doesNotMatch(out, /\.\.\/lib\/score\.js/);
-  assert.match(out, /<p class="site-link">Part of <a href="\/">whichlib<\/a>/);
+  assert.match(out, /<p class="site-link"><a href="\/">whichlib<\/a> is the dependency picker for coding agents\./);
   assert.match(out, /<title>Fresh Repos · whichlib<\/title>/);
   assert.match(out, /\.site-link \{/);
-  assert.ok(out.indexOf('class="site-link"') > out.indexOf('<header class="top">'));
+  const link = out.indexOf('<p class="site-link">');
+  assert.ok(link > out.indexOf('<header class="top">') && link < out.indexOf('</header>'));
+  assert.doesNotMatch(out, /\n[ \t]+\n/);
+  assert.ok(out.indexOf('.site-link {') < out.indexOf('</style>'));
+  assert.ok(out.indexOf('.site-link {') < out.indexOf('.later'), 'CSS goes into the first style block');
   assert.match(out, /<h1>Fresh Repos<\/h1>/);
 });
 
 test('dashboardForSite: fails loudly when an anchor is missing (the dashboard changed)', () => {
   assert.throws(() => dashboardForSite(DASHBOARD.replace('<script src="../lib/score.js"></script>', '')), /score\.js/);
   assert.throws(() => dashboardForSite(DASHBOARD.replace('<header class="top">', '<header>')), /header/);
-  assert.throws(() => dashboardForSite(DASHBOARD.replace('</style>', '')), /style/);
+  assert.throws(() => dashboardForSite(DASHBOARD.replaceAll('</style>', '')), /style/);
+  assert.throws(() => dashboardForSite(DASHBOARD.replace('<title>Fresh Repos</title>', '')), /title/);
 });
 
 test('buildSite: writes site/score.js and site/repos/index.html from the sources', () => {
@@ -53,7 +61,7 @@ test('buildSite: writes site/score.js and site/repos/index.html from the sources
   }
 });
 
-test('the real dashboard still has both anchors', () => {
+test('the real dashboard still has all four anchors', () => {
   const real = readFileSync(new URL('../../whichlib/dashboard/index.html', import.meta.url), 'utf8');
   assert.doesNotThrow(() => dashboardForSite(real));
 });

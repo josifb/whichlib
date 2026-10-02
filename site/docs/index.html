@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs · whichlib</title>
+<meta name="description" content="How to use whichlib: the three tools, the web API with curl examples, the score and tiers, daily limits, your own GitHub token and privacy.">
+<meta property="og:title" content="Docs · whichlib">
+<meta property="og:description" content="How to use whichlib: the three tools, the web API, the score and tiers, limits and privacy.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://whichlib.com/docs/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="wrap">
+  <nav class="site-nav" aria-label="Main">
+    <a class="brand" href="/">whichlib</a>
+    <a href="/">Home</a>
+    <a href="/repos/">Dashboard</a>
+    <a href="/docs/" aria-current="page">Docs</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="https://github.com/josifb/whichlib">GitHub</a>
+  </nav>
+</header>
+<main class="wrap">
+  <h1>Docs</h1>
+  <p class="lead">whichlib answers three questions for coding agents: which library fits a need, which of several is better, and what is new or rising.</p>
+  <p>On this page: <a href="#tools">Tools</a> · <a href="#remote-mcp">Remote MCP</a> · <a href="#web-api">Web API</a> · <a href="#score">Score and tiers</a> · <a href="#limits">Limits and your own token</a> · <a href="#privacy">Privacy</a></p>
+
+  <h2 id="tools">Tools</h2>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Tool</th><th>Inputs</th><th>Returns</th></tr></thead>
+    <tbody>
+      <tr><td><code>recommend_repos</code></td><td><code>need</code> in plain words (2-200 characters), optional <code>language</code> (GitHub language name), <code>limit</code> 1-10 (default 5)</td><td>The best repositories for the need, ranked by fit = score × relevance.</td></tr>
+      <tr><td><code>compare_repos</code></td><td><code>repos</code>: 2-10 names as <code>owner/repo</code></td><td>Side by side, best score first; names that do not exist are listed under <code>notFound</code>.</td></tr>
+      <tr><td><code>trending_repos</code></td><td><code>period</code> day, week, month or rising (default week), optional <code>language</code>, <code>limit</code> 1-100 (default 20), <code>withDownloads</code> (default false)</td><td>Most-starred repositories created in the period, or with <code>rising</code> repositories of any age by stars gained this week.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Every result has readable text and the same data as JSON: score, tier, verdict, the four parts of the score, flags, npm/PyPI packages and weekly downloads.</p>
+
+  <h2 id="remote-mcp">Remote MCP</h2>
+  <p>Streamable HTTP, stateless. Claude Code:</p>
+  <div class="cmd"><pre><code id="docs-cmd-claude" data-origin>claude mcp add --transport http whichlib https://whichlib.com/mcp</code></pre><button type="button" class="copy" data-copy="docs-cmd-claude">Copy</button></div>
+  <p>With your own GitHub token (unlimited use):</p>
+  <div class="cmd"><pre><code id="docs-cmd-token" data-origin>claude mcp add --transport http whichlib https://whichlib.com/mcp --header "X-GitHub-Token: YOUR_TOKEN"</code></pre><button type="button" class="copy" data-copy="docs-cmd-token">Copy</button></div>
+  <p>Cursor (<code>.cursor/mcp.json</code>):</p>
+  <pre><code data-origin>{ "mcpServers": { "whichlib": { "url": "https://whichlib.com/mcp" } } }</code></pre>
+  <p>VS Code (<code>.vscode/mcp.json</code>):</p>
+  <pre><code data-origin>{ "servers": { "whichlib": { "type": "http", "url": "https://whichlib.com/mcp" } } }</code></pre>
+  <p class="muted">Writing your own client: POST one JSON-RPC message per request with the header <code>Accept: application/json, text/event-stream</code>. Batches are not supported; GET returns 405 (there is no server-to-client stream).</p>
+
+  <h2 id="web-api">Web API</h2>
+  <p>The same three tools as JSON over GET. Parameters have the tools' names, ranges and defaults; the response is the tool's JSON result.</p>
+  <pre><code data-origin>curl "https://whichlib.com/api/recommend?need=python+http+client&amp;language=Python&amp;limit=3"
+curl "https://whichlib.com/api/compare?repos=colinhacks/zod,fabian-hiller/valibot"
+curl "https://whichlib.com/api/trending?period=rising&amp;language=Rust&amp;limit=10"</code></pre>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Status</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td>200</td><td>The result.</td></tr>
+      <tr><td>400</td><td>Bad input, including unknown parameters.</td></tr>
+      <tr><td>401</td><td>Your <code>X-GitHub-Token</code> was rejected by GitHub.</td></tr>
+      <tr><td>404</td><td>None of the repositories to compare exist.</td></tr>
+      <tr><td>429</td><td>Daily free limit, the per-minute limit, or the rate limit of your own GitHub token reached; see <code>Retry-After</code>.</td></tr>
+      <tr><td>502 / 503</td><td>GitHub or a registry failed, or the shared GitHub limit is used up; try again shortly or use your own token.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Errors are JSON: <code>{ "error": "..." }</code>. CORS is open (read-only, no cookies).</p>
+
+  <h2 id="score">Score and tiers</h2>
+  <p>Each repository gets a score from 0 to 100:</p>
+  <div class="table-scroll"><table>
+    <thead><tr><th>Part</th><th class="num">Weight</th><th>Measures</th></tr></thead>
+    <tbody>
+      <tr><td>Momentum</td><td class="num">40%</td><td>Stars gained per week from daily star counts; for repositories not tracked, lifetime stars per week scaled by the npm/PyPI download trend.</td></tr>
+      <tr><td>Maintenance</td><td class="num">25%</td><td>Full marks for a push within the last 30 days, falling to zero at a year; a penalty when open issues exceed 10% of the stars. Widely used repositories (10,000+ stars or 100,000+ weekly downloads) pushed within the last year never score below half.</td></tr>
+      <tr><td>Adoption</td><td class="num">25%</td><td>Stars, forks and, when known, npm/PyPI weekly downloads, each on a log scale.</td></tr>
+      <tr><td>License</td><td class="num">10%</td><td>Permissive licenses (MIT, Apache-2.0, BSD, ISC and similar) score highest, weak copyleft (MPL, LGPL) a little less, strong copyleft (GPL, AGPL) and unrecognised licenses half, no license zero.</td></tr>
+    </tbody>
+  </table></div>
+  <p>Tiers: <strong>Strong</strong> 75 and up, <strong>Solid</strong> 50-74, <strong>Watch</strong> 25-49, <strong>Avoid</strong> below 25. Repositories younger than 30 days show <strong>New</strong> instead of a tier: too new to judge. Archived repositories are capped at 20. The full definition is in the <a href="https://github.com/josifb/whichlib#score">README</a> and <a href="https://github.com/josifb/whichlib/blob/main/whichlib/lib/score.js">score.js</a>.</p>
+
+  <h2 id="limits">Limits and your own token</h2>
+  <ul>
+    <li>Free: 50 tool calls per day per user (UTC day), at most 20 per minute. Listing tools and initializing are free.</li>
+    <li>Your own GitHub token: send header <code>X-GitHub-Token</code> for unlimited use (the per-minute limit still applies). A fine-grained token with no permissions is enough. It is used for that request only and never stored, cached or logged.</li>
+    <li>Web API responses for free calls carry <code>X-RateLimit-Limit</code>, <code>X-RateLimit-Remaining</code> and <code>X-RateLimit-Reset</code>. Over MCP the answer says so when fewer than 10 calls are left.</li>
+    <li>Or run whichlib locally: <code>npx -y whichlib</code>, limited only by GitHub's own rate limits.</li>
+  </ul>
+
+  <h2 id="privacy">Privacy</h2>
+  <p>Your search text goes to GitHub as a search query, as with the npm package. whichlib stores only hashed cache keys, a per-day counter per hashed IP address (the raw address is never stored, and the hash changes every day). Your own GitHub token is used for your request and never stored. Details: <a href="https://github.com/josifb/whichlib/blob/main/PRIVACY.md">PRIVACY.md</a>.</p>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    whichlib is open source (MIT) · <a href="https://github.com/josifb/whichlib/blob/main/PRIVACY.md">Privacy</a> · Teams: <a href="https://github.com/josifb/whichlib/issues/1">join the waitlist</a>
+  </div>
+</footer>
+<script src="/site.js" defer></script>
+</body>
+</html>
