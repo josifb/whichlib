@@ -3,7 +3,7 @@
   "name": "io.github.josifb/whichlib",
   "title": "whichlib",
   "description": "Dependency picker for coding agents: recommends, compares and scores GitHub repos with a verdict.",
-  "websiteUrl": "https://github.com/josifb/whichlib",
+  "websiteUrl": "https://whichlib.com",
   "repository": {
     "url": "https://github.com/josifb/whichlib",
     "source": "github",
@@ -31,6 +31,20 @@
           "description": "Optional. Set to \"off\" to disable anonymous call counting (tool name, random install id, version, platform, Node major). DO_NOT_TRACK=1 also disables it.",
           "isRequired": false,
           "isSecret": false
+        }
+      ]
+    }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://whichlib.com/mcp",
+      "headers": [
+        {
+          "name": "X-GitHub-Token",
+          "description": "Optional. Your own GitHub token for unlimited use (otherwise 50 free calls per day). Used for your request only, never stored.",
+          "isRequired": false,
+          "isSecret": true
         }
       ]
     }

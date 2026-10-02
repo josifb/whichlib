@@ -19,13 +19,8 @@ signups it gets built. whichlib itself stays free.
 
 Agents: see [MCP server](#mcp-server) below for the one-line install.
 
-Dashboard:
-
-1. Clone or download this repository.
-2. Double-click `whichlib/dashboard/index.html`.
-
-That is all. The page is a single HTML file that calls the GitHub Search API
-straight from your browser. No build step, no server, no account.
+Dashboard: open [whichlib.com/repos](https://whichlib.com/repos/). The page
+calls the GitHub Search API straight from your browser. No account.
 
 Optional: paste a GitHub token under **Settings** on the page to raise the
 API limit from 10 to 30 requests per minute. A fine-grained token with no
@@ -99,10 +94,10 @@ npm and Python repos to PyPI, then fetches last week's downloads:
 Other languages (Rust, Go, Java...) are skipped for now. Cargo, Go and Maven
 can follow the same pattern.
 
-Caveat: opened from disk, the dashboard has no snapshot history, so momentum
-uses the fallback. Scores on the Today tab are therefore provisional; the
-report and the MCP server use real stars-gained figures once there are two or
-more days of snapshots.
+Caveat: the dashboard has no snapshot history, so momentum uses the fallback.
+Scores on the Today tab are therefore provisional; the report and the MCP
+server use real stars-gained figures once there are two or more days of
+snapshots.
 
 ```
 cd whichlib
@@ -143,6 +138,14 @@ MCP config:
 ```json
 { "mcpServers": { "whichlib": { "command": "npx", "args": ["-y", "whichlib"] } } }
 ```
+
+Use it without installing: the hosted server needs no Node.
+
+```
+claude mcp add --transport http whichlib https://whichlib.com/mcp
+```
+
+Limits and the web API are on [whichlib.com/docs](https://whichlib.com/docs/).
 
 To run from a clone instead: `node whichlib/mcp/server.mjs`.
 
@@ -277,7 +280,8 @@ A Windows Task Scheduler alternative is in
 
 ```
 whichlib/             the npm package: MCP server, score, dashboard, jobs, eval, tests
-whichlib/dashboard/   Fresh Repos, one HTML file
+whichlib/dashboard/   redirect to whichlib.com/repos
+site/repos/           Fresh Repos dashboard (source)
 whichlib/lib/         score.js, shared by browser and Node
 whichlib/mcp/         MCP server: recommend_repos, compare_repos, trending_repos
 whichlib/snapshot/    snapshot job, enrichment, history builder, score report

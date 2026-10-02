@@ -25,7 +25,15 @@ The plugin contains:
 /plugin install whichlib@whichlib
 ```
 
-Requires Node.js 22 or newer. On first use the server is downloaded from npm
+Or use the hosted server, with nothing to install:
+
+```
+claude mcp add --transport http whichlib https://whichlib.com/mcp
+```
+
+Limits and the web API: https://whichlib.com/docs/
+
+The plugin requires Node.js 22 or newer. On first use the server is downloaded from npm
 as the exact version `whichlib@0.1.3`.
 
 ## Settings

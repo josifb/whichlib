@@ -29,6 +29,14 @@ Cursor, Windsurf and other MCP clients:
 
 Requires Node 22 or newer. No account, no API key.
 
+Use it without installing (hosted, no Node needed):
+
+```
+claude mcp add --transport http whichlib https://whichlib.com/mcp
+```
+
+Limits and the web API: https://whichlib.com/docs/
+
 ## Tools
 
 | Tool | Ask | You get |
@@ -102,5 +110,5 @@ mcp/github-api.mjs     GitHub client + cache    mcp/data.mjs        snapshot his
 mcp/eval/              needs, metrics, runner, inspect, results/
 lib/score.js           the score, shared by browser and Node
 snapshot/src/          query, normalize, github, registry, enrich, history, run, score-report, pull-data
-dashboard/index.html   Fresh Repos
+dashboard/index.html   redirect to whichlib.com/repos (Fresh Repos)
 ```

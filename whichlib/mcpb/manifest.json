@@ -13,7 +13,7 @@
     "type": "git",
     "url": "https://github.com/josifb/whichlib.git"
   },
-  "homepage": "https://github.com/josifb/whichlib",
+  "homepage": "https://whichlib.com",
   "documentation": "https://github.com/josifb/whichlib#mcp-server",
   "support": "https://github.com/josifb/whichlib/issues",
   "server": {
