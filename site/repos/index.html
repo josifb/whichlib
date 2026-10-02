@@ -319,7 +319,7 @@
       archived: Boolean(item.archived),
       topics: Array.isArray(item.topics) ? item.topics : [],
     };
-    // Score in fallback mode: a page opened from disk cannot read the snapshot
+    // Score in fallback mode: the dashboard has no snapshot history
     // files, so momentum comes from stars per day rather than stars gained.
     if (scorer) {
       const s = scorer.scoreRepo(rec, { starsGained7d: null });
