@@ -1,7 +1,8 @@
 # Privacy
 
 whichlib runs on your machine. It has no accounts and stores nothing about
-you on a server, with one exception: anonymous call counting.
+you on a server, with one exception: anonymous call counting (and, if you
+use the hosted service, what is listed under "The hosted service" below).
 
 ## What is sent
 
@@ -40,6 +41,25 @@ sent with that request. Set `WHICHLIB_HISTORY=off` to skip it. When an
 agent asks `trending_repos` for `period: "rising"`, it downloads the public
 rising list `raw.githubusercontent.com/josifb/whichlib/data/rising.json`
 (at most once an hour); nothing is sent with that either.
+
+## The hosted service
+
+whichlib also runs as a hosted service (web API and remote MCP server). For
+a hosted request:
+
+- Your search text and repository names go to GitHub as with the npm package,
+  using the service's GitHub token, or yours when you send `X-GitHub-Token`.
+- Stored: hashed cache keys and cached results (public GitHub, npm and PyPI
+  data, plus the question asked, kept for up to a day); a per-day call counter per hashed IP address (SHA-256 of the
+  address, a secret salt and the date, so the raw address is never stored and
+  ids cannot be linked across days; older counters are deleted with the
+  first call of each day).
+- Your own GitHub token is used for your request only. It is never stored,
+  cached or logged, and results fetched with it are never shared with other
+  callers.
+- The website's pages load their fonts from Google Fonts, so your browser sends its IP address to Google when you open them.
+- Cloudflare, which runs the service, processes requests under its own
+  privacy policy.
 
 ## Contact
 

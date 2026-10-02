@@ -1,0 +1,38 @@
+name: api
+
+# Tests for the hosted Worker (api/) and the static site checks, on a clean checkout.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            whichlib/package-lock.json
+            api/package-lock.json
+      # The Worker imports the npm package's modules, which resolve zod from whichlib/node_modules.
+      - name: Install the npm package's dependencies
+        working-directory: whichlib
+        run: npm ci
+      - name: Install the Worker's dependencies
+        working-directory: api
+        run: npm ci
+      - name: Build the generated site files
+        working-directory: api
+        run: node scripts/build-site.mjs
+      - name: Test
+        working-directory: api
+        run: npm test

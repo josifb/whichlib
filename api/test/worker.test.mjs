@@ -18,14 +18,17 @@ test('OPTIONS /mcp allows the MCP protocol headers', async () => {
   assert.match(res.headers.get('Access-Control-Allow-Headers'), /Mcp-Protocol-Version/);
 });
 
-test('routes: /api/* (with CORS), /mcp, / and 404', async () => {
+test('routes: /api/* (with CORS), /mcp, and 404 for anything else (pages are static assets)', async () => {
   const worker = createWorker();
   const bad = await worker.fetch(new Request('https://w.test/api/compare?repos=a/b'), env());
   assert.equal(bad.status, 400);
   assert.equal(bad.headers.get('Access-Control-Allow-Origin'), '*');
   assert.match(bad.headers.get('Access-Control-Expose-Headers'), /X-RateLimit-Remaining/);
   assert.equal((await worker.fetch(new Request('https://w.test/mcp'), env())).status, 405);
-  assert.equal((await worker.fetch(new Request('https://w.test/'), env())).status, 200);
+  // Static assets serve pages before the Worker runs; a page path reaching it is a misroute.
+  const root = await worker.fetch(new Request('https://w.test/'), env());
+  assert.equal(root.status, 404);
+  assert.deepEqual(await root.json(), { error: 'Not found.' });
   assert.equal((await worker.fetch(new Request('https://w.test/nope'), env())).status, 404);
 });
 

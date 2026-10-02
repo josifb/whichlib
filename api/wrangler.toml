@@ -7,6 +7,18 @@ main = "src/worker.mjs"
 compatibility_date = "2026-09-01"
 workers_dev = true
 
+# Runs before every `wrangler dev` / `wrangler deploy`: copies score.js and
+# generates site/repos/ from the dashboard (api/scripts/build-site.mjs).
+[build]
+command = "node scripts/build-site.mjs"
+
+# Pages: static assets from ../site (free: asset requests do not run the Worker).
+# Only the API and MCP paths run the Worker code.
+[assets]
+directory = "../site"
+run_worker_first = ["/api/*", "/mcp"]
+not_found_handling = "404-page"
+
 # Same database as the call counter (telemetry/); this Worker adds daily_usage (schema.sql).
 [[d1_databases]]
 binding = "DB"
