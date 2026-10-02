@@ -11,6 +11,7 @@ import { utcDay, nextUtcMidnight, userHash } from './identity.mjs';
 import { checkBurst, BURST_LIMIT } from './limits.mjs';
 import { cacheKey, TTL } from './cache.mjs';
 import { createJevJudge, JEV_MODEL } from '../../whichlib/mcp/jev.mjs';
+import { recordHostedCall } from './events.mjs';
 
 export const HOSTED_DEFINITIONS = toolDefinitions({ limitNote: HOSTED_LIMIT_NOTE, compareNote: HOSTED_LIMIT_NOTE });
 
@@ -115,6 +116,7 @@ export function createService({
   fetchImpl = fetch,
   resolvePackages = realResolvePackages,
   now = Date.now,
+  waitUntil = null,
 }) {
   async function checkLimits(caller) {
     try {
@@ -187,6 +189,9 @@ export function createService({
     async call(name, args, caller) {
       if (!METHODS[name]) throw new HostedError(400, `Unknown tool "${name}".`);
       const { quota, user, day, counted } = await checkLimits(caller);
+      // Counted once the limits let the call through (before it runs, so an upstream failure still counts).
+      const event = recordHostedCall(env.DB, name, { now });
+      if (waitUntil) waitUntil(event); else await event;
       const budget = createBudget(fetchImpl);
       try {
         const run = async () => {
