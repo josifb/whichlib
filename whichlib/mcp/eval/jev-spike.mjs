@@ -3,7 +3,7 @@
 // signals? Step 1 (live) runs every need through recommend_repos, asks Jev one
 // Noul per candidate in the pool, and saves pools + answers to results/jev-<date>.json.
 // Step 2 (offline) ranks each pool several ways and prints hit@k / MRR.
-// Usage: GITHUB_TOKEN=... TYPESAFE_API_KEY=... node mcp/eval/jev-spike.mjs
+// Usage: GITHUB_TOKEN=... TYPESAFE_API_KEY=... node mcp/eval/jev-spike.mjs [--needs needs-niche.json]
 //        node mcp/eval/jev-spike.mjs results/jev-<date>.json   (re-rank a saved run, no API calls)
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
@@ -52,8 +52,8 @@ async function askJev(need, language, pool) {
   return { noul: Object.fromEntries(out), tokens, ms };
 }
 
-async function collect() {
-  const { needs } = JSON.parse(await readFile(join(here, 'needs.json'), 'utf8'));
+async function collect(needsFile) {
+  const { needs } = JSON.parse(await readFile(join(here, needsFile), 'utf8'));
   const { createGitHubClient } = await import('../github-api.mjs');
   const { loadHistoryProvider } = await import('../data.mjs');
   const { createTools } = await import('../tools.mjs');
@@ -74,8 +74,9 @@ async function collect() {
   }
   const date = new Date().toISOString().slice(0, 10);
   await mkdir(join(here, 'results'), { recursive: true });
-  const path = join(here, 'results', `jev-${date}.json`);
-  await writeFile(path, JSON.stringify({ date, model: MODEL, runs }, null, 1));
+  const suffix = needsFile === 'needs.json' ? '' : `-${needsFile.replace(/^needs-|\.json$/g, '')}`;
+  const path = join(here, 'results', `jev-${date}${suffix}.json`);
+  await writeFile(path, JSON.stringify({ date, model: MODEL, needsFile, runs }, null, 1));
   console.error(`Wrote ${path}`);
   return { date, runs };
 }
@@ -123,5 +124,8 @@ function report({ date, runs }) {
   for (const row of rows) console.log(`| ${row.need} | ${row.fit.r ?? '-'} | ${row.jevPosition.r ?? '-'} | ${row.fitTimesJev.r ?? '-'} | ${row.fit.top[0]} | ${row.jevPosition.top[0]} |`);
 }
 
-const saved = process.argv[2];
-report(saved ? JSON.parse(await readFile(resolve(saved), 'utf8')) : await collect());
+const args = process.argv.slice(2);
+const needsAt = args.indexOf('--needs');
+const needsFile = needsAt === -1 ? 'needs.json' : args.splice(needsAt, 2)[1];
+const saved = args[0];
+report(saved ? JSON.parse(await readFile(resolve(saved), 'utf8')) : await collect(needsFile));
