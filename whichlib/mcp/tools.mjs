@@ -175,7 +175,7 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
         generatedAt: new Date(now()).toISOString(), dataNotes: dataNotes(), repos: scored,
       };
       // For the eval: every candidate with its pre-download score, so baselines can be computed from the same pool.
-      if (includeCandidates) result.candidates = prelim.map(({ fullName, stars, score, fit, relevanceRank, sources: src, signals }) => ({ fullName, stars, score, fit, relevanceRank, sources: src, signals }));
+      if (includeCandidates) result.candidates = prelim.map(({ fullName, description, topics, language: lang, stars, score, fit, relevance, relevanceRank, sources: src, signals }) => ({ fullName, description, topics, language: lang, stars, score, fit, relevance, relevanceRank, sources: src, signals }));
       return result;
     },
 
