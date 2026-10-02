@@ -10,6 +10,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://whichlib.com/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="/style.css">
 </head>
@@ -53,18 +54,18 @@
     </div>
     <div id="panel-remote" role="tabpanel" aria-labelledby="tab-remote">
       <p>Nothing to install. Claude Code:</p>
-      <div class="cmd"><pre><code id="cmd-remote" data-origin>claude mcp add --transport http whichlib https://whichlib.com/mcp</code></pre><button type="button" class="copy" data-copy="cmd-remote">Copy</button></div>
+      <div class="cmd"><pre><code id="cmd-remote" data-origin>claude mcp add --transport http whichlib https://whichlib.com/mcp</code></pre><button type="button" class="copy" aria-live="polite" data-copy="cmd-remote">Copy</button></div>
       <p class="muted">Cursor, VS Code and other clients: see <a href="/docs/#remote-mcp">the docs</a>. Free for 50 calls a day; add your own GitHub token for unlimited use.</p>
     </div>
-    <div id="panel-plugin" role="tabpanel" aria-labelledby="tab-plugin" hidden>
+    <div id="panel-plugin" role="tabpanel" aria-labelledby="tab-plugin">
       <p>Adds the MCP server and a skill that makes Claude check a library before adding it:</p>
       <div class="cmd"><pre><code id="cmd-plugin">/plugin marketplace add josifb/whichlib
-/plugin install whichlib@whichlib</code></pre><button type="button" class="copy" data-copy="cmd-plugin">Copy</button></div>
+/plugin install whichlib@whichlib</code></pre><button type="button" class="copy" aria-live="polite" data-copy="cmd-plugin">Copy</button></div>
       <p class="muted">Runs the npm package on your machine (Node 22 or newer).</p>
     </div>
-    <div id="panel-npm" role="tabpanel" aria-labelledby="tab-npm" hidden>
+    <div id="panel-npm" role="tabpanel" aria-labelledby="tab-npm">
       <p>Runs on your machine, no limits beyond GitHub's own (Node 22 or newer):</p>
-      <div class="cmd"><pre><code id="cmd-npm">claude mcp add whichlib -- npx -y whichlib</code></pre><button type="button" class="copy" data-copy="cmd-npm">Copy</button></div>
+      <div class="cmd"><pre><code id="cmd-npm">claude mcp add whichlib -- npx -y whichlib</code></pre><button type="button" class="copy" aria-live="polite" data-copy="cmd-npm">Copy</button></div>
       <p class="muted">Cursor, Windsurf and others: <code>{ "mcpServers": { "whichlib": { "command": "npx", "args": ["-y", "whichlib"] } } }</code></p>
     </div>
   </section>

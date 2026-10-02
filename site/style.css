@@ -4,7 +4,7 @@
   --bg: #f5f7f9; --surface: #ffffff; --text: #1a1f26; --muted: #5b6673;
   --border: #d9dfe6; --border-strong: #b9c2cc; --accent: #0b6e7a; --accent-soft: #d6eef0;
   --star: #b7791f; --tier-strong-bg: #dcefe1; --tier-strong-text: #1d5a30; --focus: #0b6e7a;
-  --code-bg: #eef2f5; --shadow: 0 1px 2px rgba(20, 30, 40, .06);
+  --on-accent: #ffffff; --code-bg: #eef2f5; --shadow: 0 1px 2px rgba(20, 30, 40, .06);
   --sans: "IBM Plex Sans", "Segoe UI", system-ui, -apple-system, sans-serif;
   --mono: "IBM Plex Mono", "Cascadia Mono", Consolas, ui-monospace, monospace;
   color-scheme: light;
@@ -14,7 +14,7 @@
     --bg: #0e1218; --surface: #151b23; --text: #e4e9ef; --muted: #8b97a5;
     --border: #26303b; --border-strong: #3a4653; --accent: #33b3c0; --accent-soft: #123c42;
     --star: #e0a437; --tier-strong-bg: #173a24; --tier-strong-text: #9ad7ab; --focus: #33b3c0;
-    --code-bg: #1b232d; --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+    --on-accent: #0e1218; --code-bg: #1b232d; --shadow: 0 1px 2px rgba(0, 0, 0, .4);
     color-scheme: dark;
   }
 }
@@ -22,7 +22,7 @@
   --bg: #0e1218; --surface: #151b23; --text: #e4e9ef; --muted: #8b97a5;
   --border: #26303b; --border-strong: #3a4653; --accent: #33b3c0; --accent-soft: #123c42;
   --star: #e0a437; --tier-strong-bg: #173a24; --tier-strong-text: #9ad7ab; --focus: #33b3c0;
-  --code-bg: #1b232d; --shadow: 0 1px 2px rgba(0, 0, 0, .4);
+  --on-accent: #0e1218; --code-bg: #1b232d; --shadow: 0 1px 2px rgba(0, 0, 0, .4);
   color-scheme: dark;
 }
 
@@ -61,7 +61,7 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
 
 .tabs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
 .tabs button { font: inherit; font-size: 14px; padding: 6px 12px; border-radius: 999px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); cursor: pointer; }
-.tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.tabs button[aria-selected="true"] { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
 .cmd { display: flex; gap: 8px; align-items: stretch; margin: 6px 0; }
 .cmd pre { flex: 1; min-width: 0; }
 .copy { font: inherit; font-size: 13px; padding: 0 12px; border-radius: 8px; border: 1px solid var(--border-strong); background: var(--surface); color: var(--text); cursor: pointer; }

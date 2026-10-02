@@ -3,8 +3,13 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { DAILY_LIMIT, BURST_LIMIT } from '../src/limits.mjs';
+
+const { WEIGHTS } = createRequire(import.meta.url)('../../whichlib/lib/score.js');
 
 const SITE = fileURLToPath(new URL('../../site/', import.meta.url));
 const PAGES = { '/': 'index.html', '/docs/': 'docs/index.html', '/pricing/': 'pricing/index.html', '/404': '404.html' };
@@ -81,14 +86,16 @@ test('home: dated real example, the three install options with copy buttons, wai
 test('docs: tools, web API with curl, score and tiers, limits, own token, MCP Accept header, privacy', () => {
   const html = read('docs/index.html');
   for (const s of ['recommend_repos', 'compare_repos', 'trending_repos', '/api/recommend', '/api/compare', '/api/trending', 'curl ',
-    'Strong', 'Solid', 'Watch', 'Avoid', 'New', '50', 'X-GitHub-Token', 'X-RateLimit-Remaining', 'application/json, text/event-stream', 'id="privacy"']) {
+    'Strong', 'Solid', 'Watch', 'Avoid', '<strong>New</strong>', 'X-GitHub-Token', 'X-RateLimit-Remaining', 'application/json, text/event-stream', 'id="privacy"']) {
     assert.ok(html.includes(s), s);
   }
+  // facts tied to the code, so a changed limit or weight fails here
+  for (const s of [`${DAILY_LIMIT} tool calls`, `${BURST_LIMIT} per minute`, ...Object.values(WEIGHTS).map((w) => `${Math.round(w * 100)}%`)]) assert.ok(html.includes(s), s);
 });
 
 test('pricing: free, own token, teams waitlist', () => {
   const html = read('pricing/index.html');
-  for (const s of ['50', 'X-GitHub-Token', 'Teams', 'https://github.com/josifb/whichlib/issues/1']) assert.ok(html.includes(s), s);
+  for (const s of [`${DAILY_LIMIT}`, 'X-GitHub-Token', 'Teams', 'https://github.com/josifb/whichlib/issues/1']) assert.ok(html.includes(s), s);
 });
 
 test('sitemap lists the four pages; robots points at it; llms.txt links the docs', () => {
@@ -105,3 +112,19 @@ test('no workers.dev address anywhere in site/ (listings and pages only ever nam
     assert.doesNotMatch(read(file), /workers\.dev/, file);
   }
 });
+
+test('every hand-written file is tracked by git (an ignore rule must not hide one)', () => {
+  for (const file of [...Object.values(PAGES), 'sitemap.xml', 'robots.txt', 'llms.txt', 'site.js', 'style.css']) {
+    assert.doesNotThrow(() => execFileSync('git', ['ls-files', '--error-unmatch', file], { cwd: SITE, stdio: 'pipe' }), file);
+  }
+});
+
+for (const [route, file] of Object.entries(PAGES)) {
+  test(`${route}: data-copy and aria-controls point at ids on the page; no panel is hidden in the HTML`, () => {
+    const html = read(file);
+    const ids = new Set([...html.matchAll(/\bid="([^"]+)"/g)].map((m) => m[1]));
+    for (const [, id] of html.matchAll(/data-copy="([^"]+)"/g)) assert.ok(ids.has(id), `data-copy ${id}`);
+    for (const [, id] of html.matchAll(/aria-controls="([^"]+)"/g)) assert.ok(ids.has(id), `aria-controls ${id}`);
+    assert.doesNotMatch(html, /role="tabpanel"[^>]*\shidden/, 'panels are hidden by site.js, not the markup');
+  });
+}
