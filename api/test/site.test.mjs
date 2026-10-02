@@ -145,3 +145,25 @@ for (const [route, file] of Object.entries(PAGES)) {
     assert.doesNotMatch(html, /role="tabpanel"[^>]*\shidden/, 'panels are hidden by site.js, not the markup');
   });
 }
+
+const SHARE = ['index.html', 'docs/index.html', 'pricing/index.html', 'repos/index.html', '404.html'];
+
+test('every page has the share image and a large Twitter card', () => {
+  for (const file of SHARE) {
+    const html = read(file);
+    for (const tag of ['<meta property="og:image" content="https://whichlib.com/og.png">', '<meta property="og:image:width" content="1200">',
+      '<meta property="og:image:height" content="630">', '<meta name="twitter:card" content="summary_large_image">']) {
+      assert.ok(html.includes(tag), `${file}: ${tag}`);
+    }
+  }
+});
+
+test('og.png is a 1200x630 PNG; the card source is not served as a page', () => {
+  const png = readFileSync(join(SITE, 'og.png'));
+  assert.deepEqual([...png.subarray(0, 8)], [0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]);
+  assert.equal(png.toString('latin1', 12, 16), 'IHDR');
+  assert.equal(png.readUInt32BE(16), 1200);
+  assert.equal(png.readUInt32BE(20), 630);
+  assert.match(read('.assetsignore'), /^og\/\r?$/m);
+  assert.ok(existsSync(join(SITE, 'og', 'card.html')));
+});

@@ -3,3 +3,5 @@
 Thumbs.db
 *.swp
 *~
+# Source of /og.png (rendered by api/scripts/og-image.mjs), not a page
+og/
