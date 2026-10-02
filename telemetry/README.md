@@ -43,6 +43,8 @@ install gets it from `schema.sql`):
 npx wrangler d1 execute whichlib-events --remote --file migrations/2026-10-02-source.sql
 ```
 
+Applied to the live database on 2026-10-02 at 16:57 UTC (98 existing rows, all labelled `npm`).
+
 Applied: not yet (Task 6 Step 3 adds the date it was applied).
 
 ## Files
