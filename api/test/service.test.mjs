@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { createService, HostedError, HOSTED_DEFINITIONS, REPO_FIELDS, TOOL_SUBREQUESTS, BudgetError, createBudget } from '../src/service.mjs';
 import { createCache, cacheKey } from '../src/cache.mjs';
 import { createDailyCounter } from '../src/limits.mjs';
+import { userHash, utcDay } from '../src/identity.mjs';
 import { fakeD1, fakeBurst, fakeCacheApi } from './helpers.mjs';
 import { GitHubRateLimitError, GitHubAuthError } from '../../whichlib/snapshot/src/github.mjs';
 import { HOSTED_LIMIT_NOTE } from '../../whichlib/mcp/definitions.mjs';
@@ -19,7 +20,7 @@ function item(fullName, stars = 1000) {
   };
 }
 
-function setup({ getRepoError = null, searchError = null, packages = [], burstLimit = 20, nItems = 2, fetchesPerRepo = 0, counter = null, typesafeKey = null, jevStatus = 200, waitUntil = null } = {}) {
+function setup({ getRepoError = null, searchError = null, packages = [], burstLimit = 20, nItems = 2, fetchesPerRepo = 0, counter = null, typesafeKey = null, jevStatus = 200, waitUntil = null, eventsDb = null } = {}) {
   const calls = { tokens: [], search: 0, getRepo: [], resolve: 0, fetches: 0 };
   const makeGitHub = (token, fetchImpl) => {
     calls.tokens.push(token);
@@ -56,7 +57,7 @@ function setup({ getRepoError = null, searchError = null, packages = [], burstLi
   const burst = fakeBurst(burstLimit);
   const db = fakeD1();
   const service = createService({
-    env: { GITHUB_TOKEN: 'server-token', IP_SALT: 'salt', BURST: burst, DB: db, ...(typesafeKey ? { TYPESAFE_API_KEY: typesafeKey } : {}) },
+    env: { GITHUB_TOKEN: 'server-token', IP_SALT: 'salt', BURST: burst, DB: eventsDb ?? db, ...(typesafeKey ? { TYPESAFE_API_KEY: typesafeKey } : {}) },
     cache, itemCache, counter: counter ?? createDailyCounter(db), fetchImpl,
     loadHistory: async () => ({ days: 0, spanDays: 0, latestDate: null, starsGained7d: () => null, starsGainedEstimated: () => false }),
     loadRising: async () => ({ date: '2026-10-01', spanDays: 3, lists: { all: [] } }),
@@ -410,6 +411,9 @@ test('events: rows carry no token, IP or user hash', async () => {
   await service.call('recommend_repos', { need: 'http client', limit: 2 }, own);
   const text = JSON.stringify(db.events());
   assert.ok(!text.includes(OWN) && !text.includes(own.ip));
+  const hash = await userHash(own.ip, 'salt', utcDay(NOW));
+  for (const row of db.events()) for (const value of Object.values(row)) assert.notEqual(value, hash);
+  assert.ok(!text.includes(hash));
 });
 
 test('events: with waitUntil the write is handed over, not awaited', async () => {
@@ -419,4 +423,16 @@ test('events: with waitUntil the write is handed over, not awaited', async () =>
   assert.equal(handed.length, 1);
   await Promise.all(handed);
   assert.equal(db.events().length, 1);
+});
+
+test('events: call() resolves even when the events write never settles (proves it is not awaited)', async () => {
+  const handed = [];
+  const real = fakeD1();
+  const stuck = { ...real, prepare: (sql) => (sql.startsWith('INSERT INTO events')
+    ? { bind: () => ({ run: () => new Promise(() => {}) }) }
+    : real.prepare(sql)) };
+  const { service } = setup({ waitUntil: (p) => handed.push(p), eventsDb: stuck });
+  const out = await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon);
+  assert.equal(out.result.tool, 'compare_repos');
+  assert.equal(handed.length, 1);
 });

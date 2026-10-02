@@ -40,7 +40,12 @@ export default {
     const url = new URL(request.url);
 
     if (request.method === 'GET' && url.pathname === '/stats') {
-      return Response.json(await stats(env.DB), { headers: { 'Cache-Control': 'public, max-age=300' } });
+      try {
+        return Response.json(await stats(env.DB), { headers: { 'Cache-Control': 'public, max-age=300' } });
+      } catch (err) {
+        console.error('stats failed', err?.message);
+        return Response.json({ error: 'stats unavailable' }, { status: 503 });
+      }
     }
     if (request.method !== 'POST') return new Response('whichlib call counter. GET /stats for the numbers.', { status: 200 });
 

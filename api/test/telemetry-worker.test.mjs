@@ -58,3 +58,17 @@ test('collector: a POST cannot claim to be hosted (install id must be a UUID)', 
   assert.equal(res.status, 202);
   assert.equal(db.events().length, 0);
 });
+
+test('stats: a D1 failure (e.g. the source column not migrated yet) is a 503, not a crash', async () => {
+  const stmt = { all: async () => { throw new Error('no such column: source'); }, first: async () => { throw new Error('no such column: source'); } };
+  const db = { prepare: () => stmt };
+  const orig = console.error;
+  const logged = [];
+  console.error = (...a) => logged.push(a);
+  try {
+    const res = await worker.fetch(new Request('https://t.test/stats'), { DB: db });
+    assert.equal(res.status, 503);
+    assert.deepEqual(await res.json(), { error: 'stats unavailable' });
+    assert.deepEqual(logged, [['stats failed', 'no such column: source']]);
+  } finally { console.error = orig; }
+});

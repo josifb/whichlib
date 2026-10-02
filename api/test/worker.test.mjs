@@ -55,6 +55,22 @@ test('an unexpected throw is a 500 JSON error with CORS', async () => {
   } finally { console.error = orig; }
 });
 
+test('the Worker hands the event write to ctx.waitUntil', async () => {
+  const handed = [];
+  const ctx = { waitUntil: (p) => handed.push(p) };
+  const realFetch = globalThis.fetch;
+  globalThis.fetch = async () => { throw new Error('offline'); }; // the call itself may fail upstream; it is counted before it runs
+  const orig = console.error;
+  console.error = () => {};
+  try {
+    const e = env();
+    await createWorker().fetch(new Request('https://w.test/api/compare?repos=a/one,b/two'), e, ctx);
+    assert.equal(handed.length, 1);
+    await Promise.all(handed);
+    assert.equal(e.DB.events().length, 1);
+  } finally { globalThis.fetch = realFetch; console.error = orig; }
+});
+
 test('ownToken: optional Bearer/token prefix, blank and bare prefix are null', () => {
   const t = (v) => ownToken(new Request('https://w.test/', v === undefined ? {} : { headers: { 'X-GitHub-Token': v } }));
   assert.equal(t('abc'), 'abc');

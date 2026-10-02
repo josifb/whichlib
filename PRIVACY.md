@@ -65,7 +65,7 @@ a hosted request:
   address, a secret salt and the date, so the raw address is never stored and
   ids cannot be linked across days; older counters are deleted with the
   first call of each day); and one anonymous row per tool call in the call
-  counter (tool name, whichlib version, the time and the word "hosted": no IP
+  counter (tool name, whichlib version, the time and the word "hosted" as source and platform: no IP
   address, hash, token or query), kept indefinitely; only aggregate counts are
   public. This counting cannot be turned off for the hosted service, since the
   row holds nothing about the caller.

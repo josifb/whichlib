@@ -34,7 +34,7 @@ name and the whichlib version. No IP, hash, token or query is stored.
 The npm collector's rows have `source = 'npm'` (the column default).
 
 In `/stats`, `installs` and `calls` count npm rows only; `hostedCalls` (in
-`totals` and each `weekly` entry) and `bySource` are new.
+`totals` and each `weekly` entry) and `bySource` are new. `byTool` and `bySource` count all sources, while `totals.calls` and weekly `calls` are npm only, so do not add them up.
 
 The `source` column needs a one-time migration on the live database (a fresh
 install gets it from `schema.sql`):
