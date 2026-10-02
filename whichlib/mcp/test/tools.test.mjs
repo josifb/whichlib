@@ -503,3 +503,11 @@ test('recommend with judgeFit: judging the whole pool lets a low-ranked candidat
   assert.equal(judged.repos[0].fullName, 'o/r9');
   assert.notEqual(plain.repos[0].fullName, 'o/r9');
 });
+
+test('formatResult: shows the Jev fit and weak fit when present', async () => {
+  const items = [rawItem('a/one', 1000), rawItem('b/two', 900)];
+  const { judgeFit } = fakeJudge({ 'a/one': 0.95, 'b/two': 0.3 });
+  const text = formatResult(await fakes({ items, judgeFit }).tools.recommend({ need: 'pdf parser', limit: 2 }));
+  assert.match(text, /a\/one — fit \d+ \(.*, Jev fit 0\.95\)/);
+  assert.match(text, /b\/two — fit \d+ \(.*, Jev fit 0\.30, weak fit\)/);
+});

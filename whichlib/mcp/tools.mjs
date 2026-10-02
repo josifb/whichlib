@@ -266,8 +266,9 @@ export function formatResult(result) {
       typeof r.weeklyDownloads === 'number' ? `${compact(r.weeklyDownloads)} downloads/wk${typeof r.downloadsTrend === 'number' ? ` (trend ${r.downloadsTrend >= 1 ? '+' : ''}${Math.round((r.downloadsTrend - 1) * 100)}%)` : ''}` : null,
       r.language, r.license ? r.license.toUpperCase() : 'no license',
     ].filter(Boolean).join(' · ');
+    const jevText = typeof r.signals?.jevFit === 'number' ? `, Jev fit ${r.signals.jevFit.toFixed(2)}${r.flags?.includes('weak-fit') ? ', weak fit' : ''}` : '';
     const head = typeof r.fit === 'number'
-      ? `fit ${r.fit} (${r.tier} ${r.score}, relevance ${r.relevanceRank !== null ? `#${r.relevanceRank}` : r.sources?.includes('topic') ? 'topic' : 'stars-only'})`
+      ? `fit ${r.fit} (${r.tier} ${r.score}, relevance ${r.relevanceRank !== null ? `#${r.relevanceRank}` : r.sources?.includes('topic') ? 'topic' : 'stars-only'}${jevText})`
       : `${r.tier} ${r.score}`;
     lines.push(`${i + 1}. ${r.fullName} — ${head} — ${bits}`);
     if (r.description) lines.push(`   ${r.description.length > 140 ? `${r.description.slice(0, 137)}...` : r.description}`);
