@@ -16,7 +16,7 @@ function rawItem(fullName, stars, extra = {}) {
   };
 }
 
-function fakes({ items = [], relevanceItems = null, topicItems = [], repos = {}, gained = {}, downloads = {}, trends = {} } = {}) {
+function fakes({ items = [], relevanceItems = null, topicItems = [], repos = {}, gained = {}, downloads = {}, trends = {}, judgeFit = null } = {}) {
   const calls = { search: [], getRepo: [], resolve: [] };
   const github = {
     hasToken: false,
@@ -39,7 +39,7 @@ function fakes({ items = [], relevanceItems = null, topicItems = [], repos = {},
     return [repo.fullName in trends ? { ...pkg, downloadsTrend: trends[repo.fullName] } : pkg];
   };
   const history = { days: Object.keys(gained).length ? 3 : 0, spanDays: Object.keys(gained).length ? 7 : 0, latestDate: '2026-09-27', starsGained7d: (n) => gained[n] ?? null };
-  const tools = createTools({ github, resolvePackages, history, now: () => NOW });
+  const tools = createTools({ github, resolvePackages, history, judgeFit, now: () => NOW });
   return { tools, calls };
 }
 
@@ -394,4 +394,77 @@ test('limitNote replaces the no-token note', async () => {
   const notes = (await hosted.recommend({ need: 'thing' })).dataNotes.join(' ');
   assert.match(notes, /Hosted: 50 free tool calls per day/);
   assert.doesNotMatch(notes, /GITHUB_TOKEN/);
+});
+
+/** A judgeFit fake: fixed probabilities per repo, records what it was asked. */
+function fakeJudge(probabilities, { fail = false } = {}) {
+  const asked = [];
+  const judgeFit = async (need, language, repos) => {
+    asked.push({ need, language, names: repos.map((r) => r.fullName) });
+    if (fail) throw new Error('TypeSafe answered 529');
+    return new Map(Object.entries(probabilities));
+  };
+  judgeFit.model = 'jev-test';
+  return { judgeFit, asked };
+}
+
+test('recommend with judgeFit: whole pool judged once, relevance = GitHub position x Jev, word-match factors off', async () => {
+  // app/thing is rank 1 and huge but Jev says it is not a pdf library; lib/good is rank 2.
+  const items = [rawItem('app/thing', 50000, { description: 'A desktop app' }), rawItem('lib/good', 800, { description: 'nothing matching here' })];
+  const { judgeFit, asked } = fakeJudge({ 'app/thing': 0.1, 'lib/good': 0.9 });
+  const { tools } = fakes({ items, judgeFit });
+  const r = await tools.recommend({ need: 'pdf parser', language: 'Python', limit: 2 });
+  assert.equal(asked.length, 1);
+  assert.deepEqual(asked[0], { need: 'pdf parser', language: 'Python', names: ['app/thing', 'lib/good'] });
+  assert.equal(r.fitJudge, 'jev-test');
+  assert.equal(r.repos[0].fullName, 'lib/good');
+  const good = r.repos[0];
+  // rank 2 of a 25 window: 1 - 0.5 * 1/24; no x0.5 for "never mentions pdf" because Jev replaced that rule
+  assert.equal(good.relevance, Number(((1 - 0.5 / 24) * 0.9).toFixed(3)));
+  assert.equal(good.signals.jevFit, 0.9);
+  assert.match(r.ranking, /TypeSafe Jev/);
+});
+
+test('recommend with judgeFit: a returned repo under 0.5 gets flag weak-fit', async () => {
+  const items = [rawItem('a/one', 1000), rawItem('b/two', 900)];
+  const { judgeFit } = fakeJudge({ 'a/one': 0.95, 'b/two': 0.3 });
+  const { tools } = fakes({ items, judgeFit });
+  const r = await tools.recommend({ need: 'pdf parser', limit: 2 });
+  const byName = Object.fromEntries(r.repos.map((x) => [x.fullName, x]));
+  assert.ok(byName['b/two'].flags.includes('weak-fit'));
+  assert.ok(!byName['a/one'].flags.includes('weak-fit'));
+});
+
+test('recommend with judgeFit: a repo missing from the answers counts as 0', async () => {
+  const items = [rawItem('a/one', 1000), rawItem('b/two', 900)];
+  const { judgeFit } = fakeJudge({ 'a/one': 0.9 });
+  const { tools } = fakes({ items, judgeFit });
+  const r = await tools.recommend({ need: 'pdf parser', limit: 2 });
+  assert.equal(r.repos.find((x) => x.fullName === 'b/two').relevance, 0);
+});
+
+test('recommend with judgeFit: no candidate at 0.5 or more adds the no-strong-match note', async () => {
+  const items = [rawItem('a/one', 1000)];
+  const { judgeFit } = fakeJudge({ 'a/one': 0.2 });
+  const { tools } = fakes({ items, judgeFit });
+  const r = await tools.recommend({ need: 'pdf parser', limit: 2 });
+  assert.ok(r.dataNotes.some((n) => n.startsWith('No candidate is clearly a library for this need')));
+});
+
+test('recommend with judgeFit: a failing judge falls back to the word-match rules and says so', async () => {
+  const items = [rawItem('a/one', 1000, { description: 'pdf parser' }), rawItem('b/two', 900)];
+  const { judgeFit } = fakeJudge({}, { fail: true });
+  const withJudge = await fakes({ items, judgeFit }).tools.recommend({ need: 'pdf parser', limit: 2 });
+  const without = await fakes({ items }).tools.recommend({ need: 'pdf parser', limit: 2 });
+  assert.equal(withJudge.fitJudge, 'rules (judge unavailable)');
+  assert.ok(withJudge.dataNotes.some((n) => n.startsWith('The fit judgment (TypeSafe Jev) was unavailable')));
+  assert.deepEqual(withJudge.repos.map((x) => [x.fullName, x.fit]), without.repos.map((x) => [x.fullName, x.fit]));
+  assert.equal(without.fitJudge, 'rules');
+});
+
+test('recommend without judgeFit: unchanged, no jevFit signal, no weak-fit flag', async () => {
+  const items = [rawItem('a/one', 1000)];
+  const r = await fakes({ items }).tools.recommend({ need: 'pdf parser', limit: 1 });
+  assert.equal(r.repos[0].signals.jevFit, undefined);
+  assert.ok(!r.repos[0].flags.includes('weak-fit'));
 });

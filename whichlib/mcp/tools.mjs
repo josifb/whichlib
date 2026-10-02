@@ -26,6 +26,13 @@ const RELEVANCE_ABSENT = 0.4; // present only in the stars-sorted results
 // (matched README text only).
 const MENTION_FACTOR = { text: 1, topic: 0.75, none: 0.5 };
 const NOT_LIBRARY_FACTOR = 0.8; // the user asked for a framework/library/parser and the candidate reads like an application
+// Hosted only (judgeFit given): below this Jev probability a repo is flagged weak-fit, and
+// when no candidate reaches it the result says so. Chosen against jev-1.13.0 (see jev.mjs).
+const WEAK_FIT = 0.5;
+const RANKING_RULES = 'fit = score x relevance; relevance is 1.0 for GitHub relevance rank 1, 0.5 at rank 25, 0.75 when found only through the topic query, 0.4 when found only in the stars-sorted results; x0.75 when the repo names the subject only in its topic tags and x0.5 when nowhere in its name, description or topics; x0.8 when you asked for a framework/library and the repo reads like an application';
+const RANKING_JEV = 'fit = score x relevance; relevance is the GitHub position (1.0 for relevance rank 1, 0.5 at rank 25, 0.75 when found only through the topic query, 0.4 when found only in the stars-sorted results) x the probability, judged by TypeSafe Jev from the repo\'s name, description and topics, that it is an installable library whose main purpose is the need (signals.jevFit); flag weak-fit below 0.5';
+const JEV_UNAVAILABLE_NOTE = 'The fit judgment (TypeSafe Jev) was unavailable for this call; ranked with the word-match rules instead.';
+const NO_STRONG_MATCH_NOTE = 'No candidate is clearly a library for this need (every fit judgment is below 0.5); try describing the need in other words.';
 const LANGUAGE_NEEDS_QUOTES = /[^A-Za-z0-9_-]/;
 
 // Repeated language qualifiers act as OR in GitHub search (verified 2026-09-27).
@@ -59,7 +66,7 @@ function gainText(r) {
   return r.starsGainedEstimated ? ` (~+${nf.format(r.starsGained7d)}/wk, estimated)` : ` (+${nf.format(r.starsGained7d)} in 7d)`;
 }
 
-export function createTools({ github, resolvePackages, history, loadRising = null, limitNote = null, now = () => Date.now() }) {
+export function createTools({ github, resolvePackages, history, loadRising = null, limitNote = null, judgeFit = null, now = () => Date.now() }) {
   const registryCache = {}; // repo -> package names, for the life of the process
 
   function dataNotes() {
@@ -153,26 +160,46 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
       // The score measures health and popularity, not fit to the need. GitHub's relevance
       // order is the best fit signal available, so the ranking key is fit = score x relevance.
       const wantsLibrary = asksForLibrary(text);
+      // Cheap pass without registry lookups: scores for the whole pool.
+      const pool = await enrichAndScore(candidates, { withDownloads: false });
+      // Hosted: one Jev judgment per candidate, for the whole pool, before the shortlist
+      // (judging only the shortlist lost good libraries in the 2026-10-02 spike).
+      let jev = null;
+      let judgeFailed = false;
+      if (judgeFit) {
+        try { jev = await judgeFit(text, language, pool); } catch { judgeFailed = true; }
+      }
       const withFit = (r) => {
         const rank = relevanceRank.get(r.fullName) ?? null;
         const src = sources.get(r.fullName) ?? [];
-        let relevance = rank !== null ? 1 - RELEVANCE_DECAY * (rank - 1) / Math.max(1, RELEVANCE_WINDOW - 1)
+        const position = rank !== null ? 1 - RELEVANCE_DECAY * (rank - 1) / Math.max(1, RELEVANCE_WINDOW - 1)
           : src.includes('topic') ? RELEVANCE_TOPIC : RELEVANCE_ABSENT;
-        const signals = { mention: mentionLevel(r, text), looksLikeLibrary: looksLikeLibrary(r) };
-        relevance *= MENTION_FACTOR[signals.mention];
-        if (wantsLibrary && !signals.looksLikeLibrary) relevance *= NOT_LIBRARY_FACTOR;
-        return { ...r, relevanceRank: rank, sources: src, signals, relevance: Number(relevance.toFixed(3)), fit: Math.round(r.score * relevance) };
+        let relevance; let signals; let flags = r.flags;
+        if (jev) {
+          const p = jev.get(r.fullName) ?? 0;
+          relevance = position * p;
+          signals = { jevFit: Number(p.toFixed(2)) };
+          if (p < WEAK_FIT) flags = [...flags, 'weak-fit'];
+        } else {
+          signals = { mention: mentionLevel(r, text), looksLikeLibrary: looksLikeLibrary(r) };
+          relevance = position * MENTION_FACTOR[signals.mention];
+          if (wantsLibrary && !signals.looksLikeLibrary) relevance *= NOT_LIBRARY_FACTOR;
+        }
+        return { ...r, flags, relevanceRank: rank, sources: src, signals, relevance: Number(relevance.toFixed(3)), fit: Math.round(r.score * relevance) };
       };
       const byFit = (a, b) => b.fit - a.fit || byScore(a, b);
-      // Cheap pass without registry lookups to pick the shortlist, then the full pass with downloads.
-      const prelim = (await enrichAndScore(candidates, { withDownloads: false })).map(withFit).sort(byFit);
+      const prelim = pool.map(withFit).sort(byFit);
       const shortlist = prelim.slice(0, Math.max(2 * n, 8)).map((r) => candidates.find((it) => it.full_name === r.fullName));
       const scored = (await enrichAndScore(shortlist, { withDownloads: true })).map(withFit).sort(byFit).slice(0, n);
+      const notes = dataNotes();
+      if (judgeFailed) notes.push(JEV_UNAVAILABLE_NOTE);
+      if (jev && pool.length && Math.max(...pool.map((r) => jev.get(r.fullName) ?? 0)) < WEAK_FIT) notes.push(NO_STRONG_MATCH_NOTE);
       const result = {
         tool: 'recommend_repos', need: text, language, query, topicQuery, totalMatches: relevance.totalCount,
         candidatesConsidered: candidates.length, shortlisted: shortlist.length,
-        ranking: 'fit = score x relevance; relevance is 1.0 for GitHub relevance rank 1, 0.5 at rank 25, 0.75 when found only through the topic query, 0.4 when found only in the stars-sorted results; x0.75 when the repo names the subject only in its topic tags and x0.5 when nowhere in its name, description or topics; x0.8 when you asked for a framework/library and the repo reads like an application',
-        generatedAt: new Date(now()).toISOString(), dataNotes: dataNotes(), repos: scored,
+        fitJudge: jev ? (judgeFit.model ?? 'jev') : judgeFailed ? 'rules (judge unavailable)' : 'rules',
+        ranking: jev ? RANKING_JEV : RANKING_RULES,
+        generatedAt: new Date(now()).toISOString(), dataNotes: notes, repos: scored,
       };
       // For the eval: every candidate with its pre-download score, so baselines can be computed from the same pool.
       if (includeCandidates) result.candidates = prelim.map(({ fullName, description, topics, language: lang, stars, score, fit, relevance, relevanceRank, sources: src, signals }) => ({ fullName, description, topics, language: lang, stars, score, fit, relevance, relevanceRank, sources: src, signals }));
