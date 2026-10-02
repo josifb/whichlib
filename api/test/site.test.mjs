@@ -1,5 +1,6 @@
-// Static checks for the hand-written pages in site/ (the generated /repos/
-// and /score.js are covered by build-site.test.mjs).
+// Static checks for the hand-written pages in site/ (/score.js is generated
+// by build-site.mjs; /repos/ is the dashboard, a tracked source with its own
+// style, so it only joins the canonical, Open Graph, tracking and link lists).
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
@@ -13,7 +14,7 @@ const { WEIGHTS } = createRequire(import.meta.url)('../../whichlib/lib/score.js'
 
 const SITE = fileURLToPath(new URL('../../site/', import.meta.url));
 const PAGES = { '/': 'index.html', '/docs/': 'docs/index.html', '/pricing/': 'pricing/index.html', '/404': '404.html' };
-const GENERATED = new Set(['/score.js', '/repos/']);
+const GENERATED = new Set(['/score.js']);
 const read = (file) => readFileSync(join(SITE, file), 'utf8');
 const nav = (html) => html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)?.[0];
 const footer = (html) => html.match(/<footer class="site-footer"[\s\S]*?<\/footer>/)?.[0];
@@ -98,12 +99,20 @@ test('pricing: free, own token, teams waitlist', () => {
   for (const s of [`${DAILY_LIMIT}`, 'X-GitHub-Token', 'Teams', 'https://github.com/josifb/whichlib/issues/1']) assert.ok(html.includes(s), s);
 });
 
-const CANONICAL = { 'index.html': '/', 'docs/index.html': '/docs/', 'pricing/index.html': '/pricing/', '404.html': '/' };
+const CANONICAL = { 'index.html': '/', 'docs/index.html': '/docs/', 'pricing/index.html': '/pricing/', 'repos/index.html': '/repos/', '404.html': '/' };
 
 test('every page has a canonical link to the apex matching its path', () => {
   for (const [file, path] of Object.entries(CANONICAL)) {
     assert.ok(read(file).includes(`<link rel="canonical" href="https://whichlib.com${path}">`), file);
   }
+});
+
+test('the dashboard has Open Graph tags and no workers.dev address', () => {
+  const html = read('repos/index.html');
+  for (const p of ['og:title', 'og:description', 'og:type']) assert.match(html, new RegExp(`<meta property="${p}" content="[^"]+">`), p);
+  assert.ok(html.includes('<meta property="og:url" content="https://whichlib.com/repos/">'));
+  assert.ok(html.includes('<script src="/score.js"></script>'));
+  assert.ok(html.includes('class="site-link"'));
 });
 
 test('sitemap lists the four pages; robots points at it; llms.txt links the docs', () => {
@@ -116,13 +125,13 @@ test('sitemap lists the four pages; robots points at it; llms.txt links the docs
 });
 
 test('no workers.dev address anywhere in site/ (listings and pages only ever name whichlib.com)', () => {
-  for (const file of [...Object.values(PAGES), 'sitemap.xml', 'robots.txt', 'llms.txt', 'site.js', 'style.css']) {
+  for (const file of [...Object.values(PAGES), 'repos/index.html', 'sitemap.xml', 'robots.txt', 'llms.txt', 'site.js', 'style.css']) {
     assert.doesNotMatch(read(file), /workers\.dev/, file);
   }
 });
 
 test('every hand-written file is tracked by git (an ignore rule must not hide one)', () => {
-  for (const file of [...Object.values(PAGES), 'sitemap.xml', 'robots.txt', 'llms.txt', 'site.js', 'style.css']) {
+  for (const file of [...Object.values(PAGES), 'repos/index.html', 'sitemap.xml', 'robots.txt', 'llms.txt', 'site.js', 'style.css']) {
     assert.doesNotThrow(() => execFileSync('git', ['ls-files', '--error-unmatch', file], { cwd: SITE, stdio: 'pipe' }), file);
   }
 });
