@@ -351,8 +351,33 @@ test('jev: compare and trending never call TypeSafe', async () => {
 test('jev: the recommend cache key depends on the judge (old rules results are not served)', async () => {
   const { service: plain, cacheApi } = setup();
   await plain.call('recommend_repos', { need: 'http client', limit: 2 }, anon);
-  const keysBefore = [...cacheApi.store.keys()];
+  const plainKeys = [...cacheApi.store.keys()].filter((k) => !String(k).includes('item'));
   const { service: judged, cacheApi: judgedCache } = setup({ typesafeKey: 'ts-key' });
   await judged.call('recommend_repos', { need: 'http client', limit: 2 }, anon);
-  assert.notDeepEqual([...judgedCache.store.keys()], keysBefore);
+  const judgedKeys = [...judgedCache.store.keys()];
+  assert.ok(plainKeys.length >= 1);
+  assert.ok(!plainKeys.some((k) => judgedKeys.includes(k)), 'a recommend key is shared');
+});
+
+test('jev: own-token callers are never judged (private repos stay away from TypeSafe)', async () => {
+  const { service, calls } = setup({ typesafeKey: 'ts-key' });
+  const { result } = await service.call('recommend_repos', { need: 'http client', limit: 2 }, own);
+  assert.equal(result.fitJudge, 'rules');
+  assert.equal(calls.jev, undefined);
+});
+
+test('jev: TypeSafe 401 -> fallback cached for 1 h, logged without the key', async () => {
+  const { service, cacheApi } = setup({ typesafeKey: 'ts-key', jevStatus: 401 });
+  const logged = [];
+  const orig = console.error;
+  console.error = (...a) => { logged.push(a); };
+  try {
+    const { result } = await service.call('recommend_repos', { need: 'http client', limit: 2 }, anon);
+    assert.equal(result.fitJudge, 'rules (judge unavailable)');
+  } finally { console.error = orig; }
+  const ttls = [...cacheApi.store.values()].map(({ headers }) => headers.get('Cache-Control'));
+  assert.ok(ttls.includes('max-age=3600'), ttls.join());
+  assert.ok(!ttls.includes('max-age=86400'), ttls.join());
+  assert.ok(logged.some((a) => a[0] === 'jev failed'), JSON.stringify(logged));
+  assert.ok(!JSON.stringify(logged).includes('ts-key'));
 });

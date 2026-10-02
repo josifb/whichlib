@@ -34,7 +34,7 @@
   <div class="table-scroll"><table>
     <thead><tr><th>Tool</th><th>Inputs</th><th>Returns</th></tr></thead>
     <tbody>
-      <tr><td><code>recommend_repos</code></td><td><code>need</code> in plain words (2-200 characters), optional <code>language</code> (GitHub language name), <code>limit</code> 1-10 (default 5)</td><td>The best repositories for the need, ranked by fit = score × relevance.</td></tr>
+      <tr><td><code>recommend_repos</code></td><td><code>need</code> in plain words (2-200 characters), optional <code>language</code> (GitHub language name), <code>limit</code> 1-10 (default 5)</td><td>The best repositories for the need, ranked by fit = score × relevance. On whichlib.com, relevance uses a TypeSafe Jev judgment of whether each candidate is an installable library whose main purpose is the need (returned as <code>signals.jevFit</code>, with a weak-fit flag below 0.5) in place of the word-match factors; the npm package and own-token calls use the word-match rules.</td></tr>
       <tr><td><code>compare_repos</code></td><td><code>repos</code>: 2-10 names as <code>owner/repo</code></td><td>Side by side, best score first; names that do not exist are listed under <code>notFound</code>.</td></tr>
       <tr><td><code>trending_repos</code></td><td><code>period</code> day, week, month or rising (default week), optional <code>language</code>, <code>limit</code> 1-100 (default 20), <code>withDownloads</code> (default false)</td><td>Most-starred repositories created in the period, or with <code>rising</code> repositories of any age by stars gained this week; returned sorted by score (<code>starsRank</code> keeps the stars order).</td></tr>
     </tbody>
