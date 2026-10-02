@@ -19,7 +19,7 @@ function item(fullName, stars = 1000) {
   };
 }
 
-function setup({ getRepoError = null, searchError = null, packages = [], burstLimit = 20, nItems = 2, fetchesPerRepo = 0, counter = null } = {}) {
+function setup({ getRepoError = null, searchError = null, packages = [], burstLimit = 20, nItems = 2, fetchesPerRepo = 0, counter = null, typesafeKey = null, jevStatus = 200 } = {}) {
   const calls = { tokens: [], search: 0, getRepo: [], resolve: 0, fetches: 0 };
   const makeGitHub = (token, fetchImpl) => {
     calls.tokens.push(token);
@@ -40,14 +40,23 @@ function setup({ getRepoError = null, searchError = null, packages = [], burstLi
     for (let i = 0; i < fetchesPerRepo; i++) await opts.fetchImpl('https://registry.npmjs.org/x');
     return packages;
   };
-  const fetchImpl = async () => { calls.fetches++; return {}; };
+  const fetchImpl = async (url, init) => {
+    calls.fetches++;
+    if (String(url).startsWith('https://api.typesafe.ai/')) {
+      calls.jev = (calls.jev ?? 0) + 1;
+      const body = JSON.parse(init.body);
+      const answers = Object.fromEntries(Object.keys(body.questions).map((k) => [k, { type: 'noul', noul: 0.9 }]));
+      return { ok: jevStatus === 200, status: jevStatus, headers: { get: () => null }, json: async () => ({ answers }) };
+    }
+    return {};
+  };
   const cacheApi = fakeCacheApi(() => NOW);
   const cache = createCache({ cacheApi, now: () => NOW });
   const itemCache = createCache({ cacheApi: null, now: () => NOW });
   const burst = fakeBurst(burstLimit);
   const db = fakeD1();
   const service = createService({
-    env: { GITHUB_TOKEN: 'server-token', IP_SALT: 'salt', BURST: burst },
+    env: { GITHUB_TOKEN: 'server-token', IP_SALT: 'salt', BURST: burst, ...(typesafeKey ? { TYPESAFE_API_KEY: typesafeKey } : {}) },
     cache, itemCache, counter: counter ?? createDailyCounter(db), fetchImpl,
     loadHistory: async () => ({ days: 0, spanDays: 0, latestDate: null, starsGained7d: () => null, starsGainedEstimated: () => false }),
     loadRising: async () => ({ date: '2026-10-01', spanDays: 3, lists: { all: [] } }),
@@ -305,4 +314,45 @@ test('real resolvePackages with pypistats answering 429: no waiting, downloads n
   const pkgs = result.repos.flatMap((r) => r.packages ?? []);
   assert.ok(pkgs.length >= 1);
   for (const p of pkgs) assert.equal(p.weeklyDownloads, null);
+});
+
+test('jev: with TYPESAFE_API_KEY, recommend is judged through the budget fetch', async () => {
+  const { service, calls } = setup({ typesafeKey: 'ts-key' });
+  const { result } = await service.call('recommend_repos', { need: 'http client', limit: 2 }, anon);
+  assert.equal(result.fitJudge, 'jev-1.13.0');
+  assert.equal(calls.jev, 1);
+  assert.equal(result.repos[0].signals.jevFit, 0.9);
+});
+
+test('jev: without the key nothing changes', async () => {
+  const { service, calls } = setup();
+  const { result } = await service.call('recommend_repos', { need: 'http client', limit: 2 }, anon);
+  assert.equal(result.fitJudge, 'rules');
+  assert.equal(calls.jev, undefined);
+});
+
+test('jev: TypeSafe overloaded -> rules ranking, noted, cached for 1 h only', async () => {
+  const { service, cacheApi } = setup({ typesafeKey: 'ts-key', jevStatus: 529 });
+  const { result } = await service.call('recommend_repos', { need: 'http client', limit: 2 }, anon);
+  assert.equal(result.fitJudge, 'rules (judge unavailable)');
+  assert.ok(result.dataNotes.some((n) => n.startsWith('The fit judgment (TypeSafe Jev) was unavailable')));
+  const ttls = [...cacheApi.store.values()].map(({ headers }) => headers.get('Cache-Control'));
+  assert.ok(ttls.includes('max-age=3600'), ttls.join());
+  assert.ok(!ttls.includes('max-age=86400'), ttls.join());
+});
+
+test('jev: compare and trending never call TypeSafe', async () => {
+  const { service, calls } = setup({ typesafeKey: 'ts-key' });
+  await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon);
+  await service.call('trending_repos', { period: 'week' }, anon);
+  assert.equal(calls.jev, undefined);
+});
+
+test('jev: the recommend cache key depends on the judge (old rules results are not served)', async () => {
+  const { service: plain, cacheApi } = setup();
+  await plain.call('recommend_repos', { need: 'http client', limit: 2 }, anon);
+  const keysBefore = [...cacheApi.store.keys()];
+  const { service: judged, cacheApi: judgedCache } = setup({ typesafeKey: 'ts-key' });
+  await judged.call('recommend_repos', { need: 'http client', limit: 2 }, anon);
+  assert.notDeepEqual([...judgedCache.store.keys()], keysBefore);
 });
