@@ -93,3 +93,70 @@ test('jev: an answer without a number throws JevError', async () => {
 test('jev: the judge carries its model name', () => {
   assert.equal(createJevJudge({ apiKey: 'k', fetchImpl: async () => ({}) }).model, JEV_MODEL);
 });
+
+/** Fetch that never answers; rejects with the signal's reason when aborted. The interval keeps the event loop alive (AbortSignal.timeout timers are unref'd). */
+const hangingFetch = (signals = []) => (url, init) => new Promise((_, reject) => {
+  signals.push(init.signal);
+  const keepAlive = setInterval(() => {}, 1000);
+  init.signal.addEventListener('abort', () => { clearInterval(keepAlive); reject(init.signal.reason); });
+});
+
+test('jev: a request that never answers times out as a JevError', async () => {
+  const judge = createJevJudge({ apiKey: 'k', fetchImpl: hangingFetch(), timeoutMs: 20 });
+  const err = await judge('orm', 'Python', [repo('a/one')]).catch((e) => e);
+  assert.ok(err instanceof JevError);
+  assert.match(err.message, /timed out/);
+  assert.equal(err.status, null);
+});
+
+test('jev: the first chunk failure aborts the sibling requests', async () => {
+  const signals = [];
+  let n = 0;
+  const fetchImpl = (url, init) => {
+    if (n++ === 0) {
+      signals.push(init.signal);
+      return Promise.resolve({ ok: false, status: 500, headers: { get: () => null }, json: async () => ({}) });
+    }
+    return hangingFetch(signals)(url, init);
+  };
+  const judge = createJevJudge({ apiKey: 'k', fetchImpl, chunk: 1 });
+  const err = await judge('orm', 'Python', [repo('a/one'), repo('b/two')]).catch((e) => e);
+  assert.ok(err instanceof JevError);
+  assert.equal(err.status, 500);
+  assert.equal(signals.length, 2);
+  assert.equal(signals[1].aborted, true);
+});
+
+test('jev: a network TypeError becomes a JevError with the cause', async () => {
+  const fetchImpl = async () => { throw new TypeError('fetch failed'); };
+  const err = await createJevJudge({ apiKey: 'k', fetchImpl })('orm', 'Python', [repo('a/one')]).catch((e) => e);
+  assert.ok(err instanceof JevError);
+  assert.ok(err.cause instanceof TypeError);
+});
+
+test('jev: an unparseable body becomes a JevError', async () => {
+  const fetchImpl = async () => ({ ok: true, status: 200, headers: { get: () => 'req_7' }, json: async () => { throw new SyntaxError('bad json'); } });
+  const err = await createJevJudge({ apiKey: 'k', fetchImpl })('orm', 'Python', [repo('a/one')]).catch((e) => e);
+  assert.ok(err instanceof JevError);
+  assert.ok(err.cause instanceof SyntaxError);
+  assert.equal(err.requestId, 'req_7');
+});
+
+test('jev: a probability outside 0..1 or NaN throws JevError', async () => {
+  for (const bad of [NaN, 1.5, -0.1, Infinity]) {
+    const { fetchImpl } = fakeFetch({ p: () => bad });
+    const err = await createJevJudge({ apiKey: 'k', fetchImpl })('orm', 'Python', [repo('a/one')]).catch((e) => e);
+    assert.ok(err instanceof JevError, String(bad));
+  }
+});
+
+test('jev: a missing apiKey fails at construction', () => {
+  assert.throws(() => createJevJudge({ fetchImpl: async () => ({}) }), /needs an apiKey/);
+  assert.throws(() => createJevJudge({ apiKey: '' }), /needs an apiKey/);
+});
+
+test('jev: a partial answer (one candidate missing) throws JevError', async () => {
+  const fetchImpl = async () => ({ ok: true, status: 200, headers: { get: () => null }, json: async () => ({ answers: { c0: { noul: 0.9 } } }) });
+  const err = await createJevJudge({ apiKey: 'k', fetchImpl })('orm', 'Python', [repo('a/one'), repo('b/two')]).catch((e) => e);
+  assert.ok(err instanceof JevError);
+});

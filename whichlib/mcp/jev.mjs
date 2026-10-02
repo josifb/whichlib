@@ -14,15 +14,15 @@ const MAX_DESCRIPTION = 300;
 const MAX_TOPICS = 10;
 
 export class JevError extends Error {
-  constructor(message, { status = null, requestId = null } = {}) {
-    super(message);
+  constructor(message, { status = null, requestId = null, cause = null } = {}) {
+    super(message, cause ? { cause } : undefined);
     this.name = 'JevError';
     this.status = status;
     this.requestId = requestId;
   }
 }
 
-/** What Jev sees of a repository: public metadata only, trimmed. */
+/** What Jev sees of a repository: public metadata only, trimmed. `need` is capped at 200 chars upstream by the tool's input schema (mcp/definitions.mjs). */
 const card = (repo) => ({
   name: repo.fullName,
   description: String(repo.description ?? '').slice(0, MAX_DESCRIPTION),
@@ -46,30 +46,56 @@ export function fitQuestion(repo) {
 
 /**
  * Returns judgeFit(need, language, repos) -> Map(fullName -> probability 0-1).
- * Throws JevError on any failure; it never retries or waits (the caller falls back).
+ * Throws JevError on any failure (HTTP error, network error, bad body, bad
+ * probability, or no answer within timeoutMs); it never retries or waits (the
+ * caller falls back). The chunk requests of one call share an AbortController:
+ * the first failure aborts the others, and every request is bounded by timeoutMs.
  */
-export function createJevJudge({ apiKey, fetchImpl = fetch, model = JEV_MODEL, chunk = CHUNK }) {
-  async function ask(need, language, part) {
+export function createJevJudge({ apiKey, fetchImpl = fetch, model = JEV_MODEL, chunk = CHUNK, timeoutMs = 5000 }) {
+  if (!apiKey) throw new Error('createJevJudge needs an apiKey');
+
+  async function ask(need, language, part, controller) {
+    const signal = AbortSignal.any([controller.signal, AbortSignal.timeout(timeoutMs)]);
     const questions = Object.fromEntries(part.map((repo, i) => [`c${i}`, fitQuestion(repo)]));
-    const res = await fetchImpl(JEV_URL, {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model, state: { need, language: language ?? 'any' }, questions }),
-    });
-    const requestId = res.headers?.get?.('x-typesafe-request-id') ?? null;
-    if (!res.ok) throw new JevError(`TypeSafe answered ${res.status}`, { status: res.status, requestId });
-    const body = await res.json();
-    return part.map((repo, i) => {
-      const p = body?.answers?.[`c${i}`]?.noul;
-      if (typeof p !== 'number') throw new JevError('TypeSafe answer missing a probability', { requestId });
-      return [repo.fullName, p];
-    });
+    let requestId = null;
+    try {
+      let res;
+      try {
+        res = await fetchImpl(JEV_URL, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${apiKey}`, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ model, state: { need, language: language ?? 'any' }, questions }),
+          signal,
+        });
+      } catch (cause) {
+        if (signal.aborted) throw new JevError('TypeSafe request timed out', { cause });
+        throw new JevError(`TypeSafe request failed: ${cause?.message ?? cause}`, { cause });
+      }
+      requestId = res.headers?.get?.('x-typesafe-request-id') ?? null;
+      if (!res.ok) throw new JevError(`TypeSafe answered ${res.status}`, { status: res.status, requestId });
+      let body;
+      try {
+        body = await res.json();
+      } catch (cause) {
+        if (signal.aborted) throw new JevError('TypeSafe request timed out', { requestId, cause });
+        throw new JevError('TypeSafe answer was not valid JSON', { requestId, cause });
+      }
+      return part.map((repo, i) => {
+        const p = body?.answers?.[`c${i}`]?.noul;
+        if (!(Number.isFinite(p) && p >= 0 && p <= 1)) throw new JevError('TypeSafe answer missing a probability', { requestId });
+        return [repo.fullName, p];
+      });
+    } catch (err) {
+      controller.abort(err); // stop the sibling requests, no wasted quota
+      throw err;
+    }
   }
 
   async function judgeFit(need, language, repos) {
     const parts = [];
     for (let i = 0; i < repos.length; i += chunk) parts.push(repos.slice(i, i + chunk));
-    const answers = await Promise.all(parts.map((part) => ask(need, language, part)));
+    const controller = new AbortController();
+    const answers = await Promise.all(parts.map((part) => ask(need, language, part, controller)));
     return new Map(answers.flat());
   }
   judgeFit.model = model;
