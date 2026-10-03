@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   candidateNames, urlsMentionRepo, registriesFor,
   findNpmPackage, findPypiPackage, npmDownloads, pypiDownloads, downloadsTrend, MIN_TREND_BASE,
-  resolvePackages, NEGATIVE_TTL_MS,
+  resolvePackages, NEGATIVE_TTL_MS, sameWeekdayTrend,
 } from '../src/registry.mjs';
 
 const json = (status, body) => ({ ok: status >= 200 && status < 300, status, json: async () => body, headers: { get: () => null } });
@@ -209,4 +209,15 @@ test('resolvePackages: a failing download lookup keeps the package with null dow
   };
   const out = await resolvePackages({ fullName: 'acme/widget', language: 'JavaScript' }, { fetchImpl: f, cache: {}, now: Date.now() });
   assert.deepEqual(out, [{ registry: 'npm', name: 'widget', weeklyDownloads: null, downloadsTrend: null }]);
+});
+
+test('sameWeekdayTrend: offsets count from the end, so leading extra days (30-31 returned) are ignored', () => {
+  const days = [999999, 1, ...Array(28).fill(1000)]; // 30 days, two odd leading values
+  assert.equal(sameWeekdayTrend(days), 1);
+});
+
+test('sameWeekdayTrend: one or two missing days in the last 7 are skipped, the trend is still computed', () => {
+  const days = Array(28).fill(1000);
+  days[23] = 0; days[26] = 0; // two zeros in the last week, five usable days left
+  assert.equal(sameWeekdayTrend(days), 1);
 });
