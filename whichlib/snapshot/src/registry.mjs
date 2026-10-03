@@ -100,14 +100,31 @@ export function downloadsTrend(recentWeek, baselineWeek) {
 
 const sum = (xs) => xs.reduce((a, b) => a + b, 0);
 
-/** npm: the last 30 days in one call. Last 7 days vs the average of the 3 whole weeks before. */
+// npm's range API reports days it has no data for as 0 (2026-09-03/07/08/15 were 0 for every
+// package), so a plain "last 7 vs the 21 before" reads every package as +30%. Compare each of
+// the last 7 days with the same weekday 1-3 weeks earlier and skip zero days on either side.
+const MIN_TREND_DAYS = 4;
+export function sameWeekdayTrend(days) {
+  if (days.length < 28) return null;
+  let recent = 0; let base = 0; let used = 0;
+  for (let k = days.length - 7; k < days.length; k++) {
+    const prev = [days[k - 7], days[k - 14], days[k - 21]].filter((v) => v > 0);
+    if (!(days[k] > 0) || prev.length === 0) continue;
+    recent += days[k];
+    base += prev.reduce((a, b) => a + b, 0) / prev.length;
+    used += 1;
+  }
+  if (used < MIN_TREND_DAYS) return null;
+  return downloadsTrend((recent * 7) / used, (base * 7) / used);
+}
+
+/** npm: the last 30 days in one call. Last 7 days vs the same weekdays 1-3 weeks earlier, skipping npm's zero (missing) days. */
 export async function npmDownloads(name, fetchImpl) {
   const data = await getJson(`https://api.npmjs.org/downloads/range/last-month/${npmPath(name)}`, fetchImpl);
   const days = Array.isArray(data?.downloads) ? data.downloads.map((d) => d.downloads).filter((n) => typeof n === 'number') : [];
   if (days.length < 7) return null;
   const weekly = sum(days.slice(-7));
-  const before = days.slice(-28, -7);
-  return { weekly, trend: before.length === 21 ? downloadsTrend(weekly, sum(before) / 3) : null };
+  return { weekly, trend: sameWeekdayTrend(days) };
 }
 
 /** PyPI (pypistats): last week vs the rest of the last 30 days, per week. */
