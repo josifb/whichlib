@@ -88,6 +88,51 @@ test('npmDownloads: last 7 days summed, trend against the 3 weeks before, scoped
   assert.equal(await npmDownloads('nope', f), null);
 });
 
+// npm range response for an explicit day array.
+const npmDays = (days) => ({ downloads: days.map((downloads, i) => ({ downloads, day: `d${i}` })) });
+const NPM_URL = 'https://api.npmjs.org/downloads/range/last-month/widget';
+const withZeros = (days, idx) => days.map((v, i) => (idx.includes(i) ? 0 : v));
+
+test('npmDownloads trend: npm missing (zero) days in the baseline do not deflate it', async () => {
+  const days = withZeros(Array(28).fill(1000), [1, 5, 6, 13]);
+  const f = fakeFetch({ [NPM_URL]: npmDays(days) });
+  assert.deepEqual(await npmDownloads('widget', f), { weekly: 7000, trend: 1 });
+});
+
+test('npmDownloads trend: a real 1.5x rise over a flat baseline reads 1.5', async () => {
+  const days = [...Array(21).fill(1000), ...Array(7).fill(1500)];
+  const f = fakeFetch({ [NPM_URL]: npmDays(days) });
+  assert.deepEqual(await npmDownloads('widget', f), { weekly: 10500, trend: 1.5 });
+});
+
+test('npmDownloads trend: weekday/weekend pattern with a missing baseline weekday still reads 1', async () => {
+  // 28 days; index % 7 in {5, 6} are weekend days (400), the rest weekdays (1000).
+  const pattern = Array.from({ length: 28 }, (_, i) => (i % 7 >= 5 ? 400 : 1000));
+  const days = withZeros(pattern, [2]); // a baseline weekday (3 weeks before the last window)
+  const f = fakeFetch({ [NPM_URL]: npmDays(days) });
+  const out = await npmDownloads('widget', f);
+  assert.equal(out.trend, 1);
+  assert.equal(out.weekly, 5 * 1000 + 2 * 400);
+});
+
+test('npmDownloads trend: fewer than 4 usable recent days gives null, weekly stays the raw sum', async () => {
+  const days = withZeros(Array(28).fill(1000), [21, 22, 23, 24]);
+  const f = fakeFetch({ [NPM_URL]: npmDays(days) });
+  assert.deepEqual(await npmDownloads('widget', f), { weekly: 3000, trend: null });
+});
+
+test('npmDownloads trend: below the minimum weekly baseline gives null', async () => {
+  const f = fakeFetch({ [NPM_URL]: npmDays(Array(28).fill(100)) });
+  assert.deepEqual(await npmDownloads('widget', f), { weekly: 700, trend: null });
+});
+
+test('npmDownloads trend: fewer than 28 days gives null, weekly kept from 7 days on', async () => {
+  const f27 = fakeFetch({ [NPM_URL]: npmDays(Array(27).fill(1000)) });
+  assert.deepEqual(await npmDownloads('widget', f27), { weekly: 7000, trend: null });
+  const f7 = fakeFetch({ [NPM_URL]: npmDays(Array(7).fill(1000)) });
+  assert.deepEqual(await npmDownloads('widget', f7), { weekly: 7000, trend: null });
+});
+
 test('pypiDownloads: last_week, trend against the rest of the month per week', async () => {
   const f = fakeFetch({ 'https://pypistats.org/api/packages/httpx/recent': { data: { last_day: 1, last_week: 14000, last_month: 37000 } } });
   // rest of month: 23000 over 23 days = 7000 per week
