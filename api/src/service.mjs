@@ -186,11 +186,12 @@ export function createService({
   }
 
   return {
-    async call(name, args, caller) {
+    // protocolVersion: the MCP protocol version of the call, for the call counter (the web API has none).
+    async call(name, args, caller, { protocolVersion = null } = {}) {
       if (!METHODS[name]) throw new HostedError(400, `Unknown tool "${name}".`);
       const { quota, user, day, counted } = await checkLimits(caller);
       // Counted once the limits let the call through (before it runs, so an upstream failure still counts).
-      const event = recordHostedCall(env.DB, name, { now });
+      const event = recordHostedCall(env.DB, name, { now, protocolVersion });
       if (waitUntil) waitUntil(event); else await event;
       const budget = createBudget(fetchImpl);
       try {

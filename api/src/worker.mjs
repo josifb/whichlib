@@ -15,7 +15,7 @@ import { handleMcp } from './mcp.mjs';
 const CORS = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-  'Access-Control-Allow-Headers': 'Content-Type, Accept, X-GitHub-Token, Mcp-Protocol-Version, Mcp-Session-Id, Last-Event-ID',
+  'Access-Control-Allow-Headers': 'Content-Type, Accept, X-GitHub-Token, Mcp-Protocol-Version, Mcp-Method, Mcp-Name, Mcp-Session-Id, Last-Event-ID',
   'Access-Control-Expose-Headers': 'X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, Retry-After, Mcp-Session-Id',
   'Access-Control-Max-Age': '86400',
 };

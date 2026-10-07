@@ -16,6 +16,9 @@ test('OPTIONS /mcp allows the MCP protocol headers', async () => {
   const res = await createWorker().fetch(new Request('https://w.test/mcp', { method: 'OPTIONS' }), env());
   assert.equal(res.status, 204);
   assert.match(res.headers.get('Access-Control-Allow-Headers'), /Mcp-Protocol-Version/);
+  // MCP 2026-07-28 standard headers (SEP-2243), sent on every request POST.
+  assert.match(res.headers.get('Access-Control-Allow-Headers'), /Mcp-Method/);
+  assert.match(res.headers.get('Access-Control-Allow-Headers'), /Mcp-Name/);
 });
 
 test('routes: /api/* (with CORS), /mcp, and 404 for anything else (pages are static assets)', async () => {
@@ -40,7 +43,10 @@ test('POST /mcp initialize goes through the Worker, with CORS', async () => {
   }), env());
   assert.equal(res.status, 200);
   assert.equal(res.headers.get('Access-Control-Allow-Origin'), '*');
-  assert.equal((await res.json()).result.serverInfo.name, 'whichlib');
+  // The 2025-era stateless leg of MCP SDK v2 always answers as one SSE event.
+  assert.match(res.headers.get('content-type'), /text\/event-stream/);
+  const data = (await res.text()).split('\n').find((l) => l.startsWith('data: '));
+  assert.equal(JSON.parse(data.slice(6)).result.serverInfo.name, 'whichlib');
 });
 
 test('an unexpected throw is a 500 JSON error with CORS', async () => {

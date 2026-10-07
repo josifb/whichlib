@@ -1,9 +1,10 @@
-// POST /mcp: remote MCP over Streamable HTTP, stateless (no session id),
-// JSON responses. A new McpServer per request, as Cloudflare advises.
+// POST /mcp: remote MCP over Streamable HTTP, stateless (no session id).
+// createMcpHandler serves MCP 2026-07-28 requests and the 2025-era handshake
+// alike, with a new McpServer per request (built here, so it knows the caller).
 
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
+import { createMcpHandler, McpServer } from '@modelcontextprotocol/server';
 import { formatResult } from '../../whichlib/mcp/tools.mjs';
+import { callProtocolVersion, TOOLS_LIST_CACHE } from '../../whichlib/mcp/protocol.mjs';
 import pkg from '../../whichlib/package.json' with { type: 'json' };
 import { HostedError, HOSTED_DEFINITIONS } from './service.mjs';
 
@@ -33,11 +34,16 @@ export async function handleMcp(request, service, caller) {
   let parsedBody;
   try { parsedBody = JSON.parse(text); } catch { return rpcError(400, -32700, 'Parse error.'); }
   if (Array.isArray(parsedBody)) return rpcError(400, -32600, 'Batch requests are not supported; send one JSON-RPC message per POST.');
-  const server = new McpServer({ name: 'whichlib', version: pkg.version });
+  const handler = createMcpHandler(() => buildServer(service, caller));
+  return handler.fetch(request, { parsedBody });
+}
+
+function buildServer(service, caller) {
+  const server = new McpServer({ name: 'whichlib', version: pkg.version }, { cacheHints: TOOLS_LIST_CACHE });
   for (const { name, config } of HOSTED_DEFINITIONS) {
-    server.registerTool(name, config, async (args) => {
+    server.registerTool(name, config, async (args, ctx) => {
       try {
-        const { result, quota } = await service.call(name, args, caller);
+        const { result, quota } = await service.call(name, args, caller, { protocolVersion: callProtocolVersion(server, ctx) });
         return { content: [{ type: 'text', text: formatResult(result) + quotaNote(quota) }], structuredContent: result };
       } catch (err) {
         if (!(err instanceof HostedError)) console.error('mcp error', err?.stack ?? err);
@@ -45,7 +51,5 @@ export async function handleMcp(request, service, caller) {
       }
     });
   }
-  const transport = new WebStandardStreamableHTTPServerTransport({ sessionIdGenerator: undefined, enableJsonResponse: true });
-  await server.connect(transport);
-  return transport.handleRequest(request, { parsedBody });
+  return server;
 }

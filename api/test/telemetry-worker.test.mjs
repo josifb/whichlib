@@ -52,6 +52,26 @@ test('collector: an npm POST is stored with source npm (the client does not send
   assert.deepEqual(db.events().map((e) => [e.install_id, e.source]), [[ID1, 'npm']]);
 });
 
+test('collector: stores the protocol version when it is a date, else null', async () => {
+  const db = fakeD1();
+  const post = (protocolVersion) => worker.fetch(new Request('https://t.test/', { method: 'POST', body: JSON.stringify({ tool: 'compare_repos', installId: ID1, version: '0.2.0', protocolVersion }) }), { DB: db });
+  await post('2026-07-28');
+  await post('<script>');
+  await post(undefined);
+  assert.deepEqual(db.events().map((e) => e.protocol_version), ['2026-07-28', null, null]);
+});
+
+test('stats: byProtocolVersion counts calls per protocol version, unknown as null', async () => {
+  const db = fakeD1();
+  const insert = (pv) => db.prepare("INSERT INTO events (ts, tool, install_id, version, platform, node, source, protocol_version) VALUES ('2026-10-07T10:00:00Z', 'compare_repos', ?, '0.2.0', 'x', '22', 'npm', ?)").bind(ID1, pv).run();
+  await insert('2026-07-28');
+  await insert('2026-07-28');
+  await insert('2025-11-25');
+  await insert(null);
+  const s = await getStats(db);
+  assert.deepEqual(s.byProtocolVersion, [{ protocolVersion: '2026-07-28', calls: 2 }, { protocolVersion: '2025-11-25', calls: 1 }, { protocolVersion: null, calls: 1 }]);
+});
+
 test('collector: a POST cannot claim to be hosted (install id must be a UUID)', async () => {
   const db = fakeD1();
   const res = await worker.fetch(new Request('https://t.test/', { method: 'POST', body: JSON.stringify({ tool: 'recommend_repos', installId: 'hosted', source: 'hosted' }) }), { DB: db });

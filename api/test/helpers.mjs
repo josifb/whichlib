@@ -33,7 +33,7 @@ export function fakeD1() {
       }
     },
     rows: () => db.prepare('SELECT user_hash, day, calls FROM daily_usage ORDER BY day').all().map((r) => ({ ...r })),
-    events: () => db.prepare('SELECT ts, tool, install_id, version, platform, node, source FROM events ORDER BY rowid').all().map((r) => ({ ...r })),
+    events: () => db.prepare('SELECT ts, tool, install_id, version, platform, node, source, protocol_version FROM events ORDER BY rowid').all().map((r) => ({ ...r })),
     exec: (sql) => db.exec(sql),
   };
 }

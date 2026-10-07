@@ -393,6 +393,13 @@ test('events: every tool call that passes the limits writes one hosted row, own 
   ]);
 });
 
+test('events: the MCP protocol version of the call is stored; web API calls have none', async () => {
+  const { service, db } = setup();
+  await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon, { protocolVersion: '2026-07-28' });
+  await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon);
+  assert.deepEqual(db.events().map((e) => e.protocol_version), ['2026-07-28', null]);
+});
+
 test('events: a refused call (daily limit) writes no row', async () => {
   const { service, db } = setup({ burstLimit: Infinity });
   for (let i = 0; i < 50; i++) await service.call('compare_repos', { repos: ['a/one', 'b/two'] }, anon);
