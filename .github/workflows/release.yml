@@ -62,6 +62,14 @@ jobs:
       - name: Install and test
         run: npm ci && npm test
 
+      # Starts the server over stdio and calls the tools live, on the 2025 handshake and on
+      # MCP 2026-07-28 (auto and pinned); exits 1 on any failure, before anything is published.
+      - name: Smoke test (stdio, both protocol versions)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WHICHLIB_TELEMETRY: 'off'
+        run: npm run mcp:smoke
+
       - name: Publish to npm
         env:
           VERSION: ${{ steps.version.outputs.version }}
