@@ -3,7 +3,8 @@
 The dependency picker for coding agents. Ask which library to use and get a
 scored, verified answer instead of a guess.
 
-whichlib is an MCP server with three tools. Every repository it returns
+whichlib is an MCP server with three tools. It speaks MCP 2026-07-28;
+older clients keep working. Every repository it returns
 carries a transparent 0–100 score (momentum, maintenance, adoption including
 npm and PyPI downloads, license), a tier, a one-line verdict and the full
 breakdown, so the agent can justify the pick and you can read why.
@@ -78,7 +79,7 @@ reports live in the repository.
   instead (see the repository's data branch).
 - `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1`: disables anonymous call
   counting. What is counted: tool name, a random install id, version,
-  platform, Node major version. Never queries, repository names or results.
+  platform, Node major version, the MCP protocol version of the call. Never queries, repository names or results.
   The aggregate numbers are public at
   https://whichlib-telemetry.todorovskijosif.workers.dev/stats.
 

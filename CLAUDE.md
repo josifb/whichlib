@@ -32,14 +32,16 @@ RELEASING.md         release steps and what has been published
 
 ```
 npm test           unit tests, no network (85+)
-npm run mcp:smoke  start the server over stdio and call every tool live
+npm run mcp:smoke  start the server over stdio and call every tool live, on the 2025
+                   handshake and MCP 2026-07-28 (auto, pinned); exits 1 on failure
 npm run eval       20-need recommendation eval (set GITHUB_TOKEN; ~3 min)
 npm run snapshot / enrich / score / pull-data
 ```
 
 `GITHUB_TOKEN="$(gh auth token)"` gives 30 searches/min for eval runs.
 
-Hosted Worker (from `api/`): `npm test` / `npm run dev` / `npm run check` (bundle dry run).
+Hosted Worker (from `api/`): `npm test` / `npm run dev` / `npm run check` (bundle dry run) /
+`npm run deploy` (wrangler deploy, then the smoke test against whichlib.com/mcp).
 Local secrets live in `api/.dev.vars` (git-ignored).
 
 ## Working rules that have served this project

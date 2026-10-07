@@ -16,12 +16,14 @@ numbers the product is judged by should be visible.
 One small POST per tool call, fire-and-forget, 2-second timeout:
 
 ```json
-{ "tool": "recommend_repos", "installId": "<random uuid per machine>", "version": "0.1.0", "platform": "win32-x64", "node": "22", "ts": "2026-09-27T12:00:00.000Z" }
+{ "tool": "recommend_repos", "installId": "<random uuid per machine>", "version": "0.1.0", "platform": "win32-x64", "node": "22", "protocolVersion": "2026-07-28", "ts": "2026-09-27T12:00:00.000Z" }
 ```
 
 Never sent: the query, repository names, results, user names, file paths,
 tokens. The worker does not store IP addresses or headers. Events with an
-unknown tool name or a malformed install id are dropped.
+unknown tool name or a malformed install id are dropped. A `protocolVersion`
+that is not a date is stored as null (unknown); clients before 0.2.0 do not
+send one.
 
 Users turn it off with `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1`.
 

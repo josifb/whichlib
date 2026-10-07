@@ -106,7 +106,9 @@ npm run score      # top 25 repos from the latest snapshot with score and verdic
 
 ## MCP server
 
-The same score, served to coding agents. Three tools over stdio:
+The same score, served to coding agents. Three tools over stdio, or remote
+at `https://whichlib.com/mcp`. Speaks MCP 2026-07-28; older clients keep
+working.
 
 | Tool | Input | What it returns |
 |---|---|---|
@@ -166,7 +168,7 @@ Environment variables, both optional:
   any folder of daily files.
 - `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1` disables anonymous call
   counting. What is counted: tool name, a random install id, version,
-  platform and Node major version. Never queries, repository names or
+  platform, Node major version and the MCP protocol version of the call. Never queries, repository names or
   results. The collector is a small Cloudflare Worker in `telemetry/`, and
   its aggregate numbers are public at
   https://whichlib-telemetry.todorovskijosif.workers.dev/stats.

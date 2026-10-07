@@ -58,7 +58,8 @@ and only sent to GitHub.
   same place (at most once an hour).
 - Sends anonymous call counts to
   `https://whichlib-telemetry.todorovskijosif.workers.dev`: the tool name, a
-  random install id, the whichlib version, platform and Node major version.
+  random install id, the whichlib version, platform, Node major version and
+  the MCP protocol version of the call.
   Never queries, repository names, results, user names or paths. The totals
   are public at that address under `/stats`. Turn it off by setting
   `WHICHLIB_TELEMETRY=off` or `DO_NOT_TRACK=1` in your environment.
