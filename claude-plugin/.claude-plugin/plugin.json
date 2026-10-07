@@ -1,7 +1,7 @@
 {
   "name": "whichlib",
   "displayName": "whichlib",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "The dependency picker for coding agents: recommends and compares GitHub repositories with a transparent 0-100 score and a one-line verdict.",
   "author": {
     "name": "Josif Todorovski",
