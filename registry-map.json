@@ -6426,7 +6426,7 @@
  },
  "luobosibing2/dsh-jev-plugin": {
   "npm": null,
-  "checkedAt": "2026-09-29T13:01:06.999Z"
+  "checkedAt": "2026-10-07T13:32:20.026Z"
  },
  "Giaxeri/Determination-Battle-Simulator": {
   "npm": null,
@@ -6578,11 +6578,11 @@
  },
  "rehan-remade/universal-modder": {
   "pypi": null,
-  "checkedAt": "2026-09-30T11:36:04.029Z"
+  "checkedAt": "2026-10-07T13:32:20.026Z"
  },
  "OpSafari/hypoarena": {
   "pypi": null,
-  "checkedAt": "2026-09-30T11:36:04.029Z"
+  "checkedAt": "2026-10-07T13:32:20.026Z"
  },
  "MisakaZentai/world-execute-me-dsh-pv": {
   "pypi": null,
@@ -6598,7 +6598,7 @@
  },
  "blendi-remade/dioramas": {
   "npm": null,
-  "checkedAt": "2026-09-30T11:36:04.029Z"
+  "checkedAt": "2026-10-07T13:32:20.026Z"
  },
  "spenmcke/compress": {
   "pypi": null,
@@ -7710,7 +7710,7 @@
  },
  "fsiaonma/elpis": {
   "npm": null,
-  "checkedAt": "2026-09-30T11:36:04.029Z"
+  "checkedAt": "2026-10-07T13:32:20.026Z"
  },
  "arla6ka/skills": {
   "npm": null,
@@ -7742,7 +7742,7 @@
  },
  "kuratlielia/arc-library": {
   "npm": null,
-  "checkedAt": "2026-09-30T11:36:04.029Z"
+  "checkedAt": "2026-10-07T13:32:20.026Z"
  },
  "HimalayanNomads/drawa": {
   "npm": null,
@@ -7866,7 +7866,7 @@
  },
  "terrafying/ai-torture-chamber": {
   "pypi": null,
-  "checkedAt": "2026-09-30T11:36:04.029Z"
+  "checkedAt": "2026-10-07T13:32:20.026Z"
  },
  "saphid/frame-control": {
   "pypi": null,
@@ -7878,15 +7878,16 @@
  },
  "liangshanbo789/chatgpt-plus-pro-team-billing": {
   "npm": null,
-  "checkedAt": "2026-09-30T11:36:04.029Z"
+  "checkedAt": "2026-10-07T13:32:20.026Z"
  },
  "TencentARC/GAE-GeometricAutoEncoder": {
   "pypi": null,
-  "checkedAt": "2026-09-30T11:36:04.029Z"
+  "checkedAt": "2026-10-07T13:32:20.026Z"
  },
  "Miaotofu01/Study-Mate": {
   "pypi": null,
-  "checkedAt": "2026-09-30T11:36:04.029Z"
+  "checkedAt": "2026-10-07T13:32:20.026Z",
+  "npm": null
  },
  "AetherLabsAI/RSIAgent": {
   "pypi": null,
@@ -15617,5 +15618,1445 @@
  "agents-universe/agents-universe": {
   "pypi": null,
   "checkedAt": "2026-10-06T13:24:46.447Z"
+ },
+ "nickvasilescu/bops": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Tejashmakwana/motionmaxxing": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Local-Settle/local-settle-backend": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Local-Settle/local-settle-frontend": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "GrimClawBot/Pixel-Companion": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hypersniper05/MCP-Image-Generator-Uncensored": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "accomplish999/position-sizer": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "studioigor/ref2game": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "iamlukethedev/Herald-OS": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sisyphuslabs/omo-dori-mode-experimental": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "bjarneo/ferroprint": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "KeJunMao/x-gift-link": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "orange2ai/podcast-to-article": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "datologyai/zephon": {
+  "pypi": "zephon",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sun168567/cc-desk-tunnel": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "ios151/Rewrite": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "nullmoth/1401": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "TheMaxMur/json2dir-bimbo": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "gabrielgreco1/skills": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "DoYitNow/gr-custom-tool": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "alan890104/claude-code-paste-preview": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sybil-solutions/qwen38-flash-next-b70-offload": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hirun-hsdz/DAY-04": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "dntpi/ComfyUI-H3-Video-Upsampler": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Jakeschincariol/founder-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Daniel-xsy/safedrive-vla": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "simonw/llm-openai-decisions": {
+  "pypi": "llm-openai-decisions",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "kingenbomb/futuresearch-box": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Nyankomintsu/world-execute-me-lyric-mv": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Mustafa-KhanDev/relay": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "mmlong818/open-academic-paper-gen": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "LosaLosSantos/aurelio-finance": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "0xgetz/abliteration-bulk-creator": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "narekhovhannisyan/fastify-review-request": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "beacampos/express-referral-introduction": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "pixelsncodes/GesturePortal": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "BaruqueRodrigues/rag_especialistas": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "serpentsailorcoil/star-wars-galactic-racer-trainer": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "SymbolBoatswainPick/gears-eday-save-game-and-unlocker": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "colinhacks/motherload": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "bwjoke/SuperX": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "machinestein/Tropical-Reinforcement-Learning": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "ChiefSpeed75/swgr-mod-manager": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "7drbw7mdgf-lgtm/Pulse": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Kaal31/benderthemes": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "AAAholic/dsh-entrance": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "shadany7824/playgta5": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "dormantxxy/123pan-mobile-app": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Mustafa-KhanDev/gitscape": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "lo-th/head": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "rostyslav48/nextjs-playground-seat-reservation": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "gitmnaa/javascript-programming": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Leonxlnx/merge-conflict": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "baroned1707/orca-claude-accounts": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "witnesstodark/zer0-g": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "zrdep/chegou": {
+  "npm": "chegou",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "electronictechshow-netizen/gods-eye-view-free": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "csr0403p-bit/taobao-shopping-mcp": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "EminUZUN/hoptell": {
+  "npm": "hoptell",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "meodai/bouffont": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Dave-cc/vibe-knowledge-film": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "pkppkq/novelai-shared-gateway": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "origami-ltd/stremio-local-debrid": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Finderchangchang/fangyu": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "lordfine/codex-claude-bridge": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "ChunshuWu/autonomous-AI-lab": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "0xgetz/hark-pool": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "justemir84/nuvio-dexter-plugin": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "ios151/wloc": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "quanglinh199797-eng/Xquguan": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "jinxinkai/model-provider-formatter": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "smur5/Nova-blog-website": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Ishan-Nim/plume": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "mcptc/mcp-tc": {
+  "npm": "mcp-tc",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "chewbarrel8-glitch/Sharp-Fit": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "rock3r/publish-spec": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hyr980/the-office": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Tunai-0511/meme67-art-history": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "ArisaYamatogi/dsh-lecture-copilot": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "nost3a/PicoOffice": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Python-Project-2/Streamlit-Launcher": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sparklecatta-lang/XSXB-Band": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "kaqyoin7/xuehai-809-meal-spec": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "concepts-sh/concepts": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "HybridRobotics/workhorse": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Som2233/dsh-session-task-tags": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "kubulo/crisp-dsh": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "avishkarshinde1209/Eco_Build": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "xinxin240306/nian": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "gulagala001/dsh-chatgpt-login": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "mucahitkumlay/agent-brain": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "palomo1632-prog/agente-dsh": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Clu3y/102401632-102401633": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "lyydw-0907/docx-to-campus-html": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Gipppp121/dinorunner": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "warchag/RPG_Test": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "DannyZhou0218/Escape-from-DANNY": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Yasminekoulam/Portfolio": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "BonkerUnkilBonki/OneBudget": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "patitow/claude-mod-cost-visibility": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "James-Yao-xj/dsh-plugin-handout": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "pankajt25/zestly-little-lemon-app": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hacimertgokhan/geomotion": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "TamerinTECH/tokens-reset-dashboard": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "bxb100/magpieplugin-doubao-translate": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "omlett13/panelka": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "yazzang-homelab/motion-studio": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "abhishkola02-tech/AI-Internship-Portal": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "T0mCaTTT/anima-tag-reverse": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "mahiepit/ControlPhone": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "jackotom/hongguo-drama-mac": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "guilherme-txra/theaterflex": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "SudhirDevOps1/NovaPulse": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "alpha15-create/doon-clean-ai-hackathon": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Drum1er/security-rule-evaluator-small-study": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "SOH4C4759/dsh-ui-sound": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "rosehahah/xiaoxian-content-studio": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "trusdd/books": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sincerexgz/codex-mobile-remote": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "DoubleBobCat/zen-mcp": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "ifoknr/NextSUSFS": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "MarcBlattmann/clawd-stage": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "huaizhuanghub/dsh-persona-dafeiyu": {
+  "npm": "dsh-persona-dafeiyu",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "bielcarvalhoz/jogo": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sigewinner/kernelhub": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "raj742133/baton": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Liying79/79Bot": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "CaryHe-maker/Ai-Desktop-Companions": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "lovenge/cf": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "zeidlern/NerdSSHell": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Gwierotoku/kitten4-to-godot": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "dthree/the-secrets-project": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "kitschpatrol/github-action-skill-to-pr": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "riomar0001/lanyard": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "nikuscs/orbs": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "aminchegini/roundtable": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "kakha13/claude": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "antondanv/treeyard": {
+  "npm": "@antondanv/treeyard",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "dattasid/TS-SynthDesigner": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "advaetuc/Balram": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "theanam/fastbeam": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "taeold/pi-durable-substrate": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "kindlingai/boots": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "DoshiCkk/SAT-Trainer": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "joeseesun/qiaomu-ui-learn": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "etcetc000/kitbasher": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Railcode-HQ/postgres2mcp": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "nextroad-dev/AIUsage": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "fbd777/Algorithm-DX": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "mikenevermiss/motionpromptgallery": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "RomanSlack/thought-to-text": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "noash-xrc/claude-tools": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "MoreWithManthan/CrashAgent-AI": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Effect-TS/cafe": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Sashank096/Bhoomidistri-SIH-2K26": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Arifeenhamim/-ADVANCED-PROGRAMMING-IN-WEB-TECHNOLOGY": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "vikrantsingh23-dev/Routrr": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "slophighwaydev/slophighway": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "rudycelekli/code-transplant": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "isuvorov/tlgrm": {
+  "npm": "tlgrm",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sergiojrdotnet/claude-language-coach": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "vicimpa/kharos": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hahmjuntae/claude-mods-image-preview": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "allenasat044-prog/doing-it-in-public": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "yz3639-gif/rebalance-review": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "marcosferr/reporte-ciudadano": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Carson-Lianng/asset-snapshot": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "DiassDev/timetabling": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "MateuszBochen/VantaCore": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "kamalesh404/mostwanted-web": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "killerdasher/cipherASCII": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "abdelrhman-mohamed-dev/tute": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "popescucosmin13/EnglezaAi": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Zhang-jx00/yushu": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "bas3line/ascii": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "anissimov12/ExtAIChat": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "meap158/ProjectManager": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "PPixie/thinkraph": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "YueYingQingMeng/YueYingQingMeng.github.io": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "agent-control-plane-wfz/agent-control-plane": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Cryptoxiaoxiang/assetwatch": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "abeerkh4n/claude-local": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hamid19471/AJLens-Extension": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "grimseraph/doubao-translate2api": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sahabti/kmate": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Abdallah-Abdelazim/usage-limits-cc-mod": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "wtf40iq/Melo": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "zzz-push/dsh-multi-agent-orchestrator": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "eater-altria/MyJellyfinClient": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "cleversnail/lang-chain-js-cn": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Nishi577/Safecity": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "pacewisdomsolutions/LMS": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "AQaddora/gaza-geo-sync": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "gdalyy/copyas": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "rakhaafd/nagare": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "mohamad-javad/BCN-bidi-content-nvigator-": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "antonolashyn-x/design-system-inspector": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "f/f.camera": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Andreynebolee/CSFloatDealAlerts": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hattatdev/hattat": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "codeinja/instadeploy": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "FLR2025/markdown-editor": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "statuscraft/statuscraft": {
+  "npm": "statuscraft",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "dantaspaulo/kit-video-ia": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Pytom911/qr-code-maker-web-app": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "nbd-boss/context-governor": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "SuperWheel/cliworker-now": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Akhdanre/mc-admin": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sadokh/bloomberry-pseo": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Corvych/zvuk-desktop": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "adayarabov/docker-panel": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "HeshamXOR/Cubex": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "jeffarese/shellcast": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "abhishkola02-tech/friendly-crafting-hub": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sehv-oss/basketball-upload": {
+  "npm": "@sehv-oss/basketball-upload",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "cardondev/bashin": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "drkokorev/cockpit-for-claude": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hellosverre/mod-store": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "productdevbook/yuva": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Restshocarve71/mhw-wilds-fps-optimizer": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "SamG-Coder/KingdomComeGlueMapper": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "vianbara/explain-bash": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "stevekinney/front-desk": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "chacha95/demo-video-creator": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "AprileNunzio/ATENA": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "izzy-Ti/fayda-mcp": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "ANSN1221/Chat_bot_agent": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "bvnkphn/CyberjobFrontendMember": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "B1anYu/claude-telemetry-audit": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "naplesblue/riskbound": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "gitmnaa/python-programming": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "vvbelousov/TupoNVR": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "darek-margas/wifi-association-presence": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "MarcusProgram/CVE-2026-21589": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "kitsunoff/awesome-json2dir": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "advaetuc/Cerebro": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "heiner/mills8a": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "bfggamepassion/Portage_Opti": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "laozhong86/ugc-character-designer": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "xjokerabab/second-world-posters": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "chenweiwu213/tw-stock-selection": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "amirmohammadgolmohammadi-vpnstan/vpnstan-railway-real": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "FriedOnion2/agent-relay-portable": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Krako-Labs/kora-doctor": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "bariskisir/ema-lightning-api": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "evoziosk/guage": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "v3ai/fission": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "DcisionIO/dcision": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "purplemashu/your-cardamom": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "jmiravet/AnyInit": {
+  "pypi": "anyinit",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Sein-Ding/locpilot": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Sanidhyavijay24/Agromet-Agentic-Engine": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "cv-cat/DianpingApis": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "jerridran-alt/official-city-statistics": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Root2Raj-Zala/root2raj-energy-quality-platform": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "PolyU-VCLab/PVD": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Root2Raj-Zala/root2raj-bank-response-model": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "85599/Research-Copilot-Pro": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "FizzEat/awesome-claude-codex-skills-zh": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "LPengYang/CapField-OPD": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "kk8o/wuxian-workshop": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "UnknownSekai/GridlessDreams": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "MBouallegue/adaptive-understanding-engine": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "dandasaisamith/HEARTificial": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Root2Raj-Zala/root2raj-bike-demand-forecast": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "tharlaimar/recap-en-to-mm": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "petricbranko/awsegress": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "chayancodes/amazonprimedbms": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Root2Raj-Zala/root2raj-nyc-taxi-lakehouse": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "aktsonthalia/bottled": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Arminfx7/mcp-packet-tracer-configurado": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "yeliannaa/natural-shaping": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "marsilid/suveren": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hhhsaj221-bit/refer-earn-telegram-bot": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "unkluco/autoColab": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "cailet0422/kon-houkago-live-korean": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Anil-matcha/zack-d-films-ai-video-generator": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "mwakidenis/unfollower": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "dontpayfull/AInotate": {
+  "pypi": "ainotate",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "cyberworm1/refmodBuilder": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Riker-Hoch/ProgrammingII_MiniProject": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "emisu36/ba882-team8-project": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "xhuang9/readme-doc": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Bobowski/yard": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Sugumaran-Balasubramaniyan/pyexercises-sugumaran-cl03": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "gargoyle-coder/fjord_browser": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Asixa/Dirichlet-Splatting": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "silentwolfproject/swpreq-py": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "vohongquann/RotaryPendulum-IsaacLab": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "abhishkola02-tech/ml-project": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Parsa-dude/Server-Wrench": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Sami-samira/insightslm_studio_pptx_generator": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Lynxkale1111/ArtilleryGame": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sean-mcclure/evolving-wolfram-ipd": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "klmiing1229-a11y/Investing_Agent": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "denelbjohn18/system-design": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "smartpointer-com/wealthdb": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "xhamzawi/Discord-Reporter": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "mattschwarz/mesh-tools": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "loyalmemories/musi-installer": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "szabadkai/c64-keyboard-font": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "GTKottman/mortiflix-oss": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hezhanleiok/gate": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sean-brydon/berthd": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "atmirrr/persian-motion-director": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "cth9191/animate": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "rhpaiva/cssv": {
+  "npm": "@rhpaiva/cssv",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "bjarneo/various-themes": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "kclg-YSJ/rpe-next": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "dev-krish-xyz/OpenStore": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "s4ntrx/Log-Analyzer": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "rumoii/streamfirefly": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "webkubor/dsh-museav-assets": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "mortspace/momo": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "capthvnsen/alans-way": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "rall-digital/radar-dash": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "openpactprotocol/openpactprotocol": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "openqodex/openqodex": {
+  "npm": "openqodex",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "msurguy/watercolor-playground": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "vitorcgo/Niko": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "devagrawal09/solid-yield": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "StarKnightt/bay-ride": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "tsale/jevline": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "whyashthakker/awesome-claude-code-mods": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "borjaperfra/beatdeck": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "joshhu/claudebigimage": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "scasella/claude-flightdeck": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sybil-solutions/dsv41-flash-offload": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "BQ-Wang0511/TalkLikeYou": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "script-wizards/athanor": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "3505675604/G-Net": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "saidi-walid-architecte/saidi-walid-architecte.github.io": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hahahahahahahahah6/agent-guard": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "speakrail/speakrail": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Convergeflucool/hubspot-crm-download": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "FlashLionNight/amnezia-vpn-download": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Lwindsy/companyagent": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "devlinmarsh/seedance-2-5-api-quickstart": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "uu889/laya-opencv": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "sybil-solutions/glm53-flash-offload": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "queen-project/queen": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "pei711/CodeFlow-harness": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "spicylemonade/compensated-magnet-ledger": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "jiwidi/jiwo": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "mose3-tracker/MoSE3": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "LucNIK/profile-engine": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Fr0zenWatter/codex-latex-editor": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "LucNIK/valia": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Gloweuriddle/Cortex-AI-Crypto-Arbitrage-Bot": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "feder-cr/invisible_playwright_mcp": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "shader-effects-inc/shaders": {
+  "npm": "shaders",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Raja0sama/vibex": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "a86582751/dsh-nexttavern": {
+  "npm": "dsh-nexttavern",
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "hhdebb/herdr-radar": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "N3urda/hongguoTV": {
+  "npm": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "joshuaswarren/omarchy-apple-dev": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "nealbridges/VulnHunter": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "Jakeschincariol/instagram-agent-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "AlibabaResearch/SparkDiffusion": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
+ },
+ "MaxGramser/homeassistant_espscreen": {
+  "pypi": null,
+  "checkedAt": "2026-10-07T13:32:20.026Z"
  }
 }
