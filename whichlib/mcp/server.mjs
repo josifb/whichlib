@@ -10,12 +10,13 @@
 import { readFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
-import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { McpServer } from '@modelcontextprotocol/server';
+import { serveStdio } from '@modelcontextprotocol/server/stdio';
 import { createGitHubClient } from './github-api.mjs';
 import { loadHistoryProvider, createRisingLoader } from './data.mjs';
 import { createTools, formatResult } from './tools.mjs';
 import { toolDefinitions } from './definitions.mjs';
+import { callProtocolVersion, TOOLS_LIST_CACHE } from './protocol.mjs';
 import { createTelemetry } from './telemetry.mjs';
 import { resolvePackages } from '../snapshot/src/registry.mjs';
 
@@ -27,10 +28,8 @@ const { provider: history } = await loadHistoryProvider();
 const tools = createTools({ github, resolvePackages, history, loadRising: createRisingLoader() });
 const telemetry = createTelemetry({ version: pkg.version });
 
-const server = new McpServer({ name: 'whichlib', version: pkg.version });
-
-const run = (name, fn) => async (args) => {
-  telemetry.record(name); // fire-and-forget, never awaited
+const run = (server, name, fn) => async (args, ctx) => {
+  telemetry.record(name, { protocolVersion: callProtocolVersion(server, ctx) }); // fire-and-forget, never awaited
   try {
     const result = await fn(args);
     return { content: [{ type: 'text', text: formatResult(result) }], structuredContent: result };
@@ -40,7 +39,13 @@ const run = (name, fn) => async (args) => {
 };
 
 const handlers = { recommend_repos: tools.recommend, compare_repos: tools.compare, trending_repos: tools.trending };
-for (const { name, config } of toolDefinitions()) server.registerTool(name, config, run(name, handlers[name]));
 
-await server.connect(new StdioServerTransport());
+// One McpServer per connection; serveStdio answers both MCP 2026-07-28 and 2025-era clients.
+function buildServer() {
+  const server = new McpServer({ name: 'whichlib', version: pkg.version }, { cacheHints: TOOLS_LIST_CACHE });
+  for (const { name, config } of toolDefinitions()) server.registerTool(name, config, run(server, name, handlers[name]));
+  return server;
+}
+
+serveStdio(() => buildServer());
 console.error(`whichlib MCP ${pkg.version} ready | token: ${github.hasToken ? 'yes' : 'no'} | history: ${history.days ? `${history.days} day(s), latest ${history.latestDate}` : 'none'} | anonymous call counting: ${telemetry.enabled ? 'on (set WHICHLIB_TELEMETRY=off to disable)' : 'off'}`);

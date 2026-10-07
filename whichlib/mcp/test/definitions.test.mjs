@@ -32,11 +32,15 @@ test('toolDefinitions: the limit sentence is a parameter (local by default, host
   assert.match(HOSTED_LIMIT_NOTE, /X-GitHub-Token/);
 });
 
+test('toolDefinitions: input schemas are zod objects (MCP SDK v2 takes a schema, not a raw shape)', () => {
+  for (const d of toolDefinitions()) assert.ok(d.config.inputSchema instanceof z.ZodObject, d.name);
+});
+
 test('toolDefinitions: input schemas validate and apply defaults', () => {
   const [recommend, compare, trending] = toolDefinitions();
-  assert.deepEqual(z.object(recommend.config.inputSchema).parse({ need: 'pdf parser' }), { need: 'pdf parser', limit: 5 });
-  assert.throws(() => z.object(compare.config.inputSchema).parse({ repos: ['a/b'] }));
-  const t = z.object(trending.config.inputSchema).parse({ period: 'rising' });
+  assert.deepEqual(recommend.config.inputSchema.parse({ need: 'pdf parser' }), { need: 'pdf parser', limit: 5 });
+  assert.throws(() => compare.config.inputSchema.parse({ repos: ['a/b'] }));
+  const t = trending.config.inputSchema.parse({ period: 'rising' });
   assert.equal(t.limit, 20);
   assert.equal(t.withDownloads, false);
 });

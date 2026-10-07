@@ -2,7 +2,7 @@
 // tool", so we count tool calls per anonymous install. Nothing else.
 //
 // What is sent: tool name, a random install id, whichlib version, platform,
-// Node major version. Never the query, repo names, results, user names, paths
+// Node major version, the MCP protocol version of the call. Never the query, repo names, results, user names, paths
 // or IP-derived data (the collector does not store IPs).
 //
 // Off when: WHICHLIB_TELEMETRY=off, DO_NOT_TRACK=1, or no endpoint is
@@ -48,9 +48,9 @@ export function createTelemetry({ version, env = process.env, endpoint = env.WHI
     endpoint: enabled ? endpoint : null,
     installId: id,
     /** Fire-and-forget. Returns the promise only so tests can await it. */
-    record(tool) {
+    record(tool, { protocolVersion = null } = {}) {
       if (!enabled) return Promise.resolve(false);
-      const body = JSON.stringify({ tool, installId: id, version, platform, node, ts: new Date().toISOString() });
+      const body = JSON.stringify({ tool, installId: id, version, platform, node, protocolVersion: protocolVersion == null ? null : String(protocolVersion).slice(0, 20), ts: new Date().toISOString() });
       return fetchImpl(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, signal: AbortSignal.timeout(2000) })
         .then((res) => Boolean(res && res.ok))
         .catch(() => false);
