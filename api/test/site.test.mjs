@@ -27,6 +27,19 @@ function targetFile(path) {
   return clean.slice(1);
 }
 
+const ICON_LINKS = [
+  '<link rel="icon" href="/logo.svg" type="image/svg+xml">',
+  '<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">',
+  '<link rel="apple-touch-icon" href="/apple-touch-icon.png">',
+];
+for (const file of [...Object.values(PAGES), 'repos/index.html']) {
+  test(`${file}: head links the logo icons, and the icon files exist`, () => {
+    const head = read(file).match(/<head>[\s\S]*?<\/head>/)[0];
+    for (const link of ICON_LINKS) assert.ok(head.includes(link), link);
+    for (const icon of ['logo.svg', 'favicon-32.png', 'apple-touch-icon.png', 'favicon.ico', 'logo.png']) assert.ok(existsSync(join(SITE, icon)), icon);
+  });
+}
+
 for (const [route, file] of Object.entries(PAGES)) {
   test(`${route}: head has title, description, viewport, Open Graph and the stylesheet`, () => {
     const html = read(file);
