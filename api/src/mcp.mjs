@@ -4,7 +4,7 @@
 
 import { createMcpHandler, McpServer } from '@modelcontextprotocol/server';
 import { formatResult } from '../../whichlib/mcp/tools.mjs';
-import { callProtocolVersion, TOOLS_LIST_CACHE } from '../../whichlib/mcp/protocol.mjs';
+import { callProtocolVersion, serverInfo, TOOLS_LIST_CACHE } from '../../whichlib/mcp/protocol.mjs';
 import pkg from '../../whichlib/package.json' with { type: 'json' };
 import { HostedError, HOSTED_DEFINITIONS } from './service.mjs';
 
@@ -39,7 +39,7 @@ export async function handleMcp(request, service, caller) {
 }
 
 function buildServer(service, caller) {
-  const server = new McpServer({ name: 'whichlib', version: pkg.version }, { cacheHints: TOOLS_LIST_CACHE });
+  const server = new McpServer(serverInfo(pkg.version), { cacheHints: TOOLS_LIST_CACHE });
   for (const { name, config } of HOSTED_DEFINITIONS) {
     server.registerTool(name, config, async (args, ctx) => {
       try {

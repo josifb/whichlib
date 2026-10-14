@@ -14,6 +14,7 @@
     "url": "https://github.com/josifb/whichlib.git"
   },
   "homepage": "https://whichlib.com",
+  "icon": "icon.png",
   "documentation": "https://github.com/josifb/whichlib#mcp-server",
   "support": "https://github.com/josifb/whichlib/issues",
   "server": {

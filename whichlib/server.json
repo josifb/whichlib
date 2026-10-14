@@ -4,6 +4,22 @@
   "title": "whichlib",
   "description": "Dependency picker for coding agents: recommends, compares and scores GitHub repos with a verdict.",
   "websiteUrl": "https://whichlib.com",
+  "icons": [
+    {
+      "src": "https://whichlib.com/logo.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "400x400"
+      ]
+    },
+    {
+      "src": "https://whichlib.com/logo.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
   "repository": {
     "url": "https://github.com/josifb/whichlib",
     "source": "github",

@@ -82,6 +82,15 @@ for (const { protocolVersion, mode } of ERAS) {
     await client.close();
   });
 
+  test(era('the client sees the server title, website and logo icons'), async () => {
+    const client = await open({ call: async () => ({ result: RESULT, quota: null }) });
+    const info = client.getServerVersion();
+    assert.equal(info.name, 'whichlib');
+    assert.equal(info.websiteUrl, 'https://whichlib.com');
+    assert.deepEqual(info.icons.map((i) => i.src), ['https://whichlib.com/logo.png', 'https://whichlib.com/logo.svg']);
+    await client.close();
+  });
+
   test(era('tools/list cache hint: 1 h, public, on 2026-07-28 only'), async () => {
     const responses = [];
     const client = await open({ call: async () => ({ result: RESULT, quota: null }) }, anon, responses);

@@ -25,6 +25,8 @@ for (const p of ['mcp', 'lib', 'snapshot/src', 'package.json', 'package-lock.jso
     filter: (src) => !/[\\/](test|eval)([\\/]|$)/.test(src),
   });
 }
+// The bundle icon (manifest "icon"): the site logo, 400x400 PNG.
+cpSync(join(pkgDir, '..', 'site', 'logo.png'), join(stage, 'icon.png'));
 execSync('npm ci --omit=dev --ignore-scripts --no-audit --no-fund', { cwd: server, stdio: 'inherit' });
 
 // Smithery rejects manifest tools without an inputSchema, and the MCPB schema

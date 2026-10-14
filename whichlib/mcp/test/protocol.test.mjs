@@ -26,3 +26,16 @@ test('callProtocolVersion: null when nothing says', () => {
 test('TOOLS_LIST_CACHE: tools/list cacheable for an hour by anyone', () => {
   assert.deepEqual(TOOLS_LIST_CACHE, { 'tools/list': { ttlMs: 3_600_000, cacheScope: 'public' } });
 });
+
+test('serverInfo: name, version, title, website and the logo as icons', async () => {
+  const { serverInfo } = await import('../protocol.mjs');
+  const info = serverInfo('9.9.9');
+  assert.equal(info.name, 'whichlib');
+  assert.equal(info.version, '9.9.9');
+  assert.equal(info.title, 'whichlib');
+  assert.equal(info.websiteUrl, 'https://whichlib.com');
+  assert.deepEqual(info.icons, [
+    { src: 'https://whichlib.com/logo.png', mimeType: 'image/png', sizes: ['400x400'] },
+    { src: 'https://whichlib.com/logo.svg', mimeType: 'image/svg+xml', sizes: ['any'] },
+  ]);
+});

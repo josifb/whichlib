@@ -16,7 +16,7 @@ import { createGitHubClient } from './github-api.mjs';
 import { loadHistoryProvider, createRisingLoader } from './data.mjs';
 import { createTools, formatResult } from './tools.mjs';
 import { toolDefinitions } from './definitions.mjs';
-import { callProtocolVersion, TOOLS_LIST_CACHE } from './protocol.mjs';
+import { callProtocolVersion, serverInfo, TOOLS_LIST_CACHE } from './protocol.mjs';
 import { createTelemetry } from './telemetry.mjs';
 import { resolvePackages } from '../snapshot/src/registry.mjs';
 
@@ -42,7 +42,7 @@ const handlers = { recommend_repos: tools.recommend, compare_repos: tools.compar
 
 // One McpServer per connection; serveStdio answers both MCP 2026-07-28 and 2025-era clients.
 function buildServer() {
-  const server = new McpServer({ name: 'whichlib', version: pkg.version }, { cacheHints: TOOLS_LIST_CACHE });
+  const server = new McpServer(serverInfo(pkg.version), { cacheHints: TOOLS_LIST_CACHE });
   for (const { name, config } of toolDefinitions()) server.registerTool(name, config, run(server, name, handlers[name]));
   return server;
 }

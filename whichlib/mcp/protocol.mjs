@@ -4,7 +4,17 @@
 // so 2026-07-28 clients may cache it for an hour, shared caches included.
 export const TOOLS_LIST_CACHE = { 'tools/list': { ttlMs: 3_600_000, cacheScope: 'public' } };
 
-const ENVELOPE_VERSION = 'io.modelcontextprotocol/protocolVersion';
+// What the server says about itself when a client connects (serverInfo), so clients
+// that show servers can display the name, the website and the logo (whichlib.com/logo.*).
+export const ICONS = [
+  { src: 'https://whichlib.com/logo.png', mimeType: 'image/png', sizes: ['400x400'] },
+  { src: 'https://whichlib.com/logo.svg', mimeType: 'image/svg+xml', sizes: ['any'] },
+];
+export function serverInfo(version) {
+  return { name: 'whichlib', version, title: 'whichlib', websiteUrl: 'https://whichlib.com', icons: ICONS };
+}
+
+const ENVELOPE_VERSION ='io.modelcontextprotocol/protocolVersion';
 
 /**
  * The MCP protocol version a tool call came in on, for the call counter, or null.
