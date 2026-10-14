@@ -76,7 +76,10 @@ GitHub release with the `.mcpb` attached. Glama builds its own release from the
 GitHub release (about 2 h later). The Claude Code plugin lives in
 `josifb/whichlib-claude-plugin`, uses the hosted server and is not part of a
 release: change it only when the plugin itself changes, because Anthropic's
-directory re-reviews every new commit there. Each step skips what is already
+directory re-reviews every new commit there. Anthropic's submission reads
+branch `plugin-release` of this repo, path `claude-plugin/` (the submission
+cannot change repository); keep that branch identical to the plugin repo and
+update both together. Each step skips what is already
 published, so a failed run can be re-run from the Actions tab.
 
 Check without publishing: Actions → release → Run workflow (dry run is on by default).
