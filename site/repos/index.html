@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fresh Repos · whichlib</title>
-<meta name="theme-color" content="#f5f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#f7f9f8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0e1218" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/logo.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
@@ -24,14 +24,14 @@
 <style>
   :root {
     color-scheme: light;
-    --bg: #f5f7f9;
+    --bg: #f7f9f8;
     --surface: #ffffff;
     --surface-2: #eef1f5;
-    --text: #1a1f26;
-    --muted: #5b6673;
+    --text: #16202a;
+    --muted: #56636f;
     --border: #d9dfe6;
     --border-strong: #b9c2cc;
-    --accent: #0b6e7a; --on-accent: #ffffff;
+    --accent: #0b6e7a; --on-accent: #ffffff; --track: #e3e8ea; --seg-momentum: #0b6e7a; --seg-maintenance: #4b6478; --seg-adoption: #5f8a6e; --seg-license: #c2a15a;
     --accent-soft: #d6eef0;
     --star: #b7791f;
     --warn-bg: #fdf3dc;
@@ -55,7 +55,7 @@
       --muted: #8b97a5;
       --border: #26303b;
       --border-strong: #3a4653;
-      --accent: #33b3c0; --on-accent: #0e1218;
+      --accent: #33b3c0; --on-accent: #0e1218; --track: #232c37; --seg-momentum: #33b3c0; --seg-maintenance: #8aa3b8; --seg-adoption: #8fbf9e; --seg-license: #d9b96e;
       --accent-soft: #123c42;
       --star: #e0a437;
       --warn-bg: #3a2f10;
@@ -77,7 +77,7 @@
     --muted: #8b97a5;
     --border: #26303b;
     --border-strong: #3a4653;
-    --accent: #33b3c0; --on-accent: #0e1218;
+    --accent: #33b3c0; --on-accent: #0e1218; --track: #232c37; --seg-momentum: #33b3c0; --seg-maintenance: #8aa3b8; --seg-adoption: #8fbf9e; --seg-license: #d9b96e;
     --accent-soft: #123c42;
     --star: #e0a437;
     --warn-bg: #3a2f10;
@@ -203,7 +203,14 @@
   .site-nav .brand { font-weight: 600; color: var(--text); margin-right: auto; }
   .site-nav a[aria-current="page"] { color: var(--text); font-weight: 600; }
   @media (max-width: 560px) { .site-nav { gap: 4px 12px; } .site-nav a[href="/"]:not(.brand) { display: none; } }
-  .site-footer-line { margin-top: 12px !important; padding-top: 12px; border-top: 1px solid var(--border); }
+  .site-footer-line { margin-top: 12px !important; padding-top: 12px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 6px 20px; }
+  .minibar { display: flex; width: 72px; height: 6px; margin: 6px 0 0 auto; background: var(--track); border-radius: 999px; overflow: hidden; }
+  .minibar span { display: block; height: 100%; }
+  .minibar span + span { box-shadow: inset 1.5px 0 0 var(--surface); }
+  .seg-momentum { background: var(--seg-momentum); } .seg-maintenance { background: var(--seg-maintenance); }
+  .seg-adoption { background: var(--seg-adoption); } .seg-license { background: var(--seg-license); }
+  .site-nav .brand { display: inline-flex; align-items: center; gap: 8px; }
+  .site-nav .brand::before { content: ""; width: 20px; height: 20px; background: url("/logo.svg") center / contain no-repeat; }
   .site-link { flex-basis: 100%; margin: 4px 0 0; color: var(--muted); font-size: 13px; }
   .site-link a { color: var(--accent); }
 </style>
@@ -276,7 +283,7 @@
     <p><strong>Downloads.</strong> GitHub publishes no download count for repositories, only for release files. Forks are the nearest public signal of people taking a copy. Stars/day is stars divided by the repo's age in days, counting anything younger than a day as one day, so it never exceeds the stars. A rough velocity.</p>
     <p><strong>Score.</strong> 0 to 100 from four parts: momentum (40%), maintenance (25%), adoption (25%) and license (10%). Archived repos are capped at 20. Repos younger than 30 days show New instead of a tier: too new to judge. Each repository shows its one-line verdict under the description. Here momentum uses stars per day (Rising: stars gained this week); the daily star counts give the real stars-gained figure to the report and the whichlib MCP server. Full definition in the <a href="https://github.com/josifb/whichlib#score">README</a>.</p>
     <p>Results are cached in this browser for 60 minutes per tab and language. Refresh forces a new fetch.</p>
-    <p class="site-footer-line">whichlib is open source (MIT) · <a href="https://github.com/josifb/whichlib/blob/main/PRIVACY.md">Privacy</a> · Teams: <a href="https://github.com/josifb/whichlib/issues/1">join the waitlist</a></p>
+    <p class="site-footer-line"><span>whichlib is open source (MIT)</span> <a href="https://github.com/josifb/whichlib/blob/main/PRIVACY.md">Privacy</a> <a href="https://github.com/josifb/whichlib/issues/1">Teams waitlist</a></p>
   </footer>
 </div>
 
@@ -344,7 +351,7 @@
     // files, so momentum comes from stars per day rather than stars gained.
     if (scorer) {
       const s = scorer.scoreRepo(rec, { starsGained7d: null });
-      rec.score = s.score; rec.tier = s.tier; rec.verdict = s.verdict;
+      rec.score = s.score; rec.tier = s.tier; rec.verdict = s.verdict; rec.parts = s.parts; rec.weights = s.weights;
     } else {
       rec.score = -1; rec.tier = null; rec.verdict = '';
     }
@@ -360,7 +367,7 @@
     };
     if (scorer) {
       const s = scorer.scoreRepo(rec, { starsGained7d: r.gained });
-      rec.score = s.score; rec.tier = s.tier; rec.verdict = s.verdict;
+      rec.score = s.score; rec.tier = s.tier; rec.verdict = s.verdict; rec.parts = s.parts; rec.weights = s.weights;
     } else {
       rec.score = -1; rec.tier = null; rec.verdict = '';
     }
@@ -397,6 +404,15 @@
     const h = Math.round(m / 60);
     if (h < 48) return `${h}h ago`;
     return `${Math.round(h / 24)}d ago`;
+  }
+  // The score's four parts as one small bar (100 points wide); none for archived repos (capped score).
+  const PARTS = ['momentum', 'maintenance', 'adoption', 'license'];
+  function miniBar(r) {
+    if (!r.parts || !r.weights || r.archived) return '';
+    const pts = (k) => 100 * r.weights[k] * r.parts[k];
+    const segs = PARTS.map((k) => `<span class="seg-${k}" style="width:${pts(k).toFixed(1)}%"></span>`).join('');
+    const label = PARTS.map((k) => `${k} ${Math.round(pts(k))} of ${Math.round(100 * r.weights[k])}`).join(', ');
+    return `<span class="minibar" role="img" aria-label="Score parts: ${label}">${segs}</span>`;
   }
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
@@ -457,7 +473,7 @@
           ${r.verdict ? `<div class="verdict">${esc(r.verdict)}</div>` : ''}
           ${r.topics.length ? `<div class="topics">${r.topics.slice(0, 5).map((t) => `<span>${esc(t)}</span>`).join('')}</div>` : ''}
         </td>
-        <td class="num score">${r.tier ? `<span class="tier tier-${r.tier.toLowerCase()}">${r.tier}</span> ${r.score}` : '—'}</td>
+        <td class="num score">${r.tier ? `<span class="tier tier-${r.tier.toLowerCase()}">${r.tier}</span> ${r.score}${miniBar(r)}` : '—'}</td>
         <td class="lang">${r.language ? `<i style="background:${LANG_COLORS[r.language] ?? 'var(--border-strong)'}"></i>${esc(r.language)}` : '<span style="color:var(--muted)">—</span>'}</td>
         <td class="num stars">${fmtInt(r.stars)}</td>
         <td class="num"${r.estimated ? ' title="Estimated: scaled to a week from fewer days of star counts"' : ''}>${r.estimated ? '~' : ''}${fmtRate(r.starsPerDay)}</td>

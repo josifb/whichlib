@@ -15,7 +15,8 @@ const { WEIGHTS } = createRequire(import.meta.url)('../../whichlib/lib/score.js'
 const SITE = fileURLToPath(new URL('../../site/', import.meta.url));
 const PAGES = { '/': 'index.html', '/docs/': 'docs/index.html', '/pricing/': 'pricing/index.html', '/404': '404.html' };
 const GENERATED = new Set(['/score.js']);
-const read = (file) => readFileSync(join(SITE, file), 'utf8');
+// Line endings differ by checkout (CRLF on Windows); compare content, not line endings.
+const read = (file) => readFileSync(join(SITE, file), 'utf8').replace(/\r\n/g, '\n');
 const nav = (html) => html.match(/<nav class="site-nav"[\s\S]*?<\/nav>/)?.[0];
 const footer = (html) => html.match(/<footer class="site-footer"[\s\S]*?<\/footer>/)?.[0];
 
@@ -89,7 +90,8 @@ test('each page marks itself current in the nav', () => {
 
 test('home: dated real example, the three install options with copy buttons, waitlist', () => {
   const html = read('index.html');
-  for (const s of ['psf/requests', 'aio-libs/aiohttp', 'encode/httpx', '2026-10-02']) assert.ok(html.includes(s), s);
+  for (const s of ['psf/requests', 'encode/httpx', 'urllib3/urllib3', '2026-10-14']) assert.ok(html.includes(s), s);
+  assert.equal((html.match(/class="scorebar" role="img" aria-label="Score \d+:/g) ?? []).length, 3, 'three labelled score bars');
   assert.ok(html.includes('id="install"'));
   for (const s of ['claude mcp add --transport http whichlib https://whichlib.com/mcp', '/plugin marketplace add josifb/whichlib', 'claude mcp add whichlib -- npx -y whichlib']) assert.ok(html.includes(s), s);
   assert.ok((html.match(/data-copy/g) ?? []).length >= 3);
