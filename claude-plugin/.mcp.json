@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "whichlib": {
+      "type": "http",
+      "url": "https://whichlib.com/mcp",
+      "headers": {
+        "X-GitHub-Token": "${user_config.github_token}"
+      }
+    }
+  }
+}

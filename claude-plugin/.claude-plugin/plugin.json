@@ -1,0 +1,28 @@
+{
+  "name": "whichlib",
+  "displayName": "whichlib",
+  "version": "1.0.0",
+  "description": "The dependency picker for coding agents: recommends and compares GitHub repositories with a transparent 0-100 score and a one-line verdict.",
+  "author": {
+    "name": "Josif Todorovski",
+    "url": "https://github.com/josifb"
+  },
+  "homepage": "https://whichlib.com",
+  "repository": "https://github.com/josifb/whichlib-claude-plugin",
+  "license": "MIT",
+  "keywords": ["dependencies", "mcp", "github", "npm", "pypi", "open-source"],
+  "icon": "./logo.png",
+  "documentationUrl": "https://whichlib.com/docs/",
+  "supportUrl": "https://github.com/josifb/whichlib/issues",
+  "privacyPolicyUrl": "https://github.com/josifb/whichlib/blob/main/PRIVACY.md",
+  "userConfig": {
+    "github_token": {
+      "type": "string",
+      "title": "GitHub token (optional)",
+      "description": "Unlimited daily use instead of 50 free tool calls a day. A fine-grained token with no permissions is enough. Leave empty to use the free tier.",
+      "sensitive": true,
+      "required": false,
+      "default": ""
+    }
+  }
+}
