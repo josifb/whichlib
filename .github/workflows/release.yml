@@ -3,8 +3,9 @@ name: release
 # Publishes a release everywhere once `npm run release -- x.y.z` has tagged it
 # and the tag is pushed:
 #   npm (trusted publishing, no token) -> MCP registry (GitHub OIDC)
-#   -> MCPB bundle -> Smithery (if SMITHERY_API_KEY is set) -> GitHub release
-#   -> Claude Code plugin pin on main (only after npm serves the version).
+#   -> MCPB bundle -> Smithery (if SMITHERY_API_KEY is set) -> GitHub release.
+# The Claude Code plugin lives in josifb/whichlib-claude-plugin and uses the
+# hosted server, so a release no longer touches it.
 # Every step skips itself when its part is already published, so a failed
 # run can simply be re-run. Run it by hand with dry_run to check everything
 # without publishing. Glama builds its own release from the GitHub release.
@@ -20,7 +21,7 @@ on:
         default: true
 
 permissions:
-  contents: write   # GitHub release and the plugin pin commit
+  contents: write   # GitHub release
   id-token: write   # npm trusted publishing and MCP registry login
 
 concurrency:
@@ -127,17 +128,3 @@ jobs:
           else
             gh release create "v$VERSION" "dist/whichlib-$VERSION.mcpb" --title "whichlib $VERSION" --generate-notes
           fi
-
-      - name: Pin the Claude Code plugin to the new version
-        env:
-          VERSION: ${{ steps.version.outputs.version }}
-        run: |
-          git fetch origin main && git checkout -B main origin/main
-          RESULT=$(node scripts/pin-plugin.mjs "$VERSION")
-          echo "plugin: $RESULT"
-          git diff --stat
-          if [ "$RESULT" != "changed" ] || [ "$DRY_RUN" = "true" ]; then exit 0; fi
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -am "feat(plugin): pin whichlib@$VERSION"
-          git push origin main

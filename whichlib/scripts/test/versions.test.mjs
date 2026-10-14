@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdtempSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
-import { isNewerVersion, setPackageVersion, pinPlugin } from '../versions.mjs';
+import { isNewerVersion, setPackageVersion } from '../versions.mjs';
 
 const json = (file) => JSON.parse(readFileSync(file, 'utf8'));
 const write = (file, value) => writeFileSync(file, typeof value === 'string' ? value : JSON.stringify(value, null, 2) + '\n');
@@ -18,14 +18,6 @@ function packageFixture() {
   return dir;
 }
 
-function pluginFixture() {
-  const dir = mkdtempSync(join(tmpdir(), 'whichlib-plugin-'));
-  mkdirSync(join(dir, '.claude-plugin'));
-  write(join(dir, '.claude-plugin', 'plugin.json'), { name: 'whichlib', version: '0.1.1' });
-  write(join(dir, '.mcp.json'), { mcpServers: { whichlib: { command: 'npx', args: ['-y', 'whichlib@0.1.1'] } } });
-  write(join(dir, 'README.md'), 'Runs `npx -y whichlib@0.1.1` as the exact version `whichlib@0.1.1`.\n');
-  return dir;
-}
 
 test('isNewerVersion: compares numeric parts, rejects non-semver', () => {
   assert.equal(isNewerVersion('0.1.2', '0.1.1'), true);
@@ -50,17 +42,4 @@ test('setPackageVersion: updates package, lockfile root, server.json and bundle 
   assert.equal(server.version, '0.1.2');
   assert.equal(server.packages[0].version, '0.1.2');
   assert.equal(json(join(dir, 'mcpb', 'manifest.json')).version, '0.1.2');
-});
-
-test('pinPlugin: pins the npx package, plugin version and README mentions', () => {
-  const dir = pluginFixture();
-  assert.equal(pinPlugin(dir, '0.1.2'), true);
-  assert.deepEqual(json(join(dir, '.mcp.json')).mcpServers.whichlib.args, ['-y', 'whichlib@0.1.2']);
-  assert.equal(json(join(dir, '.claude-plugin', 'plugin.json')).version, '0.1.2');
-  assert.equal(readFileSync(join(dir, 'README.md'), 'utf8'), 'Runs `npx -y whichlib@0.1.2` as the exact version `whichlib@0.1.2`.\n');
-});
-
-test('pinPlugin: reports no change when already pinned', () => {
-  const dir = pluginFixture();
-  assert.equal(pinPlugin(dir, '0.1.1'), false);
 });

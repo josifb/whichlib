@@ -72,9 +72,11 @@ git push origin main v0.1.2       # starts .github/workflows/release.yml
 The workflow publishes to npm (trusted publishing, no token), waits until npm
 serves the version, publishes to the MCP registry (GitHub OIDC), builds the
 MCPB bundle, publishes to Smithery (secret `SMITHERY_API_KEY`), creates the
-GitHub release with the `.mcpb` attached, and commits the Claude Code plugin
-pin to `main` (the plugin directory picks it up and reviews it). Glama builds
-its own release from the GitHub release. Each step skips what is already
+GitHub release with the `.mcpb` attached. Glama builds its own release from the
+GitHub release (about 2 h later). The Claude Code plugin lives in
+`josifb/whichlib-claude-plugin`, uses the hosted server and is not part of a
+release: change it only when the plugin itself changes, because Anthropic's
+directory re-reviews every new commit there. Each step skips what is already
 published, so a failed run can be re-run from the Actions tab.
 
 Check without publishing: Actions → release → Run workflow (dry run is on by default).
@@ -86,4 +88,4 @@ One-time setup for the workflow:
 
 Manual fallback, if the workflow cannot run: the same order by hand
 (`npm publish`; `mcp-publisher login github` then `publish`; `npm run bundle`
-and `npm run publish:smithery`; `gh release create`; `node scripts/pin-plugin.mjs <version>`).
+and `npm run publish:smithery`; `gh release create`).

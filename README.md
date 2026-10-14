@@ -126,8 +126,9 @@ available in every project):
 claude mcp add whichlib -s user -- npx -y whichlib
 ```
 
-Or as a Claude Code plugin, which adds a skill that makes Claude check a
-library with whichlib before adding it:
+Or as a Claude Code plugin, which connects to the hosted server (nothing to
+install) and adds a skill that makes Claude check a library with whichlib
+before adding it ([josifb/whichlib-claude-plugin](https://github.com/josifb/whichlib-claude-plugin)):
 
 ```
 /plugin marketplace add josifb/whichlib

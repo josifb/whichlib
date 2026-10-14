@@ -40,22 +40,3 @@ export function setPackageVersion(pkgDir, version) {
   updateJson(join(pkgDir, 'mcpb', 'manifest.json'), (m) => { m.version = version; });
   return ['package.json', 'package-lock.json', 'server.json', 'mcpb/manifest.json'];
 }
-
-/**
- * Points the Claude Code plugin at whichlib@<version>. Only safe once npm has
- * that version: the plugin directory picks up new commits on its own.
- * Returns false when the plugin already pins this version.
- */
-export function pinPlugin(pluginDir, version) {
-  parts(version);
-  const mcpFile = join(pluginDir, '.mcp.json');
-  const before = readFileSync(mcpFile, 'utf8');
-  if (before.includes(`whichlib@${version}"`)) return false;
-  updateJson(mcpFile, (m) => {
-    m.mcpServers.whichlib.args = m.mcpServers.whichlib.args.map((a) => (a.startsWith('whichlib@') ? `whichlib@${version}` : a));
-  });
-  updateJson(join(pluginDir, '.claude-plugin', 'plugin.json'), (p) => { p.version = version; });
-  const readme = join(pluginDir, 'README.md');
-  writeFileSync(readme, readFileSync(readme, 'utf8').replace(/whichlib@\d+\.\d+\.\d+/g, `whichlib@${version}`));
-  return true;
-}

@@ -1,12 +1,20 @@
 {
   "name": "whichlib",
-  "owner": { "name": "Josif Todorovski", "url": "https://github.com/josifb" },
-  "metadata": { "description": "whichlib: the dependency picker for coding agents." },
+  "owner": {
+    "name": "Josif Todorovski",
+    "url": "https://github.com/josifb"
+  },
+  "metadata": {
+    "description": "whichlib: the dependency picker for coding agents."
+  },
   "plugins": [
     {
       "name": "whichlib",
-      "source": "./claude-plugin",
-      "description": "Scored, verified library picks: an MCP server that recommends and compares GitHub repos, plus a skill to use it before adding a dependency."
+      "source": {
+        "source": "github",
+        "repo": "josifb/whichlib-claude-plugin"
+      },
+      "description": "Scored, verified library picks: the hosted whichlib MCP server plus a skill to use it before adding a dependency."
     }
   ]
 }
