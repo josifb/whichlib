@@ -43,7 +43,10 @@ function withCors(response) {
 /** X-GitHub-Token, with an optional "Bearer " / "token " prefix; null when absent. Never logged. */
 export function ownToken(request) {
   const raw = request.headers.get('X-GitHub-Token')?.trim().replace(/^(bearer|token)(\s+|$)/i, '');
-  return raw || null;
+  // An unfilled config placeholder such as ${user_config.github_token} (a client that sends
+  // the template when the user left the setting empty) means "no token": the free tier.
+  if (!raw || /^\$\{[^}]*\}$/.test(raw)) return null;
+  return raw;
 }
 
 /** The Worker with its own shared state: the caches, the counter, history and the rising list live as long as the isolate. */

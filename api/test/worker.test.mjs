@@ -86,3 +86,12 @@ test('ownToken: optional Bearer/token prefix, blank and bare prefix are null', (
   assert.equal(t(undefined), null);
   assert.equal(t('Bearer'), null);
 });
+
+test('ownToken: an unfilled config placeholder is no token (free tier), not a token GitHub rejects', () => {
+  const t = (v) => ownToken(new Request('https://w.test/', { headers: { 'X-GitHub-Token': v } }));
+  // Claude Code sends ${user_config.github_token} literally when the plugin setting was never filled in.
+  assert.equal(t('${user_config.github_token}'), null);
+  assert.equal(t('${GITHUB_TOKEN}'), null);
+  assert.equal(t('Bearer ${user_config.github_token}'), null);
+  assert.equal(t('ghp_${notaplaceholder'), 'ghp_${notaplaceholder');
+});
