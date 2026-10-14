@@ -141,7 +141,7 @@ const BROAD_HEADS = new Set([
   'task', 'tasks', 'job', 'jobs', 'user', 'users', 'form', 'forms', 'table', 'tables', 'graph', 'network', 'machine', 'deep',
   'natural', 'computer', 'real', 'static', 'dynamic', 'game', 'video', 'audio', 'code', 'source', 'message', 'messages',
   'model', 'models', 'schema', 'type', 'types', 'unit', 'end', 'load', 'rate', 'feature', 'dependency', 'package', 'error',
-  'http', 'rest', 'json', 'xml', 'color', 'colour', 'number', 'math', 'query', 'search', 'input', 'output', 'stream', 'streams',
+  'http', 'rest', 'json', 'xml', 'html', 'color', 'colour', 'number', 'math', 'query', 'search', 'input', 'output', 'stream', 'streams',
 ]);
 
 /**

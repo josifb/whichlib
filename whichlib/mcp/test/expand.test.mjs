@@ -48,6 +48,13 @@ test('pickTopic: head word when specific, hyphenated phrase when the head is bro
   assert.equal(pickTopic('framework'), null);
 });
 
+test('pickTopic: html is a broad format like xml and json (topic:html is every web project)', async () => {
+  const { pickTopic } = await import('../expand.mjs');
+  // 2026-10-15: topic:html put heygen-com/hyperframes, a video framework, first for this need.
+  assert.equal(pickTopic('html sanitizer'), 'html-sanitizer');
+  assert.equal(pickTopic('html parser'), 'html-parser');
+});
+
 test('subjectTokens: drops kind, stop and generic words', async () => {
   const { subjectTokens } = await import('../expand.mjs');
   assert.deepEqual(subjectTokens('cli framework'), ['cli']);
