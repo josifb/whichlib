@@ -52,11 +52,11 @@ async function call(client, name, args) {
 }
 
 // 1. The 2025 initialize handshake (what most clients still send): every tool, live.
+let first;
 try {
-  const client = await connect(null);
+  const client = first = await connect(null);
   const { tools } = await client.listTools();
-  console.log(`tools: ${tools.map((t) => t.name).join(', ')}
-`);
+  console.log(`tools: ${tools.map((t) => t.name).join(', ')}\n`);
   if (tools.length !== 3) fail(`expected 3 tools, got ${tools.length}`);
   if ((await call(client, 'trending_repos', { period: 'week', limit: 3 })).isError) fail('trending_repos');
   if ((await call(client, 'compare_repos', { repos: ['colinhacks/zod', 'encode/httpx', 'expressjs/express'] })).isError) fail('compare_repos');
@@ -65,12 +65,14 @@ try {
   await client.close();
 } catch (err) {
   fail(`2025 handshake: ${err.code ?? ''} ${err.message}`);
+  await first?.close().catch(() => {});
 }
 
 // 2. MCP 2026-07-28: "auto" must find it, a pin must get it. compare_repos makes no GitHub searches.
 for (const mode of ['auto', { pin: '2026-07-28' }]) {
+  let client;
   try {
-    const client = await connect(mode);
+    client = await connect(mode);
     const version = client.getNegotiatedProtocolVersion();
     if (version !== '2026-07-28') fail(`${JSON.stringify(mode)} connected on protocol version ${version}`);
     const listed = await client.listTools();
@@ -79,6 +81,7 @@ for (const mode of ['auto', { pin: '2026-07-28' }]) {
     await client.close();
   } catch (err) {
     fail(`${JSON.stringify(mode)}: ${err.code ?? ''} ${err.message}`);
+    await client?.close().catch(() => {});
   }
 }
 

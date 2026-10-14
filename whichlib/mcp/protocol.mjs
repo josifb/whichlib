@@ -1,4 +1,5 @@
-// MCP protocol details shared by the stdio server and the hosted Worker.
+// MCP protocol details shared by the stdio server, the hosted Worker and the call-counter
+// Worker (telemetry/ bundles this file): keep it free of imports so it stays Worker-safe.
 
 // The tool list changes only with a new release and is the same for every caller,
 // so 2026-07-28 clients may cache it for an hour, shared caches included.
