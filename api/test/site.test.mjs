@@ -48,7 +48,7 @@ for (const [route, file] of Object.entries(PAGES)) {
     assert.match(html, /<meta name="viewport" content="width=device-width, initial-scale=1/);
     assert.match(html, /<title>[^<]{5,70}<\/title>/);
     assert.match(html, /<meta name="description" content="[^"]{30,170}">/);
-    for (const p of ['og:title', 'og:description', 'og:type', 'og:url']) assert.match(html, new RegExp(`<meta property="${p}" content="[^"]+">`), p);
+    for (const p of ['og:title', 'og:description', 'og:type', ...(file === '404.html' ? [] : ['og:url'])]) assert.match(html, new RegExp(`<meta property="${p}" content="[^"]+">`), p);
     assert.match(html, /<link rel="stylesheet" href="\/style\.css">/);
   });
 
@@ -112,12 +112,19 @@ test('pricing: free, own token, teams waitlist', () => {
   for (const s of [`${DAILY_LIMIT}`, 'X-GitHub-Token', 'Teams', 'https://github.com/josifb/whichlib/issues/1']) assert.ok(html.includes(s), s);
 });
 
-const CANONICAL = { 'index.html': '/', 'docs/index.html': '/docs/', 'pricing/index.html': '/pricing/', 'repos/index.html': '/repos/', '404.html': '/' };
+const CANONICAL = { 'index.html': '/', 'docs/index.html': '/docs/', 'pricing/index.html': '/pricing/', 'repos/index.html': '/repos/' };
 
 test('every page has a canonical link to the apex matching its path', () => {
   for (const [file, path] of Object.entries(CANONICAL)) {
     assert.ok(read(file).includes(`<link rel="canonical" href="https://whichlib.com${path}">`), file);
   }
+});
+
+test('404: noindex, and no canonical or og:url claiming to be the home page', () => {
+  const html = read('404.html');
+  assert.ok(html.includes('<meta name="robots" content="noindex">'));
+  assert.doesNotMatch(html, /rel="canonical"/);
+  assert.doesNotMatch(html, /property="og:url"/);
 });
 
 test('the dashboard has Open Graph tags and no workers.dev address', () => {

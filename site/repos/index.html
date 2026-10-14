@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Fresh Repos · whichlib</title>
+<meta name="theme-color" content="#f5f7f9" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e1218" media="(prefers-color-scheme: dark)">
 <link rel="icon" href="/logo.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -29,7 +31,7 @@
     --muted: #5b6673;
     --border: #d9dfe6;
     --border-strong: #b9c2cc;
-    --accent: #0b6e7a;
+    --accent: #0b6e7a; --on-accent: #ffffff;
     --accent-soft: #d6eef0;
     --star: #b7791f;
     --warn-bg: #fdf3dc;
@@ -53,7 +55,7 @@
       --muted: #8b97a5;
       --border: #26303b;
       --border-strong: #3a4653;
-      --accent: #33b3c0;
+      --accent: #33b3c0; --on-accent: #0e1218;
       --accent-soft: #123c42;
       --star: #e0a437;
       --warn-bg: #3a2f10;
@@ -75,7 +77,7 @@
     --muted: #8b97a5;
     --border: #26303b;
     --border-strong: #3a4653;
-    --accent: #33b3c0;
+    --accent: #33b3c0; --on-accent: #0e1218;
     --accent-soft: #123c42;
     --star: #e0a437;
     --warn-bg: #3a2f10;
@@ -117,9 +119,9 @@
 
   .controls {
     display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px;
-    padding-block: 10px; position: sticky; top: env(safe-area-inset-top, 0px);
-    background: var(--bg); z-index: 2;
+    padding-block: 10px; background: var(--bg); z-index: 2;
   }
+  @media (min-width: 760px) and (min-height: 600px) { .controls { position: sticky; top: env(safe-area-inset-top, 0px); } }
   .seg { display: inline-flex; border: 1px solid var(--border-strong); border-radius: 6px; overflow: hidden; background: var(--surface); }
   .seg button {
     border: 0; background: transparent; padding: 6px 14px; cursor: pointer; color: var(--muted);
@@ -133,7 +135,7 @@
   input[type="search"] { min-width: 200px; flex: 1 1 200px; max-width: 360px; }
   .btn { cursor: pointer; }
   .btn:hover { border-color: var(--accent); }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 500; }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); font-weight: 500; }
   .btn.primary:disabled { opacity: .6; cursor: progress; }
   .spacer { flex: 1 1 auto; }
   details.settings { flex-basis: 100%; }
@@ -149,7 +151,7 @@
   .tablewrap { overflow-x: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); box-shadow: var(--shadow); margin-top: 8px; }
   table { border-collapse: collapse; width: 100%; min-width: 980px; }
   thead th {
-    position: sticky; top: 0; background: var(--surface-2); text-align: left; font-weight: 500; color: var(--muted);
+    background: var(--surface-2); text-align: left; font-weight: 500; color: var(--muted);
     border-bottom: 1px solid var(--border); padding: 0; white-space: nowrap; font-size: 12.5px; letter-spacing: .01em;
   }
   thead th button {
@@ -178,7 +180,7 @@
   td.date { white-space: nowrap; color: var(--muted); font-variant-numeric: tabular-nums; }
   td.lic { white-space: nowrap; color: var(--muted); font-family: var(--mono); font-size: 12.5px; }
   .archived { color: var(--err-text); font-size: 11.5px; margin-left: 6px; }
-  td.score { cursor: help; }
+  td.repo .verdict { margin-top: 4px; font-size: 13px; color: var(--text); }
   .tier { display: inline-block; font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: .02em; border-radius: 4px; padding: 1px 6px; margin-right: 4px; border: 1px solid transparent; }
   .tier-strong { background: var(--tier-strong-bg); color: var(--tier-strong-text); }
   .tier-solid { background: var(--accent-soft); color: var(--text); }
@@ -195,15 +197,30 @@
     .btn.primary:disabled { animation: pulse 1.2s ease-in-out infinite; }
     @keyframes pulse { 50% { opacity: .35; } }
   }
+  .site-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; padding: 14px 0; border-bottom: 1px solid var(--border); font-size: 15px; }
+  .site-nav a { color: var(--accent); text-decoration: none; }
+  .site-nav a:hover { text-decoration: underline; }
+  .site-nav .brand { font-weight: 600; color: var(--text); margin-right: auto; }
+  .site-nav a[aria-current="page"] { color: var(--text); font-weight: 600; }
+  @media (max-width: 560px) { .site-nav { gap: 4px 12px; } .site-nav a[href="/"]:not(.brand) { display: none; } }
+  .site-footer-line { margin-top: 12px !important; padding-top: 12px; border-top: 1px solid var(--border); }
   .site-link { flex-basis: 100%; margin: 4px 0 0; color: var(--muted); font-size: 13px; }
   .site-link a { color: var(--accent); }
 </style>
 </head>
 <body>
 <div class="wrap">
+  <nav class="site-nav" aria-label="Main">
+    <a class="brand" href="/">whichlib</a>
+    <a href="/">Home</a>
+    <a href="/repos/" aria-current="page">Dashboard</a>
+    <a href="/docs/">Docs</a>
+    <a href="/pricing/">Pricing</a>
+    <a href="https://github.com/josifb/whichlib">GitHub</a>
+  </nav>
   <header class="top">
     <h1>Fresh Repos <span>· most-starred new repositories on GitHub · part of whichlib</span></h1>
-    <div class="status" id="status">Loading…</div>
+    <div class="status" id="status" aria-live="polite">Loading…</div>
     <p class="site-link"><a href="/">whichlib</a> is the dependency picker for coding agents. <a href="/#install">Install it</a> · <a href="/docs/">Docs</a></p>
   </header>
 
@@ -229,7 +246,7 @@
     </details>
   </div>
 
-  <div id="banner" hidden></div>
+  <div id="banner" role="status" aria-live="polite" hidden></div>
 
   <div class="tablewrap">
     <table id="table">
@@ -257,8 +274,9 @@
     <p><strong>How this list is built.</strong> Repositories created in the last 24 hours, 7 days or 30 days, fetched live from the GitHub Search API and ranked by stars. The rank column always shows the stars rank, so you can sort by another column and still see where a repo stands.</p>
     <p><strong>Rising.</strong> Repositories of any age ranked by stars gained over the last week, like GitHub Trending. It comes from whichlib's daily star counts of the top 1,000 repos per language plus new trending repos, rebuilt once a day, so smaller libraries are not in it. There, Stars/day is the last week's average, and the rank is the rising rank. With fewer than 7 days of counts the gains are scaled to a week and marked with ~.</p>
     <p><strong>Downloads.</strong> GitHub publishes no download count for repositories, only for release files. Forks are the nearest public signal of people taking a copy. Stars/day is stars divided by the repo's age in days, counting anything younger than a day as one day, so it never exceeds the stars. A rough velocity.</p>
-    <p><strong>Score.</strong> 0 to 100 from four parts: momentum (40%), maintenance (25%), adoption (25%) and license (10%). Archived repos are capped at 20. Repos younger than 30 days show New instead of a tier: too new to judge. Hover a score for the one-line verdict. Here momentum uses stars per day (Rising: stars gained this week); the daily star counts give the real stars-gained figure to the report and the whichlib MCP server. Full definition in the <a href="https://github.com/josifb/whichlib#score">README</a>.</p>
+    <p><strong>Score.</strong> 0 to 100 from four parts: momentum (40%), maintenance (25%), adoption (25%) and license (10%). Archived repos are capped at 20. Repos younger than 30 days show New instead of a tier: too new to judge. Each repository shows its one-line verdict under the description. Here momentum uses stars per day (Rising: stars gained this week); the daily star counts give the real stars-gained figure to the report and the whichlib MCP server. Full definition in the <a href="https://github.com/josifb/whichlib#score">README</a>.</p>
     <p>Results are cached in this browser for 60 minutes per tab and language. Refresh forces a new fetch.</p>
+    <p class="site-footer-line">whichlib is open source (MIT) · <a href="https://github.com/josifb/whichlib/blob/main/PRIVACY.md">Privacy</a> · Teams: <a href="https://github.com/josifb/whichlib/issues/1">join the waitlist</a></p>
   </footer>
 </div>
 
@@ -436,9 +454,10 @@
         <td class="repo">
           <a class="name" href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.fullName)}</a>${r.archived ? '<span class="archived">archived</span>' : ''}
           ${r.description ? `<div class="desc">${esc(r.description)}</div>` : ''}
+          ${r.verdict ? `<div class="verdict">${esc(r.verdict)}</div>` : ''}
           ${r.topics.length ? `<div class="topics">${r.topics.slice(0, 5).map((t) => `<span>${esc(t)}</span>`).join('')}</div>` : ''}
         </td>
-        <td class="num score" title="${esc(r.verdict)}">${r.tier ? `<span class="tier tier-${r.tier.toLowerCase()}">${r.tier}</span> ${r.score}` : '—'}</td>
+        <td class="num score">${r.tier ? `<span class="tier tier-${r.tier.toLowerCase()}">${r.tier}</span> ${r.score}` : '—'}</td>
         <td class="lang">${r.language ? `<i style="background:${LANG_COLORS[r.language] ?? 'var(--border-strong)'}"></i>${esc(r.language)}` : '<span style="color:var(--muted)">—</span>'}</td>
         <td class="num stars">${fmtInt(r.stars)}</td>
         <td class="num"${r.estimated ? ' title="Estimated: scaled to a week from fewer days of star counts"' : ''}>${r.estimated ? '~' : ''}${fmtRate(r.starsPerDay)}</td>
