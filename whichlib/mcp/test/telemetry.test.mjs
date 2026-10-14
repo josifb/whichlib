@@ -56,12 +56,12 @@ test('record: network failures are swallowed', async () => {
   assert.equal(await t.record('trending_repos'), false);
 });
 
-test('record: sends the protocol version of the call, capped at 20 characters', async () => {
+test('record: sends the protocol version of the call, only when it is a dated MCP revision', async () => {
   const bodies = [];
   const fetchImpl = async (url, init) => { bodies.push(JSON.parse(init.body)); return { ok: true }; };
   const t = createTelemetry({ version: '0.2.0', env: {}, endpoint: 'https://t.example/e', fetchImpl, dir: tmp() });
   await t.record('compare_repos', { protocolVersion: '2026-07-28' });
   await t.record('compare_repos', { protocolVersion: 'x'.repeat(50) });
   assert.equal(bodies[0].protocolVersion, '2026-07-28');
-  assert.equal(bodies[1].protocolVersion.length, 20);
+  assert.equal(bodies[1].protocolVersion, null);
 });

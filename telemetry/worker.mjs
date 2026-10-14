@@ -19,10 +19,10 @@
 //     SELECT tool, COUNT(*) FROM events GROUP BY tool ORDER BY 2 DESC
 // Or GET /stats on the worker for the same three, as JSON.
 
+import { normalizeProtocolVersion } from '../whichlib/mcp/protocol.mjs';
+
 const TOOLS = new Set(['recommend_repos', 'compare_repos', 'trending_repos']);
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-// MCP protocol versions are dates (2025-11-25, 2026-07-28); anything else is stored as unknown (null).
-const PROTOCOL_VERSION = /^\d{4}-\d{2}-\d{2}$/;
 
 // Schema lives in schema.sql and is applied once:
 //   npx wrangler d1 execute whichlib-events --remote --file schema.sql
@@ -58,7 +58,7 @@ export default {
     if (!TOOLS.has(tool) || !UUID.test(String(installId))) return new Response('ignored', { status: 202 });
 
     await env.DB.prepare('INSERT INTO events (ts, tool, install_id, version, platform, node, protocol_version) VALUES (?, ?, ?, ?, ?, ?, ?)')
-      .bind(new Date().toISOString(), tool, installId, String(version).slice(0, 20), String(platform).slice(0, 20), String(node).slice(0, 4), PROTOCOL_VERSION.test(String(protocolVersion)) ? protocolVersion : null)
+      .bind(new Date().toISOString(), tool, installId, String(version).slice(0, 20), String(platform).slice(0, 20), String(node).slice(0, 4), normalizeProtocolVersion(protocolVersion))
       .run();
     return new Response(null, { status: 204 });
   },

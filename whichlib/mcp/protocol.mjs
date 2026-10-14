@@ -14,12 +14,17 @@ export function serverInfo(version) {
   return { name: 'whichlib', version, title: 'whichlib', websiteUrl: 'https://whichlib.com', icons: ICONS };
 }
 
-const ENVELOPE_VERSION ='io.modelcontextprotocol/protocolVersion';
+const ENVELOPE_VERSION = 'io.modelcontextprotocol/protocolVersion';
+
+/** A protocol version for the call counter: MCP revisions are dates (2026-07-28); anything else is unknown (null). */
+export function normalizeProtocolVersion(value) {
+  return typeof value === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(value) ? value : null;
+}
 
 /**
  * The MCP protocol version a tool call came in on, for the call counter, or null.
- * 2026-07-28 calls carry it in the request envelope; 2025-era calls on stdio have the
- * version negotiated by initialize; 2025-era calls to the hosted (stateless) endpoint
+ * 2026-07-28 calls carry it in the request envelope; calls on a 2025 protocol version over
+ * stdio have the version negotiated by initialize; on the hosted (stateless) endpoint they
  * send it as the MCP-Protocol-Version header.
  */
 export function callProtocolVersion(mcpServer, ctx) {

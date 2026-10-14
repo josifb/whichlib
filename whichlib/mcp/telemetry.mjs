@@ -13,6 +13,7 @@ import { randomUUID } from 'node:crypto';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { join } from 'node:path';
+import { normalizeProtocolVersion } from './protocol.mjs';
 
 // The collector: a Cloudflare Worker writing to D1 (see telemetry/ at the
 // repository root). GET <endpoint>/stats shows the aggregate numbers publicly.
@@ -50,7 +51,7 @@ export function createTelemetry({ version, env = process.env, endpoint = env.WHI
     /** Fire-and-forget. Returns the promise only so tests can await it. */
     record(tool, { protocolVersion = null } = {}) {
       if (!enabled) return Promise.resolve(false);
-      const body = JSON.stringify({ tool, installId: id, version, platform, node, protocolVersion: protocolVersion == null ? null : String(protocolVersion).slice(0, 20), ts: new Date().toISOString() });
+      const body = JSON.stringify({ tool, installId: id, version, platform, node, protocolVersion: normalizeProtocolVersion(protocolVersion), ts: new Date().toISOString() });
       return fetchImpl(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, signal: AbortSignal.timeout(2000) })
         .then((res) => Boolean(res && res.ok))
         .catch(() => false);

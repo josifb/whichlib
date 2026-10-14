@@ -1,5 +1,5 @@
 // POST /mcp: remote MCP over Streamable HTTP, stateless (no session id).
-// createMcpHandler serves MCP 2026-07-28 requests and the 2025-era handshake
+// createMcpHandler serves MCP 2026-07-28 requests and the 2025 initialize handshake
 // alike, with a new McpServer per request (built here, so it knows the caller).
 
 import { createMcpHandler, McpServer } from '@modelcontextprotocol/server';

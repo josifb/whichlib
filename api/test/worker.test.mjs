@@ -43,7 +43,7 @@ test('POST /mcp initialize goes through the Worker, with CORS', async () => {
   }), env());
   assert.equal(res.status, 200);
   assert.equal(res.headers.get('Access-Control-Allow-Origin'), '*');
-  // The 2025-era stateless leg of MCP SDK v2 always answers as one SSE event.
+  // MCP SDK v2 answers stateless requests on a 2025 protocol version as one SSE event.
   assert.match(res.headers.get('content-type'), /text\/event-stream/);
   const data = (await res.text()).split('\n').find((l) => l.startsWith('data: '));
   assert.equal(JSON.parse(data.slice(6)).result.serverInfo.name, 'whichlib');

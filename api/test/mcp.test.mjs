@@ -8,7 +8,7 @@ const anon = { ip: '1.2.3.4', ownToken: null };
 const RESULT = { tool: 'compare_repos', requested: ['a/b', 'c/d'], generatedAt: '2026-10-01T00:00:00Z', dataNotes: [], repos: [], notFound: [] };
 
 // Every client test runs on the 2025 handshake (the SDK client's default) and on MCP 2026-07-28.
-const ERAS = [
+const PROTOCOL_VERSIONS = [
   { protocolVersion: '2025-11-25', mode: null },
   { protocolVersion: '2026-07-28', mode: { pin: '2026-07-28' } },
 ];
@@ -26,11 +26,11 @@ async function connect(service, caller = anon, mode = null, responses = []) {
   return client;
 }
 
-for (const { protocolVersion, mode } of ERAS) {
-  const era = (name) => `${name} [${protocolVersion}]`;
+for (const { protocolVersion, mode } of PROTOCOL_VERSIONS) {
+  const named = (name) => `${name} [${protocolVersion}]`;
   const open = (service, caller = anon, responses) => connect(service, caller, mode, responses);
 
-  test(era('initialize and tools/list: the three hosted definitions'), async () => {
+  test(named('initialize and tools/list: the three hosted definitions'), async () => {
     const client = await open({ call: async () => ({ result: RESULT, quota: null }) });
     const { tools } = await client.listTools();
     assert.deepEqual(tools.map((t) => t.name).sort(), ['compare_repos', 'recommend_repos', 'trending_repos']);
@@ -38,7 +38,7 @@ for (const { protocolVersion, mode } of ERAS) {
     await client.close();
   });
 
-  test(era('tools/call: text plus structuredContent; the service gets validated args and the caller'), async () => {
+  test(named('tools/call: text plus structuredContent; the service gets validated args and the caller'), async () => {
     const seen = [];
     const client = await open({ call: async (name, args, caller, options) => { seen.push({ name, args, caller, options }); return { result: RESULT, quota: { limit: 50, remaining: 30, resetAt: 0 } }; } });
     const res = await client.callTool({ name: 'compare_repos', arguments: { repos: ['a/b', 'c/d'] } });
@@ -50,7 +50,7 @@ for (const { protocolVersion, mode } of ERAS) {
     await client.close();
   });
 
-  test(era('under 10 calls left: the text says so'), async () => {
+  test(named('under 10 calls left: the text says so'), async () => {
     const resetAt = Date.now() + 3 * 3600_000 - 60_000;
     const client = await open({ call: async () => ({ result: RESULT, quota: { limit: 50, remaining: 4, resetAt } }) });
     const res = await client.callTool({ name: 'compare_repos', arguments: { repos: ['a/b', 'c/d'] } });
@@ -58,7 +58,7 @@ for (const { protocolVersion, mode } of ERAS) {
     await client.close();
   });
 
-  test(era('HostedError becomes a tool error with the same message'), async () => {
+  test(named('HostedError becomes a tool error with the same message'), async () => {
     const client = await open({ call: async () => { throw new HostedError(429, 'Daily free limit reached (50).'); } });
     const res = await client.callTool({ name: 'compare_repos', arguments: { repos: ['a/b', 'c/d'] } });
     assert.equal(res.isError, true);
@@ -66,7 +66,7 @@ for (const { protocolVersion, mode } of ERAS) {
     await client.close();
   });
 
-  test(era('unexpected error becomes a generic tool error'), async () => {
+  test(named('unexpected error becomes a generic tool error'), async () => {
     const client = await open({ call: async () => { throw new TypeError('secret detail'); } });
     const res = await client.callTool({ name: 'compare_repos', arguments: { repos: ['a/b', 'c/d'] } });
     assert.equal(res.isError, true);
@@ -74,7 +74,7 @@ for (const { protocolVersion, mode } of ERAS) {
     await client.close();
   });
 
-  test(era('last free call: the text says so'), async () => {
+  test(named('last free call: the text says so'), async () => {
     const resetAt = Date.now() + 2 * 3600_000 - 60_000;
     const client = await open({ call: async () => ({ result: RESULT, quota: { limit: 50, remaining: 0, resetAt } }) });
     const res = await client.callTool({ name: 'compare_repos', arguments: { repos: ['a/b', 'c/d'] } });
@@ -82,7 +82,7 @@ for (const { protocolVersion, mode } of ERAS) {
     await client.close();
   });
 
-  test(era('the client sees the server title, website and logo icons'), async () => {
+  test(named('the client sees the server title, website and logo icons'), async () => {
     const client = await open({ call: async () => ({ result: RESULT, quota: null }) });
     const info = client.getServerVersion();
     assert.equal(info.name, 'whichlib');
@@ -91,7 +91,7 @@ for (const { protocolVersion, mode } of ERAS) {
     await client.close();
   });
 
-  test(era('tools/list cache hint: 1 h, public, on 2026-07-28 only'), async () => {
+  test(named('tools/list cache hint: 1 h, public, on 2026-07-28 only'), async () => {
     const responses = [];
     const client = await open({ call: async () => ({ result: RESULT, quota: null }) }, anon, responses);
     await client.listTools();

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { callProtocolVersion, TOOLS_LIST_CACHE } from '../protocol.mjs';
+import { callProtocolVersion, normalizeProtocolVersion, serverInfo, TOOLS_LIST_CACHE } from '../protocol.mjs';
 
 const server = (negotiated) => ({ server: { getNegotiatedProtocolVersion: () => negotiated } });
 
@@ -9,11 +9,11 @@ test('callProtocolVersion: the 2026-07-28 request envelope wins', () => {
   assert.equal(callProtocolVersion(server('2025-11-25'), ctx), '2026-07-28');
 });
 
-test('callProtocolVersion: else the version negotiated by initialize (stdio, 2025 era)', () => {
+test('callProtocolVersion: else the version negotiated by initialize (stdio, 2025 protocol versions)', () => {
   assert.equal(callProtocolVersion(server('2025-06-18'), { mcpReq: {} }), '2025-06-18');
 });
 
-test('callProtocolVersion: else the MCP-Protocol-Version header (hosted, 2025 era, stateless)', () => {
+test('callProtocolVersion: else the MCP-Protocol-Version header (hosted, 2025 protocol versions, stateless)', () => {
   const ctx = { mcpReq: {}, http: { req: new Request('https://w.test/mcp', { headers: { 'mcp-protocol-version': '2025-11-25' } }) } };
   assert.equal(callProtocolVersion(server(undefined), ctx), '2025-11-25');
 });
@@ -27,8 +27,7 @@ test('TOOLS_LIST_CACHE: tools/list cacheable for an hour by anyone', () => {
   assert.deepEqual(TOOLS_LIST_CACHE, { 'tools/list': { ttlMs: 3_600_000, cacheScope: 'public' } });
 });
 
-test('serverInfo: name, version, title, website and the logo as icons', async () => {
-  const { serverInfo } = await import('../protocol.mjs');
+test('serverInfo: name, version, title, website and the logo as icons', () => {
   const info = serverInfo('9.9.9');
   assert.equal(info.name, 'whichlib');
   assert.equal(info.version, '9.9.9');
@@ -38,4 +37,10 @@ test('serverInfo: name, version, title, website and the logo as icons', async ()
     { src: 'https://whichlib.com/logo.png', mimeType: 'image/png', sizes: ['400x400'] },
     { src: 'https://whichlib.com/logo.svg', mimeType: 'image/svg+xml', sizes: ['any'] },
   ]);
+});
+
+test('normalizeProtocolVersion: a dated MCP revision, else null', () => {
+  assert.equal(normalizeProtocolVersion('2026-07-28'), '2026-07-28');
+  assert.equal(normalizeProtocolVersion('2025-06-18'), '2025-06-18');
+  for (const bad of [null, undefined, '', 'latest', '<script>', '2026-07-28x', '26-07-28', 20260728]) assert.equal(normalizeProtocolVersion(bad), null, String(bad));
 });

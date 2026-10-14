@@ -40,7 +40,7 @@ const run = (server, name, fn) => async (args, ctx) => {
 
 const handlers = { recommend_repos: tools.recommend, compare_repos: tools.compare, trending_repos: tools.trending };
 
-// One McpServer per connection; serveStdio answers both MCP 2026-07-28 and 2025-era clients.
+// One McpServer per connection; serveStdio answers clients on MCP 2026-07-28 and on the 2025 protocol versions.
 function buildServer() {
   const server = new McpServer(serverInfo(pkg.version), { cacheHints: TOOLS_LIST_CACHE });
   for (const { name, config } of toolDefinitions()) server.registerTool(name, config, run(server, name, handlers[name]));
