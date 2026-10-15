@@ -189,6 +189,11 @@
   .tier-new { background: transparent; color: var(--muted); border-color: var(--border-strong); }
 
   .empty { padding: 40px 16px; text-align: center; color: var(--muted); }
+  tr.skeleton td { padding: 14px 12px; }
+  tr.skeleton span { display: block; height: 12px; border-radius: 6px; background: var(--surface-2); max-width: 420px; }
+  tr.skeleton span + span { margin-top: 8px; height: 10px; max-width: 280px; }
+  tbody tr.skeleton:hover td { background: transparent; }
+  @media (prefers-reduced-motion: no-preference) { tr.skeleton span { animation: pulse 1.2s ease-in-out infinite; } }
 
   footer { color: var(--muted); font-size: 12.5px; padding-block: 16px; max-width: 72ch; }
   footer p { margin: 4px 0; }
@@ -461,7 +466,16 @@
     });
   }
 
+  // While a tab loads with nothing cached, placeholder rows keep the table at its usual height,
+  // so the notes below it do not jump up and back down when the data arrives.
+  const SKELETON_ROWS = 8;
   function renderRows() {
+    els.table.setAttribute('aria-busy', String(state.loading && !state.data));
+    if (!state.data && state.loading) {
+      els.empty.hidden = true;
+      els.rows.innerHTML = Array.from({ length: SKELETON_ROWS }, () => '<tr class="skeleton" aria-hidden="true"><td colspan="12"><span></span><span></span></td></tr>').join('');
+      return;
+    }
     const items = sortedFilteredItems();
     els.empty.hidden = items.length > 0 || !state.data;
     els.rows.innerHTML = items.map((r) => `
