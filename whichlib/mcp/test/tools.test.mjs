@@ -216,6 +216,18 @@ test('recommend: a candidate that never mentions the need is halved; an applicat
   assert.equal(by['s/sherlock'].relevance, 0.3);
 });
 
+test('recommend (word-match): a repo that never mentions the need ranks after every repo that does, whatever its score', async () => {
+  // 2026-10-15: a storefront with score 88 and no mention of "sanitizer" ranked #2 for "html sanitizer",
+  // above small real sanitizers: halving its relevance was not enough against a high score.
+  const silent = rawItem('s/storefront', 150000, { description: 'Self-hosted storefront, admin and backend' });
+  const small = rawItem('q/tiny-sanitizer', 40, { description: 'Whitelist-based HTML sanitizer' });
+  const { tools } = fakes({ items: [], topicItems: [silent, small] });
+  const r = await tools.recommend({ need: 'html sanitizer', limit: 2 });
+  const by = Object.fromEntries(r.repos.map((x) => [x.fullName, x]));
+  assert.ok(by['s/storefront'].fit > by['q/tiny-sanitizer'].fit, 'the silent repo still has the higher fit; only the order changes');
+  assert.deepEqual(r.repos.map((x) => x.fullName), ['q/tiny-sanitizer', 's/storefront']);
+});
+
 test('recommend: a topic-only candidate that names the subject only in its tags is x0.75 on top of the topic factor', async () => {
   const tagged = rawItem('r/vision-tools', 3000, { description: 'Reusable computer vision tools', topics: ['image-processing'] });
   const named = rawItem('p/pillow', 3000, { description: 'Python Imaging Library', topics: ['image-processing'] });

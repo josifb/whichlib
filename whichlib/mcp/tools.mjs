@@ -190,7 +190,11 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
         }
         return { ...r, flags, relevanceRank: rank, sources: src, signals, relevance: Number(relevance.toFixed(3)), fit: Math.round(r.score * relevance) };
       };
-      const byFit = (a, b) => b.fit - a.fit || byScore(a, b);
+      // Word-match ranking: a repo that never mentions the need (name, description or topics) sorts
+      // after every repo that does. Halving its relevance alone let a high score outrank real but
+      // small libraries ("html sanitizer": a storefront at #2). The Jev ranking judges fit directly.
+      const silent = (r) => (r.signals?.mention === 'none' ? 1 : 0);
+      const byFit = (a, b) => silent(a) - silent(b) || b.fit - a.fit || byScore(a, b);
       const prelim = pool.map(withFit).sort(byFit);
       const shortlist = prelim.slice(0, Math.max(2 * n, 8)).map((r) => candidates.find((it) => it.full_name === r.fullName));
       const scored = (await enrichAndScore(shortlist, { withDownloads: true })).map(withFit).sort(byFit).slice(0, n);
