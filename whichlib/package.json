@@ -41,7 +41,7 @@
     "whichlib": "mcp/server.mjs"
   },
   "scripts": {
-    "test": "node --test \"snapshot/test/**/*.test.mjs\" \"mcp/test/**/*.test.mjs\" \"scripts/test/**/*.test.mjs\"",
+    "test": "node --test \"snapshot/test/**/*.test.mjs\" \"mcp/test/**/*.test.mjs\" \"scripts/test/**/*.test.mjs\" \"versions/test/**/*.test.mjs\"",
     "snapshot": "node snapshot/src/run.mjs",
     "enrich": "node snapshot/src/enrich.mjs",
     "stars": "node snapshot/src/stars.mjs",

@@ -69,6 +69,33 @@ tasks/<id>/
   project/    the starting project, pinned to the version under test
   judge/      tests copied in after the agent finishes (optional)
 cards/<library>.md   the whichlib version card used by the whichlib and both setups
+                     (<library> is the package name: prisma, tailwindcss, zod, ai, next,
+                     react, vite, langchain, pydantic, sqlalchemy)
+```
+
+## Version cards
+
+The cards in `cards/` are not written by hand. `npm run cards` builds them with
+the same pipeline whichlib uses:
+
+1. For each library in `cards/libraries.json`, collect the project's own release
+   notes (GitHub releases), changelog and migration guide entries for every
+   version after `from` (the last release of the previous major, the version an
+   agent most likely learned) up to `to` (the version the tasks install).
+2. Ask TypeSafe's Jev model (pinned version) one yes/no question per entry: must a
+   project change its own code, configuration or setup to keep working? Entries
+   at 0.3 or above count as breaking changes.
+3. Write the card: one header line, then the breaking changes, most likely
+   breaking first, each with its version and a link to its source, trimmed to
+   about 1,500 tokens with a note when trimmed.
+
+`cards/index/<package>.json` keeps every entry with its source link and Jev
+probability, so the result can be checked line by line. A rerun reuses those
+judgments and makes no new Jev calls for entries it has seen.
+
+```
+GITHUB_TOKEN="$(gh auth token)" TYPESAFE_API_KEY=... npm run cards
+npm run cards -- --render-only     # rewrite the cards from cards/index, no network
 ```
 
 ## Tests

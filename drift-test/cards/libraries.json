@@ -1,0 +1,72 @@
+{
+  "about": "The 10 Drift Test libraries. `from` is the version the agent likely knows (the last release of the previous major); `to` is the installed version the tasks pin. Sources are the projects' own release notes, changelogs and migration guides; `npm run cards` judges every entry with Jev and writes cards/<package>.md.",
+  "libraries": [
+    {
+      "package": "prisma", "ecosystem": "npm", "from": "6.19.3", "to": "7.10.1",
+      "sources": [{ "kind": "releases", "repo": "prisma/prisma", "tag": "{version}" }]
+    },
+    {
+      "package": "tailwindcss", "ecosystem": "npm", "from": "3.4.19", "to": "4.3.3",
+      "sources": [
+        { "kind": "changelog", "repo": "tailwindlabs/tailwindcss", "path": "CHANGELOG.md" },
+        { "kind": "guide", "repo": "tailwindlabs/tailwindcss.com", "path": "src/docs/upgrade-guide.mdx", "version": "4.0.0" }
+      ]
+    },
+    {
+      "package": "zod", "ecosystem": "npm", "from": "3.25.76", "to": "4.6.7",
+      "sources": [
+        { "kind": "guide", "repo": "colinhacks/zod", "path": "packages/docs/content/v4/changelog.mdx", "version": "4.0.0" },
+        { "kind": "releases", "repo": "colinhacks/zod", "tag": "v{version}" }
+      ]
+    },
+    {
+      "package": "ai", "ecosystem": "npm", "from": "6.0.317", "to": "7.0.155",
+      "sources": [
+        { "kind": "changelog", "repo": "vercel/ai", "path": "packages/ai/CHANGELOG.md" },
+        { "kind": "guide", "repo": "vercel/ai", "path": "content/docs/08-migration-guides/23-migration-guide-7-0.mdx", "version": "7.0.0" }
+      ]
+    },
+    {
+      "package": "next", "ecosystem": "npm", "from": "15.5.28", "to": "16.4.3",
+      "sources": [
+        { "kind": "releases", "repo": "vercel/next.js", "tag": "v{version}" },
+        { "kind": "guide", "repo": "vercel/next.js", "path": "docs/01-app/02-guides/upgrading/version-16.mdx", "version": "16.0.0" }
+      ]
+    },
+    {
+      "package": "react", "ecosystem": "npm", "from": "18.3.1", "to": "19.3.1",
+      "sources": [
+        { "kind": "changelog", "repo": "facebook/react", "path": "CHANGELOG.md" },
+        { "kind": "guide", "repo": "reactjs/react.dev", "path": "src/content/blog/2024/04/25/react-19-upgrade-guide.md", "version": "19.0.0" }
+      ]
+    },
+    {
+      "package": "vite", "ecosystem": "npm", "from": "7.3.7", "to": "8.3.5",
+      "sources": [
+        { "kind": "changelog", "repo": "vitejs/vite", "path": "packages/vite/CHANGELOG.md" },
+        { "kind": "guide", "repo": "vitejs/vite", "path": "docs/guide/migration.md", "version": "8.0.0" }
+      ]
+    },
+    {
+      "package": "langchain", "ecosystem": "pypi", "from": "0.3.30", "to": "1.4.7",
+      "sources": [
+        { "kind": "releases", "repo": "langchain-ai/langchain", "tag": "langchain=={version}" },
+        { "kind": "guide", "repo": "langchain-ai/docs", "path": "src/oss/python/migrate/langchain-v1.mdx", "version": "1.0.0" }
+      ]
+    },
+    {
+      "package": "pydantic", "ecosystem": "pypi", "from": "1.10.26", "to": "2.14.1",
+      "sources": [
+        { "kind": "guide", "repo": "pydantic/pydantic", "path": "docs/migration.md", "version": "2.0" },
+        { "kind": "releases", "repo": "pydantic/pydantic", "tag": "v{version}" }
+      ]
+    },
+    {
+      "package": "sqlalchemy", "ecosystem": "pypi", "from": "1.4.54", "to": "2.1.6",
+      "sources": [
+        { "kind": "guide", "repo": "sqlalchemy/sqlalchemy", "path": "doc/build/changelog/migration_20.rst", "version": "2.0.0" },
+        { "kind": "guide", "repo": "sqlalchemy/sqlalchemy", "path": "doc/build/changelog/migration_21.rst", "version": "2.1.0" }
+      ]
+    }
+  ]
+}
