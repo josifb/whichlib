@@ -110,6 +110,9 @@ jobs:
         run: npm run bundle
 
       - name: Publish to Smithery
+        # Smithery removed its update API (403 "Updating servers has been removed", 2026-10-28):
+        # never let it block the GitHub release, which Glama's auto-release reads.
+        continue-on-error: true
         env:
           SMITHERY_API_KEY: ${{ secrets.SMITHERY_API_KEY }}
         run: |
