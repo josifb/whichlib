@@ -1,0 +1,13 @@
+{
+  "name": "whichlib-drift-test",
+  "private": true,
+  "type": "module",
+  "description": "Drift Test: coding tasks on fast-moving libraries, judged by the type checker and tests, run under several agent setups.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.mjs\"",
+    "drift": "node src/cli.mjs"
+  }
+}

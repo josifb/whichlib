@@ -1,0 +1,5 @@
+{
+  "library": "mathlib",
+  "prompt": "Create add.mjs that exports a function add(a, b) returning the sum.",
+  "check": ["node --test judge.spec.mjs"]
+}

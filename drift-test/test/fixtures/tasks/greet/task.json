@@ -1,0 +1,5 @@
+{
+  "library": "greetlib",
+  "prompt": "Create greet.mjs that exports greet(name) returning 'Hello, <name>!'.",
+  "check": ["node --test judge.spec.mjs"]
+}
