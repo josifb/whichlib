@@ -5236,7 +5236,7 @@
  },
  "firelex/jeff": {
   "pypi": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "Ghentlesteve/dhis2-immunisation-audit": {
   "pypi": null,
@@ -5264,7 +5264,7 @@
  },
  "KKKKhazix/AIHOT": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "kkokosa/heapspace": {
   "npm": null,
@@ -5340,8 +5340,8 @@
   "checkedAt": "2026-09-29T13:01:06.999Z"
  },
  "yannicksong0106/dsh-550c-boot": {
-  "npm": null,
-  "checkedAt": "2026-09-29T13:01:06.999Z"
+  "npm": "dsh-550c-boot",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "yzc-666/understanding-opd-crosscoders": {
   "pypi": null,
@@ -5465,7 +5465,7 @@
  },
  "HuiTurn/HowToLiveBetter": {
   "npm": null,
-  "checkedAt": "2026-09-29T13:01:06.999Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "avenoxai/sonnet-5.5-benchmarks": {
   "npm": null,
@@ -10100,7 +10100,7 @@
  },
  "darrenprx/lolPing": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "MaxwellVolz/hn_whos_hiring": {
   "pypi": null,
@@ -10340,7 +10340,7 @@
  },
  "Aryanutkarsh/SeeCode": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "bangbuilds/code-doc-film": {
   "npm": null,
@@ -11380,11 +11380,11 @@
  },
  "kargulstudio/sales-crm": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "shinshin86/mesh-avatar-studio": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "0xhamssog/evem-transaction-manager": {
   "npm": null,
@@ -11452,7 +11452,7 @@
  },
  "allenv0/SCM": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "gian-gg/icon-marquee": {
   "npm": null,
@@ -11504,7 +11504,7 @@
  },
  "c3cvld7aag/fujiang-dsh": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "dtornow/stfu": {
   "pypi": null,
@@ -11559,8 +11559,8 @@
   "checkedAt": "2026-10-04T12:28:37.057Z"
  },
  "TannerMidd/pi-pocket": {
-  "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "npm": "pi-pocket",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "Alpha-Park/genpark-visual-diagram-architecture-synthesizer-skill": {
   "pypi": null,
@@ -12580,11 +12580,11 @@
  },
  "Jakeschincariol/replica-skill": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "StayLameBro/backburner": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "bangbuilds/code-poem-film": {
   "npm": null,
@@ -12604,7 +12604,7 @@
  },
  "whykang/ssts--Android": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "isas1/daily-team": {
   "npm": null,
@@ -12728,7 +12728,7 @@
  },
  "aixisstudio/Snitch": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "davnords/poincar3": {
   "pypi": "poincar3",
@@ -12909,7 +12909,7 @@
  },
  "rauchg/gdp-ts": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "Nari-Ab/agent-roast": {
   "npm": "agent-roast",
@@ -12953,7 +12953,7 @@
  },
  "Takamatsu-Hikaru/AI-Research-Guide": {
   "npm": null,
-  "checkedAt": "2026-10-05T14:49:48.328Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "SayedSadiq45/Solo-leveling": {
   "npm": null,
@@ -13313,7 +13313,7 @@
  },
  "arielshad/3d-asset-server": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "FLY1919/yunhu-vue": {
   "npm": null,
@@ -14125,7 +14125,7 @@
  },
  "Leonxlnx/cinetic": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "hayatky/sdr-dtv-poc": {
   "pypi": null,
@@ -14225,7 +14225,7 @@
  },
  "alchaincyf/huashu-art-motion": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "VelaPayments/vela-payments": {
   "npm": null,
@@ -15397,7 +15397,7 @@
  },
  "genex-games/genex-desktop": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "theRizwan/FlagshipRouter": {
   "npm": null,
@@ -15465,7 +15465,7 @@
  },
  "mariagorskikh/open-instinct": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "mars-tw/freedom-erp-crm": {
   "npm": null,
@@ -18296,7 +18296,7 @@
  },
  "ericzhang12111-cell/RhinE": {
   "npm": null,
-  "checkedAt": "2026-10-08T13:38:35.444Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "HEYD66/facet": {
   "npm": null,
@@ -18620,7 +18620,7 @@
  },
  "wesbos/photo-frame-dashboard": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z",
+  "checkedAt": "2026-10-28T13:03:44.386Z",
   "pypi": null
  },
  "MatheusMach/QuantoFalta": {
@@ -21021,7 +21021,7 @@
  },
  "xcisxc29/dsh-wechat": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "abbcreat-cyber/stepfun-harness": {
   "npm": null,
@@ -21121,7 +21121,7 @@
  },
  "chenwei810/Semiconductor_Manufacturing_Introduction": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "NousResearch/hermes-official-plugins": {
   "pypi": null,
@@ -22317,7 +22317,7 @@
  },
  "wheresryan22/anatomy": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "FeiZhuLulu/DeepSeek-Bot": {
   "npm": null,
@@ -22325,7 +22325,7 @@
  },
  "marclou/mailcheap": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "luestr/skills": {
   "npm": null,
@@ -22445,11 +22445,11 @@
  },
  "deeplethe/solid-glass": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "juliobsz/skills": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "Dushiqi1987/codex-remote-bridge": {
   "pypi": null,
@@ -23633,15 +23633,15 @@
  },
  "shaongitbd/doory": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "gholtzap/lintapple": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "jackotom/hongguo-drama": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "ostiums/fixkit": {
   "npm": "fixkit",
@@ -23649,7 +23649,7 @@
  },
  "HRuiCcc/RuiC-oc-ferry": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "kedube/ha-iss-tracker": {
   "npm": null,
@@ -23726,7 +23726,7 @@
  },
  "rockmatrix-ai/EdgeRock": {
   "pypi": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "chekusu/yobiru": {
   "pypi": null,
@@ -23786,7 +23786,7 @@
  },
  "oleyyu/OpenClaudeDesktop": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "chasem-dev/sms-launcher": {
   "npm": null,
@@ -23806,7 +23806,7 @@
  },
  "spideymooon/McOracle": {
   "pypi": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "WilderNoTrack/mcd-calorie-butler": {
   "pypi": null,
@@ -23814,7 +23814,7 @@
  },
  "Arekejoker/qwen21-nsfw-pose-skill": {
   "pypi": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "jumpersun/meal-puzzle": {
   "npm": null,
@@ -23822,7 +23822,7 @@
  },
  "jonwheatley/pixel-path": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "ivandilelio/kybes": {
   "pypi": null,
@@ -23834,7 +23834,7 @@
  },
  "AirsupHQ/machine-skill": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "NaturalWrenMeditate/palworld-performance-stutter-profile-manager": {
   "pypi": null,
@@ -23906,7 +23906,7 @@
  },
  "NB-Corp/gpt-with-taste": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "wandagusniar/swimore.ai": {
   "npm": null,
@@ -24311,7 +24311,7 @@
  },
  "mmparko/dsh-purge": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "wyykkk-sudo/ChatScope": {
   "npm": null,
@@ -24987,7 +24987,7 @@
  },
  "jwuthri-cloud/Tracely-ai": {
   "pypi": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "dreamadv81/form-ordinary": {
   "pypi": null,
@@ -24999,11 +24999,11 @@
  },
  "nateherkai/roast-room": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "HeyChengC/vibe-knowledge-film": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "crutchcorn/skills": {
   "npm": null,
@@ -25011,7 +25011,7 @@
  },
  "threerocks/sweety-handdraw-video": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "ElytaM/companion-module-resolume-arena-osc-unofficial": {
   "npm": null,
@@ -25039,7 +25039,7 @@
  },
  "rayytor/desktop_gifs": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "SouravBeraAkaSpeed/xiryn": {
   "npm": null,
@@ -25055,7 +25055,7 @@
  },
  "domsvoboda/xodus-nexus": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "CigaleAI/guilds": {
   "npm": null,
@@ -25111,7 +25111,7 @@
  },
  "fudan-generative-vision/Remory": {
   "pypi": null,
-  "checkedAt": "2026-10-13T14:19:30.157Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "sepehr071/awesome-iran-mcp": {
   "pypi": null,
@@ -25131,7 +25131,7 @@
  },
  "lvzuojing/mcd-wrapped": {
   "pypi": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "gaoyiiiii/LaterOn": {
   "npm": null,
@@ -29017,7 +29017,7 @@
  },
  "reacher-z/Awesome-REA": {
   "pypi": null,
-  "checkedAt": "2026-10-16T11:32:11.161Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "kbtoy/Retroport": {
   "pypi": null,
@@ -31961,11 +31961,11 @@
  },
  "ip-please/ip-please.github.io": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "finereli/whatsapp-mcp": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "eric-sonio2095r2/Minecraft-Aimbot-Smooth-Tracking-Auto-Aim-Client-Module": {
   "pypi": null,
@@ -32021,7 +32021,7 @@
  },
  "UniXNU/UniXNU": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "timhengc/mai-shen-zai-ci": {
   "pypi": null,
@@ -33157,15 +33157,15 @@
  },
  "xiaoyang111222/cn-math-taxonomy": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "dipa-studio/ios-sweet": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "interplains/zero-breach": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "chengQVQ/mcd-saver-planner": {
   "npm": null,
@@ -33177,7 +33177,7 @@
  },
  "Alterssss/dsh-bili-whale": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "oil-oil/dsh-oil-ui": {
   "npm": null,
@@ -33269,11 +33269,11 @@
  },
  "iam567/rich4-renew-app": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "kanaworksai-hue/audio-studio-mcp": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "FairMind-Gen-AI-Studio/hopper-hq": {
   "npm": null,
@@ -33346,11 +33346,11 @@
  },
  "JPTER78/pokesurvivor": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "sourcepro5/WeChatAgent": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "len5ky/sessiondeck": {
   "npm": null,
@@ -33358,7 +33358,7 @@
  },
  "sv3nbeast/agent-manager-lite": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "chipfighter/context-attachment-manager": {
   "npm": null,
@@ -33366,15 +33366,15 @@
  },
  "Paradigm-Study/claude-share": {
   "npm": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "yeqv111/mccarbon": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "kurelas/text-humanizer": {
   "pypi": null,
-  "checkedAt": "2026-10-19T13:27:08.282Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "anteloc/ldraw-nova": {
   "pypi": null,
@@ -33382,19 +33382,19 @@
  },
  "typecraft-dev/oma-cast": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "stackedlol/ascii-sharks": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "VictorTaelin/uniichat": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "vercel-labs/fx0": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "EpicRealmTitle/call-of-duty-modern-warfare-4-fps-optimizer": {
   "pypi": null,
@@ -33434,7 +33434,7 @@
  },
  "nthnclrk/CleanFrame": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "smallgavin/pi-device-diagnostic": {
   "npm": null,
@@ -34525,8 +34525,8 @@
   "checkedAt": "2026-10-20T11:46:33.487Z"
  },
  "deepseek-ai/DeepInfer": {
-  "pypi": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "pypi": "deepinfer",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "alchaincyf/huashu-cad": {
   "pypi": null,
@@ -34538,15 +34538,15 @@
  },
  "alextnetto/res": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "OmkarK97/webos-vibehack": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "ctoldigital/axuse": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "tomtomsatnav/agent-orchestration-standard": {
   "npm": null,
@@ -34558,7 +34558,7 @@
  },
  "blendi-remade/prompt2rig": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "metawka/expressive-profile": {
   "npm": null,
@@ -34682,19 +34682,19 @@
  },
  "DozenTwelve/Papermorph": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "pinganbbOvO/ai-companion-kit": {
   "npm": null,
-  "checkedAt": "2026-10-20T11:46:33.487Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "eagle-hq/EAGLE-4": {
   "pypi": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "ikow/php2shell-poc": {
   "pypi": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "NVIDIA/flare-local-inference": {
   "pypi": null,
@@ -34706,11 +34706,11 @@
  },
  "Jakeschincariol/day-trader-skill": {
   "pypi": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "WoYun520/dsh-purge": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "ilAoC/mcd-gacha-collector": {
   "pypi": null,
@@ -34722,7 +34722,7 @@
  },
  "qianshuixia/shrimpreel": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "Zer061/CVE-2026-109618": {
   "pypi": null,
@@ -34938,7 +34938,7 @@
  },
  "InariNGT-Ofiicial/dsh-bili-humanism": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "Hjy0714/dsh-fish-office": {
   "npm": null,
@@ -35898,7 +35898,7 @@
  },
  "JeffKeeping/dsh-purge-plus": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "JVK3R/JobeesLair": {
   "npm": null,
@@ -36046,11 +36046,11 @@
  },
  "AienTech/dossier": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "morluto/awesome-reverse-engineering": {
   "pypi": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "nuglifeleoji/Sentry": {
   "pypi": null,
@@ -36058,7 +36058,7 @@
  },
  "TecnaGamer/BeamNG.Earth": {
   "pypi": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  },
  "xingjian-bai/opal": {
   "pypi": null,
@@ -42912,5 +42912,1577 @@
  "DUNHKpcc/Claude-Guardian": {
   "pypi": null,
   "checkedAt": "2026-10-26T13:12:42.805Z"
+ },
+ "OpenBMB/MiniCPM-OCR": {
+  "pypi": "minicpm-ocr",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "aa1143/NamiGPT": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "oxnw/ai-phone": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "patch-gg/crowdbricks": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "vaishantsah/watson-AI-osint-all-in-one": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "AlpinDale/foidfinder": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "athenaos-tech/athenaos-agent": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "joeseesun/qiaomu-ui-learn-dsh": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "davemessew/AgentFlux": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "DukeDeSouth/m7-mcp-oss": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "beejmaxx/awesome-rex": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "lukeed/html": {
+  "npm": "@lukeed/html",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "hustvl/FVQ": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "em4nu3i69dll/service-status-api": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "lovisdotio/video-to-texture": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "win4r/video-director": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "axxx503/Arabic-localization-game": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "HRuiCcc/RuiC-PoseAtlas": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "danielmoreink/Zip-ties-for-Blender": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "tapeo-ai/awesome-ai4chip": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "devMarksKnobb/RedditFilter": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "AllTheMods/atm9-expert": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "jacksonjao/lumen": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "dohoon84/bumpinto-world": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "vuoshino/Nottilo": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "expires0n/spicetify-lyrics-translate": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "TOP-SHEBAMITMACHIM/chatsapp": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "TheLord83/CleanFrame-webos": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Gutem/php2shell-16-debian-apache-node": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Shadowx-Team/shadowx-bot": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Edwardpch/maodie-pet": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "akira-rosa/probest": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Flh-hub/bupt-schedule": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "K07VN/SubForge-Open-Soucre": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "mikotokuroko/suika-the-politician": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "bassnova42/arch-diagram-skill": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "0xCodez/hop": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "sidwiskers/gramless": {
+  "npm": "gramless",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Camilo-Alberto-Palacio/canvas-studio-downloader": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Harry-Hz-Zhang/helm-workflow": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "LaRosette/Blokedex-Trem": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "skuser2005/CivicResolve": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ChrisHKAI/ChrisHKAI-Video": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "scratchpad-sh/skills": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Ravindrarathod58/july_dec_java_py_React": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "YuyuYuu-wyt/dsh-workspace-classifier": {
+  "npm": "dsh-workspace-classifier",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "promptadvisers/codexandcoffee": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "as124da1231/live2d-simple-workbench": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "St-Claret-Emerging-Assam-Hackathon-2026/Infrastructure-Dependency-Mapper": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Fei2411/deep-view": {
+  "npm": "deep-view",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "PAOPAOovo/zotero-selection-notes": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "swy55555/dsh-feiyu-memory-console": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "matthewzammit/skills": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Fifth-Ace/routerforge-portal": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "BerriAI/better-backlog": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "cryptoleoleo/8788": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "yyx01/video-bgm-swap": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "comet-ml/comet-javascript-sdk": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "juneadkhan/openreviewkit": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Seas1989/minimal-clock": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Atharul-Azam/Personal-Study-Tracker": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "TracyHQ/tracy": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "nyaisnyafro-coder/MirrorUI": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "yemao-maomao/All-Craft-Launcher-ACL-": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "shutongcao1-design/dsh-rewind-branch": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "G-Nikke/match-for-every-fan": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Clarity-1/S5-League": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "aadarsh-jayswal/UI-UX-Master": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Camellia0128/moyue-reader": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "K-ame/rpgmaker-mv-ai-bridge": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "liushikuan63/Qoder-Optimization": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "wrj2835283280-stack/feiyu-pet": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Lynxmodzz/HypeSquad-Badge-Discord-2026": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "13478790948abc/Claude-and-DeepSeek-Pet-LiKe": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "rnfmabjE/dsh-quiet-hours": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "sewanode/Dana-QRIS-Bridge": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "vennemp/slack-broadcast": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "davidfl678/X-scraper-api": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "nullptrowo/claude-router": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "CC-creator666/dsh-token-furnace": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "aidensong0406-prog/shishiji": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "yifan1037/dsh-qq": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ravnir-ai/ravnir": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Israel-EGz07/myocontrol": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "davideruggeri/DiscAnalytix": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "sankhadeep-coder/COURSERA-skipper": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "LuoLingP/request-doctor": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Afeng-ovo/dsh-memory-lens": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "heyikai060215-jpg/dsh-wechat-wake": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ysissilva/Noctaria": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ayuanxx-max/Jack.CaMps": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "2849236173/tiered-compaction": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "The-Non/dsh-select-menu": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "KERBALMans/dsh-aliyun-coupon": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "keajuwa24-cpu/vathereyougo": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "tieubao9k/ytdl-nodejs": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Akshithagrandhe/celebrare-photo-gallery": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "vnxdtzip/qbruce": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "LJY-YL/dsh-workbuddy-connect": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "BigBlueHat/annotation-text-fragment": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "CatMeowTeam/MeowLauncher": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "tofucurd/music-score-guide-archive": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "xdong809-prog/ai-friend": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "htc911ok/3DStudio": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Staiola/Ostromo-for-Android-TV": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "theseussss/pi-hibiki": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ppboi21/Boomerang": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "smokingtux/ha-autumn-mode": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "zhu0823/steam-idler": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ALANDVO/prism-lens-144": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "henuLv/zcode-tps-badge": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "yose7f4/OrbitChat": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Framzy/Website-Contact-Management": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "koala-yu52/claude-mapping": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "WJHRobert/dsh-session-timer": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "6Jerries/qqbot-mcp": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Rukshan2000/playwright-test-automation": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "berkebasbay/loopset": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "krowten/typebox-standard-schema": {
+  "npm": "typebox-standard-schema",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Coder-safal/npm-package-bs-calander": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "20cwaters/Closet": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "gamaoff/Krypto-steuer-lokal": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Taksuma-0/mi-sii-mcp": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "lizhian/github-trending-tracking": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "anomalyco/browse": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "rikyrism/Partello": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "sam666-byte/nusantara-bots": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Uginim/claude-code-mods": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "northflower/paper-galaxy": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "revolverocelot1/anemo-live-wallpaper": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Abhijith792001/jobhunter-ai": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "zklmiao/prompt-vault": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "KevinChu1110/driftnet": {
+  "npm": "driftnet",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "nia-teams/nia-live-demo": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "PaulGoldschmidt/lines-of-code-history": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "MiladJoodi/SonoJs-icons": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Dev9269/aegis-nexus-ai": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "eduwxyz/tucano": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "adamkdean/claude-chalk": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Stellar-Starfare/AstrolabePay": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Muhtasim-Masum-Hasnayen/wishora": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Osinglehh/digital-workstation": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "0x4865696261/Cifra": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "mengfei0053/agent-board": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "heyhey2thereal/StreamControl": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "benvinegar/opentui-irc": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "christianstamati/convex-errors": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "lucas-gp/d2mobile": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "smotim/nuxt-miniapp-telegram-max": {
+  "npm": "nuxt-miniapp-telegram-max",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ymh001/youwu": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Leoid/ZCode-patched": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "farena-ai/sara": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "denizorucu17-hash/jarvis": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "CatalpaShore/Alexandria": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "wattnpapa/einsatzauftrag": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "FynexApp/icons": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ommistry-hue/flowpilot": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "amkisko/json-logging.ts": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "yashvikram30/german-course": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ALANDVO/vector-lab-144": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "alexbieber/VAANI": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "yongjingxing729/reasoning-trajectory-memory": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "zhou-hack/humanize-agent": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Apps-PlayLoop/playloop-backend": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "alexdoescodes/ClaudeCodeSwitcher": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "iUnstable0/schedule-trmnl": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "pyqdcyy123-byte/IP-BOT-IP-": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "560e/560-ai-town": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Andrew-Velox/nozomi": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "spbghoul/papi-deadlock-invites": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "RigelNana/fastdict": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "wanboqi/LocalHub": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "rohbatista18-sys/ps5-jb-tracker": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "2ve2/hilal": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "geotech-solucoes/geotech-site": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "mianste/Kynex-Launcher": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "UnshodMan/JustTranslator": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "biliye/cortico-world-parlor": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "mwakidenis/WebCheck-Action": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "eValue8bv/pi-codex-pulse": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "denizorucu17-hash/mercek": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "novatic-cu/NovaFlix": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ConorCallanan2003/browsermd": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "AriaEternity/kuinest": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "erensrtky/cogit": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "portmortapp/WebAutomation": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Reyhandhani/idnpay-sandbox": {
+  "npm": "idnpay-sandbox",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "newadays/heliodx": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "jrparks/corosync-qdevice-openwrt": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "EmberCollective/openink-studio": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "i6moons/feexpay-server": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "tejas-ml/trial-matchmaking": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "aabdulrafay/healthdastaanadmin": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "MatejKustka/GaTe-parking": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "tralwdwd/valenced-plugins": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "KartofellFirst/Cadimac": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "manojrevenkar12-web/revops-agent-orchestration": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ryanburr/porch-press": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "wwq102039/ClassVision": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "MJ772/multi-sessions": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "LouisDKiraZ/Roommates-App": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "xhxaidi/journal": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Benny66/music-ball": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "NmadeleiDev/nanoclaw-workspace-ui": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "kartikeyy12/framesbykartikey": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "happyyharry1209-oss/ielts-practice": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Muhammad-RK-Isa/opencode-commit-review": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "maskeynihal/tz-extension": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "EtkinD/evidomo": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "yapsgg/opencom": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ridesplat/ride-splat": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "zamirka/wfwatch": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Chirraaa/sophon": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "WeChatCV/TextDART-SCANNER": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "undefined-ui/explain-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Sandyuri/-SafeGuide": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "dantaspaulo/check-pre-lancamento": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "garycaogan/h3-ref-video": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "google-deepmind/hope": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "garycaogan/mv-swap": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "MiniMax-AI/mcode-stack": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "harrytted/ai-agent-interview-playbook": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "denizguneey/invariant-twins": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "jaeggerr/seqtrak-docs": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "sybil-solutions/historical-evidence-for-john-the-baptist": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "jyjyxt/pose-reference": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "0xquqi/EZbot-project-research-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "johunsang/vibe-coding-news": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "alphaparkinc/genpark-agentic-commerce-sponsored-placement-router-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "alphaparkinc/genpark-agentic-commerce-ap2-payment-delegation-vault-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Alpha-Park/genpark-agentic-commerce-ap2-payment-delegation-vault-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Alpha-Park/genpark-agentic-commerce-ucp-catalog-resolver-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Alpha-Park/genpark-agentic-commerce-agent-gateway-verifier-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Alpha-Park/genpark-reasoning-mcts-step-verity-evaluator-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "alphaparkinc/genpark-agentic-commerce-agent-gateway-verifier-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ClashGate/ClashGate": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Alpha-Park/genpark-agentic-commerce-sponsored-placement-router-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "hamzaabduljabbar/autoConst-smart-drawing": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "alphaparkinc/genpark-reasoning-mcts-step-verity-evaluator-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "alphaparkinc/genpark-reasoning-budget-test-time-compute-allocator-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Alpha-Park/genpark-reasoning-budget-test-time-compute-allocator-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "alphaparkinc/genpark-agentic-commerce-ucp-catalog-resolver-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "alphaparkinc/genpark-agentic-commerce-a2m-bargaining-negotiator-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Alpha-Park/genpark-agentic-commerce-a2m-bargaining-negotiator-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "alphaparkinc/genpark-reasoning-majority-voting-consensus-engine-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "em4nu3i69dll/mcp-inicio-ia": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "tanglele110-hash/levision-website-reproduction": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "TomWang-NPU/MeCo-Hi": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "jjjsyjiao/linggan-chenggao": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "significance-s/little-dragon-desktop-pet": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Git-Mastermind/sammamish-spotlight": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "shubhamkjha369/OpenLDAC-Windows": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "changjonathanc/neuron-finder": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "rogersocruz/mexerica": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Wiselnn570/Co-Design-Bench": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "anfastech/rep": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "AikidoSec/brotli-client-checker": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ASarafanov/fracturerecomp": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "changxuanfan/robofrontier": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "luoling8192/skills": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "thiamyatma/rec-cours-automation": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "thezolon/tiiny-api-notes": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "xyzlll506/paperwalk": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Dippp10-ally/repo-n27-40528281938": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Dippp10-ally/repo-n29-40528281938": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "n0vad3v/cloudflare-blog-epub": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "LHospitalLKY/dogfight": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Dippp10-ally/repo-n26-40528281938": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "agentthink/twincnc": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "maintruzeloff/Exodus-Fake-Balance": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "lurenxing628/vibe-coding-anti-defensive-programming": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "devrsw/busybar-skill": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "VanniDevAI/Duo-Scanner": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "jakerhee123/ImageIO-metadata-crash": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "stmorgenstern/diff-soup": {
+  "pypi": "diff-soup",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "MrExplode/IC204-AMG": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "hanyuxuan123/classlab_bev_editor": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Dippp10-ally/repo-n28-40528281938": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "stoyan-stoyanov/wavefunction": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "gregoriopalama/gemma4mtp-demo": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "rorosaga/hoff-harness": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "TonyD365/Inkhue": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ilyamiro/chesser": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "wpang4032-oss/scientific-paper-figures": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Dippp10-ally/repo-n21-40528281938": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "uwvwko-zzz/go2w-supermimic": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Dippp10-ally/repo-n23-40528281938": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ritikrishu/iterm-dash": {
+  "pypi": "iterm-dash",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Dippp10-ally/repo-n22-40528281938": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "lingdongbudong/Comfyui-Anima-Wardrobe-V4": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Dippp10-ally/repo-n25-40528281938": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "elijahsgh/microharness.py": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Tr-Veronika/telegram-bot-HTTP-Cats": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Kartikseh27/HACKOWEEN_PROJECT": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "murat-levi/php2shell-poc": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "danisec/hoyolab-mcp": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "cwbitz/remnawave-nodes-iac": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Tr-Veronika/telegram-bot-Purrfect-Cat": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Dippp10-ally/repo-n35-40560617185": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ironleo78-sys/ironleo78_mtv": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "interplains/Zero-Breach-Toolkit": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "stormydayy/halo-overlay": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "kargulstudio/calender-app-design": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "CopilotKit/OpenDuet": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "blakeandersonw/ai-app-playbook": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "deepopen-com/deepopen-3d-webs": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "patch-gg/anymove": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "konlu/story-studio": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "sybil-solutions/all-historical-evidence-of-jesus-christ": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "hugues31/duckpad": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "nicobailon/skill-diet": {
+  "npm": "skill-diet",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "GrandeurPikeman/Roblox-MM2-Utility-2026": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Mieksido/surfcore": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "fjaeckel/seriesoftubes": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "SAOS-3624/dsh-video-storyboard": {
+  "npm": "dsh-video-storyboard",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "haydenschmitty/floorplan": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "byizmysh/IZ2S-Platform": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "HeinrichZ/CloudField": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "haiderfarooq3/paper-reel": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "changhaoting1998-star/manufacturing-wechat-miniapp-starter": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Anubis-Security-Tool/anubis": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ssamurias/dsh-fish": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ekmen43/turbo-spins": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "free-dam-man/zoho-catalyst-appsail-xhttp-skill": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "prmgr-org/prmgr-observatory-starter": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "justin22/compass": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Zengkailin/parametric-topdown-pixel-architecture": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "herdodp/snapgent-connector": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "cpypwn/elf2jb": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "NiftyNova/GPUBrewLauncher": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "dark-anishi/capri-desktop-noir": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Phantom-Con-Artist/unparalleled-skillset": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Seagey/couch-tv": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "yurenpai/tibo-reset-live": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "seaison/dsh-plugin-eva-theme": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Banan1cee/whale_gril": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "stqfdyr/ascii-pond": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "marcpinet/zotegrep": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "sam-siavoshian/Morse": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Nutlope/bygga": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "patch-gg/trompe": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "athcagithub/postiz-leaked": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "rudderlabs/devbox": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "0kzh/glisse": {
+  "npm": "glisse",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "jianxinss/iching-64-motion": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "quirekit/quirekit": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "theadiram/Hisaab": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "kelvinkn17/skills": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "D3voz/openjutsu": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "AISEO-VirtualabDigital/mcp-video-editor": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "sums001/OpenInbox": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "dmitribogatenkov/briefproof": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "BookracyFOS/bookracy": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "reemus-dev/ghostty-designer": {
+  "npm": "ghostty-designer",
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "enviousmigra/kaiwu-anAIdesigner": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "hridaya423/silkreel": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "rit3zh/interactions": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "fardroid/Simple-LG-launcher": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "meicuode/InstaBoxPanel": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Comfy-Org/comfy-openjutsu": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Cansiny0320/heybox-daily": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "hirakujira/Pokeep": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "aibot-fans/dsh-bot": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "salmrcdev/BTCortex": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "yimengbenxin/Personal-AI-OS": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "rekanara/govite-fullstack": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "wisty-labs/wisty-ui": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "xfcujdylazwz/all-movies-hub": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "wlnhnoqefoxt/adult-ai-video": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "wcoxptzhhdbo/solana-sniper-bot": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "toyxyz/toyxyz_RGBMocap": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ebmeivktlmmj/autotyping-script": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Razdva122/clean-your-tv-lg-webos": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Tencent-Hunyuan/Hy-SimulMT": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "amiya-special/Dynaflow": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "molence/Mol-1": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Andreas698/glm-5.3-uncensored": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "stevensun1005/fuxi-pdf": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Mayzmei/anime-series-maker": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "XinchengLabs/302api-developer-kit": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "canitcode/video2rig": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "akitaonrails/worldreports": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "oucdc/Power-Sentinel": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "arantes-gabs/fora-de-cena": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Toyaspio/maibot-baidu-search": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "ElectronGirl/ComfyUI-Anima-Ref-Adapter": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "x18n-dev/x18n": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "fayazara/coworkers": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "FrigadeHQ/hob": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "Tolson64/Kitlane-extension": {
+  "npm": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "LNPANDY/NX2Apple": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "NVIDIA/spark-local-inference": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
+ },
+ "hi3d-official/Hi3Dv1.0": {
+  "pypi": null,
+  "checkedAt": "2026-10-28T13:03:44.386Z"
  }
 }
