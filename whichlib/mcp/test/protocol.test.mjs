@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { callProtocolVersion, normalizeProtocolVersion, serverInfo, TOOLS_LIST_CACHE } from '../protocol.mjs';
+import { callProtocolVersion, normalizeProtocolVersion, serverInfo, SERVER_INSTRUCTIONS, TOOLS_LIST_CACHE } from '../protocol.mjs';
 
 const server = (negotiated) => ({ server: { getNegotiatedProtocolVersion: () => negotiated } });
 
@@ -43,4 +43,10 @@ test('normalizeProtocolVersion: a dated MCP revision, else null', () => {
   assert.equal(normalizeProtocolVersion('2026-07-28'), '2026-07-28');
   assert.equal(normalizeProtocolVersion('2025-06-18'), '2025-06-18');
   for (const bad of [null, undefined, '', 'latest', '<script>', '2026-07-28x', '26-07-28', 20260728]) assert.equal(normalizeProtocolVersion(bad), null, String(bad));
+});
+
+test('SERVER_INSTRUCTIONS: says when to call each picking tool, within the 4,096-char limit clients load at start', () => {
+  assert.ok(SERVER_INSTRUCTIONS.length > 100 && SERVER_INSTRUCTIONS.length <= 4096);
+  for (const name of ['recommend_repos', 'compare_repos', 'trending_repos']) assert.ok(SERVER_INSTRUCTIONS.includes(name), name);
+  assert.match(SERVER_INSTRUCTIONS, /before adding a dependency/i);
 });

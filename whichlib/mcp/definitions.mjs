@@ -24,6 +24,8 @@ export function toolDefinitions({ limitNote = LOCAL_LIMIT_NOTE, compareNote = ''
         limit: z.number().int().min(1).max(10).default(5).describe('How many repositories to return, 1-10.'),
       }),
       annotations: { ...annotations },
+      // Claude Code (2.1.285+) loads this tool up front even when tool search defers the rest.
+      _meta: { 'anthropic/alwaysLoad': true },
     } },
     { name: 'compare_repos', config: {
       title: 'Compare repositories',

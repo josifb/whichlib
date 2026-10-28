@@ -91,6 +91,14 @@ for (const { protocolVersion, mode } of PROTOCOL_VERSIONS) {
     await client.close();
   });
 
+  test(named('the client gets the server instructions, and recommend_repos asks to be loaded up front'), async () => {
+    const client = await open({ call: async () => ({ result: RESULT, quota: null }) });
+    assert.match(client.getInstructions() ?? '', /Call recommend_repos before adding a dependency/);
+    const { tools } = await client.listTools();
+    assert.equal(tools.find((t) => t.name === 'recommend_repos')._meta?.['anthropic/alwaysLoad'], true);
+    await client.close();
+  });
+
   test(named('tools/list cache hint: 1 h, public, on 2026-07-28 only'), async () => {
     const responses = [];
     const client = await open({ call: async () => ({ result: RESULT, quota: null }) }, anon, responses);

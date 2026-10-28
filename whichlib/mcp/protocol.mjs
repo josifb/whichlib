@@ -15,6 +15,16 @@ export function serverInfo(version) {
   return { name: 'whichlib', version, title: 'whichlib', websiteUrl: 'https://whichlib.com', icons: ICONS };
 }
 
+// Sent at connect time. Claude Code loads server instructions even when tool search defers
+// the tool definitions, so this is what tells the agent when to reach for whichlib.
+export const SERVER_INSTRUCTIONS = [
+  'whichlib ranks open-source libraries with live GitHub, npm and PyPI data: a 0-100 health score, downloads, a one-line verdict and the install name.',
+  'Call recommend_repos before adding a dependency the project does not use yet, when the user asks which library to use, or when you are not sure a package exists or is still maintained. Describe the need in plain words, not a library name.',
+  'Call compare_repos to choose between candidates you already have (owner/repo names) or to check a dependency the project already uses.',
+  'Install the package with the name shown on the Install line of a result rather than one typed from memory.',
+  'trending_repos is for discovering new projects, not for picking a dependency.',
+].join(' ');
+
 const ENVELOPE_VERSION = 'io.modelcontextprotocol/protocolVersion';
 
 /** A protocol version for the call counter: MCP revisions are dates (2026-07-28); anything else is unknown (null). */

@@ -60,3 +60,10 @@ test('inputObject validates and applies defaults with the definition schema', ()
   assert.deepEqual(ok.data, { period: 'day', limit: 20, withDownloads: false });
   assert.equal(inputObject(trending).safeParse({ limit: 500 }).success, false);
 });
+
+test('toolDefinitions: recommend_repos asks to be loaded up front (Claude Code tool search); the others stay deferred', () => {
+  const defs = Object.fromEntries(toolDefinitions().map((d) => [d.name, d.config]));
+  assert.deepEqual(defs.recommend_repos._meta, { 'anthropic/alwaysLoad': true });
+  assert.equal(defs.compare_repos._meta, undefined);
+  assert.equal(defs.trending_repos._meta, undefined);
+});

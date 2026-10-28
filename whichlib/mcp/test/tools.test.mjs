@@ -523,3 +523,11 @@ test('formatResult: shows the Jev fit and weak fit when present', async () => {
   assert.match(text, /a\/one — fit \d+ \(.*, Jev fit 0\.95\)/);
   assert.match(text, /b\/two — fit \d+ \(.*, Jev fit 0\.30, weak fit\)/);
 });
+
+test('formatResult: shows the install command for each registry package, so agents do not type a name from memory', () => {
+  const repo = { fullName: 'colinhacks/zod', tier: 'Strong', score: 88, stars: 40000, language: 'TypeScript', license: 'mit', verdict: 'v', url: 'https://github.com/colinhacks/zod',
+    packages: [{ registry: 'npm', name: 'zod', weeklyDownloads: 1, downloadsTrend: null }, { registry: 'pypi', name: 'zod-py', weeklyDownloads: null, downloadsTrend: null }] };
+  const text = formatResult({ tool: 'compare_repos', repos: [repo, { ...repo, fullName: 'a/none', packages: [] }] });
+  assert.match(text, /Install: npm install zod · pip install zod-py/);
+  assert.equal(text.match(/Install:/g).length, 1);
+});

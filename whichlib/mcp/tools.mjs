@@ -256,6 +256,8 @@ export function createTools({ github, resolvePackages, history, loadRising = nul
 const nf = new Intl.NumberFormat('en-US');
 const compact = (n) => (n >= 1e6 ? `${(n / 1e6).toFixed(1).replace(/\.0$/, '')}M` : n >= 1e3 ? `${(n / 1e3).toFixed(1).replace(/\.0$/, '')}k` : String(n));
 
+const INSTALL = { npm: 'npm install', pypi: 'pip install' };
+
 /** Plain-text rendering of a tool result for clients that only show text. */
 export function formatResult(result) {
   const lines = [];
@@ -277,6 +279,8 @@ export function formatResult(result) {
     lines.push(`${i + 1}. ${r.fullName} — ${head} — ${bits}`);
     if (r.description) lines.push(`   ${r.description.length > 140 ? `${r.description.slice(0, 137)}...` : r.description}`);
     lines.push(`   ${r.verdict} ${r.url}`);
+    const installs = (r.packages ?? []).map((p) => `${INSTALL[p.registry] ?? `${p.registry}:`} ${p.name}`);
+    if (installs.length) lines.push(`   Install: ${installs.join(' · ')}`);
   });
   if (result.notFound?.length) { lines.push(''); for (const f of result.notFound) lines.push(`Could not fetch ${f.repo}: ${f.error}`); }
   if (result.dataNotes?.length) { lines.push(''); for (const n of result.dataNotes) lines.push(`Note: ${n}`); }
