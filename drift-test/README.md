@@ -11,9 +11,13 @@ Every task runs under each **setup**:
 | Setup | What the agent gets on top of the prompt |
 |---|---|
 | `alone` | nothing (no MCP servers) |
-| `context7` | the Context7 MCP server (`https://mcp.context7.com/mcp`) |
+| `context7` | the Context7 MCP server (`https://mcp.context7.com/mcp`) and Context7's own recommended rule, appended to the system prompt |
 | `whichlib` | the whichlib version card for the task's library, appended to the system prompt |
-| `both` | Context7 and the whichlib card |
+| `both` | Context7, its rule and the whichlib card |
+
+The Context7 rule is the example from Context7's README ("Always use Context7 when I need
+library/API documentation, code generation, setup or configuration steps without me having
+to explicitly ask."), so Context7 is used the way it tells its users to.
 
 ## Rerun it
 
@@ -32,7 +36,21 @@ fixture tasks:
 `npm run drift -- --tasks test/fixtures/tasks --cards test/fixtures/cards`.
 On Windows the runner starts `claude` directly, so use Claude Code's native
 installer (`claude.exe`), not the npm `claude.cmd` shim.
-Set `CONTEXT7_API_KEY` to use your Context7 key. Options:
+Set `CONTEXT7_API_KEY` to use your Context7 key.
+
+The agent works in `--work <dir>` (default: `<temp>/drift-work`, or `drift-work` at the
+drive root when the temp folder is inside your home folder, as on Windows: `C:\drift-work`).
+Claude Code loads `CLAUDE.md`, `CLAUDE.local.md` and `.claude/CLAUDE.md` from every parent of
+its working folder, even with `--setting-sources project`, so a folder below your home folder
+would give every setup your own instructions. The runner refuses to start when it finds one
+there and names the file.
+
+Runs that fail for infrastructure reasons are recorded as **error**, not fail, and left out of
+the pass rates: a usage limit, a failed install, or an agent that crashed before changing any
+file. Rerun just those into the same report with
+`npm run drift -- --rerun-errors results/<date>T<time>`; the report says how many were rerun.
+
+Options:
 `npm run drift -- --help` (pick setups, a model, another output folder,
 the per-run timeout).
 
@@ -58,8 +76,9 @@ For each task and setup:
    the agent never sees it, and the `check` commands run. Pass means every
    check exits 0.
 
-A crashed or hanging agent, or a check that times out, counts as a fail with
-its reason in the report. The run goes on. Tokens and time are recorded per run.
+A hanging agent, an agent that crashed after changing files, or a check that
+times out counts as a fail with its reason in the report (errors, above, do not).
+The run goes on. Tokens and time are recorded per run.
 
 ## Task format
 

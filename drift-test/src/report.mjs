@@ -8,9 +8,11 @@ const round1 = (n) => Math.round(n * 10) / 10
 export function summarize(results, setups) {
   const bySetup = {}
   for (const id of setups) {
-    const rows = results.filter((r) => r.setup === id)
+    // Errors (usage limit, failed install) say nothing about the setup, so rates leave them out.
+    const rows = results.filter((r) => r.setup === id && r.outcome !== 'error')
+    const errors = results.filter((r) => r.setup === id && r.outcome === 'error').length
     const passed = rows.filter((r) => r.pass).length
-    bySetup[id] = { passed, total: rows.length, rate: rows.length ? round1((passed / rows.length) * 100) : 0 }
+    bySetup[id] = { passed, total: rows.length, errors, rate: rows.length ? round1((passed / rows.length) * 100) : 0 }
   }
   return { bySetup, verdict: verdict(bySetup) }
 }
@@ -69,19 +71,24 @@ export function renderReport(run) {
     `Run ${run.startedAt} to ${run.finishedAt}. Model: ${models.join(', ') || 'unknown'}. ` +
       `${run.tasks} tasks, setups: ${setups.join(', ')}.`,
     '',
-    'Pass or fail is decided only by each task\'s type checker and tests.',
+    'Pass or fail is decided only by each task\'s type checker and tests. ' +
+      'Errors (usage limit, failed install, agent crash before any edit) are not counted in pass rates.',
+    ...(run.reruns ?? []).map((r) => {
+      const n = (k, word) => `${k} ${word}${k === 1 ? '' : 's'}`
+      return `\n${n(r.rerun, 'error')} rerun on ${r.at}; ${n(r.stillErrors, 'error')} left after the rerun.`
+    }),
     '',
     '## Pass rate per setup',
     '',
-    '| Setup | Passed | Pass rate | vs alone | vs Context7 | Avg tokens | Avg time |',
-    '|---|---|---|---|---|---|---|',
+    '| Setup | Passed | Pass rate | vs alone | vs Context7 | Errors | Avg tokens | Avg time |',
+    '|---|---|---|---|---|---|---|---|',
   ]
   for (const id of setups) {
     const s = summary.bySetup[id]
     const vs = (other) => (other === id || !summary.bySetup[other] ? '—' : pts(s.rate - summary.bySetup[other].rate))
     const u = usage(results.filter((r) => r.setup === id))
     lines.push(
-      `| ${id} | ${s.passed}/${s.total} | ${s.rate}% | ${vs('alone')} | ${vs('context7')} | ` +
+      `| ${id} | ${s.passed}/${s.total} | ${s.rate}% | ${vs('alone')} | ${vs('context7')} | ${s.errors} | ` +
         `${u.avgTokens ?? '—'} | ${u.avgSeconds === null ? '—' : u.avgSeconds + ' s'} |`,
     )
   }
@@ -92,15 +99,16 @@ export function renderReport(run) {
     const rows = results.filter((r) => r.task === task)
     const marks = setups.map((id) => {
       const r = rows.find((x) => x.setup === id)
-      return r ? (r.pass ? 'pass' : 'fail') : '—'
+      return r ? r.outcome : '—'
     })
     lines.push(`| ${task} | ${rows[0].library} | ${marks.join(' | ')} |`)
   }
 
-  const failures = results.filter((r) => !r.pass)
-  if (failures.length) {
-    lines.push('', '## Failures', '')
-    for (const r of failures) lines.push(`- ${r.task} / ${r.setup}: ${cell(r.reason)}`)
+  for (const [title, outcome] of [['Failures', 'fail'], ['Errors', 'error']]) {
+    const rows = results.filter((r) => r.outcome === outcome)
+    if (!rows.length) continue
+    lines.push('', `## ${title}`, '')
+    for (const r of rows) lines.push(`- ${r.task} / ${r.setup}: ${cell(r.reason)}`)
   }
   return lines.join('\n') + '\n'
 }

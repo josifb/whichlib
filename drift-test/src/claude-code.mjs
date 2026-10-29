@@ -1,6 +1,6 @@
 // The real agent: Claude Code headless (`claude -p`) with the account's default model.
-// Each setup changes only what the agent is given: no MCP servers, the Context7 MCP server,
-// a whichlib version card in the system prompt, or both.
+// Each setup changes only what the agent is given: no MCP servers, the Context7 MCP server
+// with its recommended rule, a whichlib version card in the system prompt, or both.
 
 import { spawn } from 'node:child_process'
 import { mkdtemp, rm, writeFile } from 'node:fs/promises'
@@ -9,6 +9,10 @@ import { join } from 'node:path'
 import { killTree } from './command.mjs'
 
 export const CONTEXT7_URL = 'https://mcp.context7.com/mcp'
+
+// The example rule from Context7's README ("Add a Rule"), so Context7 is used the way it tells its users to.
+export const CONTEXT7_RULE =
+  'Always use Context7 when I need library/API documentation, code generation, setup or configuration steps without me having to explicitly ask.'
 
 export function mcpConfig(setup, env = process.env) {
   const mcpServers = {}
@@ -34,7 +38,8 @@ export function claudeArgs({ setup, card, mcpConfigPath, model }) {
     '--mcp-config', mcpConfigPath,
   ]
   if (model) args.push('--model', model)
-  if (setup.whichlib && card) args.push('--append-system-prompt', card)
+  const appended = [setup.context7 && CONTEXT7_RULE, setup.whichlib && card].filter(Boolean)
+  if (appended.length) args.push('--append-system-prompt', appended.join('\n\n'))
   return args
 }
 
