@@ -189,7 +189,7 @@ test('card: migration-guide entries come before release-note entries, whatever t
   const index = await buildIndex(library, { sources: fakeSources({ files, releases }), judge: fakeJudge({ email: 0.4, old: 0.9 }).judge });
   const bullets = versionCards([{ package: 'zlib', version: '4.1.0' }], [index]).split('\n').filter((l) => l.startsWith('- '));
   assert.deepEqual(bullets, [
-    '- Use `z.email()` instead of `z.string().email()`. (4.0.0, https://github.com/o/docs/blob/abc1234567/v4.md#L2)',
+    '- Upgrade: Use `z.email()` instead of `z.string().email()`. (4.0.0, https://github.com/o/docs/blob/abc1234567/v4.md#L2)',
     '- Removed `z.old()` (4.0.0, https://r)',
   ]);
 });

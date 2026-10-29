@@ -15,8 +15,9 @@ function short(s) {
   const space = s.lastIndexOf(' ', MAX_BULLET - 1);
   return s.slice(0, space > 100 ? space : MAX_BULLET - 1) + '…';
 }
-// Prose and release-note lines say little without their section ("`adapter` has been removed"): keep it.
-const withSection = (e) => (e.prose || e.kind === 'releases') && e.section;
+// Prose, release-note lines and guide items say little without their section ("`adapter` has been removed",
+// "`cookies`"): keep it. Changelog items stay bare: their sections are "Patch Changes", "Fixed" and the like.
+const withSection = (e) => (e.prose || e.kind !== 'changelog') && e.section;
 const bullet = (e) => `- ${short(withSection(e) ? `${e.section.replace(/:$/, '')}: ${e.text}` : e.text)} (${e.version}, ${e.source})`;
 
 /** 0 for what the authors said breaks (a migration guide, or a breaking heading), 1 for everything else. */
