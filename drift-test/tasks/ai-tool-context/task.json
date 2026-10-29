@@ -1,0 +1,6 @@
+{
+  "library": "ai",
+  "prompt": "Our order assistant answers questions about the signed-in customer's orders, using the AI SDK (the `ai` package, installed). In src/assistant.ts, export a tool `listOrders` (no input) that returns the orders of the signed-in customer by calling `ordersFor(customerId)` from src/orders.ts. The tool is defined once at module level and shared by all requests, so the customer id must reach the tool through the AI SDK's per-call mechanism for passing data to tools, not through a closure or a global. Export `askAboutOrders(model: LanguageModel, question: string, customerId: string): Promise<string>`, which lets the model call the tool (up to 3 steps) and returns the final text. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx tsc --noEmit", "npx tsx --test drift-judge/*.test.ts"]
+}

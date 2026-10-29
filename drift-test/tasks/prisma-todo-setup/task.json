@@ -1,0 +1,6 @@
+{
+  "library": "prisma",
+  "prompt": "Set up Prisma for this project (its packages are already installed). Use a SQLite database stored in the file dev.db at the project root, and a model `Todo` with `id` (auto-incrementing Int), `title` (String), `done` (Boolean, default false) and `createdAt` (DateTime, default now). `npx prisma generate` and `npx prisma db push` must work with no environment variables set. Then create src/todos.ts exporting `addTodo(title: string)` returning the created todo, `listTodos()` returning all todos oldest first, `completeTodo(id: number)` and `disconnect()`, all using Prisma Client. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx prisma generate", "npx prisma db push", "npx tsc --noEmit", "npx tsx --test drift-judge/*.test.ts"]
+}

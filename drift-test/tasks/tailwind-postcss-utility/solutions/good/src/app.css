@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@source "../index.html";
+
+@utility content-auto {
+  content-visibility: auto;
+}

@@ -1,0 +1,15 @@
+[project]
+name = "pydantic-settings-env"
+version = "0.1.0"
+description = "Service settings"
+requires-python = ">=3.11"
+dependencies = ["pydantic==2.14.1", "pydantic-settings==2.16.2"]
+
+[dependency-groups]
+dev = ["pytest==9.2.0"]
+
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]

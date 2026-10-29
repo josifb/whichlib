@@ -1,0 +1,7 @@
+{
+  "name": "zod-order-errors",
+  "private": true,
+  "type": "module",
+  "dependencies": { "zod": "4.6.7" },
+  "devDependencies": { "@types/node": "22.20.5", "tsx": "4.23.15", "typescript": "7.0.2" }
+}

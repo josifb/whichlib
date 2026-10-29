@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Docs</title>
+    <link rel="stylesheet" href="dist/styles.css" />
+  </head>
+  <body class="bg-white text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+    <button id="theme" class="rounded border px-3 py-1 dark:border-gray-600">Toggle theme</button>
+    <article class="prose p-8">Welcome to the docs.</article>
+    <script>
+      document.getElementById('theme').addEventListener('click', () => {
+        document.documentElement.classList.toggle('dark')
+      })
+    </script>
+  </body>
+</html>

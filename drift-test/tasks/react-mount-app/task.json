@@ -1,0 +1,6 @@
+{
+  "library": "react",
+  "prompt": "Our app is embedded in other teams' pages, so it needs an entry point they can call. Create src/main.tsx exporting two functions: `mountApp(container: HTMLElement): () => void` renders `<App />` (from src/App.tsx) into the container and returns a function that unmounts the app and leaves the container empty; `hydrateApp(container: HTMLElement): () => void` does the same for a container that already holds the HTML of `<App />` rendered on the server, attaching to that HTML instead of replacing it. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx tsc --noEmit", "npx tsx --test drift-judge/*.test.tsx"]
+}

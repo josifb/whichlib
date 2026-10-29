@@ -1,0 +1,6 @@
+{
+  "library": "next",
+  "prompt": "Our Next.js shop (App Router) caches its product list under the cache tag 'products' (see lib/products.ts). Create app/admin/actions.ts with two Server Actions: `refreshProducts()`, which invalidates everything cached under the tag 'products' so the next request fetches fresh data, and `setTheme(theme: 'light' | 'dark')`, which stores the choice in a cookie named 'theme' for one year. Also create lib/theme.ts exporting `currentTheme(): Promise<'light' | 'dark'>`, which reads that cookie on the server and defaults to 'light'. Make sure `npx tsc --noEmit` and `npx next build` succeed.",
+  "install": ["npm ci"],
+  "check": ["npx next build", "npx tsc --noEmit", "npx tsx --test --experimental-test-module-mocks drift-judge/*.test.mts"]
+}

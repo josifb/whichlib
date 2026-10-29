@@ -1,0 +1,7 @@
+{
+  "name": "prisma-seed",
+  "private": true,
+  "type": "module",
+  "dependencies": { "@prisma/adapter-better-sqlite3": "7.10.1", "@prisma/client": "7.10.1" },
+  "devDependencies": { "@types/node": "22.20.5", "prisma": "7.10.1", "tsx": "4.23.15", "typescript": "7.0.2" }
+}

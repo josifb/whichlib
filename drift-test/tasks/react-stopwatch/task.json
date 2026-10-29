@@ -1,0 +1,6 @@
+{
+  "library": "react",
+  "prompt": "Add a stopwatch. Create src/useStopwatch.ts exporting a hook `useStopwatch()` that returns `{ seconds, running, start, stop, reset }`: while running, `seconds` goes up by one every second. Use `setInterval` and keep the interval id in a ref; clear it on stop, on reset (which also sets seconds back to 0) and on unmount. Create src/Stopwatch.tsx exporting a `Stopwatch` component that uses the hook and renders `<span data-testid=\"time\">{seconds}s</span>` followed by three buttons labelled Start, Stop and Reset. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx tsc --noEmit", "npx tsx --test drift-judge/*.test.tsx"]
+}

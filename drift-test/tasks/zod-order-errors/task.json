@@ -1,0 +1,6 @@
+{
+  "library": "zod",
+  "prompt": "In src/order.ts, validate incoming orders with zod (already installed). Export `orderSchema` with `sku` (a non-empty string), `quantity` (a whole number of at least 1) and `coupon` (an optional string). Whatever is wrong with `quantity` (missing, not a number, fractional or less than 1), its error message must be exactly 'Quantity must be a positive whole number'. Export `parseOrder(input: unknown)` that returns `{ ok: true, order }` or `{ ok: false, messages }`, where `messages` lists the message of every problem found. Export the order type as `Order`. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx tsc --noEmit", "npx tsx --test drift-judge/*.test.ts"]
+}

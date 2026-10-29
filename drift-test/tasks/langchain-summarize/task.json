@@ -1,0 +1,6 @@
+{
+  "library": "langchain",
+  "prompt": "Add text summaries with LangChain (installed with uv; run things with `uv run`). In app/summarize.py, export `summarize(model, text: str) -> str` that takes any LangChain chat model, builds the prompt from a chat prompt template with the system message \"Summarize the user's text in one sentence.\" followed by the text as the user message, calls the model and returns its reply as a plain string.",
+  "install": ["uv sync --frozen"],
+  "check": ["uv run --frozen pytest -q -p no:cacheprovider drift-judge"]
+}

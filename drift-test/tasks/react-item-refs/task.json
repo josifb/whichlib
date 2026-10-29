@@ -1,0 +1,6 @@
+{
+  "library": "react",
+  "prompt": "Create src/ChapterList.tsx exporting a `ChapterList` component (named export) with the props `chapters` (an array of `{ id: string; title: string }`) and `selectedId` (an optional string). It renders a `<ul>` with one `<li data-id={id}>{title}</li>` per chapter. Keep a reference to every `<li>` element, keyed by chapter id, in a single ref, and whenever `selectedId` changes call `scrollIntoView({ block: 'nearest' })` on the matching item. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx tsc --noEmit", "npx tsx --test drift-judge/*.test.tsx"]
+}

@@ -1,0 +1,6 @@
+{
+  "library": "sqlalchemy",
+  "prompt": "Add a sales report built with SQLAlchemy Core expressions (installed with uv; run things with `uv run`). The `customers` and `orders` tables are in app/db.py. Create app/report.py exporting `orders_per_customer(engine) -> list[tuple[str, int]]`: one `(customer name, number of orders)` pair per customer, including customers with no orders (count 0), sorted by number of orders descending, then name ascending. Also export `big_spenders(engine, minimum) -> list[str]`: the names, sorted, of customers whose orders add up to more than `minimum`. Build both queries with `select()` and the table objects, not SQL strings.",
+  "install": ["uv sync --frozen"],
+  "check": ["uv run --frozen pytest -q -p no:cacheprovider drift-judge"]
+}

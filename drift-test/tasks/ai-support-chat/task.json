@@ -1,0 +1,6 @@
+{
+  "library": "ai",
+  "prompt": "Add the reply function of our support chat, using the AI SDK (the `ai` package, installed). In src/chat.ts, export the type `ChatMessage = { role: 'user' | 'assistant'; content: string }` and `reply(model: LanguageModel, history: ChatMessage[]): Promise<string>`. It sends the model our system prompt, exactly \"You are the support assistant for Acme. Answer in one short paragraph.\", followed by the conversation history, and returns the generated text. `LanguageModel` is the AI SDK's model type; the caller passes the model in. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx tsc --noEmit", "npx tsx --test drift-judge/*.test.ts"]
+}

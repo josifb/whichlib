@@ -1,0 +1,6 @@
+{
+  "library": "pydantic",
+  "prompt": "Our product catalog is stored as a JSON file holding a plain array of products. Using Pydantic (installed with uv; run things with `uv run`), create app/catalog.py with: a `Product` model with `sku` (a string that must match three capital letters, a dash and four digits, like 'ABC-1234'), `name` (str) and `price` (a Decimal greater than 0); a `Catalog` model whose data is the list of products itself, so that it validates from and serializes to a plain JSON array (not an object with a key); `load_catalog(json_text: str) -> Catalog`, which raises a validation error on bad data; and `dump_catalog(catalog: Catalog) -> str`, which returns the JSON array.",
+  "install": ["uv sync --frozen"],
+  "check": ["uv run --frozen pytest -q -p no:cacheprovider drift-judge"]
+}

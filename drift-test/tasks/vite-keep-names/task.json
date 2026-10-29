@@ -1,0 +1,6 @@
+{
+  "library": "vite",
+  "prompt": "We publish our payments client as a small library built with Vite in library mode (installed; see vite.config.js). Our error reporter groups errors by `error.name`, and our logs print function names, but in the minified build `new PaymentError('x').name` and `chargeCard.name` come out as one-letter names. Change the build configuration so the built `dist/payments.js` keeps the original class and function names while staying minified. Do not change the source files. Make sure `npx vite build` succeeds.",
+  "install": ["npm ci"],
+  "check": ["npx vite build", "node --test drift-judge/*.test.mjs"]
+}

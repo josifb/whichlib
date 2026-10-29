@@ -1,0 +1,6 @@
+{
+  "library": "langchain",
+  "prompt": "Our support chat bot must remember the conversation. Using LangChain (installed with uv; run things with `uv run`), create app/chat.py with a class `ChatBot`: `ChatBot(model)` takes any LangChain chat model, and `send(session_id: str, text: str) -> str` returns the model's reply. Every call sends the model the system prompt \"You are a friendly support agent.\" and the earlier user and assistant messages of the same session (and only that session), keeping the history in memory.",
+  "install": ["uv sync --frozen"],
+  "check": ["uv run --frozen pytest -q -p no:cacheprovider drift-judge"]
+}

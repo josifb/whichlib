@@ -1,0 +1,6 @@
+{
+  "library": "next",
+  "prompt": "Add linting to our Next.js app (App Router). ESLint and eslint-config-next are installed. Add an npm script `lint` (so `npm run lint`) that lints the whole project with the Next.js core web vitals rules and exits non-zero when there are lint errors; it must ignore build output such as .next/. The project must lint cleanly as it is. Make sure `npm run lint` succeeds.",
+  "install": ["npm ci"],
+  "check": ["npm run lint", "node --test drift-judge/*.test.mjs"]
+}

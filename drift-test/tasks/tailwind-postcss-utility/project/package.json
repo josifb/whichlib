@@ -1,0 +1,6 @@
+{
+  "name": "tailwind-postcss-utility",
+  "private": true,
+  "scripts": { "build": "postcss src/app.css -o dist/app.css" },
+  "devDependencies": { "@tailwindcss/postcss": "4.3.3", "postcss": "8.5.32", "postcss-cli": "12.0.0", "tailwindcss": "4.3.3" }
+}

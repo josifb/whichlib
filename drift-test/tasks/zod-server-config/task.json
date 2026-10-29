@@ -1,0 +1,6 @@
+{
+  "library": "zod",
+  "prompt": "Our service reads its configuration from a JSON file. In src/config.ts, use zod (already installed) to export `configSchema` and `loadConfig(raw: unknown)`, which returns the parsed config or throws when it is invalid. Fields: `host` (an IPv4 or IPv6 address, not a hostname), `port` (a whole number from 1 to 65535, default 8080 when missing), `allowedNetworks` (a list of IPv4 CIDR ranges such as '10.0.0.0/8'), `features` (an object whose keys are any feature names and whose values are booleans) and `limits` (an object whose keys are any route names and whose values are positive numbers). Also export the inferred type as `Config`. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx tsc --noEmit", "npx tsx --test drift-judge/*.test.ts"]
+}

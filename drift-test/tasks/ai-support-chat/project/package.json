@@ -1,0 +1,7 @@
+{
+  "name": "ai-support-chat",
+  "private": true,
+  "type": "module",
+  "dependencies": { "ai": "7.0.155", "zod": "4.6.7" },
+  "devDependencies": { "@types/node": "22.20.5", "tsx": "4.23.15", "typescript": "7.0.2" }
+}

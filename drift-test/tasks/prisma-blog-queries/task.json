@@ -1,0 +1,6 @@
+{
+  "library": "prisma",
+  "prompt": "The Prisma schema and config for our blog are in place (SQLite, file dev.db at the project root). Create src/db.ts exporting one shared Prisma Client instance named `prisma` connected to that database. Then create src/blog.ts exporting `publishPost(id: number)`, which sets the post's `publishedAt` to now, and `publishedTitlesBy(email: string): Promise<string[]>`, which returns the titles of that author's published posts, most recently published first. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx prisma generate", "npx prisma db push", "npx tsc --noEmit", "npx tsx --test drift-judge/*.test.ts"]
+}

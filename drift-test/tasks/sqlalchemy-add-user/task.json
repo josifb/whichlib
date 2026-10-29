@@ -1,0 +1,6 @@
+{
+  "library": "sqlalchemy",
+  "prompt": "We need to write to the `users` table defined in app/db.py with SQLAlchemy Core (installed with uv; run things with `uv run`). Create app/users.py exporting: `add_user(engine, email: str, name: str) -> int`, which stores an active user and returns its id; `deactivate_user(engine, user_id: int) -> None`, which sets `active` to false for that user; and `rename_user(engine, user_id: int, name: str) -> None`. Each function opens its own connection from the engine, and its change must be stored in the database when it returns.",
+  "install": ["uv sync --frozen"],
+  "check": ["uv run --frozen pytest -q -p no:cacheprovider drift-judge"]
+}

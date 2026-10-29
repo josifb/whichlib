@@ -1,0 +1,6 @@
+{
+  "library": "pydantic",
+  "prompt": "Our service is configured through environment variables. Using Pydantic (installed with uv; run things with `uv run`), create app/settings.py with a class `Settings` that reads, from variables prefixed `APP_`: `database_url` (str, required), `debug` (bool, default False), `allowed_hosts` (list of str, given as a JSON array such as '[\"a.com\", \"b.com\"]', default an empty list) and `request_timeout` (float, default 10). Export `get_settings() -> Settings` that reads the environment at the moment it is called. A missing `APP_DATABASE_URL` must raise a validation error.",
+  "install": ["uv sync --frozen"],
+  "check": ["uv run --frozen pytest -q -p no:cacheprovider drift-judge"]
+}

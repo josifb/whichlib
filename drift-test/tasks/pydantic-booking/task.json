@@ -1,0 +1,6 @@
+{
+  "library": "pydantic",
+  "prompt": "Model hotel bookings with Pydantic (installed with uv; run things with `uv run`). In app/booking.py, export a model `Booking` with: `guest_email` (a string, stored stripped of surrounding spaces and lower-cased), `check_in` and `check_out` (dates), and `guests` (an int from 1 to 8). A booking whose `check_out` is not after its `check_in` must fail validation with an error message that contains 'check_out must be after check_in'. Bookings are immutable: assigning to a field after creation must raise an error. Export `parse_booking(data: dict) -> Booking` too.",
+  "install": ["uv sync --frozen"],
+  "check": ["uv run --frozen pytest -q -p no:cacheprovider drift-judge"]
+}

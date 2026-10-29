@@ -1,0 +1,6 @@
+{
+  "library": "prisma",
+  "prompt": "Add seed data to our Prisma project. Write the seed in TypeScript at prisma/seed.ts and set the project up so that `npx prisma db seed` runs it. It inserts the categories 'Books', 'Games' and 'Music', and one product in each category (any name, `priceCents` 1000). Running the seed a second time must not create duplicates. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx prisma generate", "npx prisma db push", "npx prisma db seed", "npx prisma db seed", "npx tsc --noEmit", "npx tsx --test drift-judge/*.test.ts"]
+}

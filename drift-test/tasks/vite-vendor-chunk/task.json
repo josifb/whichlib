@@ -1,0 +1,6 @@
+{
+  "library": "vite",
+  "prompt": "Our shop front end is built with Vite (installed). React changes far less often than our own code, so in the production build put `react` and `react-dom` into their own chunk named `vendor` (the emitted file should be `dist/assets/vendor-<hash>.js`), while our application code stays in the entry chunk. Do it in vite.config.js and make sure `npx vite build` succeeds.",
+  "install": ["npm ci"],
+  "check": ["npx vite build", "node --test drift-judge/*.test.mjs"]
+}

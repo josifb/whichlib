@@ -1,0 +1,6 @@
+{
+  "library": "tailwindcss",
+  "prompt": "Our site uses Tailwind CSS (installed and set up; `npm run build:css` builds dist/styles.css). Today the `dark:` styles follow the operating system's setting. We added a theme toggle (see index.html) that puts the class `dark` on the `<html>` element. Change the Tailwind setup so that `dark:` utilities apply when an ancestor has the `dark` class, and no longer depend on the operating system setting. Make sure `npm run build:css` succeeds.",
+  "install": ["npm ci"],
+  "check": ["npm run build:css", "node --test drift-judge/*.test.mjs"]
+}

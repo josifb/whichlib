@@ -1,0 +1,6 @@
+{
+  "library": "tailwindcss",
+  "prompt": "Our app's CSS is built with PostCSS (`npm run build` compiles src/app.css into dist/app.css; Tailwind CSS and its PostCSS integration are installed). Wire Tailwind into that build so the utility classes used in index.html are generated. Then add a custom utility `content-auto` that sets `content-visibility: auto` and works with variants such as `hover:` and `lg:` exactly like a built-in utility. Make sure `npm run build` succeeds.",
+  "install": ["npm ci"],
+  "check": ["npm run build", "node --test drift-judge/*.test.mjs"]
+}

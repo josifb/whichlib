@@ -1,0 +1,6 @@
+{
+  "library": "zod",
+  "prompt": "In src/signup.ts, add validation for our signup form using zod (already installed). Export `signupSchema`, an object schema with: `email` (required, must be a valid email address), `password` (required, at least 8 characters) and `age` (optional, a whole number of 13 or more). The error messages must be exactly: 'Email is required' when email is missing, 'Email must be text' when email is not a string, 'Enter a valid email' when it is not an email address, and 'Password must be at least 8 characters' when the password is too short. Also export `validateSignup(input: unknown)` that returns `{ success: true, data }` with the parsed data, or `{ success: false, errors }` where `errors` maps each failing field name (for example 'email') to its first error message. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx tsc --noEmit", "npx tsx --test drift-judge/*.test.ts"]
+}

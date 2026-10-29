@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// npm run drift -- [--tasks dir] [--cards dir] [--setups alone,context7,whichlib,both] [--out dir] [--model name] [--work dir]
+// npm run drift -- [--tasks dir] [--cards dir] [--setups alone,context7,whichlib,both] [--only tasks] [--out dir] [--model name] [--work dir]
 // npm run drift -- --rerun-errors <results dir>
 
 import { parseArgs } from 'node:util'
@@ -15,6 +15,7 @@ const { values } = parseArgs({
     tasks: { type: 'string' },
     cards: { type: 'string' },
     setups: { type: 'string', default: Object.keys(SETUPS).join(',') },
+    only: { type: 'string' },
     out: { type: 'string' },
     model: { type: 'string' },
     'agent-timeout': { type: 'string', default: '900' },
@@ -30,6 +31,7 @@ if (values.help) {
   --tasks <dir>          task folders (default: tasks/)
   --cards <dir>          whichlib version cards, one <library>.md each (default: cards/)
   --setups <list>        any of ${Object.keys(SETUPS).join(', ')} (default: all)
+  --only <list>          run only these tasks or libraries (task ids or package names, comma-separated)
   --out <dir>            where results.json and report.md go (default: results/<date>T<time>/)
   --model <name>         Claude Code model (default: the account's default model)
   --agent-timeout <s>    seconds before one agent run counts as failed (default: 900)
@@ -78,6 +80,7 @@ if (values['rerun-errors']) {
     tasksDir: resolve(values.tasks ?? join(root, 'tasks')),
     cardsDir: resolve(values.cards ?? join(root, 'cards')),
     setups: values.setups.split(',').map((s) => s.trim()).filter(Boolean),
+    only: values.only?.split(',').map((s) => s.trim()).filter(Boolean),
     outDir: out,
   })
 }

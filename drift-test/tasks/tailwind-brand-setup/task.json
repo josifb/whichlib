@@ -1,0 +1,6 @@
+{
+  "library": "tailwindcss",
+  "prompt": "Set up Tailwind CSS (already installed) for this static site. Add an npm script `build:css` that compiles src/styles.css into dist/styles.css containing the utility classes used in index.html. Also add our brand color, #1d4ed8, so that `bg-brand` and `text-brand` work like the built-in colors. Make sure `npm run build:css` succeeds.",
+  "install": ["npm ci"],
+  "check": ["npm run build:css", "node --test drift-judge/*.test.mjs"]
+}

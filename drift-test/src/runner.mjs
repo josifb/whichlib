@@ -33,6 +33,14 @@ export async function loadTasks(tasksDir) {
   return tasks
 }
 
+// Keeps the tasks named in `only` (task ids or library names); all of them when it is empty.
+function selectTasks(tasks, only) {
+  if (!only?.length) return tasks
+  const unknown = only.filter((name) => !tasks.some((t) => t.id === name || t.library === name))
+  if (unknown.length) throw new Error(`no task or library named ${unknown.join(', ')}`)
+  return tasks.filter((t) => only.includes(t.id) || only.includes(t.library))
+}
+
 async function exists(path) {
   return stat(path).then(() => true, () => false)
 }
@@ -186,6 +194,7 @@ export async function runDriftTest({
   tasksDir,
   cardsDir,
   setups: setupIds = ['alone', 'context7', 'whichlib'],
+  only,
   agent,
   outDir,
   workRoot,
@@ -194,7 +203,7 @@ export async function runDriftTest({
   onResult = () => {},
 }) {
   const setups = setupIds.map(resolveSetup)
-  const tasks = await loadTasks(tasksDir)
+  const tasks = selectTasks(await loadTasks(tasksDir), only)
   const cards = await loadCards(tasks, setups, cardsDir)
 
   const startedAt = new Date().toISOString()

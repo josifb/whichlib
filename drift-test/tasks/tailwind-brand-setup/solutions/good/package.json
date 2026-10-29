@@ -1,0 +1,6 @@
+{
+  "name": "tailwind-brand-setup",
+  "private": true,
+  "scripts": { "build:css": "tailwindcss -i src/styles.css -o dist/styles.css" },
+  "devDependencies": { "@tailwindcss/cli": "4.3.3", "tailwindcss": "4.3.3" }
+}

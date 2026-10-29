@@ -1,0 +1,6 @@
+{
+  "library": "langchain",
+  "prompt": "Build our weather assistant with LangChain (installed with uv; run things with `uv run`). In app/agent.py: define a tool `get_weather(city: str) -> str` that returns f\"It is sunny in {city}\"; export `build_agent(model)` that takes any LangChain chat model and returns an agent that can call that tool, with the system prompt \"You are a helpful weather assistant.\"; and export `ask(agent, question: str) -> str` that runs the agent on one user question and returns the text of its final answer.",
+  "install": ["uv sync --frozen"],
+  "check": ["uv run --frozen pytest -q -p no:cacheprovider drift-judge"]
+}

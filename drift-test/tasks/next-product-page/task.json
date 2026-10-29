@@ -1,0 +1,6 @@
+{
+  "library": "next",
+  "prompt": "Add a product detail page to our Next.js shop (App Router). The route is /products/[id], statically generated at build time for every product in lib/products.ts. The page shows the product's name in an `<h1>` and its price formatted by `formatPrice` from lib/products.ts in a `<p>`. Its document title (via Next.js metadata) is '<product name> | Shop'. Unknown ids show the not-found page. Make sure `npx next build` succeeds.",
+  "install": ["npm ci"],
+  "check": ["npx next build", "node --test drift-judge/*.test.mjs"]
+}

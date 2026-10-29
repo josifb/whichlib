@@ -1,0 +1,6 @@
+{
+  "library": "sqlalchemy",
+  "prompt": "Our analysts keep their reports as plain SQL, and we want to run them from Python with SQLAlchemy (installed with uv; run things with `uv run`). The `users` table is defined in app/db.py. Create app/reports.py exporting `count_active_users(engine, country: str) -> int`, which runs exactly this SQL text with the country passed as a bound parameter: `SELECT count(*) FROM users WHERE active = 1 AND country = :country`, and returns the number. Also export `active_emails(engine) -> list[str]`, which runs `SELECT email FROM users WHERE active = 1 ORDER BY email` as plain SQL text and returns the emails.",
+  "install": ["uv sync --frozen"],
+  "check": ["uv run --frozen pytest -q -p no:cacheprovider drift-judge"]
+}

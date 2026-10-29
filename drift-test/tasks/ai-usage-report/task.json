@@ -1,0 +1,6 @@
+{
+  "library": "ai",
+  "prompt": "We bill customers for tokens, so we need usage numbers from our AI SDK calls (the `ai` package, installed). In src/usage.ts, export `answerWithUsage(model: LanguageModel, question: string)` that runs `generateText` with one tool, `getTime` (no input; returns `{ iso: new Date().toISOString() }`), letting the model take up to 3 steps, and returns `{ text, steps, inputTokens, cachedInputTokens, outputTokens, reasoningTokens }`: the final text, the number of steps taken, and the token counts added up over all steps (cached input tokens are the input tokens read from the provider's prompt cache). Count a missing number as 0. Make sure `npx tsc --noEmit` passes.",
+  "install": ["npm ci"],
+  "check": ["npx tsc --noEmit", "npx tsx --test drift-judge/*.test.ts"]
+}

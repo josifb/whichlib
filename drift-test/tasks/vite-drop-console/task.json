@@ -1,0 +1,6 @@
+{
+  "library": "vite",
+  "prompt": "Our app (built with Vite, installed) logs a lot with `console.*` while we develop, and has a few `debugger` statements. Configure the production build in vite.config.js so that every `console.*` call and every `debugger` statement is removed from the built files, without editing the source files; `npx vite dev` must keep them. Make sure `npx vite build` succeeds.",
+  "install": ["npm ci"],
+  "check": ["npx vite build", "node --test drift-judge/*.test.mjs"]
+}
