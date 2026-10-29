@@ -34,7 +34,7 @@ function fakeSources({ versions = ['3.1.0', '3.2.0', '4.0.0', '4.0.1', '4.1.0'],
   };
 }
 
-const P = { foo: 0.1, bar: 0.6, email: 0.95, 'Node 16': 0.4, old: 0.99 };
+const P = { foo: 0.1, bar: 0.6, email: 0.95, 'Node 16': 0.4, old: 0.99, adapter: 0.8 };
 /** Fake Jev: probability by a word in the entry text; records every entry it judged. */
 function fakeJudge(table = P) {
   const judged = [];
@@ -45,15 +45,15 @@ function fakeJudge(table = P) {
   return { judge, judged };
 }
 
-test('card: lists exactly the breaking entries between the two versions, most important first, with source links', async () => {
+test('card: lists exactly the breaking entries between the two versions, author-labelled breaking first, with source links', async () => {
   const index = await buildIndex(LIBRARY, { sources: fakeSources(), judge: fakeJudge().judge });
   const text = versionCards([{ package: 'zlib', version: '4.1.0' }], [index]);
   assert.equal(text, [
     '## zlib 4.1.0 installed (you likely know 3.2.0)',
     'Breaking changes since 3.2.0, most important first:',
     `- \`z.string().email()\` moved to \`z.email()\`. (4.0.0, ${BLOB}#L8)`,
-    `- Removed \`z.bar()\`; use \`z.baz()\` instead. (4.1.0, ${BLOB}#L5)`,
     `- Dropped Node 16 support. (4.0.0, ${BLOB}#L9)`,
+    `- Removed \`z.bar()\`; use \`z.baz()\` instead. (4.1.0, ${BLOB}#L5)`,
   ].join('\n'));
 });
 
@@ -103,18 +103,18 @@ test('index: the judge sees each entry once; a rebuild with the same cache makes
   assert.deepEqual(b, a);
 });
 
-test('index: GitHub releases by tag pattern, prereleases skipped, linked to the release page', async () => {
+test('index: GitHub releases by tag pattern, prereleases skipped, linked to the release page, each entry with its section', async () => {
   const library = { ...LIBRARY, sources: [{ kind: 'releases', repo: 'o/zlib', tag: 'zlib=={version}' }] };
   const releases = { 'o/zlib': [
-    { tag: 'zlib==4.0.0', url: 'https://github.com/o/zlib/releases/tag/zlib%3D%3D4.0.0', prerelease: false, body: '## What changed\n* Removed `z.bar()` by @dev in https://github.com/o/zlib/pull/7\n' },
-    { tag: 'zlib==4.1.0rc1', url: 'https://x/rc', prerelease: true, body: '- email moved' },
-    { tag: 'zlib-core==4.0.0', url: 'https://x/core', prerelease: false, body: '- email moved' },
+    { tag: 'zlib==4.0.0', url: 'https://github.com/o/zlib/releases/tag/zlib%3D%3D4.0.0', prerelease: false, body: '## Schema and config file updates:\n* `adapter` has been removed by @dev in https://github.com/o/zlib/pull/7\n' },
+    { tag: 'zlib==4.1.0rc1', url: 'https://x/rc', prerelease: true, body: '- adapter moved' },
+    { tag: 'zlib-core==4.0.0', url: 'https://x/core', prerelease: false, body: '- adapter moved' },
   ] };
   const index = await buildIndex(library, { sources: fakeSources({ releases }), judge: fakeJudge().judge });
   assert.equal(versionCards([{ package: 'zlib', version: '4.1.0' }], [index]), [
     '## zlib 4.1.0 installed (you likely know 3.2.0)',
     'Breaking changes since 3.2.0, most important first:',
-    '- Removed `z.bar()` (4.0.0, https://github.com/o/zlib/releases/tag/zlib%3D%3D4.0.0)',
+    '- Schema and config file updates: `adapter` has been removed (4.0.0, https://github.com/o/zlib/releases/tag/zlib%3D%3D4.0.0)',
   ].join('\n'));
 });
 
@@ -177,4 +177,28 @@ test('index: generics and plain numbers survive cleaning; MDX comments spanning 
   const changelog = '## 4.0.0\n- `parse()` returns Promise<void> instead\n- 1000000 rows are now streamed\n{/* ## Old\n\nhidden text */}\n- Visible\n';
   const index = await buildIndex(LIBRARY, { sources: fakeSources({ files: { 'o/zlib:CHANGELOG.md': changelog } }), judge: fakeJudge().judge });
   assert.deepEqual(index.entries.map((e) => e.text), ['`parse()` returns Promise<void> instead', '1000000 rows are now streamed', 'Visible']);
+});
+
+test('card: migration-guide entries come before release-note entries, whatever their probability', async () => {
+  const library = { ...LIBRARY, sources: [
+    { kind: 'releases', repo: 'o/zlib', tag: 'v{version}' },
+    { kind: 'guide', repo: 'o/docs', path: 'v4.md', version: '4.0.0' },
+  ] };
+  const releases = { 'o/zlib': [{ tag: 'v4.0.0', url: 'https://r', prerelease: false, body: 'Removed `z.old()`\n' }] };
+  const files = { 'o/docs:v4.md': '# Upgrade\n- Use `z.email()` instead of `z.string().email()`.\n' };
+  const index = await buildIndex(library, { sources: fakeSources({ files, releases }), judge: fakeJudge({ email: 0.4, old: 0.9 }).judge });
+  const bullets = versionCards([{ package: 'zlib', version: '4.1.0' }], [index]).split('\n').filter((l) => l.startsWith('- '));
+  assert.deepEqual(bullets, [
+    '- Use `z.email()` instead of `z.string().email()`. (4.0.0, https://github.com/o/docs/blob/abc1234567/v4.md#L2)',
+    '- Removed `z.old()` (4.0.0, https://r)',
+  ]);
+});
+
+test('card: entries under a breaking heading come first, whatever the heading style', async () => {
+  const changelog = ['## 4.0.0', '### Patch Changes', '- Renamed `x` to `y` (high)', '### Major Changes', '- Dropped `a`', '### ⚠ BREAKING CHANGES', '- Dropped `b`',
+    '### Removed', '- Dropped `c`', '### Async APIs (Breaking change)', '- Dropped `d`', '### Removed Client Engines:', '- Dropped `e`', '### Non-breaking changes', '- Kept `f` (high)', '### Features', '- Removed nothing (high)'].join('\n');
+  const judge = async (pkg, entries) => entries.map((e) => (e.text.includes('high') ? 0.9 : 0.5));
+  const index = await buildIndex(LIBRARY, { sources: fakeSources({ files: { 'o/zlib:CHANGELOG.md': changelog } }), judge });
+  const bullets = versionCards([{ package: 'zlib', version: '4.1.0' }], [index]).split('\n').filter((l) => l.startsWith('- ')).map((l) => l.replace(/ \(4\.0\.0.*$/, ''));
+  assert.deepEqual(bullets, ['- Dropped `a`', '- Dropped `b`', '- Dropped `c`', '- Dropped `d`', '- Dropped `e`', '- Renamed `x` to `y` (high)', '- Kept `f` (high)', '- Removed nothing (high)']);
 });

@@ -437,6 +437,7 @@
    "section": "",
    "text": "Prisma ORM 7.10.1 is a patch release. It fixes a bug where a nested interactive transaction could make later, unrelated transactions run inside the wrong transaction. It also updates dependencies that had security advisories.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.1",
    "p": 0.05
   },
@@ -445,6 +446,7 @@
    "section": "Prisma Client: nested `$transaction` no longer changes the options object you pass in",
    "text": "If you passed the same options object to a nested `tx.$transaction(...)` and later to a top-level `prisma.$transaction(...)`, the nested call wrote the outer transaction's id into that object. Every later top-level transaction that used the object was then treated as nested inside that old transaction:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.1",
    "p": 0.16
   },
@@ -452,6 +454,7 @@
    "version": "7.10.1",
    "section": "Prisma Client: nested `$transaction` no longer changes the options object you pass in",
    "text": "if the old transaction had committed, the new one failed with `P2028`;",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.1",
    "p": 0.21
   },
@@ -459,6 +462,7 @@
    "version": "7.10.1",
    "section": "Prisma Client: nested `$transaction` no longer changes the options object you pass in",
    "text": "if the old transaction was still open, the new one silently ran as a savepoint inside another request's transaction.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.1",
    "p": 0.17
   },
@@ -467,6 +471,7 @@
    "section": "Prisma Client: nested `$transaction` no longer changes the options object you pass in",
    "text": "Prisma Client no longer modifies the options object. (https://github.com/prisma/orm/pull/30368, thanks @lazerg)",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.1",
    "p": 0.09
   },
@@ -475,6 +480,7 @@
    "section": "Prisma Migrate: refuse a shadow database that is the main database",
    "text": "Prisma Migrate now refuses to run with error `P3025` when the shadow database URL points at the same database as the main database URL. Before, `prisma migrate diff --from-migrations` with that setup dropped the real schema, rebuilt it from the migrations, and reported an empty diff. (https://github.com/prisma/prisma-engines/pull/5851)",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.1",
    "p": 0.52
   },
@@ -483,6 +489,7 @@
    "section": "MariaDB adapter: updated to `mariadb` 3.5.4",
    "text": "`@prisma/adapter-mariadb` now depends on `mariadb` 3.5.4, which fixes several security advisories in 3.5.3. The adapter no longer rewrites IPv6 hosts in connection strings, because `mariadb` 3.5.4 accepts them as written. IPv6 connection strings keep working without changes. (https://github.com/prisma/orm/pull/30668)",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.1",
    "p": 0.05
   },
@@ -491,6 +498,7 @@
    "section": "Dependency updates",
    "text": "Dependencies with security advisories were updated: `mysql2`, `fast-uri`, `deepmerge-ts`, `mariadb` and `source-map-js`. (https://github.com/prisma/orm/pull/30314, https://github.com/prisma/orm/pull/30189, https://github.com/prisma/orm/pull/30668)",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.1",
    "p": 0.06
   },
@@ -499,6 +507,7 @@
    "section": "Prisma ORM 7.10.0",
    "text": "Prisma ORM 7.10.0 introduces a compatibility package for running Prisma 7 alongside newer Prisma versions, secures Prisma Studio's local server, and includes fixes across Prisma Client and the PostgreSQL, MariaDB, Neon, SQLite, and Prisma Postgres Serverless adapters.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.09
   },
@@ -507,6 +516,7 @@
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "This release introduces `@prisma/prisma7`, a compatibility package that lets you retain a matching Prisma 7 CLI and configuration while installing Prisma 8 in the same project.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.09
   },
@@ -515,6 +525,7 @@
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "Once 7.10.0 is released, a side-by-side installation can use:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.1
   },
@@ -523,6 +534,7 @@
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "Use `prisma` for the directly installed Prisma 8 CLI and `prisma7` for Prisma 7:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.26
   },
@@ -531,6 +543,7 @@
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "Prisma 7 now prefers version-specific configuration files, allowing its configuration to coexist with Prisma 8's `prisma.config.*` files:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.14
   },
@@ -539,6 +552,7 @@
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "Without an explicit `--config` option, Prisma 7 searches for:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.34
   },
@@ -546,6 +560,7 @@
    "version": "7.10.0",
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "Root-level `prisma7.config.*` files.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.16
   },
@@ -553,6 +568,7 @@
    "version": "7.10.0",
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "`.config/prisma7.*` files.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.14
   },
@@ -560,6 +576,7 @@
    "version": "7.10.0",
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "Existing `prisma.config.*` files as a backwards-compatible fallback.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.11
   },
@@ -568,6 +585,7 @@
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "The supported extensions are `.js`, `.ts`, `.mjs`, `.cjs`, `.mts`, and `.cts`. An explicit config path always takes precedence:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.16
   },
@@ -576,6 +594,7 @@
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "New projects initialized by the Prisma 7 CLI use `prisma7.config.ts`. Existing projects containing only `prisma.config.*` continue to work without migration or additional warnings. If a `prisma7.config.*` file exists but cannot be loaded, Prisma reports the error rather than silently falling back to another configuration.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.06
   },
@@ -584,6 +603,7 @@
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "The `prisma7` identity is carried through CLI help, version output, shell completion, initialization, migration, database, and generation guidance. Stable Prisma concepts such as `schema.prisma`, Prisma Migrate, `@prisma/client`, and `PRISMA_*` environment variables remain unchanged.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.08
   },
@@ -592,6 +612,7 @@
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "Together, the separate executable and configuration namespace make it possible to operate Prisma 7 and Prisma 8 side by side without command or config-file collisions.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.09
   },
@@ -600,6 +621,7 @@
    "section": "Run Prisma 7 alongside Prisma 8",
    "text": "#29949, #29969, #29994, #30000, #30002,",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.16
   },
@@ -608,6 +630,7 @@
    "section": "Prisma Studio security hardening",
    "text": "Prisma Studio's local HTTP server now:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.27
   },
@@ -615,6 +638,7 @@
    "version": "7.10.0",
    "section": "Prisma Studio security hardening",
    "text": "Binds explicitly to `127.0.0.1` instead of all network interfaces.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.45
   },
@@ -622,6 +646,7 @@
    "version": "7.10.0",
    "section": "Prisma Studio security hardening",
    "text": "Rejects browser requests from origins other than the active `localhost` or `127.0.0.1` Studio URL.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.3
   },
@@ -629,6 +654,7 @@
    "version": "7.10.0",
    "section": "Prisma Studio security hardening",
    "text": "No longer returns wildcard CORS headers.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.41
   },
@@ -636,6 +662,7 @@
    "version": "7.10.0",
    "section": "Prisma Studio security hardening",
    "text": "Applies the same protections across Node.js, Bun, and Deno.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.09
   },
@@ -644,6 +671,7 @@
    "section": "Prisma Studio security hardening",
    "text": "This prevents network clients or malicious websites from accessing Studio's database endpoints while Studio is running.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.21
   },
@@ -652,6 +680,7 @@
    "section": "Prisma Studio security hardening",
    "text": "#29890",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.18
   },
@@ -659,6 +688,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Fixed `P2002` errors from nested writes so `meta.modelName` identifies the model where the unique constraint violation occurred, including models using `@@map` and `@@schema`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -666,6 +696,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Fixed automatically batched `findUniqueOrThrow()` calls so every missing record rejects with `P2025`; later misses no longer resolve to `undefined`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.18
   },
@@ -673,6 +704,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Parameter-chunked statements are now executed atomically in a transaction and rolled back if a later chunk fails.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.11
   },
@@ -680,6 +712,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Improved interactive transaction cleanup during `$disconnect()`, including transactions whose driver-level startup is still in progress.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -687,6 +720,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Prevented transaction cleanup failures after a timeout or backend termination from becoming unhandled promise rejections.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.05
   },
@@ -694,6 +728,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Fixed fluent relation queries when relation fields are literally named `select` or `include`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.05
   },
@@ -701,6 +736,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Fixed handling of `Date` and `Uint8Array` values created in other JavaScript realms, such as iframes, jsdom, and Node.js `vm` contexts.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.05
   },
@@ -708,6 +744,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Invalid `Date` values passed to `$queryRaw` or `$executeRaw` now throw `PrismaClientValidationError` instead of a generic error.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.37
   },
@@ -715,6 +752,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Fixed `moduleFormat` inference for the `prisma-client` generator in TypeScript projects using `module: \"node16\"` or `\"nodenext\"`. Generated output now follows the nearest `package.json` `type`, defaulting to CommonJS when absent.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.27
   },
@@ -722,6 +760,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Deserialized `Bytes` values now own standalone `ArrayBuffer`s rather than exposing unrelated contents from Node.js's shared `Buffer` pool. This applies to both regular and raw query results.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.12
   },
@@ -729,6 +768,7 @@
    "version": "7.10.0",
    "section": "Prisma Client",
    "text": "Fixed an incorrect logging context in the remote executor, including Accelerate-backed query execution.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -736,6 +776,7 @@
    "version": "7.10.0",
    "section": "Client extensions and observability",
    "text": "Result-extension `compute` callbacks now receive the current model name as a typed second argument: The model name is also preserved when multiple extensions compose the same computed field.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.07
   },
@@ -743,6 +784,7 @@
    "version": "7.10.0",
    "section": "Client extensions and observability",
    "text": "Improved OpenTelemetry context for remotely executed queries: `$on('query')` callbacks run within the matching `db_query` span. Events from one operation share the same trace. Error events are recorded as span exceptions. Log events continue to be emitted when tracing is disabled or their reported span is unavailable.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.05
   },
@@ -750,6 +792,7 @@
    "version": "7.10.0",
    "section": "MariaDB",
    "text": "`@prisma/adapter-mariadb` now accepts an existing `mariadb` pool. External pools remain caller-owned unless `disposeExternalPool: true` is supplied.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.1
   },
@@ -757,6 +800,7 @@
    "version": "7.10.0",
    "section": "MariaDB",
    "text": "Fixed pooled connection leaks during commit, rollback, and failed transaction startup. Connections are now returned with `release()` and transaction-specific listeners are removed before reuse.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -764,6 +808,7 @@
    "version": "7.10.0",
    "section": "MariaDB",
    "text": "Added support for bracketed IPv6 addresses in both `mysql://` and `mariadb://` connection strings.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -771,6 +816,7 @@
    "version": "7.10.0",
    "section": "MariaDB",
    "text": "Prevented malformed connection strings from exposing embedded passwords in retained debug output and diagnostic reports.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -778,6 +824,7 @@
    "version": "7.10.0",
    "section": "PostgreSQL, Neon, and Prisma Postgres Serverless",
    "text": "PostgreSQL deadlocks using SQLSTATE `40P01` are now reported as `P2034` transaction write conflicts.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.24
   },
@@ -785,6 +832,7 @@
    "version": "7.10.0",
    "section": "PostgreSQL, Neon, and Prisma Postgres Serverless",
    "text": "PostgreSQL `RESTRICT` violations using SQLSTATE `23001` are now reported as `P2003`, preserving an available field or constraint name.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.12
   },
@@ -792,6 +840,7 @@
    "version": "7.10.0",
    "section": "PostgreSQL, Neon, and Prisma Postgres Serverless",
    "text": "`@prisma/adapter-pg` now preserves database constraint names when reporting unique constraint violations through `P2002`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.05
   },
@@ -799,6 +848,7 @@
    "version": "7.10.0",
    "section": "PostgreSQL, Neon, and Prisma Postgres Serverless",
    "text": "Prisma Postgres Serverless now prefers the named constraint for `P2002`, falling back to parsed field names when no constraint name is available.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.09
   },
@@ -806,6 +856,7 @@
    "version": "7.10.0",
    "section": "PostgreSQL, Neon, and Prisma Postgres Serverless",
    "text": "Fixed Neon HTTP adapter serialization for typed parameters such as `Bytes` and `DateTime`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.05
   },
@@ -813,6 +864,7 @@
    "version": "7.10.0",
    "section": "SQLite",
    "text": "`@prisma/adapter-better-sqlite3` now converts previously unhandled SQLite result codes into typed database errors instead of exposing raw driver errors.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.16
   },
@@ -820,6 +872,7 @@
    "version": "7.10.0",
    "section": "SQLite",
    "text": "The complete `SQLITE_BUSY` family is now mapped to socket timeout errors, with numeric extended result codes preserved where available.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.28
   },
@@ -828,6 +881,7 @@
    "section": "SQLite",
    "text": "#29794",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.21
   },
@@ -835,6 +889,7 @@
    "version": "7.10.0",
    "section": "CLI and Migrate",
    "text": "`prisma generate` can now offer to install Prisma's agent skills. The opt-in prompt: Is shown at most once per machine. Is skipped in CI, containers, Git hooks, npm lifecycle scripts, and watch mode. Is skipped when `--no-hints` is used or Prisma skills are already installed. Times out after 30 seconds. Never causes generation to fail if installation is unsuccessful.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -842,6 +897,7 @@
    "version": "7.10.0",
    "section": "CLI and Migrate",
    "text": "A globally installed CLI now warns during `prisma generate` when its version differs from the project's local `prisma` or `@prisma/client`, and recommends running the local CLI. The check is best-effort and does not fail generation.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.05
   },
@@ -849,6 +905,7 @@
    "version": "7.10.0",
    "section": "CLI and Migrate",
    "text": "`prisma version` and `prisma version --json` now include the resolved Prisma CLI package path, making global-versus-local installation issues easier to diagnose.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.03
   },
@@ -856,6 +913,7 @@
    "version": "7.10.0",
    "section": "CLI and Migrate",
    "text": "Empty or generator-only schema files now report `Schema must contain a datasource block` from `db pull`, `db push`, and `migrate dev`, rather than reaching the schema engine and potentially producing inconsistent errors.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.39
   },
@@ -863,6 +921,7 @@
    "version": "7.10.0",
    "section": "CLI and Migrate",
    "text": "CLI commands now tolerate corrupt, unreadable, or unwritable command-state files. Invalid state is reinitialized, writes are atomic, and persistence failures fall back to in-memory state.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -870,6 +929,7 @@
    "version": "7.10.0",
    "section": "CLI and Migrate",
    "text": "Studio now recognizes semicolon-delimited `sqlserver://` connection strings before reporting the existing explicit message that SQL Server is not supported by Studio.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -877,6 +937,7 @@
    "version": "7.10.0",
    "section": "CLI and Migrate",
    "text": "The AI-agent safety checkpoint now also covers interactive `prisma db push` confirmations involving data-loss warnings, rather than only invocations using `--accept-data-loss`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.07
   },
@@ -884,6 +945,7 @@
    "version": "7.10.0",
    "section": "Performance and reliability",
    "text": "Optimized query-plan execution by eagerly evaluating plans with one unconditional database operation and synchronously interpreting the remaining pure plan. Cached plans remain immutable.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.06
   },
@@ -891,6 +953,7 @@
    "version": "7.10.0",
    "section": "Performance and reliability",
    "text": "Prevented call-stack overflows when rendering very large parameter lists or combining chunked results containing hundreds of thousands of rows.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -898,6 +961,7 @@
    "version": "7.10.0",
    "section": "Performance and reliability",
    "text": "Reduced ordinary query setup overhead by constructing fluent-relation field maps lazily and in linear time. Non-fluent queries no longer build this map.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -905,6 +969,7 @@
    "version": "7.10.0",
    "section": "Dependencies",
    "text": "Updated the transitive `fast-uri` dependency to a patched release addressing production audit advisories affecting versions through `3.1.3`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.10.0",
    "p": 0.04
   },
@@ -913,6 +978,7 @@
    "section": "",
    "text": "Today, we're issuing a patch release to resolve a security advisory in a transitive dependency of Prisma CLI (via `@prisma/dev`).",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.1",
    "p": 0.05
   },
@@ -921,6 +987,7 @@
    "section": "",
    "text": "This fixes https://github.com/prisma/prisma/issues/29780.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.1",
    "p": 0.08
   },
@@ -929,6 +996,7 @@
    "section": "",
    "text": "It does not actually affect `@prisma/dev` or Prisma CLI so no urgent action is required, but it is recommended to upgrade nevertheless to avoid false positives from security scanners.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.1",
    "p": 0.05
   },
@@ -937,6 +1005,7 @@
    "section": "",
    "text": "Today, we are excited to share the `7.9.0` stable release 🎉",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.09
   },
@@ -945,6 +1014,7 @@
    "section": "",
    "text": "🌟 Star this repo for notifications about new releases, bug fixes & features — or follow us on X!",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.03
   },
@@ -953,6 +1023,7 @@
    "section": "Tab completions for the Prisma CLI",
    "text": "Typing out CLI commands from memory is now optional. Prisma ships shell tab completions for `bash`, `zsh`, `fish`, and PowerShell, covering commands, subcommands, options, flags, and even option values.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.03
   },
@@ -961,6 +1032,7 @@
    "section": "Tab completions for the Prisma CLI",
    "text": "Setting it up. Most projects run Prisma through a package manager, so completions are enabled through `@bomb.sh/tab`'s package-manager integration — install it once, then source the completion for your package manager and shell:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.05
   },
@@ -969,6 +1041,7 @@
    "section": "Tab completions for the Prisma CLI",
    "text": "`@bomb.sh/tab` delegates to any locally-installed CLI that ships completions, so `pnpm prisma <TAB>`, `pnpm exec prisma <TAB>`, `yarn prisma <TAB>`, and `bun x prisma <TAB>` all complete Prisma's commands, options, and values — no per-project setup. (`npx` and `bunx` don't support completion themselves; use `npm exec` and `bun x`.)",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.05
   },
@@ -977,6 +1050,7 @@
    "section": "Tab completions for the Prisma CLI",
    "text": "If instead you have Prisma installed globally on your `PATH`, source its own completion directly: `source <(prisma complete zsh)` (or the `bash` / `fish` / `powershell` variant).",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -985,6 +1059,7 @@
    "section": "Tab completions for the Prisma CLI",
    "text": "This is built on `@bomb.sh/tab`, the same completion library that powers other CLIs in the ecosystem — including Cloudflare, Nuxt, and Vitest — so the package-manager completions you enable for Prisma work for those tools too. A wonderful community contribution from @AmirSa12 — thank you!",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -993,6 +1068,7 @@
    "section": "Tab completions for the Prisma CLI",
    "text": "https://github.com/user-attachments/assets/1f916a60-ee4d-40be-bb7d-74035d48ca83",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.09
   },
@@ -1001,6 +1077,7 @@
    "section": "Prisma ORM, ready for AI agents",
    "text": "Coding agents are now a first-class audience for Prisma, and 7.9.0 brings the first wave of work to make Prisma projects safe and productive for them to work in.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.06
   },
@@ -1009,6 +1086,7 @@
    "section": "Prisma ORM, ready for AI agents",
    "text": "Agent skills installed with `prisma init`",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.06
   },
@@ -1017,6 +1095,7 @@
    "section": "Prisma ORM, ready for AI agents",
    "text": "`prisma init` now installs the prisma/skills catalog into freshly scaffolded projects. Agents such as Claude Code, Cursor, Codex, and Windsurf start out with current, version-relevant Prisma knowledge instead of relying on whatever happened to be in their training data. The install is best-effort and never blocks scaffolding; opt out at any time with `--no-skills`.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.05
   },
@@ -1025,6 +1104,7 @@
    "section": "Prisma ORM, ready for AI agents",
    "text": "A safer default around destructive commands (#29684, #29691, #29713)",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.33
   },
@@ -1033,6 +1113,7 @@
    "section": "Prisma ORM, ready for AI agents",
    "text": "Prisma's AI safety checkpoint refuses to run destructive commands when it detects that an AI agent is at the keyboard, unless the user has given explicit consent. In this release we:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.17
   },
@@ -1040,6 +1121,7 @@
    "version": "7.9.0",
    "section": "Prisma ORM, ready for AI agents",
    "text": "Broadened agent detection to cover today's landscape — Codex CLI (now on Linux as well as macOS), Qwen Code, GitHub Copilot CLI, OpenCode, Cline, Goose, Amp, Crush, Augment Code, Antigravity, Replit Agent, and Devin — plus generic `AI_AGENT` / `AGENT` conventions so future agents are caught without a code change.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1047,6 +1129,7 @@
    "version": "7.9.0",
    "section": "Prisma ORM, ready for AI agents",
    "text": "Extended the guard to `db push --accept-data-loss`, which previously bypassed the checkpoint even though it can drop data.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.23
   },
@@ -1054,6 +1137,7 @@
    "version": "7.9.0",
    "section": "Prisma ORM, ready for AI agents",
    "text": "Removed the `migrate-reset` tool from the `prisma mcp` server entirely — resetting a database drops it, and that is not an operation an agent should be handed as a first-class tool. An agent that needs a reset must run the CLI, where the checkpoint applies.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.45
   },
@@ -1062,6 +1146,7 @@
    "section": "Bug Fixes",
    "text": "Many of the fixes below are community contributions — thank you to everyone who reported and fixed these!",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.06
   },
@@ -1070,6 +1155,7 @@
    "section": "Bug Fixes",
    "text": "Prisma Client",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.12
   },
@@ -1077,6 +1163,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "Fixed a severe TypeScript performance regression introduced in Prisma 7: restoring the `OmitOpts` generic default lets `tsc` reuse cached type instantiations again, bringing type-checking on large schemas back from minutes to seconds (#29592, from @nfl1ryxditimo12).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.06
   },
@@ -1084,6 +1171,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "The `XOR` type helper now rejects primitive values such as `data: 5`, which were previously accepted at compile time even though the runtime rejected them (#29735, from @kyungseopk1m).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.41
   },
@@ -1091,6 +1179,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "`$queryRaw` and `$executeRaw` now fail fast with a clear validation error when passed an invalid `Date`, instead of silently serializing it as `null` and corrupting the value sent to the database (#29697, from @jibin7jose).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.41
   },
@@ -1098,6 +1187,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "The generated client is no longer corrupted by a `///` documentation comment that contains a `*/` sequence; the comment terminator is now escaped when doc comments are emitted, in both the TypeScript and JavaScript generators (#29736, from @kyungseopk1m).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1105,6 +1195,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "Improved the runtime and TypeScript error messages shown when a driver adapter is missing from the `PrismaClient` constructor; both now include a copy-pasteable example and a link to the driver adapters docs.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1112,6 +1203,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "Unmapped database errors from driver adapters now surface as a user-facing `P2039` (`PrismaClientKnownRequestError`) carrying the original code and message, instead of an opaque failure, which keeps schema-drift-style problems debuggable.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.09
   },
@@ -1119,6 +1211,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "The `prisma-client-js` generator no longer emits a stray `undefined` statement when generating from a schema that declares only enums or types and no models (#29738, from @kyungseopk1m).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1126,6 +1219,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "Fixed a connection leak when an interactive transaction times out (`maxWait`) while it is still starting: the discarded transaction now sends an explicit `ROLLBACK` before the connection is returned to the pool, instead of releasing it mid-transaction. Previously, on adapters like `@prisma/adapter-pg` and `@prisma/adapter-neon`, the next query to reuse that connection could fail with `there is already a transaction in progress` — or silently commit the leaked transaction's work (#29727, from @lazerg).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1134,6 +1228,7 @@
    "section": "Bug Fixes",
    "text": "CLI",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.12
   },
@@ -1141,6 +1236,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "`prisma validate` (and other schema-loading commands) no longer hangs forever on a multi-file schema whose directories contain a symlink cycle, and no longer reports the same file twice when a directory is reachable under two spellings (e.g. `/tmp` → `/private/tmp` on macOS) (#29740, from @kyungseopk1m).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.03
   },
@@ -1148,6 +1244,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "On Windows, engine binaries are now cached in a stable, user-level directory (`%APPDATA%\\Prisma`) instead of a `cwd`-relative `node_modules\\.cache`, which eliminated duplicate cache directories and the bloated Serverless/Docker bundles they caused (#29730, from @santichausis; closes #22574, #6670, #11577).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.07
   },
@@ -1156,6 +1253,7 @@
    "section": "Bug Fixes",
    "text": "Driver Adapters",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.15
   },
@@ -1163,6 +1261,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "@prisma/adapter-pg, @prisma/adapter-neon, @prisma/adapter-ppg: Reading a `Bytes` column no longer emits Node.js' `DEP0005` deprecation warning, thanks to an upstream `postgres-bytea` bump (#29538, from @kolia-zamnius).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1170,6 +1269,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "@prisma/adapter-ppg: `ColumnNotFound` (`P2022`) errors now parse both quoted and unquoted PostgreSQL column names, including identifiers containing spaces, matching the fix previously applied to `adapter-pg` (#29737, from @kyungseopk1m).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1177,6 +1277,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "@prisma/adapter-mssql: Setting a `Bytes?` (`@db.VarBinary`) field to `null` no longer fails with an implicit-conversion error; the adapter now sends the parameter typed as `VarBinary` instead of letting SQL Server default it to `nvarchar` (#29630, from @AnupamKumar-1).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1185,6 +1286,7 @@
    "section": "Bug Fixes",
    "text": "Schema Engine",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.13
   },
@@ -1192,6 +1294,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "`prisma migrate status` now reports a rolled-back migration that still exists on disk as *unapplied*, instead of incorrectly treating the schema as up to date (prisma/prisma-engines#5817, from @goutamadwant).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.06
   },
@@ -1199,6 +1302,7 @@
    "version": "7.9.0",
    "section": "Bug Fixes",
    "text": "Primary-key constraint renames are now rendered as separate `ALTER TABLE` statements on PostgreSQL, avoiding a database error when a single table has multiple changes in one migration (prisma/prisma-engines#4906, from @eruditmorina).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1206,6 +1310,7 @@
    "version": "7.9.0",
    "section": "Security",
    "text": "Resolved the `hono` security advisories at their source: `@prisma/dev` was updated to a version that no longer depends on `hono` at all, so the CLI is no longer exposed to those advisories through that path. We also patched moderate-severity advisories in `ajv` and `uuid` across production dependencies.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.05
   },
@@ -1213,6 +1318,7 @@
    "version": "7.9.0",
    "section": "Security",
    "text": "Hardened the Prisma Platform credentials file (`~/.config/prisma-platform/auth.json`) and its directory to `0o600` / `0o700` so OAuth tokens are no longer world-readable, bringing Prisma in line with the GitHub, AWS, and Google Cloud CLIs (#29568, from Jaeyoung Yun).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.09
   },
@@ -1220,6 +1326,7 @@
    "version": "7.9.0",
    "section": "Security",
    "text": "Bumped the `openssl` crate in the schema engine binaries from 0.10.74 to 0.10.81 (prisma/prisma-engines#5815).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.05
   },
@@ -1228,6 +1335,7 @@
    "section": "Prisma Studio",
    "text": "The bundled Prisma Studio moves from `0.27.3` to `0.33.0`, gathering up everything shipped in the Studio releases in between.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.11
   },
@@ -1236,6 +1344,7 @@
    "section": "Migrations view",
    "text": "Studio can now visualise your migration history. This view is powered by Prisma Next — the next major version of Prisma ORM, a full TypeScript rewrite (available now in Early Access) that keeps the schema-first workflow and model-first queries you know, but treats your schema as a versioned, inspectable contract instead of compiling it into a heavy generated client. Prisma Next records every migration and its contract snapshots in the database, and Studio reads them to draw the timeline and diff below. Databases managed with classic Prisma Migrate don't carry this ledger, so the view simply stays hidden there.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.05
   },
@@ -1244,6 +1353,7 @@
    "section": "Migrations view",
    "text": "When the connected database has a Prisma Next migration ledger, a Migrations entry appears in the sidebar: a newest-first timeline of every applied migration with its name, apply time, operation count, and compact chips summarizing what changed (`+2 models`, `~2 models +3 fields`, `+1 model`, …). Selecting a migration opens a visual, FigJam-style diff canvas — added, removed, and changed models as colour-coded cards (`NEW` / `UPDATED` / `UNCHANGED`) with per-field before → after details, enum cards, and relation edges — next to a SQL panel of the executed statements and a Prisma-schema line diff. Switching migrations morphs the canvas rather than rebuilding it.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1252,6 +1362,7 @@
    "section": "Migrations view",
    "text": "<!-- On publishing: drag wip/demos/prisma-studio-migrations.webp into the GitHub release editor so it becomes a user-attachments URL. -->",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.03
   },
@@ -1260,6 +1371,7 @@
    "section": "Prisma Streams browser",
    "text": "Studio gains first-class support for Prisma Streams: a dedicated stream browser, live stream aggregations, stream diagnostics, routing-key browsing, and a WAL-history handoff straight from your tables, plus richer stream request observability with concise event-log and OpenTelemetry span summaries.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1267,6 +1379,7 @@
    "version": "7.9.0",
    "section": "Working with SQL",
    "text": "SQL execution, linting, and navigation are now schema-aware: unqualified identifiers resolve against the schema you've selected instead of always falling back to the adapter's default schema.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.21
   },
@@ -1274,6 +1387,7 @@
    "version": "7.9.0",
    "section": "Working with SQL",
    "text": "SQL result visualizations are rendered with Studio-owned chart configuration, and there's an optional Queries view backed by query-insights snapshots.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.06
   },
@@ -1281,6 +1395,7 @@
    "version": "7.9.0",
    "section": "Working with SQL",
    "text": "Added copy actions to the Query Details view.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.03
   },
@@ -1288,6 +1403,7 @@
    "version": "7.9.0",
    "section": "Fixes",
    "text": "Fixed editing PostgreSQL text-array cells when queries are compiled with inline values.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.05
   },
@@ -1295,6 +1411,7 @@
    "version": "7.9.0",
    "section": "Fixes",
    "text": "Avoided cancelling and repeating introspection requests when Studio first mounts, removing duplicate startup work.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.03
   },
@@ -1303,6 +1420,7 @@
    "section": "Thanks to our contributors",
    "text": "A heartfelt thank you to the community members whose contributions shaped this release:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.03
   },
@@ -1311,6 +1429,7 @@
    "section": "Thanks to our contributors",
    "text": "@AmirSa12, @kyungseopk1m, @nfl1ryxditimo12, @jibin7jose, @santichausis, @kolia-zamnius, @goutamadwant, @eruditmorina, @lazerg, @AnupamKumar-1, @Swapanrishi, @anupamme, and @oyi77.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.03
   },
@@ -1319,6 +1438,7 @@
    "section": "Prisma Compute is now in public beta",
    "text": "\"Push code, it runs.\" Prisma Compute — managed hosting for TypeScript apps that run right next to your database — is now available in public beta, and free to use while the beta lasts.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1327,6 +1447,7 @@
    "section": "Prisma Compute is now in public beta",
    "text": "Compute deploys your app as a long-lived process on Bun, colocated with your Prisma Postgres database, so there are no cold starts, no request timeouts, and no separate hosting vendor to wire up. It's a fit for REST and GraphQL APIs, full-stack apps, streaming and gRPC, and the long-running, stateful AI agents that keep connections open and hold in-process caches — \"self-hosting, without the painful parts\".",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1334,6 +1455,7 @@
    "version": "7.9.0",
    "section": "Prisma Compute is now in public beta",
    "text": "Push-to-deploy from the CLI or via GitHub integration. Every deployment is an immutable, versioned release with its own preview URL, and rolling back is simply promoting a previous version.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.05
   },
@@ -1341,6 +1463,7 @@
    "version": "7.9.0",
    "section": "Prisma Compute is now in public beta",
    "text": "Branch-based environments — each branch gets its own app and database, so you can preview a change before promoting it to production.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1348,6 +1471,7 @@
    "version": "7.9.0",
    "section": "Prisma Compute is now in public beta",
    "text": "Auto-wires with Prisma Postgres (or bring any database), with automatic health checks and self-recovery.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.06
   },
@@ -1355,6 +1479,7 @@
    "version": "7.9.0",
    "section": "Prisma Compute is now in public beta",
    "text": "Custom domains — point a single CNAME at Prisma and Compute provisions and renews the TLS certificate for you, with no manual certificate uploads or private-key handling.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.05
   },
@@ -1363,6 +1488,7 @@
    "section": "Prisma Compute is now in public beta",
    "text": "With Prisma ORM for type-safe data access, Prisma Postgres for the managed database, and now Prisma Compute for hosting, the whole stack lives in one place. Read the full story in the Prisma Compute blog series.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.04
   },
@@ -1371,6 +1497,7 @@
    "section": "Enterprise support",
    "text": "Thousands of teams use Prisma and many of them already tap into our Enterprise & Agency Support Program for hands-on help with everything from schema integrations and performance tuning to security and compliance.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.03
   },
@@ -1379,6 +1506,7 @@
    "section": "Enterprise support",
    "text": "With this program you also get priority issue triage and bug fixes, expert scalability advice, and custom training so that your Prisma-powered apps stay rock-solid at any scale. Learn more or join: https://prisma.io/enterprise.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.9.0",
    "p": 0.02
   },
@@ -1387,6 +1515,7 @@
    "section": "",
    "text": "Today, we are excited to share the `7.8.0` stable release 🎉",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.09
   },
@@ -1394,6 +1523,7 @@
    "version": "7.8.0",
    "section": "Features",
    "text": "Added a `queryPlanCacheMaxSize` option to the `PrismaClient` constructor for fine-grained control over the query plan cache. Pass `0` to disable the cache entirely, or omit it to use the default cache size. A larger value can improve performance in applications that execute many unique queries, while a smaller one can reduce memory usage.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.04
   },
@@ -1401,6 +1531,7 @@
    "version": "7.8.0",
    "section": "Bug Fixes",
    "text": "Fixed an equality filter panic and incorrect `::jsonb` cast when filtering on PostgreSQL JSON list columns. Queries using `where: { jsonListField: { equals: [...] } }` no longer panic with a type mismatch or emit invalid SQL. (prisma/prisma-engines#5804)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.04
   },
@@ -1408,6 +1539,7 @@
    "version": "7.8.0",
    "section": "Bug Fixes",
    "text": "Fixed case-insensitive JSON field filtering (`mode: insensitive`), allowing `where: { jsonField: { equals: \"...\", mode: \"insensitive\" } }` to work correctly. (prisma/prisma-engines#5806)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.05
   },
@@ -1415,6 +1547,7 @@
    "version": "7.8.0",
    "section": "Bug Fixes",
    "text": "Fixed incorrect parameterization of enum values that have a custom database name set via `@map`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.07
   },
@@ -1422,6 +1555,7 @@
    "version": "7.8.0",
    "section": "Bug Fixes",
    "text": "Fixed a database parameter limit check (`P2029`), which could incorrectly reject or miss over-limit queries.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.07
   },
@@ -1429,6 +1563,7 @@
    "version": "7.8.0",
    "section": "Bug Fixes",
    "text": "Fixed a regression that caused missing SQL Server `VARCHAR` casts for parameterized values. (prisma/prisma-engines#5801)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.05
   },
@@ -1436,6 +1571,7 @@
    "version": "7.8.0",
    "section": "Bug Fixes",
    "text": "Fixed a misleading error message in `prisma migrate diff` that referenced the `--shadow-database-url` CLI flag, which was removed in Prisma 7.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.09
   },
@@ -1443,6 +1579,7 @@
    "version": "7.8.0",
    "section": "Bug Fixes",
    "text": "Fixed `prisma migrate dev` (and shadow database migration replay in general) failing with `CREATE INDEX CONCURRENTLY cannot run inside a transaction block` when a migration contained concurrent index creation statements on PostgreSQL. (prisma/prisma-engines#5799)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.04
   },
@@ -1450,6 +1587,7 @@
    "version": "7.8.0",
    "section": "Bug Fixes",
    "text": "Fixed PostgreSQL introspection silently dropping sequence defaults when the database returns the schema-qualified form `pg_catalog.nextval('sequence_name'::regclass)` instead of the bare `nextval(...)`. Columns backed by sequences now correctly appear as `@default(autoincrement())` in the Prisma schema in all cases. (prisma/prisma-engines#5802)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.05
   },
@@ -1457,6 +1595,7 @@
    "version": "7.8.0",
    "section": "Bug Fixes",
    "text": "@prisma/adapter-d1: Savepoint operations (`createSavepoint`, `rollbackToSavepoint`, `releaseSavepoint`) now silently no-op with debug logging instead of executing SQL statements, consistent with how the D1 adapter already treats top-level transactions.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.12
   },
@@ -1465,6 +1604,7 @@
    "section": "Open roles at Prisma",
    "text": "Interested in joining Prisma? We're growing and have several exciting opportunities across the company for developers who are passionate about building with Prisma. Explore our open positions on our Careers page and find the role that's right for you.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.8.0",
    "p": 0.02
   },
@@ -1473,6 +1613,7 @@
    "section": "",
    "text": "Today, we are excited to share the `7.7.0` stable release 🎉",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.1
   },
@@ -1481,6 +1622,7 @@
    "section": "`prisma bootstrap` command",
    "text": "A new `prisma bootstrap` command (#29374, #29424) sequences the full Prisma Postgres setup into a single interactive flow. It detects the current project state and runs only the steps that are needed:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.04
   },
@@ -1488,6 +1630,7 @@
    "version": "7.7.0",
    "section": "`prisma bootstrap` command",
    "text": "Init or scaffold — In an empty directory, offers a choice of 10 starter templates (Next.js, Express, Hono, Fastify, Nuxt, SvelteKit, Remix, React Router 7, Astro, NestJS) from prisma-examples. In an existing project without a schema, runs `prisma init`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.05
   },
@@ -1495,6 +1638,7 @@
    "version": "7.7.0",
    "section": "`prisma bootstrap` command",
    "text": "Link — Authenticates via the browser and connects to a Prisma Postgres database. Skips if already linked.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.07
   },
@@ -1502,6 +1646,7 @@
    "version": "7.7.0",
    "section": "`prisma bootstrap` command",
    "text": "Install dependencies — Detects the package manager and offers to install missing `@prisma/client`, `prisma`, and `dotenv`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.05
   },
@@ -1509,6 +1654,7 @@
    "version": "7.7.0",
    "section": "`prisma bootstrap` command",
    "text": "Migrate — Runs `prisma migrate dev` if the schema contains models.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.18
   },
@@ -1516,6 +1662,7 @@
    "version": "7.7.0",
    "section": "`prisma bootstrap` command",
    "text": "Generate — Runs `prisma generate`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.08
   },
@@ -1523,6 +1670,7 @@
    "version": "7.7.0",
    "section": "`prisma bootstrap` command",
    "text": "Seed — Runs `prisma db seed` if a seed script is configured.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.09
   },
@@ -1531,6 +1679,7 @@
    "section": "`prisma bootstrap` command",
    "text": "Each side-effecting step prompts for confirmation. Re-running the command skips already-completed steps.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.06
   },
@@ -1539,6 +1688,7 @@
    "section": "`prisma bootstrap` command",
    "text": "Basic usage",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.07
   },
@@ -1547,6 +1697,7 @@
    "section": "`prisma bootstrap` command",
    "text": "With a starter template",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.07
   },
@@ -1555,6 +1706,7 @@
    "section": "`prisma bootstrap` command",
    "text": "Non-interactive (CI)",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.7.0",
    "p": 0.19
   },
@@ -1563,6 +1715,7 @@
    "section": "",
    "text": "Today, we are excited to share the `7.6.0` stable release 🎉",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.09
   },
@@ -1570,6 +1723,7 @@
    "version": "7.6.0",
    "section": "Features",
    "text": "Added a `prisma postgres link` command that connects a local project to a Prisma Postgres database. This is the first command in a new `prisma postgres` command group for managing Prisma Postgres databases directly from the CLI.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.04
   },
@@ -1577,6 +1731,7 @@
    "version": "7.6.0",
    "section": "Features",
    "text": "@prisma/adapter-pg: Added a `statementNameGenerator` option that accepts a custom prepared statement name generator to allow users to leverage `pg` statement caching",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.04
   },
@@ -1584,6 +1739,7 @@
    "version": "7.6.0",
    "section": "Features",
    "text": "@prisma/adapter-pg: Added support for usage of connection strings directly in the constructor for improved ergonomics",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.04
   },
@@ -1591,6 +1747,7 @@
    "version": "7.6.0",
    "section": "Features",
    "text": "@prisma/adapter-mariadb: Added a `useTextProtocol` option in the constructor to toggle between text and binary protocols",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.04
   },
@@ -1598,6 +1755,7 @@
    "version": "7.6.0",
    "section": "Bug Fixes",
    "text": "Disabled caching of `createMany` queries to avoid cache bloat and potential Node.js crashes in bulk operations",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.11
   },
@@ -1605,6 +1763,7 @@
    "version": "7.6.0",
    "section": "Bug Fixes",
    "text": "Made `NowGenerator` lazy to avoid synchronous `new Date()` calls, fixing Next.js \"dynamic usage\" errors in cached components",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.05
   },
@@ -1612,6 +1771,7 @@
    "version": "7.6.0",
    "section": "Bug Fixes",
    "text": "Fixed missing export of `Get<Model>GroupByPayload` type in the new `prisma-client` generator, making it accessible for TypeScript usage",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.05
   },
@@ -1619,6 +1779,7 @@
    "version": "7.6.0",
    "section": "Bug Fixes",
    "text": "Added streaming parsing with automatic fallback to handle Prisma schemas that produce extremely large intermediate strings (>500MB) that hit V8's string limits",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.04
   },
@@ -1626,6 +1787,7 @@
    "version": "7.6.0",
    "section": "Bug Fixes",
    "text": "@prisma/adapter-pg: Relaxed the `@types/pg` version constraint to `^8.16.0` for compatibility with newer PostgreSQL type definitions",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.06
   },
@@ -1633,6 +1795,7 @@
    "version": "7.6.0",
    "section": "Bug Fixes",
    "text": "@prisma/adapter-pg: Corrected error handling for `ColumnNotFound` errors to correctly extract column names from both quoted and unquoted PostgreSQL error messages",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.04
   },
@@ -1640,6 +1803,7 @@
    "version": "7.6.0",
    "section": "Bug Fixes",
    "text": "@prisma/adapter-mariadb: Modified the adapter to disable `mariadb` statement caching by default to address a reported leak",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.17
   },
@@ -1648,6 +1812,7 @@
    "section": "Prisma Studio",
    "text": "We’re continuing our work to improve Prisma Studio with more features being added.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.04
   },
@@ -1656,6 +1821,7 @@
    "section": "Prisma Studio",
    "text": "Dark Mode",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.04
   },
@@ -1664,6 +1830,7 @@
    "section": "Prisma Studio",
    "text": "Need we say more? You’ve all asked for it, and it’s back.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.05
   },
@@ -1672,6 +1839,7 @@
    "section": "Prisma Studio",
    "text": "https://github.com/user-attachments/assets/214149dd-5dd3-4295-9fa3-0da3f8d28197",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.08
   },
@@ -1680,6 +1848,7 @@
    "section": "Prisma Studio",
    "text": "Copy as markdown",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.05
   },
@@ -1688,6 +1857,7 @@
    "section": "Prisma Studio",
    "text": "Now, you can copy one or more rows as either CSV or Markdown",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.03
   },
@@ -1696,6 +1866,7 @@
    "section": "Prisma Studio",
    "text": "Multi-cell editing",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.05
   },
@@ -1704,6 +1875,7 @@
    "section": "Prisma Studio",
    "text": "This is big one, something that folks have been asking for. Now, it’s possible to edit multiple cells while inspecting your database. If you make any changes, you’ll be prompted to either save or discard them. This makes manually adding new rows much easier to accomplish.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.03
   },
@@ -1712,6 +1884,7 @@
    "section": "Prisma Studio",
    "text": "Back relations",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.11
   },
@@ -1720,6 +1893,7 @@
    "section": "Prisma Studio",
    "text": "If your data references another table, Prisma Studio now links to the related records, making it easy to inspect them. This makes traversing your database much simpler.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.04
   },
@@ -1728,6 +1902,7 @@
    "section": "Prisma Studio",
    "text": "https://github.com/user-attachments/assets/4977a926-413b-495f-b651-b7554eefea04",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.08
   },
@@ -1736,6 +1911,7 @@
    "section": "Prisma Studio",
    "text": "Generative SQL with AI",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.05
   },
@@ -1744,6 +1920,7 @@
    "section": "Prisma Studio",
    "text": "If you need to inspect your database, instead of manually writing the SQL you may need, you can use natural language and AI to generate the appropriate SQL statements.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.03
   },
@@ -1752,6 +1929,7 @@
    "section": "Prisma Studio",
    "text": "https://github.com/user-attachments/assets/e57c0afb-c3ed-471b-b55a-42395a134863",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.08
   },
@@ -1760,6 +1938,7 @@
    "section": "Open roles at Prisma",
    "text": "Interested in joining Prisma? We’re growing and have several exciting opportunities across the company for developers who are passionate about building with Prisma. Explore our open positions on our Careers page and find the role that’s right for you.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.6.0",
    "p": 0.02
   },
@@ -1768,6 +1947,7 @@
    "section": "",
    "text": "Today, we are excited to share the `7.5.0` stable release 🎉",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.1
   },
@@ -1775,6 +1955,7 @@
    "version": "7.5.0",
    "section": "Features",
    "text": "Added support for nested transaction rollbacks via savepoints Adds support for nested transaction rollback behavior for SQL databases: if an outer transaction fails, the inner nested transaction is rolled back as well. Implements this by tracking transaction ID + nesting depth so Prisma can reuse an existing open transaction in the underlying engine, and it also enables using `$transaction` from an interactive transaction client.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.05
   },
@@ -1782,6 +1963,7 @@
    "version": "7.5.0",
    "section": "Bug fixes",
    "text": "Made the `adapter-mariadb` use the binary MySQL protocol to fix an issue with lossy number conversions",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.08
   },
@@ -1789,6 +1971,7 @@
    "version": "7.5.0",
    "section": "Bug fixes",
    "text": "Made `@types/pg` a direct dependency of `adapter-pg` for better TypeScript experience out-of-the-box",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.06
   },
@@ -1796,6 +1979,7 @@
    "version": "7.5.0",
    "section": "Bug fixes",
    "text": "Resolved `Prisma.DbNull` serializing as empty object in some bundled environments like Next.js",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.05
   },
@@ -1803,6 +1987,7 @@
    "version": "7.5.0",
    "section": "Bug fixes",
    "text": "Fixed DateTime fields returning `Invalid Date` with `unixepoch-ms` timestamps in some cases",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.05
   },
@@ -1810,6 +1995,7 @@
    "version": "7.5.0",
    "section": "Bug fixes",
    "text": "Fixed a cursor-based pagination issue with `@db.Date` columns",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.06
   },
@@ -1817,6 +2003,7 @@
    "version": "7.5.0",
    "section": "Bug fixes",
    "text": "Manual partial indexes are now preserved when `partialIndexes` preview feature is disabled, preventing unnecessary drops and additions in migrations (#5790, #5795)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.05
   },
@@ -1824,6 +2011,7 @@
    "version": "7.5.0",
    "section": "Bug fixes",
    "text": "Enhanced partial index predicate comparison to handle quoted vs unquoted identifiers correctly, eliminating needless recreate cycles",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.05
   },
@@ -1831,6 +2019,7 @@
    "version": "7.5.0",
    "section": "Bug fixes",
    "text": "Excluded partial unique indexes from DMMF `uniqueFields` and `uniqueIndexes` to prevent incorrect `findUnique` input type generation",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.2
   },
@@ -1839,6 +2028,7 @@
    "section": "Studio",
    "text": "With the launch of Prisma ORM v7, we also introduced a rebuilt version of Prisma Studio. With the feedback we’ve gathered since the release, we’ve added some high requested features to help make Studio a better experience.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.07
   },
@@ -1847,6 +2037,7 @@
    "section": "Studio",
    "text": "Multi-cell Selection & Full Table Search",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.04
   },
@@ -1855,6 +2046,7 @@
    "section": "Studio",
    "text": "This release brings the ability to select multiple cells when viewing your database. In addition to being able to select multiple cells, you can also search across your database. You can search for a specific table or for specific cells within that table.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.03
   },
@@ -1863,6 +2055,7 @@
    "section": "Studio",
    "text": "More intuitive filtering",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.05
   },
@@ -1871,6 +2064,7 @@
    "section": "Studio",
    "text": "Filtering is now easier to use, and includes an option for raw SQL filters.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.04
   },
@@ -1879,6 +2073,7 @@
    "section": "Studio",
    "text": "And if you are using Studio in Console, you can use ai generated filters:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.03
   },
@@ -1887,6 +2082,7 @@
    "section": "Studio",
    "text": "Cmd+k Command Palette",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.05
   },
@@ -1895,6 +2091,7 @@
    "section": "Studio",
    "text": "You can now use the keyboard to perform most actions in Studio with the new cmd+k command palette",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.03
   },
@@ -1903,6 +2100,7 @@
    "section": "Studio",
    "text": "Run raw SQL queries",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.07
   },
@@ -1911,6 +2109,7 @@
    "section": "Studio",
    "text": "Another feature we’ve included in Prisma Studio is the ability to run raw SQL queries against your data. There’s a new “SQL” tab in the sidebar that will bring you to page where you can perform any queries against your data. Below, we’re getting all the rows in the “Todo” table.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.03
   },
@@ -1919,6 +2118,7 @@
    "section": "Open roles at Prisma",
    "text": "Interested in joining Prisma? We’re growing and have several exciting opportunities across the company for developers who are passionate about building with Prisma. Explore our open positions on our [Careers page](https://www.prisma.io/careers#current) and find the role that’s right for you.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.5.0",
    "p": 0.02
   },
@@ -1927,6 +2127,7 @@
    "section": "",
    "text": "Today, we are issuing a 7.4.2 patch release focused on bug fixes and quality improvements.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.2",
    "p": 0.05
   },
@@ -1934,6 +2135,7 @@
    "version": "7.4.2",
    "section": "🛠 Fixes",
    "text": "Fix a case-insensitive `IN` and `NOT IN` filter regression (https://github.com/prisma/prisma/pull/29243)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.2",
    "p": 0.07
   },
@@ -1941,6 +2143,7 @@
    "version": "7.4.2",
    "section": "🛠 Fixes",
    "text": "Fix a query plan mutation issue that resulted in broken cursor queries (https://github.com/prisma/prisma/pull/29262)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.2",
    "p": 0.06
   },
@@ -1948,6 +2151,7 @@
    "version": "7.4.2",
    "section": "🛠 Fixes",
    "text": "Fix an array parameter wrapping issue in push operations (https://github.com/prisma/prisma-engines/pull/5784)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.2",
    "p": 0.08
   },
@@ -1955,6 +2159,7 @@
    "version": "7.4.2",
    "section": "🛠 Fixes",
    "text": "Fix `Uint8Array` serialization in nested JSON fields (https://github.com/prisma/prisma/pull/29268)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.2",
    "p": 0.06
   },
@@ -1962,6 +2167,7 @@
    "version": "7.4.2",
    "section": "🛠 Fixes",
    "text": "Fix an issue with MySQL joins that relied on non-strict equality (https://github.com/prisma/prisma/pull/29251)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.2",
    "p": 0.17
   },
@@ -1969,6 +2175,7 @@
    "version": "7.4.2",
    "section": "🛠 Fixes",
    "text": "@prisma/adapter-mariadb: Update text column detection to check for a binary collation (https://github.com/prisma/prisma/pull/29238)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.2",
    "p": 0.08
   },
@@ -1976,6 +2183,7 @@
    "version": "7.4.2",
    "section": "🛠 Fixes",
    "text": "@prisma/adapter-mariadb: Correct `relationJoins` compatibility check for MariaDB 8.x versions (https://github.com/prisma/prisma/pull/29246)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.2",
    "p": 0.06
   },
@@ -1983,6 +2191,7 @@
    "version": "7.4.2",
    "section": "🛠 Fixes",
    "text": "Fix partial index predicate comparison on PostgreSQL and MSSQL (https://github.com/prisma/prisma-engines/pull/5780)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.2",
    "p": 0.06
   },
@@ -1991,6 +2200,7 @@
    "section": "🙏 Huge thanks to our community",
    "text": "Many of the fixes in this release were contributed by our amazing community members. We're grateful for your continued support and contributions that help make Prisma better for everyone!",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.2",
    "p": 0.03
   },
@@ -1999,6 +2209,7 @@
    "section": "",
    "text": "Today, we are issuing a 7.4.1 patch release focused on bug fixes and quality improvements.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.05
   },
@@ -2006,6 +2217,7 @@
    "version": "7.4.1",
    "section": "🛠 Fixes",
    "text": "Fix cursor-based pagination regression with parameterised values (https://github.com/prisma/prisma/pull/29184)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.06
   },
@@ -2013,6 +2225,7 @@
    "version": "7.4.1",
    "section": "🛠 Fixes",
    "text": "Preserve `Prisma.skip` through query extension argument cloning (https://github.com/prisma/prisma/pull/29198)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.05
   },
@@ -2020,6 +2233,7 @@
    "version": "7.4.1",
    "section": "🛠 Fixes",
    "text": "Enable batching of multiple queries inside interactive transactions (https://github.com/prisma/prisma/pull/25571)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.05
   },
@@ -2027,6 +2241,7 @@
    "version": "7.4.1",
    "section": "🛠 Fixes",
    "text": "Add missing JSON value deserialization for JSONB parameter fields (https://github.com/prisma/prisma/pull/29182)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.06
   },
@@ -2034,6 +2249,7 @@
    "version": "7.4.1",
    "section": "🛠 Fixes",
    "text": "Apply result extensions correctly for nested and fluent relations (https://github.com/prisma/prisma/pull/29218)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.09
   },
@@ -2041,6 +2257,7 @@
    "version": "7.4.1",
    "section": "🛠 Fixes",
    "text": "Allow missing config datasource URL and validate only when needed (https://github.com/prisma/prisma-engines/pull/5777)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.07
   },
@@ -2048,6 +2265,7 @@
    "version": "7.4.1",
    "section": "🛠 Fixes",
    "text": "@prisma/adapter-ppg: Handle null values in type parsers for nullable columns (https://github.com/prisma/prisma/pull/29192)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.05
   },
@@ -2056,6 +2274,7 @@
    "section": "🛠 Fixes",
    "text": "Prisma Schema Language",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.14
   },
@@ -2063,6 +2282,7 @@
    "version": "7.4.1",
    "section": "🛠 Fixes",
    "text": "Support `where` argument on field-level `@unique` for partial indexes (https://github.com/prisma/prisma-engines/pull/5774)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.05
   },
@@ -2070,6 +2290,7 @@
    "version": "7.4.1",
    "section": "🛠 Fixes",
    "text": "Add object expression and object member support to schema reformatter (https://github.com/prisma/prisma-engines/pull/5776)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.1",
    "p": 0.05
   },
@@ -2078,6 +2299,7 @@
    "section": "",
    "text": "Today, we are excited to share the `7.4.0` stable release 🎉",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.09
   },
@@ -2086,6 +2308,7 @@
    "section": "Caching in Prisma Client",
    "text": "Today’s release is a big one, as we introduce a new caching layer into Prisma ORM. But why the need for a caching layer?",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.06
   },
@@ -2094,6 +2317,7 @@
    "section": "Caching in Prisma Client",
    "text": "In Prisma 7, the query compiler runs as a WebAssembly module directly on the JavaScript main thread. While this simplified the architecture by eliminating the separate engine process, it introduced a trade-off: every query now synchronously blocks the event loop during compilation.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.22
   },
@@ -2102,6 +2326,7 @@
    "section": "Caching in Prisma Client",
    "text": "For individual queries, compilation takes between 0.1ms and 1ms, which is barely noticeable in isolation. But under high concurrency this overhead adds up and creates event loop contention that affects overall application throughput.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.07
   },
@@ -2110,6 +2335,7 @@
    "section": "Caching in Prisma Client",
    "text": "For instance, say we have a query that is run over and over, but is a similar shape:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.07
   },
@@ -2118,6 +2344,7 @@
    "section": "Caching in Prisma Client",
    "text": "Prior to v7.4.0, this would be reevaluated ever time the query is run. Now, Prisma Client will extract the user-provided values and replaces them with typed placeholders, producing a normalized query shape:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.08
   },
@@ -2126,6 +2353,7 @@
    "section": "Caching in Prisma Client",
    "text": "This normalized shape is used as a cache key. On the first call, the query is compiled as usual and the resulting plan is stored in an LRU cache. On every subsequent call with the same query shape, regardless of the actual values, the cached plan is reused instantly without invoking the compiler.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.04
   },
@@ -2134,6 +2362,7 @@
    "section": "Caching in Prisma Client",
    "text": "We have more details on the impact of this change and some deep dives into Prisma architecture in an upcoming blog post!",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.05
   },
@@ -2142,6 +2371,7 @@
    "section": "Partial Indexes (Filtered Indexes) Support",
    "text": "We're excited to announce Partial Indexes support in Prisma! This powerful community-contributed feature allows you to create indexes that only include rows matching specific conditions, significantly reducing index size and improving query performance.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.03
   },
@@ -2150,6 +2380,7 @@
    "section": "Partial Indexes (Filtered Indexes) Support",
    "text": "Partial indexes are available behind the `partialIndexes` preview feature for PostgreSQL, SQLite, SQL Server, and CockroachDB, with full migration and introspection support.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.05
   },
@@ -2158,6 +2389,7 @@
    "section": "Partial Indexes (Filtered Indexes) Support",
    "text": "Enable the preview feature in your schema:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.05
   },
@@ -2166,6 +2398,7 @@
    "section": "Partial Indexes (Filtered Indexes) Support",
    "text": "Raw SQL syntax",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.07
   },
@@ -2174,6 +2407,7 @@
    "section": "Partial Indexes (Filtered Indexes) Support",
    "text": "For maximum flexibility, use the `raw()` function with database-specific predicates:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.04
   },
@@ -2182,6 +2416,7 @@
    "section": "Partial Indexes (Filtered Indexes) Support",
    "text": "Type-safe object syntax",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.06
   },
@@ -2190,6 +2425,7 @@
    "section": "Partial Indexes (Filtered Indexes) Support",
    "text": "For better type safety, use the object literal syntax for simple conditions:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.05
   },
@@ -2198,6 +2434,7 @@
    "section": "Bug Fixes",
    "text": "Most of these fixes are community contributions - thank you to our amazing contributors!",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.05
   },
@@ -2205,6 +2442,7 @@
    "version": "7.4.0",
    "section": "Bug Fixes",
    "text": "prisma/prisma-engines#5767: Fixed an issue with PostgreSQL migration scripts that prevented usage of `CREATE INDEX CONCURRENTLY` in migrations",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.05
   },
@@ -2212,6 +2450,7 @@
    "version": "7.4.0",
    "section": "Bug Fixes",
    "text": "prisma/prisma-engines#5752: Fixed BigInt precision loss in JSON aggregation for MySQL and CockroachDB by casting BigInt values to text (from community member polaz)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.06
   },
@@ -2219,6 +2458,7 @@
    "version": "7.4.0",
    "section": "Bug Fixes",
    "text": "prisma/prisma-engines#5750: Fixed connection failures with non-ASCII database names by properly URL-decoding database names in connection strings",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.06
   },
@@ -2226,6 +2466,7 @@
    "version": "7.4.0",
    "section": "Bug Fixes",
    "text": "#29155: Fixed silent transaction commit errors in PlanetScale adapter by ensuring COMMIT failures are properly propagated",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.08
   },
@@ -2233,6 +2474,7 @@
    "version": "7.4.0",
    "section": "Bug Fixes",
    "text": "#29141: Resolved race condition errors (EREQINPROG) in SQL Server adapter by serializing commit/rollback operations using mutex synchronization",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.05
   },
@@ -2240,6 +2482,7 @@
    "version": "7.4.0",
    "section": "Bug Fixes",
    "text": "#29158: Fixed MSSQL connection string parsing to properly handle curly brace escaping for passwords containing special characters",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.4.0",
    "p": 0.07
   },
@@ -2248,6 +2491,7 @@
    "section": "",
    "text": "Today, we are excited to share the `7.3.0` stable release 🎉",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.3.0",
    "p": 0.09
   },
@@ -2255,6 +2499,7 @@
    "version": "7.3.0",
    "section": "ORM",
    "text": "#28976: Fast and Small Query Compilers We've been working on various performance-related bugs since the initial ORM 7.0 release. With 7.3.0, we're introducing a new `compilerBuild` option for the client generator block in `schema.prisma` with two options: `fast` and `small`. This allows you to swap the underlying Query Compiler engine based on your selection, one built for speed (with an increase in size), and one built for size (with the trade off for speed). By default, the `fast` mode is used, but this can be set by the user:",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.3.0",
    "p": 0.06
   },
@@ -2263,6 +2508,7 @@
    "section": "ORM",
    "text": "We still have more in progress for performance, but this new `compilerBuild` option is our first step toward addressing your concerns!",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.3.0",
    "p": 0.06
   },
@@ -2270,6 +2516,7 @@
    "version": "7.3.0",
    "section": "ORM",
    "text": "#29005: Bypass the Query Compiler for Raw Queries Raw queries (`$executeRaw`, `$queryRaw`) can now skip going through the query compiler and query interpreter infrastructure. They can be sent directly to the driver adapter, removing additional overhead.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.3.0",
    "p": 0.04
   },
@@ -2277,6 +2524,7 @@
    "version": "7.3.0",
    "section": "ORM",
    "text": "#28965: Update MSSQL to v12.2.0 This community PR updates the `@prisma/adapter-mssql` to use MSSQL v12.2.0. Thanks Jay-Lokhande!",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.3.0",
    "p": 0.12
   },
@@ -2284,6 +2532,7 @@
    "version": "7.3.0",
    "section": "ORM",
    "text": "#29001: Pin better-sqlite3 version to avoid SQLite bug An underlying bug in SQLite 3.51.0 has affected the `better-sqlite3` adapter. We’ve bumped the version that powers `@prisma/better-sqlite3` and have pinned the version to prevent any unexpected issues. If you are using `@prisma/better-sqlite3` , please upgrade to v7.3.0.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.3.0",
    "p": 0.27
   },
@@ -2291,6 +2540,7 @@
    "version": "7.3.0",
    "section": "ORM",
    "text": "#29002: Revert `@map` enums to v6.19.0 behavior In the initial release of v7.0, we made a change with Mapped Enums where the generated enum would get its value from the value passed to the `@map` function. This was a breaking change from v6 that caused issues for many users. We have reverted this change for the time being, as many different diverging approaches have emerged from the community discussion.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.3.0",
    "p": 0.14
   },
@@ -2298,6 +2548,7 @@
    "version": "7.3.0",
    "section": "ORM",
    "text": "prisma-engines#5745: Cast BigInt to text in JSON aggregation When using `relationJoins` with BigInt fields in Prisma 7, JavaScript's `JSON.parse` loses precision for integers larger than `Number.MAX_SAFE_INTEGER` (2^53 - 1). This happens because PostgreSQL's `JSONB_BUILD_OBJECT` returns BigInt values as JSON numbers, which JavaScript cannot represent precisely. This PR cast BigInt columns to `::text` inside `JSONB_BUILD_OBJECT` calls, similar to how `MONEY` is already cast to `::numeric`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.3.0",
    "p": 0.07
   },
@@ -2306,6 +2557,7 @@
    "section": "ORM",
    "text": "This ensures BigInt values are returned as JSON strings, preserving full precision when parsed in JavaScript.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.3.0",
    "p": 0.42
   },
@@ -2314,6 +2566,7 @@
    "section": "",
    "text": "Today, we are excited to share the `7.2.0` stable release 🎉",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.08
   },
@@ -2321,6 +2574,7 @@
    "version": "7.2.0",
    "section": "ORM",
    "text": "#28830: feat: add `sqlcommenter-query-insights` plugin Adds a new SQL commenter plugin to support query insights metadata.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.05
   },
@@ -2328,6 +2582,7 @@
    "version": "7.2.0",
    "section": "ORM",
    "text": "#28860: feat(migrate): add `-url` param for `db pull`, `db push`, `migrate dev` Adds a `-url` flag to key migrate commands to make connection configuration more flexible.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.04
   },
@@ -2335,6 +2590,7 @@
    "version": "7.2.0",
    "section": "ORM",
    "text": "#28895: feat(config): allow undefined URLs in e.g. `prisma generate` Allows certain workflows (such as `prisma generate`) to proceed even when URLs are undefined.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.05
   },
@@ -2342,6 +2598,7 @@
    "version": "7.2.0",
    "section": "ORM",
    "text": "#28903: feat(cli): customize `prisma init` based on the JS runtime (Bun vs others) Makes `prisma init` tailor generated setup depending on whether the runtime is Bun or another JavaScript runtime.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.06
   },
@@ -2349,6 +2606,7 @@
    "version": "7.2.0",
    "section": "ORM",
    "text": "#28846: fix(client-engine-runtime): make `DataMapperError` a `UserFacingError` Ensures `DataMapperError` is surfaced as a user-facing error for clearer, more actionable error reporting.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.06
   },
@@ -2356,6 +2614,7 @@
    "version": "7.2.0",
    "section": "ORM",
    "text": "#28849: fix(adapter-{pg,neon,ppg}): handle 22P02 error in Postgres Improves Postgres adapter error handling for invalid-text-representation errors (`22P02`).",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.04
   },
@@ -2363,6 +2622,7 @@
    "version": "7.2.0",
    "section": "ORM",
    "text": "#28913: fix: fix byte upserts by removing legacy byte array representation Fixes byte upsert behavior by removing a legacy byte-array representation path.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.13
   },
@@ -2370,6 +2630,7 @@
    "version": "7.2.0",
    "section": "ORM",
    "text": "#28535: fix(client,internals,migrate,generator-helper): handle multibyte UTF-8 characters split across chunk boundaries in byline Prevents issues when multibyte UTF-8 characters are split across chunk boundaries during line processing.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.04
   },
@@ -2377,6 +2638,7 @@
    "version": "7.2.0",
    "section": "ORM",
    "text": "#28911: fix(cli): make `prisma version --json` emit JSON only to stdout Ensures machine-readable JSON output is emitted cleanly to stdout without extra noise.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.08
   },
@@ -2384,6 +2646,7 @@
    "version": "7.2.0",
    "section": "VS Code Extension",
    "text": "#1950: fix: TML-1670 studio connections Resolves issues related to Studio connections, improving reliability for VS Code or language-server integrations.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.2.0",
    "p": 0.06
   },
@@ -2392,6 +2655,7 @@
    "section": "",
    "text": "Today, we are excited to share the `7.1.0` stable release 🎉",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.09
   },
@@ -2400,6 +2664,7 @@
    "section": "",
    "text": "This release brings quality of life improvements and fixes various bugs.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.07
   },
@@ -2407,6 +2672,7 @@
    "version": "7.1.0",
    "section": "Prisma ORM",
    "text": "#28735: pnpm monorepo issues with prisma client runtime utils Resolves issues in pnpm monorepos where users would report TypeScript issues related to `@prisma/client-runtime-utils`.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.07
   },
@@ -2414,6 +2680,7 @@
    "version": "7.1.0",
    "section": "Prisma ORM",
    "text": "#28769: implement sql commenter plugins for Prisma Client This PR implements support for SQL commenter plugins to Prisma Client. The feature will allow users to add metadata to SQL queries as comments following the sqlcommenter format. Here’s two related PRs that were also merged: #28796: implement query tags for SQL commenter plugin #28802: add `traceContext` SQL commenter plugin",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.04
   },
@@ -2421,6 +2688,7 @@
    "version": "7.1.0",
    "section": "Prisma ORM",
    "text": "#28737: added error message when constructing client without configs This commit adds an additional error message when trying to create a new PrismaClient instance without any arguments. Thanks to @xio84 for this community contribution!",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.08
   },
@@ -2428,6 +2696,7 @@
    "version": "7.1.0",
    "section": "Prisma ORM",
    "text": "#28820: mark `@opentelemetry/api` as external in instrumentation Ensures `@opentelemetry/api` is treated as an external dependency rather than bundled. Since it is a peer dependency, this prevents applications from ending up with duplicate copies of the package.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.08
   },
@@ -2435,6 +2704,7 @@
    "version": "7.1.0",
    "section": "Prisma ORM",
    "text": "#28694: allow `env()` helper to accept interface-based generics Updates the `env()` helper’s type definition so it works with interfaces as well as type aliases. This removes the previous constraint requiring an index signature and resolves TS2344 errors when using interface-based env types. Runtime behavior is unchanged. Thanks to @SaubhagyaAnubhav for this community contribution!",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.04
   },
@@ -2442,6 +2712,7 @@
    "version": "7.1.0",
    "section": "Read Replicas extension",
    "text": "#53: Add support for Prisma 7 Users of the read-replicas extension can now use the extension in Prisma v7. You can update by installing: For folks still on Prisma v6, install version `0.4.1`:",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.06
   },
@@ -2450,6 +2721,7 @@
    "section": "Read Replicas extension",
    "text": "For more information, visit the repo",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.05
   },
@@ -2458,6 +2730,7 @@
    "section": "SQL comments",
    "text": "We're excited to announce SQL Comments support in Prisma 7.1.0! This new feature allows you to append metadata to your SQL queries as comments, making it easier to correlate queries with application context for improved observability, debugging, and tracing.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.04
   },
@@ -2466,6 +2739,7 @@
    "section": "SQL comments",
    "text": "SQL comments follow the sqlcommenter format developed by Google, which is widely supported by database monitoring tools. With this feature, your SQL queries can include rich metadata:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.06
   },
@@ -2474,6 +2748,7 @@
    "section": "Basic usage",
    "text": "Pass an array of SQL commenter plugins to the new `comments` option when creating a `PrismaClient` instance:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.05
   },
@@ -2482,6 +2757,7 @@
    "section": "Query tags",
    "text": "The `@prisma/sqlcommenter-query-tags` package lets you add arbitrary tags to queries within an async context:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.06
   },
@@ -2490,6 +2766,7 @@
    "section": "Query tags",
    "text": "Resulting SQL:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.1
   },
@@ -2498,6 +2775,7 @@
    "section": "Query tags",
    "text": "Use `withMergedQueryTags` to merge tags with outer scopes:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.07
   },
@@ -2506,6 +2784,7 @@
    "section": "Trace context",
    "text": "The `@prisma/sqlcommenter-trace-context` package adds W3C Trace Context (`traceparent`) headers for distributed tracing correlation:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.06
   },
@@ -2514,6 +2793,7 @@
    "section": "Trace context",
    "text": "When tracing is enabled and the span is sampled:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.1
   },
@@ -2522,6 +2802,7 @@
    "section": "Trace context",
    "text": "Note: Requires @prisma/instrumentation to be configured. The traceparent is only added when tracing is active and the span is sampled.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.11
   },
@@ -2530,6 +2811,7 @@
    "section": "Custom plugins",
    "text": "Create your own plugins to add custom metadata:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.04
   },
@@ -2538,6 +2820,7 @@
    "section": "Framework integration",
    "text": "SQL comments work seamlessly with popular frameworks, e.g., Hono:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.04
   },
@@ -2546,6 +2829,7 @@
    "section": "Framework integration",
    "text": "Additional framework examples for Express, Koa, Fastify, and NestJS are available in the documentation.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.03
   },
@@ -2554,6 +2838,7 @@
    "section": "Framework integration",
    "text": "For complete documentation, see SQL Comments. We'd love to hear your feedback on this feature! Please open an issue on GitHub or join the discussion in our Discord community.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.1.0",
    "p": 0.04
   },
@@ -2562,6 +2847,7 @@
    "section": "",
    "text": "Today, we are issuing a 7.0.1 patch release focused on quality of life improvements, and bug fixes.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.1",
    "p": 0.06
   },
@@ -2569,6 +2855,7 @@
    "version": "7.0.1",
    "section": "🛠 Fixes",
    "text": "Prisma Studio: Support Deno >= 1.4 <2.2 and Bun >= 1 (via https://github.com/prisma/prisma/pull/28583) Fix collisions between user and internal Studio columns when querying (via https://github.com/prisma/prisma/pull/28677) Warn when SQLite file doesn't exist (via https://github.com/prisma/prisma/pull/28711/commits/c33a1ea9e5a94e6a5c876bc4567915cc5f354658) Fix https://github.com/prisma/studio/issues/1363 (via https://github.com/prisma/prisma/pull/28711/commits/07224d4651d043f4b08735eeaa144aa9d75f9fe3) Sort tables alphabetically (via https://github.com/prisma/prisma/pull/28702)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.1",
    "p": 0.07
   },
@@ -2576,6 +2863,7 @@
    "version": "7.0.1",
    "section": "🛠 Fixes",
    "text": "Prisma CLI Fix potential vulnerabilities in installed dependencies (via https://github.com/prisma/prisma/pull/28592) Fix https://github.com/prisma/prisma/issues/28240, an exit code regression affecting `prisma migrate diff` (via https://github.com/prisma/prisma-engines/pull/5699) Show informative message when `prisma db seed` is run, but no `migrations.seed` command is specified in the Prisma config file (via https://github.com/prisma/prisma/pull/28711) Relax `engines` check in `package.json`, to let Node.js 25+ users adopt Prisma, although Node.js 25+ isn't considered stable yet (via https://github.com/prisma/prisma/pull/28600). Thanks @Sajito!",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.1",
    "p": 0.1
   },
@@ -2583,6 +2871,7 @@
    "version": "7.0.1",
    "section": "🛠 Fixes",
    "text": "Prisma Client Restore `cockroachdb` support in `prisma-client-js` generator, after it was accidentally not shipped in Prisma 7.0.0 (via https://github.com/prisma/prisma/pull/28690)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.1",
    "p": 0.08
   },
@@ -2590,6 +2879,7 @@
    "version": "7.0.1",
    "section": "🛠 Fixes",
    "text": "@prisma/better-sqlite3 Bump underlying version of `better-sqlite3` to `^12.4.5`, fixing https://github.com/prisma/prisma/issues/28624 (via https://github.com/prisma/prisma/pull/28625). Thank you @bhbs!",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.1",
    "p": 0.05
   },
@@ -2598,6 +2888,7 @@
    "section": "",
    "text": "Today, we are excited to share the `7.0.0` stable release 🎉",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.19
   },
@@ -2606,6 +2897,7 @@
    "section": "",
    "text": "🌟 Star this repo for notifications about new releases, bug fixes & features — and follow us on X!",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.03
   },
@@ -2614,6 +2906,7 @@
    "section": "Highlights",
    "text": "Over the past year we focused on making it simpler and faster to build applications with Prisma, no matter what tools you use or where you deploy, with exceptional developer experience at it’s core. This release makes many features introduced over the past year as the new defaults moving forward.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.47
   },
@@ -2622,6 +2915,7 @@
    "section": "ESM Prisma Client as the default",
    "text": "The Rust-free/ESM Prisma Client has been in the works for some time now, all the way back to v6.16.0, with early iterations being available for developers to adopt. Now with version 7.0, we’re making this the default for all new projects. With this, developers are able to get:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.3
   },
@@ -2629,6 +2923,7 @@
    "version": "7.0.0",
    "section": "ESM Prisma Client as the default",
    "text": "~90% smaller bundle sizes",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.27
   },
@@ -2636,6 +2931,7 @@
    "version": "7.0.0",
    "section": "ESM Prisma Client as the default",
    "text": "Up to 3x faster queries",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.24
   },
@@ -2643,6 +2939,7 @@
    "version": "7.0.0",
    "section": "ESM Prisma Client as the default",
    "text": "Significantly simpler deployments",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.31
   },
@@ -2651,6 +2948,7 @@
    "section": "ESM Prisma Client as the default",
    "text": "Adopting the new client is as simple as swapping the `prisma-client-js` provider for `prisma-client` in your main `schema.prisma` :",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.62
   },
@@ -2659,6 +2957,7 @@
    "section": "Prisma Client changes",
    "text": "In v7, we've moved to requiring users pass either an adapter or `accelerteUrl` when creating a new instance of `PrismaClient`.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.82
   },
@@ -2667,6 +2966,7 @@
    "section": "Prisma Client changes",
    "text": "For Driver Adapters",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.28
   },
@@ -2675,6 +2975,7 @@
    "section": "Prisma Client changes",
    "text": "For other databases:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.19
   },
@@ -2683,6 +2984,7 @@
    "section": "Prisma Client changes",
    "text": "We’ve also removed support for additional options when configuring your Prisma Client",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.74
   },
@@ -2690,6 +2992,7 @@
    "version": "7.0.0",
    "section": "Prisma Client changes",
    "text": "`new PrismaClient({ datasources: .. })` support has been removed",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.85
   },
@@ -2697,6 +3000,7 @@
    "version": "7.0.0",
    "section": "Prisma Client changes",
    "text": "`new PrismaClient({datasourceUrl: ..})` support has been removed",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.86
   },
@@ -2704,6 +3008,7 @@
    "version": "7.0.0",
    "section": "Prisma Client changes",
    "text": "`new PrismaClient()` support has been removed",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.86
   },
@@ -2711,6 +3016,7 @@
    "version": "7.0.0",
    "section": "Prisma Client changes",
    "text": "`new PrismaClient({})` support has been removed",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.72
   },
@@ -2719,6 +3025,7 @@
    "section": "Prisma Client changes",
    "text": "For Prisma Accelerate users:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.18
   },
@@ -2727,6 +3034,7 @@
    "section": "Generated Client and types move out of `node_modules`",
    "text": "When running `prisma generate`, the generated Client runtime and project types will now require a `output` path to be set in your project’s main `schema.prisma`. We recommend that they be generated inside of your project’s `src` directory to ensure that your existing tools are able to consume them like any other piece of code you might have.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.78
   },
@@ -2735,6 +3043,7 @@
    "section": "Generated Client and types move out of `node_modules`",
    "text": "Update your code to import `PrismaClient` from this generated output:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.83
   },
@@ -2743,6 +3052,7 @@
    "section": "Generated Client and types move out of `node_modules`",
    "text": "For developers who still need to stay on the `prisma-client-js` but are using the new `output` option, theres’s a new required package, `@prisma/client-runtime-utils` , which needs to be installed:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.58
   },
@@ -2751,6 +3061,7 @@
    "section": "Removal of implicit Prisma commands",
    "text": "In previous releases, Prisma would run `generate` and `seed` in various situations:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.76
   },
@@ -2758,6 +3069,7 @@
    "version": "7.0.0",
    "section": "Removal of implicit Prisma commands",
    "text": "post-install hook would run `prisma generate`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.58
   },
@@ -2765,6 +3077,7 @@
    "version": "7.0.0",
    "section": "Removal of implicit Prisma commands",
    "text": "`prisma migrate` would run `prisma generate` and `prisma seed`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.79
   },
@@ -2773,6 +3086,7 @@
    "section": "Removal of implicit Prisma commands",
    "text": "This behaviour has been removed in favor of explicitly requiring commands to be run by users.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.77
   },
@@ -2781,6 +3095,7 @@
    "section": "Removal of `prisma generate` flags",
    "text": "For `prisma generate` , we’ve removed a few flags that were no longer needed:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.53
   },
@@ -2788,6 +3103,7 @@
    "version": "7.0.0",
    "section": "Removal of `prisma generate` flags",
    "text": "`prisma generate --data-proxy`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.82
   },
@@ -2795,6 +3111,7 @@
    "version": "7.0.0",
    "section": "Removal of `prisma generate` flags",
    "text": "`prisma generate --accelerate`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.79
   },
@@ -2802,6 +3119,7 @@
    "version": "7.0.0",
    "section": "Removal of `prisma generate` flags",
    "text": "`prisma generate --no-engine`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.75
   },
@@ -2809,6 +3127,7 @@
    "version": "7.0.0",
    "section": "Removal of `prisma generate` flags",
    "text": "`prisma generate --allow-no-models`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.73
   },
@@ -2817,6 +3136,7 @@
    "section": "Removal of `prisma db` flags",
    "text": "For `prisma db`, we’ve removed the following flag:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.61
   },
@@ -2824,6 +3144,7 @@
    "version": "7.0.0",
    "section": "Removal of `prisma db` flags",
    "text": "`prisma db pull --local-d1` This parameter no longer exists but equivalent functionality can be implemented by defining a config file with a connection string for the local D1 database. We provide a helper function listLocalDatabases in the D1 adapter to simplify the migration:",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.85
   },
@@ -2832,6 +3153,7 @@
    "section": "Removal of `prisma migrate` flags",
    "text": "For `prisma migrate diff`, we’ve removed the following flags:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.74
   },
@@ -2839,6 +3161,7 @@
    "version": "7.0.0",
    "section": "Removal of `prisma migrate` flags",
    "text": "`prisma --[from/to]-schema-datamodel` This is now replaced with just `--[from/to]-schema`. The usage is otherwise the same.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.78
   },
@@ -2846,6 +3169,7 @@
    "version": "7.0.0",
    "section": "Removal of `prisma migrate` flags",
    "text": "`prisma --[from/to]-url`, `prisma --[from/to]-schema-datasource` These are now replaced with `--[from/to]-config-datasource`. The user is expected to populate the datasource in the config file and use the new flag. We no longer support diffing two different URLs/datasources, since only one config can be used at a time.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.87
   },
@@ -2853,6 +3177,7 @@
    "version": "7.0.0",
    "section": "Removal of `prisma migrate` flags",
    "text": "`prisma --[from/to]-local-d1` These are now replaced with `--[from/to]-config-datasource`. The user is expected to populate the datasource in the config file and use the new flag with a minor complication due to the fact that it needs to reference the local D1 database. Our `listLocalDatabases` helper function can be used for that, analogously to the `db pull --local-d1` example above (where the user sets the datasource URL to `file://${listLocalDatabases().pop()}`)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.89
   },
@@ -2861,6 +3186,7 @@
    "section": "MongoDB support in Prisma 7",
    "text": "Currently, MongoDB is not supported in Prisma 7. For folks using MongoDB, please stay on Prisma v6. We aim to add support for MongoDB in a future release.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.51
   },
@@ -2869,6 +3195,7 @@
    "section": "Driver Adapter naming updates",
    "text": "We’ve standardized our naming conventions for the various driver adapters internally. The following driver adapters have been updated:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.12
   },
@@ -2876,6 +3203,7 @@
    "version": "7.0.0",
    "section": "Driver Adapter naming updates",
    "text": "`PrismaBetterSQLite3` ⇒ `PrismaBetterSqlite3`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.69
   },
@@ -2883,6 +3211,7 @@
    "version": "7.0.0",
    "section": "Driver Adapter naming updates",
    "text": "`PrismaD1HTTP` ⇒ `PrismaD1Http`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.66
   },
@@ -2890,6 +3219,7 @@
    "version": "7.0.0",
    "section": "Driver Adapter naming updates",
    "text": "`PrismaLibSQL` ⇒ `PrismaLibSql`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.62
   },
@@ -2897,6 +3227,7 @@
    "version": "7.0.0",
    "section": "Driver Adapter naming updates",
    "text": "`PrismaNeonHTTP` ⇒ `PrismaNeonHttp`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.67
   },
@@ -2905,6 +3236,7 @@
    "section": "Schema and config file updates",
    "text": "As part of a larger change in how the Prisma CLI reads your project configuration, we’ve updated what get’s set the schema, and what gets set in the `prisma.config.ts` . Also as part of this release, `prisma.config.ts` is now required for projects looking to perform introspection and migration.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.89
   },
@@ -2913,6 +3245,7 @@
    "section": "Schema and config file updates",
    "text": "Schema changes",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.33
   },
@@ -2920,6 +3253,7 @@
    "version": "7.0.0",
    "section": "Schema and config file updates",
    "text": "`datasource.url` is now configured in the config file",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.37
   },
@@ -2927,6 +3261,7 @@
    "version": "7.0.0",
    "section": "Schema and config file updates",
    "text": "`datasource.shadowDatabaseUrl` is now configured in the config file",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.16
   },
@@ -2934,6 +3269,7 @@
    "version": "7.0.0",
    "section": "Schema and config file updates",
    "text": "`datasource.directUrl` has been made unnecessary and has removed",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.61
   },
@@ -2941,6 +3277,7 @@
    "version": "7.0.0",
    "section": "Schema and config file updates",
    "text": "`generator.runtime=”react-native”` has been removed",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.75
   },
@@ -2949,6 +3286,7 @@
    "section": "Schema and config file updates",
    "text": "For early adopters of the config file, a few things have been removed with this release",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.67
   },
@@ -2956,6 +3294,7 @@
    "version": "7.0.0",
    "section": "Schema and config file updates",
    "text": "`engine: 'js'| 'classic'` has been removed",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.63
   },
@@ -2963,6 +3302,7 @@
    "version": "7.0.0",
    "section": "Schema and config file updates",
    "text": "`adapter` has been removed",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.81
   },
@@ -2971,6 +3311,7 @@
    "section": "Schema and config file updates",
    "text": "A brief before/after:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.22
   },
@@ -2979,6 +3320,7 @@
    "section": "Explicit loading of environment variables",
    "text": "As part of the move to Prisma config, we’re no longer automatically loading environment variables when invoking the Prisma CLI. Instead, developers can utilize libraries like `dotenv` to manage their environment variables and load them as they need. This means you can have dedicated local environment variables or ones set only for production. This removes any accidental loading of environment variables while giving developers full control.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.77
   },
@@ -2987,6 +3329,7 @@
    "section": "Removed support for `prisma` keyword in `package.json`",
    "text": "In previous releases, users could configure their schema entry point and seed script in a `prisma` block in the `package.json` of their project. With the move to `prisma.config.ts`, this no longer makes sense and has been removed. To migrate, use the Prisma config file instead:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.87
   },
@@ -2995,6 +3338,7 @@
    "section": "Removed Client Engines:",
    "text": "We’ve removed the following client engines:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.59
   },
@@ -3002,6 +3346,7 @@
    "version": "7.0.0",
    "section": "Removed Client Engines:",
    "text": "`LibraryEngine` (`engineType = \"library\"`, the Node-API Client)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.65
   },
@@ -3009,6 +3354,7 @@
    "version": "7.0.0",
    "section": "Removed Client Engines:",
    "text": "`BinaryEngine` (`engineType = \"binary\"`, the long-running executable binary)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.59
   },
@@ -3016,6 +3362,7 @@
    "version": "7.0.0",
    "section": "Removed Client Engines:",
    "text": "`DataProxyEngine` and `AccelerateEngine` (Accelerate uses a new `RemoteExecutor` now)",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.61
   },
@@ -3023,6 +3370,7 @@
    "version": "7.0.0",
    "section": "Removed Client Engines:",
    "text": "`ReactNativeEngine`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.63
   },
@@ -3031,6 +3379,7 @@
    "section": "Deprecated metrics feature has been removed",
    "text": "We deprecated the previewFeature `metrics` some time ago, and have removed it fully for version 7. If you need metrics related data available, you can use the underlying driver adapter itself, like the Pool metric from the Postgres driver.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.6
   },
@@ -3038,6 +3387,7 @@
    "version": "7.0.0",
    "section": "Miscellaneous",
    "text": "#28493: Stop shimming `WeakRef` in Cloudflare Workers. This will now avoid any unexpected memory leaks.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.11
   },
@@ -3045,6 +3395,7 @@
    "version": "7.0.0",
    "section": "Miscellaneous",
    "text": "#28297: Remove hardcoded URL validation. Users are now required to make sure they don’t include sensitive information in their config files.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.5
   },
@@ -3052,6 +3403,7 @@
    "version": "7.0.0",
    "section": "Miscellaneous",
    "text": "#28273: Removed Prisma v1 detection",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.28
   },
@@ -3059,6 +3411,7 @@
    "version": "7.0.0",
    "section": "Miscellaneous",
    "text": "#28343: Remove undocumented `--url` flag from `prisma db pull`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.44
   },
@@ -3066,6 +3419,7 @@
    "version": "7.0.0",
    "section": "Miscellaneous",
    "text": "#28286: Remove deprecated `prisma introspect` command.",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.6
   },
@@ -3073,6 +3427,7 @@
    "version": "7.0.0",
    "section": "Miscellaneous",
    "text": "#28480: Rename `/wasm` to `/edge` This change only affects `prisma-client-js` Before: `/edge` → meant “for Prisma Accelerate” `/wasm` → meant “for Edge JS runtimes (e.g., Cloudflare, Vercel Edge)” After: `/edge` → means “for Edge JS runtimes (e.g., Cloudflare, Vercel Edge)”",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.64
   },
@@ -3080,6 +3435,7 @@
    "version": "7.0.0",
    "section": "Miscellaneous",
    "text": "The following Prisma-specific environment variables have been removed `PRISMA_CLI_QUERY_ENGINE_TYPE` `PRISMA_CLIENT_ENGINE_TYPE` `PRISMA_QUERY_ENGINE_BINARY` `PRISMA_QUERY_ENGINE_LIBRARY` `PRISMA_GENERATE_SKIP_AUTOINSTALL` `PRISMA_SKIP_POSTINSTALL_GENERATE` `PRISMA_GENERATE_IN_POSTINSTALL` `PRISMA_GENERATE_DATAPROXY` `PRISMA_GENERATE_NO_ENGINE` `PRISMA_CLIENT_NO_RETRY` `PRISMA_MIGRATE_SKIP_GENERATE` `PRISMA_MIGRATE_SKIP_SEED`",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.74
   },
@@ -3088,6 +3444,7 @@
    "section": "Mapped enums",
    "text": "If you followed along on twitter, you will have seen that we teased a highly-request user feature was coming to v7.0. That highly-requested feature is…. mapped emuns! We now support the `@map` attribute for enum members, which can be used to set their expected runtime values",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.04
   },
@@ -3096,6 +3453,7 @@
    "section": "New Prisma Studio comes to the CLI",
    "text": "We launched a new version of Prisma Studio to our Console and VS Code extension a while back, but the Prisma CLI still shipped with the older version.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.06
   },
@@ -3104,6 +3462,7 @@
    "section": "New Prisma Studio comes to the CLI",
    "text": "Now, with v7.0, we’ve updated the Prisma CLI to include the new Prisma Studio. Not only are you able to inspect your database, but you get rich visualization to help you understand connected relationships in your database. It’s customizable, much smaller, and can inspect remote database by passing a `--url` flag. This new version of Prisma Studio is not tied to the Prisma ORM, and establishes a new foundation for what comes next.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.06
   },
@@ -3112,6 +3471,7 @@
    "section": "New Prisma Studio comes to the CLI",
    "text": "Currently, the new studio only supports Postgres, MySQL, and SQLite, with support for other databases coming in a future release.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.04
   },
@@ -3120,6 +3480,7 @@
    "section": "New Prisma Studio comes to the CLI",
    "text": "For issues related to Prisma Studio, please direct them to the Studio repo on github.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.04
   },
@@ -3128,6 +3489,7 @@
    "section": "Prisma Postgres",
    "text": "Prisma Postgres is our managed Postgres service, designed with the same philosophy of great DX that has guided Prisma for close to a decade. It works great with serverless, it’s fast, and with simple pricing and a generous free tier. Here’s what’s new:",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.04
   },
@@ -3136,6 +3498,7 @@
    "section": "Connection Pooling Changes with Prisma Accelerate",
    "text": "With support for connection pooling being added natively to Prisma Postgres, Prisma Accelerate now serves as a dedicated caching layer. If you were using Accelerate for the connection pooling features, don’t worry! Your existing connection string via Accelerate will continue to work, and you can switch to the new connection pool when you’re ready.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.05
   },
@@ -3144,6 +3507,7 @@
    "section": "Simplified connection flow",
    "text": "We've made connecting to Prisma Postgres even simpler. Now, when you go to connect to a database, you’ll get new options to enable connection pooling, or to enable Prisma Accelerate for caching. Below, you’ll get code snippets for getting things configured in your project right away.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.05
   },
@@ -3152,6 +3516,7 @@
    "section": "Serverless driver",
    "text": "For those who want to connect to Prisma Postgres but are deploying to environments like Cloudflare Workers, we have a new version of the serverless client library to support these runtimes.",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.04
   },
@@ -3159,6 +3524,7 @@
    "version": "7.0.0",
    "section": "Serverless driver",
    "text": "Compatible with Cloudflare Workers, Vercel Edge Functions, Deno Deploy, AWS Lambda, and Bun",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.06
   },
@@ -3166,6 +3532,7 @@
    "version": "7.0.0",
    "section": "Serverless driver",
    "text": "Stream results row-by-row to handle large datasets with constant memory usage",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.06
   },
@@ -3173,6 +3540,7 @@
    "version": "7.0.0",
    "section": "Serverless driver",
    "text": "Pipeline multiple queries over a single connection, reducing latency by up to 3x",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.04
   },
@@ -3180,6 +3548,7 @@
    "version": "7.0.0",
    "section": "Serverless driver",
    "text": "SQL template literals with automatic parameterization and full TypeScript support",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.07
   },
@@ -3187,6 +3556,7 @@
    "version": "7.0.0",
    "section": "Serverless driver",
    "text": "Built-in transactions, batch operations, and extensible type system",
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.06
   },
@@ -3195,6 +3565,7 @@
    "section": "Serverless driver",
    "text": "Check out the serverless driver docs for more details",
    "prose": true,
+   "kind": "releases",
    "source": "https://github.com/prisma/orm/releases/tag/7.0.0",
    "p": 0.04
   }

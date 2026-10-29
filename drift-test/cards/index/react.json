@@ -674,6 +674,7 @@
    "version": "19.3.0",
    "section": "New React Features",
    "text": "`<ViewTransition />`: Adds `<ViewTransition />` and `addTransitionType` APIs to power View Transition animations in React (@sebmarkbage, @jackpope, @gaearon: #31975, #31987, #31996, #31999, #32001, #32002, #32028, #32029, #32031, #32034, #32038, #32041, #32050, #32090, #32105, #32254, #32379, #32422, #32462, #32540, #32545, #32585, #32599, #32611, #32612, #32617, #32651, #32653, #32656, #32664, #32699, #32723, #32734, #32751, #32752, #32760, #32761, #32764, #32772, #32790, #32819, #32820, #32822, #32833, #32849, #33094, #33191, #33200, #33206, #33293, #33330, #33331, #33332, #33357, #33362, #33433, #33576, #34374, #34450, #34481, #34500, #34502, #34510, #34511, #34539, #35567, #35564, #35485, #35380, #35063, #35060, #34676, #36917, #35337, #35520)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L5",
    "p": 0.04
   },
@@ -681,6 +682,7 @@
    "version": "19.3.0",
    "section": "New React Features",
    "text": "Fragment Refs: Add Refs to `<Fragment />` to support composable platform behavior (@jackpope, @sebmarkbage, @eps1lon, @Dhakshin2007, @chirokas, @teamleaderleo, @fallintoplace: #32465, #32613, #32619, #32654, #32660, #32682, #32722, #32813, #32814, #33056, #33058, #33093, #34069, #34103, #34544, #34545, #37062, #37061, #37060, #36047, #36010, #35642, #35641, #35637, #35630, #34935, #37457, #37408, #37326, #37251, #37171, #37169, #37168, #37167, #37166, #37165, #37164, #37163, #37162, #37161, #37160, #37125, #37063)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L6",
    "p": 0.04
   },
@@ -688,6 +690,7 @@
    "version": "19.3.0",
    "section": "New React DOM Features",
    "text": "`browser()`: a new `react-dom` API that returns a usable which errors during server rendering and resolves in the browser. `use(browser())` inside a `<Suspense>` boundary marks a subtree as browser-only without reporting a recoverable error (@gnoff: #37143, #37241) Added an `onBrowserBailout` option to the `react-dom/server` APIs to observe when a subtree defers to the browser (@gnoff #37193)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L10",
    "p": 0.04
   },
@@ -695,6 +698,7 @@
    "version": "19.3.0",
    "section": "Notable changes",
    "text": "Enable Trusted Types API integration (@rickhanlonii #35816)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L15",
    "p": 0.07
   },
@@ -702,6 +706,7 @@
    "version": "19.3.0",
    "section": "Notable changes",
    "text": "Transitions now render independently instead of being entangled into a single render, so a slow transition no longer holds up unrelated ones (@acdlite #37290)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L16",
    "p": 0.08
   },
@@ -709,6 +714,7 @@
    "version": "19.3.0",
    "section": "Notable changes",
    "text": "Added a DEV-only warning when a component appears to have been unblocked by calling `use()` conditionally (@hoxyq, @eps1lon: #37104, #37203, #37491)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L17",
    "p": 0.05
   },
@@ -716,6 +722,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Fast Refresh Fixes Fix Fast Refresh to find and remount edits to components wrapped behind `lazy()` (@sophiebits #36965) Fix Fast Refresh so edits to a `memo()` comparison function take effect (@sophiebits #36964) Fix Fast Refresh crash when an edit changes the kind of a component's type (@sophiebits #36963) Unify hot reload type resolution for Fast Refresh (@sophiebits #36962) Fix Fast Refresh to remount correctly when an edit changes the component kind (@sophiebits #36950) Double invoke effects in StrictMode after Fast Refresh (@eps1lon #35962)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L23",
    "p": 0.05
   },
@@ -723,6 +730,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Performance Track Fixes Prevent crash when accessing `$$typeof` in Performance Tracks (@eps1lon #35679) Handle non-string function names in Performance Tracks (@eps1lon #35659) Use minus (`-`) instead of en dash for removed props in Performance Tracks (@eps1lon #35649) Handle arrays with bigints in deep objects in Performance Tracks (@eps1lon #35648) Don't enumerate typed array props in Performance Tracks in DEV (@UditDewan #36913) Bail out of diffing wide objects and arrays in Performance Tracks (@eps1lon #34742) Clear potentially large performance measures in DEV (@hoxyq #34803) Fix missing else branch for renders with no props change in Performance Tracks (@hoxyq #34837)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L30",
    "p": 0.03
   },
@@ -730,6 +738,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Activity Fixes Fix `useSyncExternalStore` missing store mutations that happened while an Activity tree was hidden (@sophiebits #36947) Hide portal contents when an Activity is hidden (@acdlite #35091) Prevent metadata hoisting in hidden `<Activity>` trees (@ronnakamoto #34983) Prevent errors thrown inside a hidden Activity from escaping to the visible UI (@acdlite #35074) Don't unhide a node if a direct parent Offscreen is still hidden (@sebmarkbage #34821) Don't show internal `<Offscreen>` component in error messages (@rickhanlonii #35763)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L39",
    "p": 0.06
   },
@@ -737,6 +746,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Warn in DEV when a component appears to have been unblocked by a conditional `use()` (@hoxyq, @eps1lon: #37104, #37203, #37491)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L46",
    "p": 0.05
   },
@@ -744,6 +754,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Render transitions independently instead of entangling them into a single render (@acdlite #37290)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L47",
    "p": 0.08
   },
@@ -751,6 +762,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Fix hang when updating a dehydrated boundary inside a hidden tree (@gaearon #37135)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L48",
    "p": 0.04
   },
@@ -758,6 +770,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Don't reacquire Host Singletons during dev effect validation (@gnoff #37113)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L49",
    "p": 0.05
   },
@@ -765,6 +778,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Only remove properties from Host Singletons on release (@gnoff #37112)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L50",
    "p": 0.09
   },
@@ -772,6 +786,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Don't invoke effects on moved children in StrictMode (@sophiebits #36948)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L51",
    "p": 0.12
   },
@@ -779,6 +794,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Throw a clearer error when a rejected Promise is incorrectly instrumented (@eps1lon #36328)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L52",
    "p": 0.05
   },
@@ -786,6 +802,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Fix context propagation into Suspense fallbacks (@acdlite #36160)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L53",
    "p": 0.07
   },
@@ -793,6 +810,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Fix context propagation through suspended Suspense boundaries (@acdlite #35839)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L54",
    "p": 0.05
   },
@@ -800,6 +818,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Fix `useDeferredValue` getting stuck (@gaearon #36134)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L55",
    "p": 0.05
   },
@@ -807,6 +826,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Update `useActionState` error message to say \"action state\" instead of \"form state\" (@rickhanlonii #35790)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L56",
    "p": 0.02
   },
@@ -814,6 +834,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Don't warn when rendering data block scripts (@eps1lon #35953)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L57",
    "p": 0.06
   },
@@ -821,6 +842,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Treat fibers with alternates as mounted in `getNearestMountedFiber` (@sebmarkbage #35578)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L58",
    "p": 0.05
   },
@@ -828,6 +850,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Always instrument the lazy initializer thenable (@gnoff #35521)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L59",
    "p": 0.08
   },
@@ -835,6 +858,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Annotate cascading updates for DevTools performance tracks in DEV (@huntie #34961)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L60",
    "p": 0.03
   },
@@ -842,6 +866,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Resolve the `.default` export of a `React.lazy` as the canonical value (@sebmarkbage #34906)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L61",
    "p": 0.23
   },
@@ -849,6 +874,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Limit owner stacks to 10 frames (@eps1lon #34864)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L62",
    "p": 0.1
   },
@@ -856,6 +882,7 @@
    "version": "19.3.0",
    "section": "React",
    "text": "Ensure `useEffectEvent` reads latest values in `forwardRef` and `memo()` components (@eps1lon #34831)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L63",
    "p": 0.06
   },
@@ -863,6 +890,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Copy `source` onto the synthetic `toggle` event (@lazerg #37389)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L67",
    "p": 0.06
   },
@@ -870,6 +898,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Update HTML parser rules for the new `<select>` parser (@josepharhar #34804)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L68",
    "p": 0.09
   },
@@ -877,6 +906,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Update `defaultValue` for `type=\"number\"` inputs to match other input types (@sophiebits #36980)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L69",
    "p": 0.16
   },
@@ -884,6 +914,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Avoid setting `innerHTML` when it hasn't changed (@sophiebits #36949)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L70",
    "p": 0.05
   },
@@ -891,6 +922,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Forward the `nonce` option in `ReactDOM.preloadModule()` (@UditDewan #36851)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L71",
    "p": 0.04
   },
@@ -898,6 +930,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Support `fetchPriority` for module resources (@TheAlexLichter #36835)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L72",
    "p": 0.04
   },
@@ -905,6 +938,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Track stylesheet preloads when explicitly preloaded to avoid unnecessary suspension (@gnoff #36386)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L73",
    "p": 0.04
   },
@@ -912,6 +946,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Suggest correct casing for the misspelled `credentialless` iframe attribute (@vmx906 #36322)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L74",
    "p": 0.12
   },
@@ -919,6 +954,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Add `credentialless` as a recognized boolean attribute for iframes (@vmx906 #36148)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L75",
    "p": 0.03
   },
@@ -926,6 +962,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Prevent reentrant `finishedTask` from calling `completeAll` multiple times (@gnoff #36287)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L76",
    "p": 0.03
   },
@@ -933,6 +970,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Update the CSS shorthand property list (@kidonng #35636)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L77",
    "p": 0.08
   },
@@ -940,6 +978,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Support the `maskType` SVG prop (@sleitor #35921)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L78",
    "p": 0.03
   },
@@ -947,6 +986,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Add support for `onFullscreenChange` and `onFullscreenError` events (@chirokas #34621)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L79",
    "p": 0.03
   },
@@ -954,6 +994,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Include `submitter` in `submit` events (@eps1lon #35590)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L80",
    "p": 0.05
   },
@@ -961,6 +1002,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Fire `onReset` when automatically resetting forms (@eps1lon #35176)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L81",
    "p": 0.08
   },
@@ -968,6 +1010,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Use the `FormData` `submitter` parameter (@jenseng #29028)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L82",
    "p": 0.05
   },
@@ -975,6 +1018,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Fix form status reset when component state is updated (@eps1lon #34075)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L83",
    "p": 0.05
   },
@@ -982,6 +1026,7 @@
    "version": "19.3.0",
    "section": "React DOM",
    "text": "Batch updates from `resize` events until the next frame (@eps1lon #35117)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L84",
    "p": 0.05
   },
@@ -989,6 +1034,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Add `nonce` to rendered import maps (@mattcosta7 #37339)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L88",
    "p": 0.06
   },
@@ -996,6 +1042,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Add an `onBrowserBailout` option to observe subtrees that defer to the browser (@gnoff #37193)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L89",
    "p": 0.04
   },
@@ -1003,6 +1050,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Stop the caller's signal from retaining a finished render (@unstubbable #37315)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L90",
    "p": 0.06
   },
@@ -1010,6 +1058,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Construct the render lifetime controller only when it is needed (@unstubbable #37357)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L91",
    "p": 0.05
   },
@@ -1017,6 +1066,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Fix `react-dom/server` hanging on Deno (@fraidev #35235)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L92",
    "p": 0.05
   },
@@ -1024,6 +1074,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Extend stack overflow recovery to retries in SSR (@jackpope #36977)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L93",
    "p": 0.06
   },
@@ -1031,6 +1082,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Fix false-positive hydration mismatch on `nonce` attributes (@MaxwellCohen #37030)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L94",
    "p": 0.04
   },
@@ -1038,6 +1090,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Guard shell-error callbacks instead of nulling them out on the request (@eps1lon #36916)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L95",
    "p": 0.05
   },
@@ -1045,6 +1098,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Stop firing `onAllReady` after the shell errored (@eps1lon #36903)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L96",
    "p": 0.09
   },
@@ -1052,6 +1106,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Treat an incomplete tree as an error during error recovery (@acdlite #36911)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L97",
    "p": 0.09
   },
@@ -1059,6 +1114,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Fix non-script `modulepreload` tracking (@fallintoplace #36564)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L98",
    "p": 0.06
   },
@@ -1066,6 +1122,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Finalize postponed `nextSegmentId` after the prelude flush (@gaojude #36779)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L99",
    "p": 0.05
   },
@@ -1073,6 +1130,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Preserve `referrerPolicy` in image preload headers (@ulises-jeremias #36803)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L100",
    "p": 0.05
   },
@@ -1080,6 +1138,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Allow pending work to specialize abort reasons (@gnoff #36586)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L101",
    "p": 0.06
   },
@@ -1087,6 +1146,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Abort tasks that suspend after aborting during render (@gnoff #36585)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L102",
    "p": 0.06
   },
@@ -1094,6 +1154,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Finish abort in a scheduled task (@gnoff #36580)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L103",
    "p": 0.05
   },
@@ -1101,6 +1162,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Fix aborts during resumed rendering (@gnoff #36584)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L104",
    "p": 0.05
   },
@@ -1108,6 +1170,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Track abort state on the request (@gnoff #36583)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L105",
    "p": 0.06
   },
@@ -1115,6 +1178,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Model external work scheduling explicitly in the fb bundle (@gnoff #36576)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L106",
    "p": 0.06
   },
@@ -1122,6 +1186,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Continue reporting aborted task errors after a fatal abort (@gnoff #36575)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L107",
    "p": 0.06
   },
@@ -1129,6 +1194,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Disallow abort reentrancy (@gnoff #36574)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L108",
    "p": 0.1
   },
@@ -1136,6 +1202,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Stop transpiling computed property names (@eps1lon #36542)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L109",
    "p": 0.11
   },
@@ -1143,6 +1210,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Fix crash when capturing the callsite of a stalled `use()` of a rejected Flight chunk (@lubieowoce #36544)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L110",
    "p": 0.03
   },
@@ -1150,6 +1218,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Double invoke effects in Strict Mode during hydration (@eps1lon #35961)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L111",
    "p": 0.14
   },
@@ -1157,6 +1226,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Add additional task reentrancy protections in Fizz (@gnoff #36291)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L112",
    "p": 0.05
   },
@@ -1164,6 +1234,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Don't outline Suspense boundaries with suspensey CSS during shell flush (@gnoff #35824)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L113",
    "p": 0.09
   },
@@ -1171,6 +1242,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Push a stalled `use()` to the owner stack and debug task (@eps1lon #35226)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L114",
    "p": 0.05
   },
@@ -1178,6 +1250,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Fix `useId` tracking on replay (@gnoff #35518)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L115",
    "p": 0.05
   },
@@ -1185,6 +1258,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Correctly handle replaying when hydrating (@gnoff #35494)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L116",
    "p": 0.06
   },
@@ -1192,6 +1266,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Simplify the `createSuspenseBoundary` path (@sebmarkbage #35087)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L117",
    "p": 0.07
   },
@@ -1199,6 +1274,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Unify preamble-only fields to save a field on Suspense boundaries (@sebmarkbage #35068)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L118",
    "p": 0.05
   },
@@ -1206,6 +1282,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Unify prerender-only fields to save a field on Suspense boundaries (@sebmarkbage #35067)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L119",
    "p": 0.06
   },
@@ -1213,6 +1290,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Push halted awaits to the owner stack for late-arriving I/O info (@unstubbable #35019)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L120",
    "p": 0.08
   },
@@ -1220,6 +1298,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Include all Node.js APIs in the Bun entrypoint for `react-dom/server` (@RiskyMH #34193)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L121",
    "p": 0.12
   },
@@ -1227,6 +1306,7 @@
    "version": "19.3.0",
    "section": "React Server",
    "text": "Detach a Suspense boundary after flushing its segment (@gnoff #34694)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L122",
    "p": 0.06
   },
@@ -1234,6 +1314,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Keep an element pending while a referenced row is resolving (@unstubbable #37542)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L126",
    "p": 0.06
   },
@@ -1241,6 +1322,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix `RangeError` from exponential debug info growth (@unstubbable #37481)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L127",
    "p": 0.04
   },
@@ -1248,6 +1330,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Abort the cache signal when debug objects are retained (@unstubbable #37342)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L128",
    "p": 0.05
   },
@@ -1255,6 +1338,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Transfer key validation of lazy nodes when they are unwrapped (@unstubbable #37258)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L129",
    "p": 0.06
   },
@@ -1262,6 +1346,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Add `pending_weak` to the Flight thenable protocol (@acdlite #37154)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L130",
    "p": 0.05
   },
@@ -1269,6 +1354,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Outline and dedupe repeated strings (@gaearon #37147)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L131",
    "p": 0.03
   },
@@ -1276,6 +1362,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Port Reply Server traversal guards to the Flight Client (@eps1lon #37144)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L132",
    "p": 0.08
   },
@@ -1283,6 +1370,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Define Flight chunk `.then` with `Object.defineProperty` (@eps1lon #37109)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L133",
    "p": 0.06
   },
@@ -1290,6 +1378,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Support Turbopack's experimental array format for chunks (@sampoder #37095)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L134",
    "p": 0.05
   },
@@ -1297,6 +1386,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Limit fake JSX call site stacks to 10 frames (@timneutkens #37086)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L135",
    "p": 0.04
   },
@@ -1304,6 +1394,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Improve performance when decoding Flight replies (@gnoff #37090)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L136",
    "p": 0.04
   },
@@ -1311,6 +1402,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Recognize Node 22+ V8 frames for `Promise` statics in debug info (@gaearon #36969)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L137",
    "p": 0.03
   },
@@ -1318,6 +1410,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Tailor the warning for binary data serialized through `toJSON` (Node `Buffer`) (@unstubbable #36873)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L138",
    "p": 0.05
   },
@@ -1325,6 +1418,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Resolve models before `JSON.stringify` for faster serialization (@mhart #36795)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L139",
    "p": 0.06
   },
@@ -1332,6 +1426,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Prune debug info when chunks error (@gnoff #36782)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L140",
    "p": 0.04
   },
@@ -1339,6 +1434,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Avoid main-thread stalls from large debug strings (@unstubbable #36570)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L141",
    "p": 0.05
   },
@@ -1346,6 +1442,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix stranded row content under Node stream backpressure (@unstubbable #36516)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L142",
    "p": 0.05
   },
@@ -1353,6 +1450,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix dropped `FormData` entries in `decodeReplyFromBusboy` (@unstubbable #36468)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L143",
    "p": 0.05
   },
@@ -1360,6 +1458,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Harden types and improve performance of Flight replies (@eps1lon #36425)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L144",
    "p": 0.07
   },
@@ -1367,6 +1466,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Add more cycle protections to Flight replies (@eps1lon #36236)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L145",
    "p": 0.05
   },
@@ -1374,6 +1474,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Transport `AggregateError.errors` (@eps1lon #36156)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L146",
    "p": 0.06
   },
@@ -1381,6 +1482,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Bail out early when a backing entry for `Blob` deserialization is not a `Blob` (@eps1lon #36055)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L147",
    "p": 0.04
   },
@@ -1388,6 +1490,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Clear chunk reason after successful module initialization (@unstubbable #36024)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L148",
    "p": 0.05
   },
@@ -1395,6 +1498,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Add support for transporting `Error.cause` (@eps1lon #35810)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L149",
    "p": 0.04
   },
@@ -1402,6 +1506,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Walk parsed JSON instead of using a reviver for faster RSC payload parsing (@timneutkens #35776)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L150",
    "p": 0.04
   },
@@ -1409,6 +1514,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Skip `transferReferencedDebugInfo` during debug info resolution (@unstubbable #35795)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L151",
    "p": 0.04
   },
@@ -1416,6 +1522,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Add `unstable_allowPartialStream` option to Flight Client (@unstubbable #35731)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L152",
    "p": 0.05
   },
@@ -1423,6 +1530,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix `encodeReply` for JSX with temporary references (@unstubbable #35730)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L153",
    "p": 0.05
   },
@@ -1430,6 +1538,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix debug channel flag in Node.js `renderToPipeableStream` (@feedthejim #35724)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L154",
    "p": 0.05
   },
@@ -1437,6 +1546,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix stack overflow in `visitAsyncNode` with deep async chains (@unstubbable #35612)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L155",
    "p": 0.04
   },
@@ -1444,6 +1554,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Allow Server Components to render context providers from client modules (@rickhanlonii #35675)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L156",
    "p": 0.05
   },
@@ -1451,6 +1562,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Allow overriding `request.timeOrigin` via `options.startTime` (@lubieowoce #35598)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L157",
    "p": 0.05
   },
@@ -1458,6 +1570,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Warn once if `eval` is disabled in the dev environment (@eps1lon #35661)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L158",
    "p": 0.07
   },
@@ -1465,6 +1578,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Restore original function name in dev server callstacks served with `unsafe-eval` (@eps1lon #35650)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L159",
    "p": 0.04
   },
@@ -1472,6 +1586,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix `react-markup` types for server references (@eps1lon #35634)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L160",
    "p": 0.09
   },
@@ -1479,6 +1594,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Add more DoS mitigations to Flight replies and harden Flight (@unstubbable #35632)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L161",
    "p": 0.08
   },
@@ -1486,6 +1602,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Allow cyclic references to be serialized when unwrapping lazy elements (@unstubbable #35471)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L162",
    "p": 0.05
   },
@@ -1493,6 +1610,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Improve cyclic thenable detection in Flight reply server (@cvan20191 #35369)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L163",
    "p": 0.04
   },
@@ -1500,6 +1618,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Add extra loop protection to Flight reply server (@sebmarkbage #35351)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L164",
    "p": 0.04
   },
@@ -1507,6 +1626,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Patch Promise cycles and `toString` on Server Functions (@sebmarkbage #35345)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L165",
    "p": 0.08
   },
@@ -1514,6 +1634,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Move `react-server-dom-webpack/*.unbundled` to private `react-server-dom-unbundled` (@eps1lon #35290)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L166",
    "p": 0.18
   },
@@ -1521,6 +1642,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Never parse `then` functions in Flight replies (@sebmarkbage #35289)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L167",
    "p": 0.09
   },
@@ -1528,6 +1650,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Patch Flight reply server with fixes from Flight Client (@sebmarkbage #35277)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L168",
    "p": 0.07
   },
@@ -1535,6 +1658,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Complete the list of Node.js internal Promise awaits (@eps1lon #35161)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L169",
    "p": 0.05
   },
@@ -1542,6 +1666,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Reduce risk of maximum call stack exceeded when emitting async sequences (@eps1lon #35159)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L170",
    "p": 0.04
   },
@@ -1549,6 +1674,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix pending chunks count for streams and async iterables in DEV (@unstubbable #35143)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L171",
    "p": 0.04
   },
@@ -1556,6 +1682,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix broken byte stream parsing caused by buffer detachment (@unstubbable #35127)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L172",
    "p": 0.05
   },
@@ -1563,6 +1690,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix `hasReadable` flag in Node.js clients' debug channel (@unstubbable #35039)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L173",
    "p": 0.04
   },
@@ -1570,6 +1698,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix debug info filtering to include later resolved I/O (@unstubbable #35036)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L174",
    "p": 0.04
   },
@@ -1577,6 +1706,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Cache the value when visiting the same I/O or Promise along different paths (@sebmarkbage #35005)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L175",
    "p": 0.04
   },
@@ -1584,6 +1714,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Clone subsequent I/O nodes when resolved more than once (@sebmarkbage #35003)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L176",
    "p": 0.05
   },
@@ -1591,6 +1722,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix hang after resolving cyclic references (@unstubbable #34988)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L177",
    "p": 0.05
   },
@@ -1598,6 +1730,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Allow passing DEV-only `startTime` as an option (@sebmarkbage #34912)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L178",
    "p": 0.04
   },
@@ -1605,6 +1738,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Ignore bound-anonymous-fn resources as they're not considered I/O (@sebmarkbage #34911)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L179",
    "p": 0.07
   },
@@ -1612,6 +1746,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix detached `ArrayBuffer` error when streaming typed arrays (@unstubbable #34849)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L180",
    "p": 0.05
   },
@@ -1619,6 +1754,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Exclude RSC stream if the stream resolves in a task (@sebmarkbage #34838)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L181",
    "p": 0.1
   },
@@ -1626,6 +1762,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Forward the current environment when forwarding I/O entries (@sebmarkbage #34836)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L182",
    "p": 0.07
   },
@@ -1633,6 +1770,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Look for moved debug info when logging component performance track (@sebmarkbage #34839)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L183",
    "p": 0.05
   },
@@ -1640,6 +1778,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Respect `displayName` of Promise instances on the server (@sebmarkbage #34825)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L184",
    "p": 0.04
   },
@@ -1647,6 +1786,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Avoid unnecessary indirection when serializing debug info (@unstubbable #34797)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L185",
    "p": 0.05
   },
@@ -1654,6 +1794,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Fix preload `as` attribute for stylesheets (@unstubbable #34760)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L186",
    "p": 0.05
   },
@@ -1661,6 +1802,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Don't serialize `toJSON` in debug path and omit wide arrays (@sebmarkbage #34759)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L187",
    "p": 0.05
   },
@@ -1668,6 +1810,7 @@
    "version": "19.3.0",
    "section": "React Server Components",
    "text": "Add support for `<Activity>` (@eps1lon #34697)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L188",
    "p": 0.04
   },
@@ -1675,6 +1818,7 @@
    "version": "19.2.7",
    "section": "React Server Components",
    "text": "Fixed missing `FormData` entries in Server Actions which regressed in 19.2.6 (@unstubbable #36566)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L194",
    "p": 0.05
   },
@@ -1682,6 +1826,7 @@
    "version": "19.2.6",
    "section": "React Server Components",
    "text": "Type hardening and performance improvements (@eps1lon, @unstubbable #36425)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L200",
    "p": 0.06
   },
@@ -1689,6 +1834,7 @@
    "version": "19.2.5",
    "section": "React Server Components",
    "text": "Add more cycle protections (@eps1lon, @unstubbable #36236)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L206",
    "p": 0.05
   },
@@ -1696,6 +1842,7 @@
    "version": "19.2.4",
    "section": "React Server Components",
    "text": "Add more DoS mitigations to Server Actions, and harden Server Components (@gnoff, @lubieowoce, @sebmarkbage, @unstubbable #35632)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L212",
    "p": 0.09
   },
@@ -1703,6 +1850,7 @@
    "version": "19.2.3",
    "section": "React Server Components",
    "text": "Add extra loop protection to React Server Functions (@sebmarkbage #35351)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L218",
    "p": 0.05
   },
@@ -1710,6 +1858,7 @@
    "version": "19.2.2",
    "section": "React Server Components",
    "text": "Patch Promise cycles and toString on Server Functions (@sebmarkbage, @unstubbable #35289, #35345)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L225",
    "p": 0.07
   },
@@ -1717,6 +1866,7 @@
    "version": "19.2.1",
    "section": "React Server Components",
    "text": "Bring React Server Component fixes to Server Actions (@sebmarkbage #35277)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L231",
    "p": 0.08
   },
@@ -1725,6 +1875,7 @@
    "section": "",
    "text": "Below is a list of all new features, APIs, and bug fixes. Read the React 19.2 release post for more information.",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L235",
    "p": 0.11
   },
@@ -1732,6 +1883,7 @@
    "version": "19.2.0",
    "section": "New React Features",
    "text": "`<Activity>`: A new API to hide and restore the UI and internal state of its children.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L241",
    "p": 0.04
   },
@@ -1739,6 +1891,7 @@
    "version": "19.2.0",
    "section": "New React Features",
    "text": "`useEffectEvent` is a React Hook that lets you extract non-reactive logic into an Effect Event.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L242",
    "p": 0.03
   },
@@ -1746,6 +1899,7 @@
    "version": "19.2.0",
    "section": "New React Features",
    "text": "`cacheSignal` (for RSCs) lets your know when the `cache()` lifetime is over.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L243",
    "p": 0.04
   },
@@ -1753,6 +1907,7 @@
    "version": "19.2.0",
    "section": "New React Features",
    "text": "React Performance tracks appear on the Performance panel’s timeline in your browser developer tools",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L244",
    "p": 0.03
   },
@@ -1760,6 +1915,7 @@
    "version": "19.2.0",
    "section": "New React DOM Features",
    "text": "Added resume APIs for partial pre-rendering with Web Streams: `resume`: to resume a prerender to a stream. `resumeAndPrerender`: to resume a prerender to HTML.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L248",
    "p": 0.04
   },
@@ -1767,6 +1923,7 @@
    "version": "19.2.0",
    "section": "New React DOM Features",
    "text": "Added resume APIs for partial pre-rendering with Node Streams: `resumeToPipeableStream`: to resume a prerender to a stream. `resumeAndPrerenderToNodeStream`: to resume a prerender to HTML.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L251",
    "p": 0.04
   },
@@ -1774,6 +1931,7 @@
    "version": "19.2.0",
    "section": "New React DOM Features",
    "text": "Updated `prerender` APIs to return a `postponed` state that can be passed to the `resume` APIs.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L254",
    "p": 0.17
   },
@@ -1781,6 +1939,7 @@
    "version": "19.2.0",
    "section": "Notable changes",
    "text": "React DOM now batches suspense boundary reveals, matching the behavior of client side rendering. This change is especially noticeable when animating the reveal of Suspense boundaries e.g. with the upcoming `<ViewTransition>` Component. React will batch as much reveals as possible before the first paint while trying to hit popular first-contentful paint metrics.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L258",
    "p": 0.07
   },
@@ -1788,6 +1947,7 @@
    "version": "19.2.0",
    "section": "Notable changes",
    "text": "Add Node Web Streams (`prerender`, `renderToReadableStream`) to server-side-rendering APIs for Node.js",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L259",
    "p": 0.04
   },
@@ -1795,6 +1955,7 @@
    "version": "19.2.0",
    "section": "Notable changes",
    "text": "Use underscore instead of `:` IDs generated by useId",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L260",
    "p": 0.26
   },
@@ -1802,6 +1963,7 @@
    "version": "19.2.0",
    "section": "React",
    "text": "`<Activity />` was developed over many years, starting before `ClassComponent.setState` (@acdlite @sebmarkbage and many others)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L266",
    "p": 0.04
   },
@@ -1809,6 +1971,7 @@
    "version": "19.2.0",
    "section": "React",
    "text": "Stringify context as \"SomeContext\" instead of \"SomeContext.Provider\" (@kassens #33507)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L267",
    "p": 0.09
   },
@@ -1816,6 +1979,7 @@
    "version": "19.2.0",
    "section": "React",
    "text": "Include stack of cause of React instrumentation errors with `%o` placeholder (@eps1lon #34198)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L268",
    "p": 0.04
   },
@@ -1823,6 +1987,7 @@
    "version": "19.2.0",
    "section": "React",
    "text": "Fix infinite `useDeferredValue` loop in popstate event (@acdlite #32821)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L269",
    "p": 0.04
   },
@@ -1830,6 +1995,7 @@
    "version": "19.2.0",
    "section": "React",
    "text": "Fix a bug when an initial value was passed to `useDeferredValue` (@acdlite #34376)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L270",
    "p": 0.04
   },
@@ -1837,6 +2003,7 @@
    "version": "19.2.0",
    "section": "React",
    "text": "Fix a crash when submitting forms with Client Actions (@sebmarkbage #33055)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L271",
    "p": 0.05
   },
@@ -1844,6 +2011,7 @@
    "version": "19.2.0",
    "section": "React",
    "text": "Hide/unhide the content of dehydrated suspense boundaries if they resuspend (@sebmarkbage #32900)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L272",
    "p": 0.08
   },
@@ -1851,6 +2019,7 @@
    "version": "19.2.0",
    "section": "React",
    "text": "Avoid stack overflow on wide trees during Hot Reload (@sophiebits #34145)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L273",
    "p": 0.04
   },
@@ -1858,6 +2027,7 @@
    "version": "19.2.0",
    "section": "React",
    "text": "Improve Owner and Component stacks in various places (@sebmarkbage, @eps1lon: #33629, #33724, #32735, #33723)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L274",
    "p": 0.05
   },
@@ -1865,6 +2035,7 @@
    "version": "19.2.0",
    "section": "React",
    "text": "Add `cacheSignal` (@sebmarkbage #33557)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L275",
    "p": 0.05
   },
@@ -1872,6 +2043,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "Block on Suspensey Fonts during reveal of server-side-rendered content (@sebmarkbage #33342)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L279",
    "p": 0.11
   },
@@ -1879,6 +2051,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "Use underscore instead of `:` for IDs generated by `useId` (@sebmarkbage, @eps1lon: #32001, https://github.com/react/react/pull/33342#33099, #33422)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L280",
    "p": 0.16
   },
@@ -1886,6 +2059,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "Stop warning when ARIA 1.3 attributes are used (@Abdul-Omira #34264)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L281",
    "p": 0.04
   },
@@ -1893,6 +2067,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "Allow `nonce` to be used on hoistable styles (@Andarist #32461)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L282",
    "p": 0.04
   },
@@ -1900,6 +2075,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "Warn for using a React owned node as a Container if it also has text content (@sebmarkbage #32774)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L283",
    "p": 0.09
   },
@@ -1907,6 +2083,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "s/HTML/text for for error messages if text hydration mismatches (@rickhanlonii #32763)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L284",
    "p": 0.07
   },
@@ -1914,6 +2091,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "Fix a bug with `React.use` inside `React.lazy`-ed Component (@hi-ogawa #33941)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L285",
    "p": 0.04
   },
@@ -1921,6 +2099,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "Enable the `progressiveChunkSize` option for server-side-rendering APIs (@sebmarkbage #33027)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L286",
    "p": 0.06
   },
@@ -1928,6 +2107,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "Fix a bug with deeply nested Suspense inside Suspense fallback when server-side-rendering (@gnoff #33467)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L287",
    "p": 0.04
   },
@@ -1935,6 +2115,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "Avoid hanging when suspending after aborting while rendering (@gnoff #34192)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L288",
    "p": 0.04
   },
@@ -1942,6 +2123,7 @@
    "version": "19.2.0",
    "section": "React DOM",
    "text": "Add Node Web Streams to server-side-rendering APIs for Node.js (@sebmarkbage #33475)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L289",
    "p": 0.05
   },
@@ -1949,6 +2131,7 @@
    "version": "19.2.0",
    "section": "React Server Components",
    "text": "Preload `<img>` and `<link>` using hints before they're rendered (@sebmarkbage #34604)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L293",
    "p": 0.04
   },
@@ -1956,6 +2139,7 @@
    "version": "19.2.0",
    "section": "React Server Components",
    "text": "Log error if production elements are rendered during development (@eps1lon #34189)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L294",
    "p": 0.08
   },
@@ -1963,6 +2147,7 @@
    "version": "19.2.0",
    "section": "React Server Components",
    "text": "Fix a bug when returning a Temporary reference (e.g. a Client Reference) from Server Functions (@sebmarkbage #34084, @denk0403 #33761)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L295",
    "p": 0.06
   },
@@ -1970,6 +2155,7 @@
    "version": "19.2.0",
    "section": "React Server Components",
    "text": "Pass line/column to `filterStackFrame` (@eps1lon #33707)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L296",
    "p": 0.03
   },
@@ -1977,6 +2163,7 @@
    "version": "19.2.0",
    "section": "React Server Components",
    "text": "Support Async Modules in Turbopack Server References (@lubieowoce #34531)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L297",
    "p": 0.05
   },
@@ -1984,6 +2171,7 @@
    "version": "19.2.0",
    "section": "React Server Components",
    "text": "Add support for .mjs file extension in Webpack (@jennyscript #33028)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L298",
    "p": 0.05
   },
@@ -1991,6 +2179,7 @@
    "version": "19.2.0",
    "section": "React Server Components",
    "text": "Fix a wrong missing key warning (@unstubbable #34350)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L299",
    "p": 0.04
   },
@@ -1998,6 +2187,7 @@
    "version": "19.2.0",
    "section": "React Server Components",
    "text": "Make console log resolve in predictable order (@sebmarkbage #33665)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L300",
    "p": 0.05
   },
@@ -2005,6 +2195,7 @@
    "version": "19.2.0",
    "section": "React Reconciler",
    "text": "createContainer and createHydrationContainer had their parameter order adjusted after `on*` handlers to account for upcoming experimental APIs",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L304",
    "p": 0.06
   },
@@ -2012,6 +2203,7 @@
    "version": "19.1.8",
    "section": "React Server Components",
    "text": "Fixed missing `FormData` entries in Server Actions which regressed in 19.1.7 (@unstubbable #36567)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L310",
    "p": 0.04
   },
@@ -2019,6 +2211,7 @@
    "version": "19.1.1",
    "section": "React",
    "text": "Fixed Owner Stacks to work with ES2015 function.name semantics (#33680 by @hoxyq)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L352",
    "p": 0.06
   },
@@ -2027,6 +2220,7 @@
    "section": "Owner Stack",
    "text": "An Owner Stack is a string representing the components that are directly responsible for rendering a particular component. You can log Owner Stacks when debugging or use Owner Stacks to enhance error overlays or other development tools. Owner Stacks are only available in development builds. Component Stacks in production are unchanged.",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L358",
    "p": 0.05
   },
@@ -2034,6 +2228,7 @@
    "version": "19.1.0",
    "section": "Owner Stack",
    "text": "An Owner Stack is a development-only stack trace that helps identify which components are responsible for rendering a particular component. An Owner Stack is distinct from a Component Stacks, which shows the hierarchy of components leading to an error.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L360",
    "p": 0.05
   },
@@ -2041,6 +2236,7 @@
    "version": "19.1.0",
    "section": "Owner Stack",
    "text": "The captureOwnerStack API is only available in development mode and returns a Owner Stack, if available. The API can be used to enhance error overlays or log component relationships when debugging. #29923, #32353, #30306, #32538, #32529,",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L361",
    "p": 0.06
   },
@@ -2048,6 +2244,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Enhanced support for Suspense boundaries to be used anywhere, including the client, server, and during hydration. #32069, #32163, #32224,",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L365",
    "p": 0.05
   },
@@ -2055,6 +2252,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Reduced unnecessary client rendering through improved hydration scheduling",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L366",
    "p": 0.05
   },
@@ -2062,6 +2260,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Increased priority of client rendered Suspense boundaries",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L367",
    "p": 0.1
   },
@@ -2069,6 +2268,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Fixed frozen fallback states by rendering unfinished Suspense boundaries on the client.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L368",
    "p": 0.07
   },
@@ -2076,6 +2276,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Reduced garbage collection pressure by improving Suspense boundary retries.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L369",
    "p": 0.03
   },
@@ -2083,6 +2284,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Fixed erroneous “Waiting for Paint” log when the passive effect phase was not delayed",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L370",
    "p": 0.03
   },
@@ -2090,6 +2292,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Fixed a regression causing key warnings for flattened positional children in development mode.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L371",
    "p": 0.05
   },
@@ -2097,6 +2300,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Updated `useId` to use valid CSS selectors, changing format from `:r123:` to `«r123»`.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L372",
    "p": 0.16
   },
@@ -2104,6 +2308,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Added a dev-only warning for null/undefined created in useEffect, useInsertionEffect, and useLayoutEffect.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L373",
    "p": 0.07
   },
@@ -2111,6 +2316,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Fixed a bug where dev-only methods were exported in production builds. React.act is no longer available in production builds.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L374",
    "p": 0.31
   },
@@ -2118,6 +2324,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Improved consistency across prod and dev to improve compatibility with Google Closure Compiler and bindings",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L375",
    "p": 0.1
   },
@@ -2125,6 +2332,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Improve passive effect scheduling for consistent task yielding.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L376",
    "p": 0.06
   },
@@ -2132,6 +2340,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Fixed asserts in React Native when passChildrenWhenCloningPersistedNodes is enabled for OffscreenComponent rendering.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L377",
    "p": 0.05
   },
@@ -2139,6 +2348,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Fixed component name resolution for Portal",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L378",
    "p": 0.07
   },
@@ -2146,6 +2356,7 @@
    "version": "19.1.0",
    "section": "React",
    "text": "Added support for beforetoggle and toggle events on the dialog element.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L379",
    "p": 0.04
   },
@@ -2153,6 +2364,7 @@
    "version": "19.1.0",
    "section": "React DOM",
    "text": "Fixed double warning when the `href` attribute is an empty string",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L382",
    "p": 0.04
   },
@@ -2160,6 +2372,7 @@
    "version": "19.1.0",
    "section": "React DOM",
    "text": "Fixed an edge case where `getHoistableRoot()` didn’t work properly when the container was a Document",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L383",
    "p": 0.03
   },
@@ -2167,6 +2380,7 @@
    "version": "19.1.0",
    "section": "React DOM",
    "text": "Removed support for using HTML comments (e.g. `<!-- -->`) as a DOM container.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L384",
    "p": 0.67
   },
@@ -2174,6 +2388,7 @@
    "version": "19.1.0",
    "section": "React DOM",
    "text": "Added support for `<script>` and `<template>` tags to be nested within `<select>` tags.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L385",
    "p": 0.04
   },
@@ -2181,6 +2396,7 @@
    "version": "19.1.0",
    "section": "React DOM",
    "text": "Fixed responsive images to be preloaded as HTML instead of headers",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L386",
    "p": 0.08
   },
@@ -2188,6 +2404,7 @@
    "version": "19.1.0",
    "section": "use-sync-external-store",
    "text": "Added `exports` field to `package.json` for `use-sync-external-store` to support various entrypoints.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L389",
    "p": 0.07
   },
@@ -2195,6 +2412,7 @@
    "version": "19.1.0",
    "section": "React Server Components",
    "text": "Added `unstable_prerender`, a new experimental API for prerendering React Server Components on the server",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L392",
    "p": 0.03
   },
@@ -2202,6 +2420,7 @@
    "version": "19.1.0",
    "section": "React Server Components",
    "text": "Fixed an issue where streams would hang when receiving new chunks after a global error #31840,",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L393",
    "p": 0.04
   },
@@ -2209,6 +2428,7 @@
    "version": "19.1.0",
    "section": "React Server Components",
    "text": "Fixed an issue where pending chunks were counted twice.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L394",
    "p": 0.03
   },
@@ -2216,6 +2436,7 @@
    "version": "19.1.0",
    "section": "React Server Components",
    "text": "Added support for streaming in edge environments",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L395",
    "p": 0.05
   },
@@ -2223,6 +2444,7 @@
    "version": "19.1.0",
    "section": "React Server Components",
    "text": "Added support for sending custom error names from a server so that they are available in the client for console replaying.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L396",
    "p": 0.04
   },
@@ -2230,6 +2452,7 @@
    "version": "19.1.0",
    "section": "React Server Components",
    "text": "Updated the server component wire format to remove IDs for hints and console.log because they have no return value",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L397",
    "p": 0.15
   },
@@ -2237,6 +2460,7 @@
    "version": "19.1.0",
    "section": "React Server Components",
    "text": "Exposed `registerServerReference` in client builds to handle server references in different environments.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L398",
    "p": 0.09
   },
@@ -2244,6 +2468,7 @@
    "version": "19.1.0",
    "section": "React Server Components",
    "text": "Added react-server-dom-parcel package which integrates Server Components with the Parcel bundler #31725, #32132, #31799, #32294,",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L399",
    "p": 0.04
   },
@@ -2251,6 +2476,7 @@
    "version": "19.0.7",
    "section": "React Server Components",
    "text": "Fixed missing `FormData` entries in Server Actions which regressed in 19.0.6 (@unstubbable #36568)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L405",
    "p": 0.05
   },
@@ -2259,6 +2485,7 @@
    "section": "",
    "text": "Below is a list of all new features, APIs, deprecations, and breaking changes. Read React 19 release post and React 19 upgrade guide for more information. Note: To help make the upgrade to React 19 easier, we’ve published a react@18.3 release that is identical to 18.2 but adds warnings for deprecated APIs and other changes that are needed for React 19. We recommend upgrading to React 18.3.1 first to help identify any issues before upgrading to React 19.",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L445",
    "p": 0.19
   },
@@ -2266,6 +2493,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Actions: `startTransition` can now accept async functions. Functions passed to `startTransition` are called “Actions”. A given Transition can include one or more Actions which update state in the background and update the UI with one commit. In addition to updating state, Actions can now perform side effects including async requests, and the Action will wait for the work to finish before finishing the Transition. This feature allows Transitions to include side effects like `fetch()` in the pending state, and provides support for error handling, and optimistic updates.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L453",
    "p": 0.03
   },
@@ -2273,6 +2501,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "`useActionState`: is a new hook to order Actions inside of a Transition with access to the state of the action, and the pending state. It accepts a reducer that can call Actions, and the initial state used for first render. It also accepts an optional string that is used if the action is passed to a form `action` prop to support progressive enhancement in forms.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L454",
    "p": 0.03
   },
@@ -2280,6 +2509,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "`useOptimistic`: is a new hook to update state while a Transition is in progress. It returns the state, and a set function that can be called inside a transition to “optimistically” update the state to expected final value immediately while the Transition completes in the background. When the transition finishes, the state is updated to the new value.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L455",
    "p": 0.03
   },
@@ -2287,6 +2517,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "`use`: is a new API that allows reading resources in render. In React 19, `use` accepts a promise or Context. If provided a promise, `use` will suspend until a value is resolved. `use` can only be used in render but can be called conditionally.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L456",
    "p": 0.05
   },
@@ -2294,6 +2525,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "`ref` as a prop: Refs can now be used as props, removing the need for `forwardRef`.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L457",
    "p": 0.07
   },
@@ -2301,6 +2533,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Suspense sibling pre-warming: When a component suspends, React will immediately commit the fallback of the nearest Suspense boundary, without waiting for the entire sibling tree to render. After the fallback commits, React will schedule another render for the suspended siblings to “pre-warm” lazy requests.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L458",
    "p": 0.06
   },
@@ -2308,6 +2541,7 @@
    "version": "19.0.0",
    "section": "React DOM Client",
    "text": "`<form> action` prop: Form Actions allow you to manage forms automatically and integrate with `useFormStatus`. When a `<form> action` succeeds, React will automatically reset the form for uncontrolled components. The form can be reset manually with the new `requestFormReset` API.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L462",
    "p": 0.05
   },
@@ -2315,6 +2549,7 @@
    "version": "19.0.0",
    "section": "React DOM Client",
    "text": "`<button> and <input> formAction` prop: Actions can be passed to the `formAction` prop to configure form submission behavior. This allows using different Actions depending on the input.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L463",
    "p": 0.03
   },
@@ -2322,6 +2557,7 @@
    "version": "19.0.0",
    "section": "React DOM Client",
    "text": "`useFormStatus`: is a new hook that provides the status of the parent `<form> action`, as if the form was a Context provider. The hook returns the values: `pending`, `data`, `method`, and `action`.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L464",
    "p": 0.03
   },
@@ -2329,6 +2565,7 @@
    "version": "19.0.0",
    "section": "React DOM Client",
    "text": "Support for Document Metadata: We’ve added support for rendering document metadata tags in components natively. React will automatically hoist them into the `<head>` section of the document.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L465",
    "p": 0.05
   },
@@ -2336,6 +2573,7 @@
    "version": "19.0.0",
    "section": "React DOM Client",
    "text": "Support for Stylesheets: React 19 will ensure stylesheets are inserted into the `<head>` on the client before revealing the content of a Suspense boundary that depends on that stylesheet.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L466",
    "p": 0.07
   },
@@ -2343,6 +2581,7 @@
    "version": "19.0.0",
    "section": "React DOM Client",
    "text": "Support for async scripts: Async scripts can be rendered anywhere in the component tree and React will handle ordering and deduplication.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L467",
    "p": 0.05
   },
@@ -2350,6 +2589,7 @@
    "version": "19.0.0",
    "section": "React DOM Client",
    "text": "Support for preloading resources: React 19 ships with `preinit`, `preload`, `prefetchDNS`, and `preconnect` APIs to optimize initial page loads by moving discovery of additional resources like fonts out of stylesheet loading. They can also be used to prefetch resources used by an anticipated navigation.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L468",
    "p": 0.04
   },
@@ -2357,6 +2597,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Added `prerender` and `prerenderToNodeStream` APIs for static site generation. They are designed to work with streaming environments like Node.js Streams and Web Streams. Unlike `renderToString`, they wait for data to load for HTML generation.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L472",
    "p": 0.04
   },
@@ -2364,6 +2605,7 @@
    "version": "19.0.0",
    "section": "React Server Components",
    "text": "RSC features such as directives, server components, and server functions are now stable. This means libraries that ship with Server Components can now target React 19 as a peer dependency with a react-server export condition for use in frameworks that support the Full-stack React Architecture. The underlying APIs used to implement a React Server Components bundler or framework do not follow semver and may break between minors in React 19.x. See docs for how to support React Server Components.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L476",
    "p": 0.08
   },
@@ -2371,6 +2613,7 @@
    "version": "19.0.0",
    "section": "Deprecations",
    "text": "Deprecated: `element.ref` access: React 19 supports ref as a prop, so we’re deprecating `element.ref` in favor of `element.props.ref`. Accessing will result in a warning.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L480",
    "p": 0.36
   },
@@ -2378,6 +2621,7 @@
    "version": "19.0.0",
    "section": "Deprecations",
    "text": "`react-test-renderer`: In React 19, react-test-renderer logs a deprecation warning and has switched to concurrent rendering for web usage. We recommend migrating your tests to @testing-library/react or @testing-library/react-native",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L481",
    "p": 0.28
   },
@@ -2386,6 +2630,7 @@
    "section": "Breaking Changes",
    "text": "React 19 brings in a number of breaking changes, including the removals of long-deprecated APIs. We recommend first upgrading to `18.3.1`, where we've added additional deprecation warnings. Check out the upgrade guide for more details and guidance on codemodding.",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L485",
    "p": 0.66
   },
@@ -2393,6 +2638,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "New JSX Transform is now required: We introduced a new JSX transform in 2020 to improve bundle size and use JSX without importing React. In React 19, we’re adding additional improvements like using ref as a prop and JSX speed improvements that require the new transform.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L489",
    "p": 0.7
   },
@@ -2400,6 +2646,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Errors in render are not re-thrown: Errors that are not caught by an Error Boundary are now reported to window.reportError. Errors that are caught by an Error Boundary are reported to console.error. We’ve introduced `onUncaughtError` and `onCaughtError` methods to `createRoot` and `hydrateRoot` to customize this error handling.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L490",
    "p": 0.15
   },
@@ -2407,6 +2654,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Removed: `propTypes`: Using `propTypes` will now be silently ignored. If required, we recommend migrating to TypeScript or another type-checking solution.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L491",
    "p": 0.56
   },
@@ -2414,6 +2662,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Removed: `defaultProps` for functions: ES6 default parameters can be used in place. Class components continue to support `defaultProps` since there is no ES6 alternative.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L492",
    "p": 0.66
   },
@@ -2421,6 +2670,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Removed: `contextTypes` and `getChildContext`: Legacy Context for class components has been removed in favor of the `contextType` API.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L493",
    "p": 0.73
   },
@@ -2428,6 +2678,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Removed: string refs: Any usage of string refs need to be migrated to ref callbacks.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L494",
    "p": 0.89
   },
@@ -2435,6 +2686,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Removed: Module pattern factories: A rarely used pattern that can be migrated to regular functions.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L495",
    "p": 0.5
   },
@@ -2442,6 +2694,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Removed: `React.createFactory`: Now that JSX is broadly supported, all `createFactory` usage can be migrated to JSX components.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L496",
    "p": 0.63
   },
@@ -2449,6 +2702,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Removed: `react-test-renderer/shallow`: This has been a re-export of react-shallow-renderer since React 18. If needed, you can continue to use the third-party package directly. We recommend using @testing-library/react or @testing-library/react-native instead.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L497",
    "p": 0.7
   },
@@ -2456,6 +2710,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Removed: `react-dom/test-utils`: We’ve moved `act` from `react-dom/test-utils` to react. All other utilities have been removed.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L501",
    "p": 0.78
   },
@@ -2463,6 +2718,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Removed: `ReactDOM`.`render`, `ReactDOM`.`hydrate`: These have been removed in favor of the concurrent equivalents: `ReactDOM`.`createRoot` and `ReactDOM.hydrateRoot`.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L502",
    "p": 0.89
   },
@@ -2470,6 +2726,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Removed: `unmountComponentAtNode`: Removed in favor of `root.unmount()`.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L503",
    "p": 0.81
   },
@@ -2477,6 +2734,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Removed: `ReactDOM`.`findDOMNode`: You can replace `ReactDOM`.`findDOMNode` with DOM Refs.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L504",
    "p": 0.76
   },
@@ -2484,6 +2742,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "`<Context>` as a provider: You can now render `<Context>` as a provider instead of `<Context.Provider>`.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L510",
    "p": 0.07
   },
@@ -2491,6 +2750,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Cleanup functions for refs: When the component unmounts, React will call the cleanup function returned from the ref callback.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L511",
    "p": 0.06
   },
@@ -2498,6 +2758,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "`useDeferredValue` initial value argument: When provided, `useDeferredValue` will return the initial value for the initial render of a component, then schedule a re-render in the background with the `deferredValue` returned.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L512",
    "p": 0.05
   },
@@ -2505,6 +2766,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Support for Custom Elements: React 19 now passes all tests on Custom Elements Everywhere.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L513",
    "p": 0.04
   },
@@ -2512,6 +2774,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "StrictMode changes: `useMemo` and `useCallback` will now reuse the memoized results from the first render, during the second render. Additionally, StrictMode will now double-invoke ref callback functions on initial mount.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L514",
    "p": 0.18
   },
@@ -2519,6 +2782,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "UMD builds removed: To load React 19 with a script tag, we recommend using an ESM-based CDN such as esm.sh.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L515",
    "p": 0.56
   },
@@ -2526,6 +2790,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Diffs for hydration errors: In the case of a mismatch, React 19 logs a single error with a diff of the mismatched content.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L519",
    "p": 0.06
   },
@@ -2533,6 +2798,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Compatibility with third-party scripts and extensions: React will now force a client re-render to fix up any mismatched content caused by elements inserted by third-party JS.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L520",
    "p": 0.2
   },
@@ -2541,6 +2807,7 @@
    "section": "TypeScript Changes",
    "text": "The most common changes can be codemodded with `npx types-react-codemod@latest preset-19 ./path-to-your-react-ts-files`.",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L524",
    "p": 0.43
   },
@@ -2548,6 +2815,7 @@
    "version": "19.0.0",
    "section": "TypeScript Changes",
    "text": "Removed deprecated TypeScript types: `ReactChild` (replacement: `React.ReactElement | number | string)` `ReactFragment` (replacement: `Iterable<React.ReactNode>`) `ReactNodeArray` (replacement: `ReadonlyArray<React.ReactNode>`) `ReactText` (replacement: `number | string`) `VoidFunctionComponent` (replacement: `FunctionComponent`) `VFC` (replacement: `FC`) Moved to `prop-types`: `Requireable`, `ValidationMap`, `Validator`, `WeakValidationMap` Moved to `create-react-class`: `ClassicComponentClass`, `ClassicComponent`, `ClassicElement`, `ComponentSpec`, `Mixin`, `ReactChildren`, `ReactHTML`, `ReactSVG`, `SFCFactory`",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L526",
    "p": 0.79
   },
@@ -2555,6 +2823,7 @@
    "version": "19.0.0",
    "section": "TypeScript Changes",
    "text": "Disallow implicit return in refs: refs can now accept cleanup functions. When you return something else, we can’t tell if you intentionally returned something not meant to clean up or returned the wrong value. Implicit returns of anything but functions will now error.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L535",
    "p": 0.62
   },
@@ -2562,6 +2831,7 @@
    "version": "19.0.0",
    "section": "TypeScript Changes",
    "text": "Require initial argument to `useRef`: The initial argument is now required to match `useState`, `createContext` etc",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L536",
    "p": 0.68
   },
@@ -2569,6 +2839,7 @@
    "version": "19.0.0",
    "section": "TypeScript Changes",
    "text": "Refs are mutable by default: Ref objects returned from `useRef()` are now always mutable instead of sometimes being immutable. This feature was too confusing for users and conflicted with legit cases where refs were managed by React and manually written to.",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L537",
    "p": 0.25
   },
@@ -2576,6 +2847,7 @@
    "version": "19.0.0",
    "section": "TypeScript Changes",
    "text": "Strict `ReactElement` typing: The props of React elements now default to `unknown` instead of `any` if the element is typed as `ReactElement`",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L538",
    "p": 0.55
   },
@@ -2583,6 +2855,7 @@
    "version": "19.0.0",
    "section": "TypeScript Changes",
    "text": "JSX namespace in TypeScript: The global `JSX` namespace is removed to improve interoperability with other libraries using JSX. Instead, the JSX namespace is available from the React package: `import { JSX } from 'react'`",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L539",
    "p": 0.69
   },
@@ -2590,6 +2863,7 @@
    "version": "19.0.0",
    "section": "TypeScript Changes",
    "text": "Better `useReducer` typings: Most `useReducer` usage should not require explicit type arguments. For example, or",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L540",
    "p": 0.07
   },
@@ -2597,6 +2871,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Add support for async Actions (#26621, #26726, #28078, #28097, #29226, #29618, #29670, #26716 by @acdlite and @sebmarkbage)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L556",
    "p": 0.08
   },
@@ -2604,6 +2879,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Add `useActionState()` hook to update state based on the result of a Form Action (#27270, #27278, #27309, #27302, #27307, #27366, #27370, #27321, #27374, #27372, #27397, #27399, #27460, #28557, #27570, #27571, #28631, #28788, #29694, #29695, #29694, #29665, #28232, #28319 by @acdlite, @eps1lon, and @rickhanlonii)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L557",
    "p": 0.03
   },
@@ -2611,6 +2887,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Add `use()` API to read resources in render (#25084, #25202, #25207, #25214, #25226, #25247, #25539, #25538, #25537, #25543, #25561, #25620, #25615, #25922, #25641, #25634, #26232, #26536, #26739, #28233 by @acdlite, @MofeiZ, @sebmarkbage, @sophiebits, @eps1lon, and @hansottowirtz)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L558",
    "p": 0.04
   },
@@ -2618,6 +2895,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Add `useOptimistic()` hook to display mutated state optimistically during an async mutation (#26740, #26772, #27277, #27453, #27454, #27936 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L559",
    "p": 0.03
   },
@@ -2625,6 +2903,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Added an `initialValue` argument to `useDeferredValue()` hook (#27500, #27509, #27512, #27888, #27550 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L560",
    "p": 0.04
   },
@@ -2632,6 +2911,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Support refs as props, warn on `element.ref` access (#28348, #28464, #28731 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L561",
    "p": 0.37
   },
@@ -2639,6 +2919,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Support Custom Elements (#22184, #26524, #26523, #27511, #24541 by @josepharhar, @sebmarkbage, @gnoff and @eps1lon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L562",
    "p": 0.06
   },
@@ -2646,6 +2927,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Add ref cleanup function (#25686, #28883, #28910 by @sammy-SC, @jackpope, and @kassens)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L563",
    "p": 0.06
   },
@@ -2653,6 +2935,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Sibling pre-rendering replaced by sibling pre-warming (#26380, #26549, #30761, #30800, #30762, #30879, #30934, #30952, #31056, #31452 by @sammy-SC, @acdlite, @gnoff, @jackpope, @rickhanlonii)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L564",
    "p": 0.06
   },
@@ -2660,6 +2943,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Don’t rethrow errors at the root (#28627, #28641 by @sebmarkbage)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L565",
    "p": 0.11
   },
@@ -2667,6 +2951,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Batch sync discrete, continuous, and default lanes (#25700 by @tyao1)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L566",
    "p": 0.09
   },
@@ -2674,6 +2959,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Switch `<Context>` to mean `<Context.Provider>` (#28226 by @gaearon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L567",
    "p": 0.41
   },
@@ -2681,6 +2967,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Changes to *StrictMode* Handle `info`, `group`, and `groupCollapsed` in *StrictMode* logging (#25172 by @timneutkens) Refs are now attached/detached/attached in *StrictMode* (#25049 by @sammy-SC) Fix `useSyncExternalStore()` hydration in *StrictMode* (#26791 by @sophiebits) Always trigger `componentWillUnmount()` in *StrictMode* (#26842 by @tyao1) Restore double invoking `useState()` and `useReducer()` initializer functions in *StrictMode* (#28248 by @eps1lon) Reuse memoized result from first pass (#25583 by @acdlite) Fix `useId()` in *StrictMode* (#25713 by @gnoff) Add component name to *StrictMode* error messages (#25718 by @sammy-SC)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L568",
    "p": 0.11
   },
@@ -2688,6 +2975,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Add support for rendering BigInt (#24580 by @eps1lon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L577",
    "p": 0.04
   },
@@ -2695,6 +2983,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "`act()` no longer checks `shouldYield` which can be inaccurate in test environments (#26317 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L578",
    "p": 0.12
   },
@@ -2702,6 +2991,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Warn when keys are spread with props (#25697, #26080 by @sebmarkbage and @kassens)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L579",
    "p": 0.13
   },
@@ -2709,6 +2999,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Generate sourcemaps for production build artifacts (#26446 by @markerikson)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L580",
    "p": 0.05
   },
@@ -2716,6 +3007,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Improve stack diffing algorithm (#27132 by @KarimP)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L581",
    "p": 0.04
   },
@@ -2723,6 +3015,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Suspense throttling lowered from 500ms to 300ms (#26803 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L582",
    "p": 0.07
   },
@@ -2730,6 +3023,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Lazily propagate context changes (#20890 by @acdlite and @gnoff)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L583",
    "p": 0.07
   },
@@ -2737,6 +3031,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Immediately rerender pinged fiber (#25074 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L584",
    "p": 0.05
   },
@@ -2744,6 +3039,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Move update scheduling to microtask (#26512 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L585",
    "p": 0.06
   },
@@ -2751,6 +3047,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Consistently apply throttled retries (#26611, #26802 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L586",
    "p": 0.04
   },
@@ -2758,6 +3055,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Suspend Thenable/Lazy if it's used in React.Children (#28284 by @sebmarkbage)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L587",
    "p": 0.07
   },
@@ -2765,6 +3063,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Detect infinite update loops caused by render phase updates (#26625 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L588",
    "p": 0.08
   },
@@ -2772,6 +3071,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Update conditional hooks warning (#29626 by @sophiebits)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L589",
    "p": 0.07
   },
@@ -2779,6 +3079,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Update error URLs to go to new docs (#27240 by @rickhanlonii)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L590",
    "p": 0.02
   },
@@ -2786,6 +3087,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Rename the `react.element` symbol to `react.transitional.element` (#28813 by @sebmarkbage)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L591",
    "p": 0.31
   },
@@ -2793,6 +3095,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Fix crash when suspending in shell during `useSyncExternalStore()` re-render (#27199 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L592",
    "p": 0.04
   },
@@ -2800,6 +3103,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Fix incorrect “detected multiple renderers\" error in tests (#22797 by @eps1lon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L593",
    "p": 0.04
   },
@@ -2807,6 +3111,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Fix bug where effect cleanup may be called twice after bailout (#26561 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L594",
    "p": 0.04
   },
@@ -2814,6 +3119,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Fix suspending in shell during discrete update (#25495 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L595",
    "p": 0.06
   },
@@ -2821,6 +3127,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Fix memory leak after repeated setState bailouts (#25309 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L596",
    "p": 0.04
   },
@@ -2828,6 +3135,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Fix `useSyncExternalStore()` dropped update when state is dispatched in render phase (#25578 by @pandaiolo)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L597",
    "p": 0.05
   },
@@ -2835,6 +3143,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Fix logging when rendering a lazy fragment (#30372 by @tom-sherman)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L598",
    "p": 0.04
   },
@@ -2842,6 +3151,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Remove string refs (#25383, #28322 by @eps1lon and @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L599",
    "p": 0.75
   },
@@ -2849,6 +3159,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Remove Legacy Context (#30319 by @kassens)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L600",
    "p": 0.64
   },
@@ -2856,6 +3167,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Remove `RefreshRuntime.findAffectedHostInstances` (#30538 by @gaearon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L601",
    "p": 0.09
   },
@@ -2863,6 +3175,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Remove client caching from `cache()` API (#27977, #28250 by @acdlite and @gnoff)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L602",
    "p": 0.46
   },
@@ -2870,6 +3183,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Remove `propTypes` (#28324, #28326 by @gaearon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L603",
    "p": 0.43
   },
@@ -2877,6 +3191,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Remove `defaultProps` support, except for classes (#28733 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L604",
    "p": 0.78
   },
@@ -2884,6 +3199,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Remove UMD builds (#28735 by @gnoff)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L605",
    "p": 0.72
   },
@@ -2891,6 +3207,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Remove delay for non-transition updates (#26597 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L606",
    "p": 0.11
   },
@@ -2898,6 +3215,7 @@
    "version": "19.0.0",
    "section": "React",
    "text": "Remove `createFactory` (#27798 by @kassens)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L607",
    "p": 0.6
   },
@@ -2905,6 +3223,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Adds Form Actions to handle form submission (#26379, #26674, #26689, #26708, #26714, #26735, #26846, #27358, #28056 by @sebmarkbage, @acdlite, and @jupapios)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L611",
    "p": 0.05
   },
@@ -2912,6 +3231,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Add `useFormStatus()` hook to provide status information of the last form submission (#26719, #26722, #26788, #29019, #28728, #28413 by @acdlite and @eps1lon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L612",
    "p": 0.03
   },
@@ -2919,6 +3239,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Support for Document Metadata. Adds `preinit`, `preinitModule`, `preconnect`, `prefetchDNS`, `preload`, and `preloadModule` APIs. #25060, #25243, #25388, #25432, #25436, #25426, #25500, #25480, #25508, #25515, #25514, #25532, #25536, #25534, #25546, #25559, #25569, #25599, #25689, #26106, #26152, #26239, #26237, #26280, #26154, #26256, #26353, #26427, #26450, #26502, #26514, #26531, #26532, #26557, #26871, #26881, #26877, #26873, #26880, #26942, #26938, #26940, #26939, #27030, #27201, #27212, #27217, #27218, #27220, #27224, #27223, #27269, #27260, #27347, #27346, #27361, #27400, #27541, #27610, #28110, #29693, #29732, #29811, #27586, #28069 by @gnoff, @sebmarkbage, @acdlite, @kassens, @sokra, @sweetliquid",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L613",
    "p": 0.03
   },
@@ -2926,6 +3247,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Add `fetchPriority` to `<img>` and `<link>` (#25927 by @styfle)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L615",
    "p": 0.04
   },
@@ -2933,6 +3255,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Add support for SVG `transformOrigin` prop (#26130 by @arav-ind)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L616",
    "p": 0.03
   },
@@ -2940,6 +3263,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Add support for `onScrollEnd` event (#26789 by @devongovett)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L617",
    "p": 0.03
   },
@@ -2947,6 +3271,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Allow `<hr>` as child of `<select>` (#27632 by @SouSingh)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L618",
    "p": 0.04
   },
@@ -2954,6 +3279,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Add support for Popover API (#27981 by @eps1lon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L619",
    "p": 0.03
   },
@@ -2961,6 +3287,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Add support for `inert` (#24730 by @eps1lon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L620",
    "p": 0.04
   },
@@ -2968,6 +3295,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Add support for `imageSizes` and `imageSrcSet` (#22550 by @eps1lon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L621",
    "p": 0.04
   },
@@ -2975,6 +3303,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Synchronously flush transitions in popstate events (#26025, #27559, #27505, #30759 by @tyao1 and @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L622",
    "p": 0.07
   },
@@ -2982,6 +3311,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "`flushSync` exhausts queue even if something throws (#26366 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L623",
    "p": 0.11
   },
@@ -2989,6 +3319,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Throw error if `react` and `react-dom` versions don’t match (#29236 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L624",
    "p": 0.26
   },
@@ -2996,6 +3327,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Ensure `srcset` and `src` are assigned last on `<img>` instances (#30340 by @gnoff)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L625",
    "p": 0.07
   },
@@ -3003,6 +3335,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Javascript URLs are replaced with functions that throw errors (#26507, #29808 by @sebmarkbage and @kassens)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L626",
    "p": 0.41
   },
@@ -3010,6 +3343,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Treat toggle and beforetoggle as discrete events (#29176 by @eps1lon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L627",
    "p": 0.12
   },
@@ -3017,6 +3351,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Filter out empty `src` and `href` attributes (unless for `<a href=”” />`) (#18513, #28124 by @bvaughn and @eps1lon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L628",
    "p": 0.15
   },
@@ -3024,6 +3359,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Fix unitless `scale` style property (#25601 by @JonnyBurger)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L629",
    "p": 0.05
   },
@@ -3031,6 +3367,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Fix `onChange` error message for controlled `<select>` (#27740 by @Biki-das)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L630",
    "p": 0.03
   },
@@ -3038,6 +3375,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Fix focus restore in child windows after element reorder (#30951 by @ling1726)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L631",
    "p": 0.04
   },
@@ -3045,6 +3383,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Remove `render`, `hydrate`, `findDOMNode`, `unmountComponentAtNode`, `unstable_createEventHandle`, `unstable_renderSubtreeIntoContainer`, and `unstable_runWithPriority`. Move `createRoot` and `hydrateRoot` to `react-dom/client`. (#28271 by @gnoff)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L632",
    "p": 0.77
   },
@@ -3052,6 +3391,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Remove `test-utils` (#28541 by @eps1lon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L633",
    "p": 0.52
   },
@@ -3059,6 +3399,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Remove `unstable_flushControlled` (#26397 by @kassens)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L634",
    "p": 0.28
   },
@@ -3066,6 +3407,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Remove legacy mode (#28468 by @gnoff)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L635",
    "p": 0.51
   },
@@ -3073,6 +3415,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Remove `renderToStaticNodeStream()` (#28873 by @gnoff)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L636",
    "p": 0.73
   },
@@ -3080,6 +3423,7 @@
    "version": "19.0.0",
    "section": "React DOM",
    "text": "Remove `unstable_renderSubtreeIntoContainer` (#29771 by @kassens)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L637",
    "p": 0.59
   },
@@ -3087,6 +3431,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Stable release of React Server Components (Many, many PRs by @sebmarkbage, @acdlite, @gnoff, @sammy-SC, @gaearon, @sophiebits, @unstubbable, @lubieowoce)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L641",
    "p": 0.05
   },
@@ -3094,6 +3439,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Support Server Actions (#26124, #26632, #27459 by @sebmarkbage and @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L642",
    "p": 0.05
   },
@@ -3101,6 +3447,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Changes to SSR Add external runtime which bootstraps hydration on the client for binary transparency (#25437, #26169, #25499 by @MofeiZ and @acdlite) Support subresource integrity for `bootstrapScripts` and `bootstrapModules` (#25104 by @gnoff) Fix null bytes written at text chunk boundaries (#26228 by @sophiebits) Fix logic around attribute serialization (#26526 by @gnoff) Fix precomputed chunk cleared on Node 18 (#25645 by @feedthejim) Optimize end tag chunks (#27522 by @yujunjung) Gracefully handle suspending in DOM configs (#26768 by @sebmarkbage) Check for nullish values on ReactCustomFormAction (#26770 by @sebmarkbage) Preload `bootstrapModules`, `bootstrapScripts`, and update priority queue (#26754, #26753, #27190, #27189 by @gnoff) Client render the nearest child or parent suspense boundary if replay errors or is aborted (#27386 by @sebmarkbage) Don't bail out of flushing if we still have pending root tasks (#27385 by @sebmarkbage) Ensure Resumable State is Serializable (#27388 by @sebmarkbage) Remove extra render pass when reverting to client render (#26445 by @acdlite) Fix unwinding context during selective hydration (#25876 by @tyao1) Stop flowing and then abort if a stream is cancelled (#27405 by @sebmarkbage) Pass cancellation reason to abort (#27536 by @sebmarkbage) Add `onHeaders` entrypoint option (#27641, #27712 by @gnoff) Escape `<style>` and `<script>` textContent to enable rendering inner content without dangerouslySetInnerHTML (#28870, #28871 by @gnoff) Fallback to client replaying actions for Blob serialization (#28987 by @sebmarkbage) Render Suspense fallback if boundary contains new stylesheet during sync update (#28965 by @gnoff) Fix header length tracking (#30327 by @gnoff) Use `srcset` to trigger load event on mount (#30351 by @gnoff) Don't perform work when closing stream (#30497 by @gnoff) Allow aborting during render (#30488, #30730 by @gnoff) Start initial work immediately (#31079 by @gnoff) A transition flowing into a dehydrated boundary no longer suspends when showing fallback (#27230 by @acdlite) Fix selective hydration triggers false update loop error (#27439 by @acdlite) Warn for Child Iterator of all types but allow Generator Components (#28853 by @sebmarkbage) Include regular stack trace in serialized errors (#28684, #28738 by @sebmarkbage) Aborting early no longer infinitely suspends (#24751 by @sebmarkbage) Fix hydration warning suppression in text comparisons (#24784 by @gnoff) Changes to error handling in SSR Add diffs to hydration warnings (#28502, #28512 by @sebmarkbage) Make Error creation lazy (#24728 by @sebmarkbage) Remove recoverable error when a sync update flows into a dehydrated boundary (#25692 by @sebmarkbage) Don't \"fix up\" mismatched text content with suppressedHydrationWarning (#26391 by @sebmarkbage) Fix component stacks in errors (#27456 by @sebmarkbage) Add component stacks to `onError` (#27761, #27850 by @gnoff and @sebmarkbage) Throw hydration mismatch errors once (#28502 by @sebmarkbage)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L643",
    "p": 0.2
   },
@@ -3108,6 +3455,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Add Bun streaming server renderer (#25597 by @colinhacks)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L683",
    "p": 0.04
   },
@@ -3115,6 +3463,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Add nonce support to bootstrap scripts (#26738 by @danieltott)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L684",
    "p": 0.05
   },
@@ -3122,6 +3471,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Add `crossorigin` support to bootstrap scripts (#26844 by @HenriqueLimas)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L685",
    "p": 0.05
   },
@@ -3129,6 +3479,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Support `nonce` and `fetchpriority` in preload links (#26826 by @liuyenwei)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L686",
    "p": 0.03
   },
@@ -3136,6 +3487,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Add `referrerPolicy` to `ReactDOM.preload()` (#27096 by @styfle)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L687",
    "p": 0.03
   },
@@ -3143,6 +3495,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Add server condition for `react/jsx-dev-runtime` (#28921 by @himself65)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L688",
    "p": 0.08
   },
@@ -3150,6 +3503,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Export version (#29596 by @unstubbable)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L689",
    "p": 0.07
   },
@@ -3157,6 +3511,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Rename the secret export of Client and Server internals (#28786, #28789 by @sebmarkbage)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L690",
    "p": 0.15
   },
@@ -3164,6 +3519,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Remove layout effect warning on server (#26395 by @rickhanlonii)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L691",
    "p": 0.05
   },
@@ -3171,6 +3527,7 @@
    "version": "19.0.0",
    "section": "React DOM Server",
    "text": "Remove `errorInfo.digest` from `onRecoverableError` (#28222 by @gnoff)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L692",
    "p": 0.42
   },
@@ -3178,6 +3535,7 @@
    "version": "19.0.0",
    "section": "ReactTestRenderer",
    "text": "Add deprecation error to `react-test-renderer` on web (#27903, #28904 by @jackpope and @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L696",
    "p": 0.39
   },
@@ -3185,6 +3543,7 @@
    "version": "19.0.0",
    "section": "ReactTestRenderer",
    "text": "Render with ConcurrentRoot on web (#28498 by @jackpope)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L697",
    "p": 0.07
   },
@@ -3192,6 +3551,7 @@
    "version": "19.0.0",
    "section": "ReactTestRenderer",
    "text": "Remove `react-test-renderer/shallow` export (#25475, #28497 by @sebmarkbage and @jackpope)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L698",
    "p": 0.76
   },
@@ -3199,6 +3559,7 @@
    "version": "19.0.0",
    "section": "React Reconciler",
    "text": "Enable suspending commits without blocking render (#26398, #26427 by @acdlite)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L702",
    "p": 0.06
   },
@@ -3206,6 +3567,7 @@
    "version": "19.0.0",
    "section": "React Reconciler",
    "text": "Remove `prepareUpdate` (#26583, #27409 by @sebmarkbage and @sophiebits)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L703",
    "p": 0.13
   },
@@ -3213,6 +3575,7 @@
    "version": "19.0.0",
    "section": "React-Is",
    "text": "Enable tree shaking (#27701 by @markerikson)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L707",
    "p": 0.06
   },
@@ -3220,6 +3583,7 @@
    "version": "19.0.0",
    "section": "React-Is",
    "text": "Remove `isConcurrentMode` and `isAsyncMode` methods (#28224 by @gaearon)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L708",
    "p": 0.61
   },
@@ -3227,6 +3591,7 @@
    "version": "19.0.0",
    "section": "useSyncExternalStore",
    "text": "Remove React internals access (#29868 by @phryneas)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L712",
    "p": 0.12
   },
@@ -3234,6 +3599,7 @@
    "version": "19.0.0",
    "section": "useSyncExternalStore",
    "text": "Fix stale selectors keeping previous store references (#25969 by @jellevoost)",
+   "kind": "changelog",
    "source": "https://github.com/facebook/react/blob/e8738f0c62/CHANGELOG.md#L713",
    "p": 0.05
   },
@@ -3242,6 +3608,7 @@
    "section": "",
    "text": "April 25, 2024 by Ricky Hanlon --- The improvements added to React 19 require some breaking changes, but we've worked to make the upgrade as smooth as possible, and we don't expect the changes to impact most apps.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L8",
    "p": 0.31
   },
@@ -3250,6 +3617,7 @@
    "section": "React 18.3 has also been published",
    "text": "To help make the upgrade to React 19 easier, we've published a `react@18.3` release that is identical to 18.2 but adds warnings for deprecated APIs and other changes that are needed for React 19. We recommend upgrading to React 18.3 first to help identify any issues before upgrading to React 19. For a list of changes in 18.3 see the Release Notes. In this post, we will guide you through the steps for upgrading to React 19: If you'd like to help us test React 19, follow the steps in this upgrade guide and report any issues you encounter. For a list of new features added to React 19, see the React 19 release post. ---",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L23",
    "p": 0.09
   },
@@ -3257,6 +3625,7 @@
    "version": "19.0.0",
    "section": "React 18.3 has also been published",
    "text": "Installing",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L33",
    "p": 0.06
   },
@@ -3264,6 +3633,7 @@
    "version": "19.0.0",
    "section": "React 18.3 has also been published",
    "text": "Codemods",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L34",
    "p": 0.11
   },
@@ -3271,6 +3641,7 @@
    "version": "19.0.0",
    "section": "React 18.3 has also been published",
    "text": "Breaking changes",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L35",
    "p": 0.4
   },
@@ -3278,6 +3649,7 @@
    "version": "19.0.0",
    "section": "React 18.3 has also been published",
    "text": "New deprecations",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L36",
    "p": 0.27
   },
@@ -3285,6 +3657,7 @@
    "version": "19.0.0",
    "section": "React 18.3 has also been published",
    "text": "Notable changes",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L37",
    "p": 0.1
   },
@@ -3292,6 +3665,7 @@
    "version": "19.0.0",
    "section": "React 18.3 has also been published",
    "text": "TypeScript changes",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L38",
    "p": 0.21
   },
@@ -3299,6 +3673,7 @@
    "version": "19.0.0",
    "section": "React 18.3 has also been published",
    "text": "Changelog",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L39",
    "p": 0.07
   },
@@ -3307,6 +3682,7 @@
    "section": "New JSX Transform is now required",
    "text": "We introduced a new JSX transform in 2020 to improve bundle size and use JSX without importing React. In React 19, we're adding additional improvements like using ref as a prop and JSX speed improvements that require the new transform. If the new transform is not enabled, you will see this warning: Your app (or one of its dependencies) is using an outdated JSX transform. Update to the modern JSX transform for faster performance: https://react.dev/link/new-jsx-transform We expect most apps will not be affected since the transform is enabled in most environments already. For manual instructions on how to upgrade, please see the announcement post. To install the latest version of React and React DOM: Or, if you're using Yarn: If you're using TypeScript, you also need to update the types. Or, if you're using Yarn: We're also including a codemod for the most common replacements. See TypeScript changes below.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L50",
    "p": 0.49
   },
@@ -3315,6 +3691,7 @@
    "section": "Codemods",
    "text": "To help with the upgrade, we've worked with the team at codemod.com to publish codemods that will automatically update your code to many of the new APIs and patterns in React 19. All codemods are available in the `react-codemod` repo and the Codemod team have joined in helping maintain the codemods. To run these codemods, we recommend using the `codemod` command instead of the `react-codemod` because it runs faster, handles more complex code migrations, and provides better support for TypeScript.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L96",
    "p": 0.08
   },
@@ -3323,6 +3700,7 @@
    "section": "Run all React 19 codemods",
    "text": "Run all codemods listed in this guide with the React 19 `codemod` recipe: This will run the following codemods from `react-codemod`: This does not include the TypeScript changes. See TypeScript changes below. Changes that include a codemod include the command below. For a list of all available codemods, see the `react-codemod` repo.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L105",
    "p": 0.31
   },
@@ -3330,6 +3708,7 @@
    "version": "19.0.0",
    "section": "Run all React 19 codemods",
    "text": "`replace-reactdom-render`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L112",
    "p": 0.49
   },
@@ -3337,6 +3716,7 @@
    "version": "19.0.0",
    "section": "Run all React 19 codemods",
    "text": "`replace-string-ref`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L113",
    "p": 0.38
   },
@@ -3344,6 +3724,7 @@
    "version": "19.0.0",
    "section": "Run all React 19 codemods",
    "text": "`replace-act-import`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L114",
    "p": 0.54
   },
@@ -3351,6 +3732,7 @@
    "version": "19.0.0",
    "section": "Run all React 19 codemods",
    "text": "`replace-use-form-state`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L115",
    "p": 0.34
   },
@@ -3358,6 +3740,7 @@
    "version": "19.0.0",
    "section": "Run all React 19 codemods",
    "text": "`prop-types-typescript`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L116",
    "p": 0.2
   },
@@ -3366,6 +3749,7 @@
    "section": "Errors in render are not re-thrown",
    "text": "In previous versions of React, errors thrown during render were caught and rethrown. In DEV, we would also log to `console.error`, resulting in duplicate error logs. In React 19, we've improved how errors are handled to reduce duplication by not re-throwing: This change should not impact most apps, but if your production error reporting relies on errors being re-thrown, you may need to update your error handling. To support this, we've added new methods to `createRoot` and `hydrateRoot` for custom error handling: For more info, see the docs for `createRoot` and `hydrateRoot`.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L130",
    "p": 0.19
   },
@@ -3373,6 +3757,7 @@
    "version": "19.0.0",
    "section": "Errors in render are not re-thrown",
    "text": "Uncaught Errors: Errors that are not caught by an Error Boundary are reported to `window.reportError`.",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L134",
    "p": 0.13
   },
@@ -3380,6 +3765,7 @@
    "version": "19.0.0",
    "section": "Errors in render are not re-thrown",
    "text": "Caught Errors: Errors that are caught by an Error Boundary are reported to `console.error`.",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L135",
    "p": 0.13
   },
@@ -3388,6 +3774,7 @@
    "section": "Removed: `propTypes` and `defaultProps` for functions",
    "text": "`PropTypes` were deprecated in April 2017 (v15.5.0). In React 19, we're removing the `propType` checks from the React package, and using them will be silently ignored. If you're using `propTypes`, we recommend migrating to TypeScript or another type-checking solution. We're also removing `defaultProps` from function components in place of ES6 default parameters. Class components will continue to support `defaultProps` since there is no ES6 alternative. Codemod `propTypes` to TypeScript with:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L156",
    "p": 0.53
   },
@@ -3396,6 +3783,7 @@
    "section": "Removed: Legacy Context using `contextTypes` and `getChildContext`",
    "text": "Legacy Context was deprecated in October 2018 (v16.6.0). Legacy Context was only available in class components using the APIs `contextTypes` and `getChildContext`, and was replaced with `contextType` due to subtle bugs that were easy to miss. In React 19, we're removing Legacy Context to make React slightly smaller and faster. If you're still using Legacy Context in class components, you'll need to migrate to the new `contextType` API:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L198",
    "p": 0.68
   },
@@ -3404,6 +3792,7 @@
    "section": "Removed: string refs",
    "text": "String refs were deprecated in March, 2018 (v16.3.0). Class components supported string refs before being replaced by ref callbacks due to multiple downsides. In React 19, we're removing string refs to make React simpler and easier to understand. If you're still using string refs in class components, you'll need to migrate to ref callbacks: Codemod string refs with `ref` callbacks:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L257",
    "p": 0.75
   },
@@ -3412,6 +3801,7 @@
    "section": "Removed: Module pattern factories",
    "text": "Module pattern factories were deprecated in August 2019 (v16.9.0). This pattern was rarely used and supporting it causes React to be slightly larger and slower than necessary. In React 19, we're removing support for module pattern factories, and you'll need to migrate to regular functions:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L300",
    "p": 0.7
   },
@@ -3420,6 +3810,7 @@
    "section": "Removed: `React.createFactory`",
    "text": "`createFactory` was deprecated in February 2020 (v16.13.0). Using `createFactory` was common before broad support for JSX, but it's rarely used today and can be replaced with JSX. In React 19, we're removing `createFactory` and you'll need to migrate to JSX:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L319",
    "p": 0.67
   },
@@ -3428,6 +3819,7 @@
    "section": "Removed: `react-test-renderer/shallow`",
    "text": "In React 18, we updated `react-test-renderer/shallow` to re-export react-shallow-renderer. In React 19, we're removing `react-test-render/shallow` to prefer installing the package directly:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L337",
    "p": 0.77
   },
@@ -3436,6 +3828,7 @@
    "section": "Please reconsider shallow rendering",
    "text": "Shallow rendering depends on React internals and can block you from future upgrades. We recommend migrating your tests to @testing-library/react or @testing-library/react-native.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L351",
    "p": 0.21
   },
@@ -3444,6 +3837,7 @@
    "section": "Removed: `react-dom/test-utils`",
    "text": "We've moved `act` from `react-dom/test-utils` to the `react` package: `ReactDOMTestUtils.act` is deprecated in favor of `React.act`. Import `act` from `react` instead of `react-dom/test-utils`. See https://react.dev/warnings/react-dom-test-utils for more info. To fix this warning, you can import `act` from `react`: All other `test-utils` functions have been removed. These utilities were uncommon, and made it too easy to depend on low level implementation details of your components and React. In React 19, these functions will error when called and their exports will be removed in a future version. See the warning page for alternatives. Codemod `ReactDOMTestUtils.act` to `React.act`:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L359",
    "p": 0.71
   },
@@ -3452,6 +3846,7 @@
    "section": "Removed: `ReactDOM.render`",
    "text": "`ReactDOM.render` was deprecated in March 2022 (v18.0.0). In React 19, we're removing `ReactDOM.render` and you'll need to migrate to using `ReactDOM.createRoot`: Codemod `ReactDOM.render` to `ReactDOMClient.createRoot`:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L394",
    "p": 0.88
   },
@@ -3460,6 +3855,7 @@
    "section": "Removed: `ReactDOM.hydrate`",
    "text": "`ReactDOM.hydrate` was deprecated in March 2022 (v18.0.0). In React 19, we're removing `ReactDOM.hydrate` you'll need to migrate to using `ReactDOM.hydrateRoot`, Codemod `ReactDOM.hydrate` to `ReactDOMClient.hydrateRoot`:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L419",
    "p": 0.88
   },
@@ -3468,6 +3864,7 @@
    "section": "Removed: `unmountComponentAtNode`",
    "text": "`ReactDOM.unmountComponentAtNode` was deprecated in March 2022 (v18.0.0). In React 19, you'll need to migrate to using `root.unmount()`. For more see `root.unmount()` for `createRoot` and `hydrateRoot`. Codemod `unmountComponentAtNode` to `root.unmount`:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L443",
    "p": 0.79
   },
@@ -3476,6 +3873,7 @@
    "section": "Removed: `ReactDOM.findDOMNode`",
    "text": "`ReactDOM.findDOMNode` was deprecated in October 2018 (v16.6.0). We're removing `findDOMNode` because it was a legacy escape hatch that was slow to execute, fragile to refactoring, only returned the first child, and broke abstraction levels (see more here). You can replace `ReactDOM.findDOMNode` with DOM refs:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L468",
    "p": 0.76
   },
@@ -3484,6 +3882,7 @@
    "section": "Deprecated: `element.ref`",
    "text": "React 19 supports `ref` as a prop, so we're deprecating the `element.ref` in place of `element.props.ref`. Accessing `element.ref` will warn: Accessing element.ref is no longer supported. ref is now a regular prop. It will be removed from the JSX Element type in a future release.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L502",
    "p": 0.5
   },
@@ -3492,6 +3891,7 @@
    "section": "Deprecated: `react-test-renderer`",
    "text": "We are deprecating `react-test-renderer` because it implements its own renderer environment that doesn't match the environment users use, promotes testing implementation details, and relies on introspection of React's internals. The test renderer was created before there were more viable testing strategies available like React Testing Library, and we now recommend using a modern testing library instead. In React 19, `react-test-renderer` logs a deprecation warning, and has switched to concurrent rendering. We recommend migrating your tests to @testing-library/react or @testing-library/react-native for a modern and well supported testing experience.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L518",
    "p": 0.18
   },
@@ -3500,6 +3900,7 @@
    "section": "StrictMode changes",
    "text": "React 19 includes several fixes and improvements to Strict Mode. When double rendering in Strict Mode in development, `useMemo` and `useCallback` will reuse the memoized results from the first render during the second render. Components that are already Strict Mode compatible should not notice a difference in behavior. As with all Strict Mode behaviors, these features are designed to proactively surface bugs in your components during development so you can fix them before they are shipped to production. For example, during development, Strict Mode will double-invoke ref callback functions on initial mount, to simulate what happens when a mounted component is replaced by a Suspense fallback.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L528",
    "p": 0.08
   },
@@ -3508,6 +3909,7 @@
    "section": "Improvements to Suspense",
    "text": "In React 19, when a component suspends, React will immediately commit the fallback of the nearest Suspense boundary without waiting for the entire sibling tree to render. After the fallback commits, React schedules another render for the suspended siblings to \"pre-warm\" lazy requests in the rest of the tree: Previously, when a component suspended, the suspended siblings were rendered and then the fallback was committed. In React 19, when a component suspends, the fallback is committed and then the suspended siblings are rendered. This change means Suspense fallbacks display faster, while still warming lazy requests in the suspended tree.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L536",
    "p": 0.07
   },
@@ -3516,6 +3918,7 @@
    "section": "UMD builds removed",
    "text": "UMD was widely used in the past as a convenient way to load React without a build step. Now, there are modern alternatives for loading modules as scripts in HTML documents. Starting with React 19, React will no longer produce UMD builds to reduce the complexity of its testing and release process. To load React 19 with a script tag, we recommend using an ESM-based CDN such as esm.sh.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L554",
    "p": 0.59
   },
@@ -3524,6 +3927,7 @@
    "section": "Libraries depending on React internals may block upgrades",
    "text": "This release includes changes to React internals that may impact libraries that ignore our pleas to not use internals like `SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED`. These changes are necessary to land improvements in React 19, and will not break libraries that follow our guidelines. Based on our Versioning Policy, these updates are not listed as breaking changes, and we are not including docs for how to upgrade them. The recommendation is to remove any code that depends on internals. To reflect the impact of using internals, we have renamed the `SECRET_INTERNALS` suffix to: `_DO_NOT_USE_OR_WARN_USERS_THEY_CANNOT_UPGRADE` In the future we will more aggressively block accessing internals from React to discourage usage and ensure users are not blocked from upgrading.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L568",
    "p": 0.33
   },
@@ -3532,6 +3936,7 @@
    "section": "Removed deprecated TypeScript types",
    "text": "We've cleaned up the TypeScript types based on the removed APIs in React 19. Some of the removed have types been moved to more relevant packages, and others are no longer needed to describe React's behavior. We've published `types-react-codemod` to migrate most type related breaking changes: If you have a lot of unsound access to `element.props`, you can run this additional codemod: Check out `types-react-codemod` for a list of supported replacements. If you feel a codemod is missing, it can be tracked in the list of missing React 19 codemods.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L582",
    "p": 0.61
   },
@@ -3540,6 +3945,7 @@
    "section": "`ref` cleanups required",
    "text": "_This change is included in the `react-19` codemod preset as `no-implicit-ref-callback-return `._ Due to the introduction of ref cleanup functions, returning anything else from a ref callback will now be rejected by TypeScript. The fix is usually to stop using implicit returns: The original code returned the instance of the `HTMLDivElement` and TypeScript wouldn't know if this was supposed to be a cleanup function or not.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L604",
    "p": 0.65
   },
@@ -3548,6 +3954,7 @@
    "section": "`useRef` requires an argument",
    "text": "_This change is included in the `react-19` codemod preset as `refobject-defaults`._ A long-time complaint of how TypeScript and React work has been `useRef`. We've changed the types so that `useRef` now requires an argument. This significantly simplifies its type signature. It'll now behave more like `createContext`. This now also means that all refs are mutable. You'll no longer hit the issue where you can't mutate a ref because you initialised it with `null`: `MutableRef` is now deprecated in favor of a single `RefObject` type which `useRef` will always return: `useRef` still has a convenience overload for `useRef<T>(null)` that automatically returns `RefObject<T | null>`. To ease migration due to the required argument for `useRef`, a convenience overload for `useRef(undefined)` was added that automatically returns `RefObject<T | undefined>`. Check out [[RFC] Make all refs mutable](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/64772) for prior discussions about this change.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L618",
    "p": 0.74
   },
@@ -3556,6 +3963,7 @@
    "section": "Changes to the `ReactElement` TypeScript type",
    "text": "_This change is included in the `react-element-default-any-props` codemod._ The `props` of React elements now default to `unknown` instead of `any` if the element is typed as `ReactElement`. This does not affect you if you pass a type argument to `ReactElement`: But if you relied on the default, you now have to handle `unknown`: You should only need it if you have a lot of legacy code relying on unsound access of element props. Element introspection only exists as an escape hatch, and you should make it explicit that your props access is unsound via an explicit `any`.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L658",
    "p": 0.43
   },
@@ -3564,6 +3972,7 @@
    "section": "The JSX namespace in TypeScript",
    "text": "This change is included in the `react-19` codemod preset as `scoped-jsx` A long-time request is to remove the global `JSX` namespace from our types in favor of `React.JSX`. This helps prevent pollution of global types which prevents conflicts between different UI libraries that leverage JSX. You'll now need to wrap module augmentation of the JSX namespace in `declare module \"....\": The exact module specifier depends on the JSX runtime you specified in the `compilerOptions` of your `tsconfig.json`:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L677",
    "p": 0.59
   },
@@ -3571,6 +3980,7 @@
    "version": "19.0.0",
    "section": "The JSX namespace in TypeScript",
    "text": "For `\"jsx\": \"react-jsx\"` it would be `react/jsx-runtime`.",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L698",
    "p": 0.26
   },
@@ -3578,6 +3988,7 @@
    "version": "19.0.0",
    "section": "The JSX namespace in TypeScript",
    "text": "For `\"jsx\": \"react-jsxdev\"` it would be `react/jsx-dev-runtime`.",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L699",
    "p": 0.18
   },
@@ -3585,6 +3996,7 @@
    "version": "19.0.0",
    "section": "The JSX namespace in TypeScript",
    "text": "For `\"jsx\": \"react\"` and `\"jsx\": \"preserve\"` it would be `react`.",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L700",
    "p": 0.13
   },
@@ -3593,6 +4005,7 @@
    "section": "Better `useReducer` typings",
    "text": "`useReducer` now has improved type inference thanks to @mfp22. However, this required a breaking change where `useReducer` doesn't accept the full reducer type as a type parameter but instead either needs none (and rely on contextual typing) or needs both the state and action type. The new best practice is _not_ to pass type arguments to `useReducer`. This may not work in edge cases where you can explicitly type the state and action, by passing in the `Action` in a tuple: If you define the reducer inline, we encourage to annotate the function parameters instead: This is also what you'd also have to do if you move the reducer outside of the `useReducer` call:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L704",
    "p": 0.5
   },
@@ -3600,6 +4013,7 @@
    "version": "19.0.0",
    "section": "Other breaking changes",
    "text": "react-dom: Error for javascript URLs in `src` and `href`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L733",
    "p": 0.64
   },
@@ -3607,6 +4021,7 @@
    "version": "19.0.0",
    "section": "Other breaking changes",
    "text": "react-dom: Remove `errorInfo.digest` from `onRecoverableError`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L734",
    "p": 0.74
   },
@@ -3614,6 +4029,7 @@
    "version": "19.0.0",
    "section": "Other breaking changes",
    "text": "react-dom: Remove `unstable_flushControlled`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L735",
    "p": 0.62
   },
@@ -3621,6 +4037,7 @@
    "version": "19.0.0",
    "section": "Other breaking changes",
    "text": "react-dom: Remove `unstable_createEventHandle`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L736",
    "p": 0.74
   },
@@ -3628,6 +4045,7 @@
    "version": "19.0.0",
    "section": "Other breaking changes",
    "text": "react-dom: Remove `unstable_renderSubtreeIntoContainer`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L737",
    "p": 0.78
   },
@@ -3635,6 +4053,7 @@
    "version": "19.0.0",
    "section": "Other breaking changes",
    "text": "react-dom: Remove `unstable_runWithPriority`",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L738",
    "p": 0.72
   },
@@ -3642,6 +4061,7 @@
    "version": "19.0.0",
    "section": "Other breaking changes",
    "text": "react-is: Remove deprecated methods from `react-is` 28224",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L739",
    "p": 0.46
   },
@@ -3649,6 +4069,7 @@
    "version": "19.0.0",
    "section": "Other notable changes",
    "text": "react: Batch sync, default and continuous lanes",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L743",
    "p": 0.12
   },
@@ -3656,6 +4077,7 @@
    "version": "19.0.0",
    "section": "Other notable changes",
    "text": "react: Don't prerender siblings of suspended component",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L744",
    "p": 0.07
   },
@@ -3663,6 +4085,7 @@
    "version": "19.0.0",
    "section": "Other notable changes",
    "text": "react: Detect infinite update loops caused by render phase updates",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L745",
    "p": 0.11
   },
@@ -3670,6 +4093,7 @@
    "version": "19.0.0",
    "section": "Other notable changes",
    "text": "react-dom: Transitions in popstate are now synchronous",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L746",
    "p": 0.26
   },
@@ -3677,6 +4101,7 @@
    "version": "19.0.0",
    "section": "Other notable changes",
    "text": "react-dom: Remove layout effect warning during SSR",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L747",
    "p": 0.06
   },
@@ -3684,6 +4109,7 @@
    "version": "19.0.0",
    "section": "Other notable changes",
    "text": "react-dom: Warn and don’t set empty string for src/href (except anchor tags)",
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L748",
    "p": 0.29
   },
@@ -3692,6 +4118,7 @@
    "section": "Other notable changes",
    "text": "For a full list of changes, please see the Changelog. --- Thanks to Andrew Clark, Eli White, Jack Pope, Jan Kassens, Josh Story, Matt Carroll, Noah Lemen, Sophie Alpert, and Sebastian Silbermann for reviewing and editing this post.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/reactjs/react.dev/blob/c3c956bef0/src/content/blog/2024/04/25/react-19-upgrade-guide.md#L750",
    "p": 0.04
   }

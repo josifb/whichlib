@@ -70,6 +70,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "build: handle missing chunk import maps",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L4",
    "p": 0.06
   },
@@ -77,6 +78,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "build: include preload dependencies to chunk import map hashing",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L5",
    "p": 0.09
   },
@@ -84,6 +86,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "bundled-dev: apply `server.origin` to asset URLs",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L6",
    "p": 0.09
   },
@@ -91,6 +94,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "bundled-dev: declare utf-8 charset in fallback page",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L7",
    "p": 0.03
   },
@@ -98,6 +102,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "bundled-dev: ignore build.chunkImportMap",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L8",
    "p": 0.06
   },
@@ -105,6 +110,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "bundled-dev: include user `import.meta.env.*` defines in the `import.meta.env` object",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L9",
    "p": 0.06
   },
@@ -112,6 +118,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "bundled-dev: map forwarded error stacks through the bundle source maps",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L10",
    "p": 0.04
   },
@@ -119,6 +126,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "bundled-dev: normalize served output files",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L11",
    "p": 0.14
   },
@@ -126,6 +134,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "bundled-dev: stop hmr propagation at modules that are no longer imported",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L12",
    "p": 0.05
   },
@@ -133,6 +142,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "css: don't fail on a literal `%` in `url()`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L13",
    "p": 0.04
   },
@@ -140,6 +150,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "deps: update all non-major dependencies",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L14",
    "p": 0.09
   },
@@ -147,6 +158,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "deps: update rolldown-related dependencies",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L16",
    "p": 0.08
   },
@@ -154,6 +166,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "optimizer: fall back to yarn.lock for lockfile hash",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L18",
    "p": 0.05
   },
@@ -161,6 +174,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "optimizer: scan `oxc.jsxInject` imports",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L19",
    "p": 0.05
   },
@@ -168,6 +182,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "optimizer: skip patches dir check for yarn.lock fallback",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L20",
    "p": 0.04
   },
@@ -175,6 +190,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "optimizer: skip patches dir hash for nub lockfile",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L21",
    "p": 0.05
   },
@@ -182,6 +198,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "resolve: support subpath imports with multiple `#`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L22",
    "p": 0.05
   },
@@ -189,6 +206,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "resolve: update resolve.exports to 2.0.4",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L23",
    "p": 0.07
   },
@@ -196,6 +214,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "server: handle socket errors on upgrade requests not taken by the HMR server",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L24",
    "p": 0.03
   },
@@ -203,6 +222,7 @@
    "version": "8.3.5",
    "section": "Bug Fixes",
    "text": "server: only strip base when path matches a full segment",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L25",
    "p": 0.16
   },
@@ -210,6 +230,7 @@
    "version": "8.3.5",
    "section": "Performance Improvements",
    "text": "ssr: extract inline source maps without a regexp",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L29",
    "p": 0.05
   },
@@ -217,6 +238,7 @@
    "version": "8.3.5",
    "section": "Miscellaneous Chores",
    "text": "migrate to Oxlint",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L33",
    "p": 0.08
   },
@@ -224,6 +246,7 @@
    "version": "8.3.5",
    "section": "Code Refactoring",
    "text": "deps: replace `@vercel/detect-agent` with `std-env`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L37",
    "p": 0.07
   },
@@ -231,6 +254,7 @@
    "version": "8.3.5",
    "section": "Code Refactoring",
    "text": "dev: consolidate moduleURL to file path utilities",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L38",
    "p": 0.1
   },
@@ -238,6 +262,7 @@
    "version": "8.3.5",
    "section": "Code Refactoring",
    "text": "dev: separate import resolution from URL conversion (6116689)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L39",
    "p": 0.11
   },
@@ -245,6 +270,7 @@
    "version": "8.3.5",
    "section": "Code Refactoring",
    "text": "dev: share ModuleURL and BrowserURL conversions",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L40",
    "p": 0.07
   },
@@ -252,6 +278,7 @@
    "version": "8.3.5",
    "section": "Code Refactoring",
    "text": "dev: use ModuleURLs throughout HTML transforms",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L41",
    "p": 0.17
   },
@@ -259,6 +286,7 @@
    "version": "8.3.4",
    "section": "Features",
    "text": "bundled-dev: support `import.meta.hot.acceptExports`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L46",
    "p": 0.04
   },
@@ -266,6 +294,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "avoid mutating hmr defaults (fix #23575)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L50",
    "p": 0.07
   },
@@ -273,6 +302,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "build: correct preloads when chunkImportMap is enabled with non-root base",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L51",
    "p": 0.06
   },
@@ -280,6 +310,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "build: wait for in-flight stylesheets in preload helper (fix #23652)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L52",
    "p": 0.04
   },
@@ -287,6 +318,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "bundled-dev: serve `/@vite/client` and stub `@vite/env`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L53",
    "p": 0.07
   },
@@ -294,6 +326,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "client: skip rewriting unchanged adopted styles",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L54",
    "p": 0.04
   },
@@ -301,6 +334,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "css: resolve imported preprocessors from their file path with lightningcss",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L55",
    "p": 0.07
   },
@@ -308,6 +342,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "dev: a restart requested during a restart used to be dropped (fix #23392)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L58",
    "p": 0.03
   },
@@ -315,6 +350,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "don't treat modules ending with js-like query as js",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L59",
    "p": 0.12
   },
@@ -322,6 +358,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "html: avoid adding filesystem root to watcher",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L60",
    "p": 0.05
   },
@@ -329,6 +366,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "html: skip caching CSS of chunks in a cycle (fix #23628)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L61",
    "p": 0.04
   },
@@ -336,6 +374,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "optimizer: scan deep imports with custom extensions (8579189)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L62",
    "p": 0.05
   },
@@ -343,6 +382,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "remove input option unescaping for now",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L63",
    "p": 0.38
   },
@@ -350,6 +390,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "server: match static aliases on path boundaries",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L64",
    "p": 0.12
   },
@@ -357,6 +398,7 @@
    "version": "8.3.4",
    "section": "Bug Fixes",
    "text": "watcher: normalize file before root check in `ensureWatchedFile`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L65",
    "p": 0.04
   },
@@ -364,6 +406,7 @@
    "version": "8.3.4",
    "section": "Performance Improvements",
    "text": "module-runner: skip cloning call sites that have no source map",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L69",
    "p": 0.04
   },
@@ -371,6 +414,7 @@
    "version": "8.3.4",
    "section": "Code Refactoring",
    "text": "bundled-dev: import CSS HMR helpers from `/@vite/client`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L73",
    "p": 0.08
   },
@@ -378,6 +422,7 @@
    "version": "8.3.3",
    "section": "Bug Fixes",
    "text": "deps: update launch-editor to v2.14.2",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L78",
    "p": 0.05
   },
@@ -385,6 +430,7 @@
    "version": "8.3.3",
    "section": "Bug Fixes",
    "text": "html: filename passed to transformIndexHtml should not include queries",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L79",
    "p": 0.08
   },
@@ -392,6 +438,7 @@
    "version": "8.3.3",
    "section": "Bug Fixes",
    "text": "server: check `fs.serve` for `?vite-wasm-instance`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L80",
    "p": 0.05
   },
@@ -399,6 +446,7 @@
    "version": "8.3.3",
    "section": "Bug Fixes",
    "text": "server: store ids to `safeModulePaths` rather than URLs",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L81",
    "p": 0.07
   },
@@ -406,6 +454,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "build: preload CSS correctly when `renderBuiltUrl` returns URLs with queries",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L86",
    "p": 0.05
   },
@@ -413,6 +462,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "bundled-dev: serve lazy chunk sourcemaps",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L87",
    "p": 0.04
   },
@@ -420,6 +470,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "bundled-dev: serve the rolldown runtime from the installed rolldown",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L88",
    "p": 0.06
   },
@@ -427,6 +478,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "html: resolve percent-encoded srcset urls",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L91",
    "p": 0.05
   },
@@ -434,6 +486,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "limit size of object and array printing via `forwardConsole`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L92",
    "p": 0.05
   },
@@ -441,6 +494,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "merge `build.rolldownOptions.output.minify` correctly",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L93",
    "p": 0.1
   },
@@ -448,6 +502,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "optimize-deps: avoid \"unsupported\" warnings for browser:false mappings",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L94",
    "p": 0.04
   },
@@ -455,6 +510,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "optimizer: preserve excluded optional peer require fallbacks",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L95",
    "p": 0.05
   },
@@ -462,6 +518,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "pass queries to `renderBuiltUrl`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L96",
    "p": 0.1
   },
@@ -469,6 +526,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "server: handle file watcher errors without crashing",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L97",
    "p": 0.04
   },
@@ -476,6 +534,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "server: release previous environments after initialization",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L98",
    "p": 0.05
   },
@@ -483,6 +542,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "ssr: encode whitespace in module runner sourceURL",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L99",
    "p": 0.05
   },
@@ -490,6 +550,7 @@
    "version": "8.3.2",
    "section": "Bug Fixes",
    "text": "worker: align worker urls in client and server when using terser",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L100",
    "p": 0.06
   },
@@ -497,6 +558,7 @@
    "version": "8.3.2",
    "section": "Performance Improvements",
    "text": "avoid encoding intermediate source maps",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L104",
    "p": 0.06
   },
@@ -504,6 +566,7 @@
    "version": "8.3.2",
    "section": "Performance Improvements",
    "text": "build: avoid quadratic link scan in the preload helper",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L105",
    "p": 0.03
   },
@@ -511,6 +574,7 @@
    "version": "8.3.2",
    "section": "Performance Improvements",
    "text": "only register time middleware when debug logging is enabled",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L106",
    "p": 0.04
   },
@@ -518,6 +582,7 @@
    "version": "8.3.2",
    "section": "Documentation",
    "text": "fix dead og-image PNG links in vite6/vite7 changelog entries",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L110",
    "p": 0.02
   },
@@ -525,6 +590,7 @@
    "version": "8.3.2",
    "section": "Miscellaneous Chores",
    "text": "deps: update vitest monorepo to v5",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L114",
    "p": 0.17
   },
@@ -532,6 +598,7 @@
    "version": "8.3.2",
    "section": "Code Refactoring",
    "text": "use `tinyexec` instead of `cross-spawn`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L118",
    "p": 0.06
   },
@@ -539,6 +606,7 @@
    "version": "8.3.2",
    "section": "Tests",
    "text": "bundled-dev: accept a rolldown dev runtime with no helper imports",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L122",
    "p": 0.05
   },
@@ -546,6 +614,7 @@
    "version": "8.3.1",
    "section": "Bug Fixes",
    "text": "handle `server.ws: false` in mergeConfig",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L130",
    "p": 0.07
   },
@@ -553,6 +622,7 @@
    "version": "8.3.1",
    "section": "Bug Fixes",
    "text": "merge `build.rolldownOptions.output.comments` correctly",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L131",
    "p": 0.08
   },
@@ -560,6 +630,7 @@
    "version": "8.3.1",
    "section": "Bug Fixes",
    "text": "optimizer: don't skip imports whose binding starts with type",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L132",
    "p": 0.06
   },
@@ -567,6 +638,7 @@
    "version": "8.3.1",
    "section": "Bug Fixes",
    "text": "optimizer: resolve pending discovered dep processing on close before init",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L133",
    "p": 0.04
   },
@@ -574,6 +646,7 @@
    "version": "8.3.1",
    "section": "Bug Fixes",
    "text": "server: avoid reinitializing watcher when adding file after server close",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L134",
    "p": 0.03
   },
@@ -581,6 +654,7 @@
    "version": "8.3.1",
    "section": "Bug Fixes",
    "text": "sourcemap: skip URL source roots when injecting sources content",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L135",
    "p": 0.06
   },
@@ -588,6 +662,7 @@
    "version": "8.3.1",
    "section": "Miscellaneous Chores",
    "text": "merge prereleases in changelog",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L139",
    "p": 0.04
   },
@@ -595,6 +670,7 @@
    "version": "8.3.1",
    "section": "Miscellaneous Chores",
    "text": "optimizer: add debug log when waiting for dep before init",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L140",
    "p": 0.03
   },
@@ -602,6 +678,7 @@
    "version": "8.3.1",
    "section": "Miscellaneous Chores",
    "text": "update `optimizeDeps.include` comment",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L141",
    "p": 0.03
   },
@@ -609,6 +686,7 @@
    "version": "8.3.1",
    "section": "Code Refactoring",
    "text": "assets regexp use non-capture",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L145",
    "p": 0.08
   },
@@ -616,6 +694,7 @@
    "version": "8.3.1",
    "section": "Code Refactoring",
    "text": "remove duplicate configurations",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L146",
    "p": 0.14
   },
@@ -623,6 +702,7 @@
    "version": "8.3.1",
    "section": "Code Refactoring",
    "text": "replace `find` with `some`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L147",
    "p": 0.06
   },
@@ -630,6 +710,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "build: avoid settling seen preload dependencies for performance",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L153",
    "p": 0.05
   },
@@ -637,6 +718,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "devtools: enable dev server integration",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L154",
    "p": 0.06
   },
@@ -644,6 +726,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "accept Rolldown watch options in `server.watch`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L155",
    "p": 0.05
   },
@@ -651,6 +734,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "add closeServer and closePreviewServer hooks",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L156",
    "p": 0.04
   },
@@ -658,6 +742,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "add top-level `tsconfig` option",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L157",
    "p": 0.06
   },
@@ -665,6 +750,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "add warning for unsupported hooks in plugin returned from `applyToEnvironment` hook",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L158",
    "p": 0.1
   },
@@ -672,6 +758,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "cli: support naming the CPU profile via --profile [name]",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L159",
    "p": 0.03
   },
@@ -679,6 +766,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "config: warn on named imports from JSON modules",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L160",
    "p": 0.11
   },
@@ -686,6 +774,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "css: minify style tag (8156684)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L161",
    "p": 0.06
   },
@@ -693,6 +782,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "searched params attached to workers are now preserved",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L162",
    "p": 0.05
   },
@@ -700,6 +790,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "support subpath imports in dynamic import statements",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L163",
    "p": 0.05
   },
@@ -707,6 +798,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "use `import.meta.ROLLDOWN_FILE_URL_*` for assets in JS",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L164",
    "p": 0.16
   },
@@ -714,6 +806,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "use `import.meta.ROLLDOWN_FILE_URL_*` for other plugins",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L165",
    "p": 0.13
   },
@@ -721,6 +814,7 @@
    "version": "8.3.0",
    "section": "Features",
    "text": "worker: remove worker chunk if it's detected that it's not referenced",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L166",
    "p": 0.06
   },
@@ -728,6 +822,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "handle CRLF line endings in code frame positions (9913672)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L170",
    "p": 0.04
   },
@@ -735,6 +830,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "only treat whole `node_modules` path segments as dependencies (fix #17467)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L171",
    "p": 0.1
   },
@@ -742,6 +838,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "build: keep hash placeholders as-is in `resolveFileUrl` hook",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L172",
    "p": 0.06
   },
@@ -749,6 +846,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "bundled-dev: mark payload delivered on client report",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L173",
    "p": 0.05
   },
@@ -756,6 +854,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "html: don't inline preload link targets (fix #13355)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L175",
    "p": 0.07
   },
@@ -763,6 +862,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "resolve the actual package root in findNearestMainPackageData for nested package.json (8492422)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L176",
    "p": 0.05
   },
@@ -770,6 +870,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "shortcuts extend error",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L177",
    "p": 0.09
   },
@@ -777,6 +878,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "config: close bundles when generation fails",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L178",
    "p": 0.06
   },
@@ -784,6 +886,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "css: keep newline-separated srcset candidates intact",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L179",
    "p": 0.05
   },
@@ -791,6 +894,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "dev: run closeBundle after buildEnd failure",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L184",
    "p": 0.04
   },
@@ -798,6 +902,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "hmr: handle `import.meta.hot.invalidate` in virtual module (6162968)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L185",
    "p": 0.04
   },
@@ -805,6 +910,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "utils: handle dot in srcset density descriptor",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L186",
    "p": 0.05
   },
@@ -812,6 +918,7 @@
    "version": "8.3.0",
    "section": "Bug Fixes",
    "text": "utils: match timestamp query parameter with proper delimiters",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L187",
    "p": 0.08
   },
@@ -819,6 +926,7 @@
    "version": "8.3.0",
    "section": "Performance Improvements",
    "text": "proxy: pre-compile context matchers at server creation",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L191",
    "p": 0.04
   },
@@ -826,6 +934,7 @@
    "version": "8.3.0",
    "section": "Miscellaneous Chores",
    "text": "introducing `@e18e/eslint-plugin`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L195",
    "p": 0.04
   },
@@ -833,6 +942,7 @@
    "version": "8.3.0",
    "section": "Miscellaneous Chores",
    "text": "remove unnecessary comment",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L196",
    "p": 0.03
   },
@@ -840,6 +950,7 @@
    "version": "8.3.0",
    "section": "Miscellaneous Chores",
    "text": "delete unused `PluginContainerOptions`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L197",
    "p": 0.13
   },
@@ -847,6 +958,7 @@
    "version": "8.3.0",
    "section": "Miscellaneous Chores",
    "text": "use oxfmt `sortImports`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L198",
    "p": 0.05
   },
@@ -854,6 +966,7 @@
    "version": "8.3.0",
    "section": "Code Refactoring",
    "text": "delete unused `esbuildPlugin`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L202",
    "p": 0.11
   },
@@ -861,6 +974,7 @@
    "version": "8.3.0",
    "section": "Code Refactoring",
    "text": "exclude postfix from `__VITE_ASSET__`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L203",
    "p": 0.16
   },
@@ -868,6 +982,7 @@
    "version": "8.3.0",
    "section": "Code Refactoring",
    "text": "remove HmrUrl concept",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L204",
    "p": 0.39
   },
@@ -875,6 +990,7 @@
    "version": "8.3.0",
    "section": "Code Refactoring",
    "text": "use `urlId` of `import.meta.ROLLDOWN_FILE_URL` in wasm plugin",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L205",
    "p": 0.12
   },
@@ -882,6 +998,7 @@
    "version": "8.3.0",
    "section": "Tests",
    "text": "add `renderBuiltUrl` change changes hash (0291408)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L209",
    "p": 0.24
   },
@@ -890,6 +1007,7 @@
    "section": "",
    "text": "See 8.3.0-beta.1 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L215",
    "p": 0.23
   },
@@ -898,6 +1016,7 @@
    "section": "",
    "text": "See 8.3.0-beta.0 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L219",
    "p": 0.22
   },
@@ -905,6 +1024,7 @@
    "version": "8.2.2",
    "section": "Features",
    "text": "deps: widen `@vitejs/devtools` peer range to v0.5.0",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L224",
    "p": 0.07
   },
@@ -912,6 +1032,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "bundled-dev: handle lazy request error",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L228",
    "p": 0.05
   },
@@ -919,6 +1040,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "bundled-dev: hot update through circular imports instead of reloading",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L229",
    "p": 0.06
   },
@@ -926,6 +1048,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "config: resolve sourcemap paths against sourcemap location",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L230",
    "p": 0.11
   },
@@ -933,6 +1056,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "css: don't pass empty targets to lightningcss (2804636)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L231",
    "p": 0.04
   },
@@ -940,6 +1064,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "define: fix match escaped dots to support $-prefixed define keys",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L232",
    "p": 0.08
   },
@@ -947,6 +1072,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "module-runner: exclude completed modules from in-flight cycle detection (fix #22999)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L235",
    "p": 0.04
   },
@@ -954,6 +1080,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "optimizer: close custom extension analysis bundles",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L236",
    "p": 0.07
   },
@@ -961,6 +1088,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "reduce Windows 8.3-short-name detection false-positives",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L237",
    "p": 0.04
   },
@@ -968,6 +1096,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "respect `resolve.preserveSymlinks` when resolving root (fix #23197) (8413052)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L238",
    "p": 0.08
   },
@@ -975,6 +1104,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "ssr: rewrite computed key of destructing parameter",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L239",
    "p": 0.06
   },
@@ -982,6 +1112,7 @@
    "version": "8.2.2",
    "section": "Bug Fixes",
    "text": "vite: update outdated upstream file links in license comments",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L240",
    "p": 0.03
   },
@@ -989,6 +1120,7 @@
    "version": "8.2.2",
    "section": "Documentation",
    "text": "build: note cssTarget precedence",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L244",
    "p": 0.11
   },
@@ -996,6 +1128,7 @@
    "version": "8.2.2",
    "section": "Miscellaneous Chores",
    "text": "fix ts errors in build test cases",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L248",
    "p": 0.04
   },
@@ -1003,6 +1136,7 @@
    "version": "8.2.2",
    "section": "Code Refactoring",
    "text": "use JSON import attributes instead of readFileSync in constants",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L252",
    "p": 0.15
   },
@@ -1010,6 +1144,7 @@
    "version": "8.2.2",
    "section": "Code Refactoring",
    "text": "use named regex constants over inline literals",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L253",
    "p": 0.03
   },
@@ -1017,6 +1152,7 @@
    "version": "8.2.2",
    "section": "Tests",
    "text": "define: close rolldown bundler after generate",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L257",
    "p": 0.05
   },
@@ -1024,6 +1160,7 @@
    "version": "8.2.2",
    "section": "Tests",
    "text": "module-runner: add TLA circular import case",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L258",
    "p": 0.04
   },
@@ -1031,6 +1168,7 @@
    "version": "8.2.2",
    "section": "Tests",
    "text": "module-runner: simplify server-hmr tests",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L259",
    "p": 0.03
   },
@@ -1038,6 +1176,7 @@
    "version": "8.2.2",
    "section": "Tests",
    "text": "ssr: add destructing assignment case for moduleRunnerTransform",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L260",
    "p": 0.04
   },
@@ -1045,6 +1184,7 @@
    "version": "8.2.2",
    "section": "Build System",
    "text": "use JSON import attributes instead of readFIleSync in rolldown configs",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L264",
    "p": 0.12
   },
@@ -1052,6 +1192,7 @@
    "version": "8.2.1",
    "section": "Bug Fixes",
    "text": "build: make client chunkImportMap work with `sharedPlugins: true`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L269",
    "p": 0.06
   },
@@ -1059,6 +1200,7 @@
    "version": "8.2.1",
    "section": "Bug Fixes",
    "text": "bundled-dev: inject client script tag before chunk scripts",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L270",
    "p": 0.05
   },
@@ -1066,6 +1208,7 @@
    "version": "8.2.1",
    "section": "Bug Fixes",
    "text": "css: don't re-run lightningcss visitor during minify (fix #23146)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L271",
    "p": 0.04
   },
@@ -1073,6 +1216,7 @@
    "version": "8.2.1",
    "section": "Bug Fixes",
    "text": "don't mutate the user config when resolving the lib entry from the top-level `input`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L274",
    "p": 0.07
   },
@@ -1080,6 +1224,7 @@
    "version": "8.2.1",
    "section": "Bug Fixes",
    "text": "handle shebang ending with uncommon line terminators",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L275",
    "p": 0.04
   },
@@ -1087,6 +1232,7 @@
    "version": "8.2.1",
    "section": "Bug Fixes",
    "text": "server: use a random port when port is 0",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L276",
    "p": 0.1
   },
@@ -1094,6 +1240,7 @@
    "version": "8.2.1",
    "section": "Performance Improvements",
    "text": "css: look up pure CSS chunks through a Set",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L280",
    "p": 0.03
   },
@@ -1101,6 +1248,7 @@
    "version": "8.2.1",
    "section": "Documentation",
    "text": "build: fix incomplete `@default` for build.minify",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L284",
    "p": 0.05
   },
@@ -1108,6 +1256,7 @@
    "version": "8.2.1",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency rolldown-plugin-dts to ^0.28.0",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L288",
    "p": 0.08
   },
@@ -1115,6 +1264,7 @@
    "version": "8.2.1",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency strip-literal to v4",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L289",
    "p": 0.14
   },
@@ -1122,6 +1272,7 @@
    "version": "8.2.1",
    "section": "Code Refactoring",
    "text": "bundled-dev: avoid injecting server values in the bundle",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L293",
    "p": 0.16
   },
@@ -1129,6 +1280,7 @@
    "version": "8.2.1",
    "section": "Code Refactoring",
    "text": "bundled-dev: remove rolldown lazy stub module workaround",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L294",
    "p": 0.1
   },
@@ -1136,6 +1288,7 @@
    "version": "8.2.1",
    "section": "Tests",
    "text": "bundled-dev: enable sourcemap playgrounds",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L298",
    "p": 0.05
   },
@@ -1143,6 +1296,7 @@
    "version": "8.2.1",
    "section": "Tests",
    "text": "reduce logs",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L299",
    "p": 0.06
   },
@@ -1150,6 +1304,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "add `input` to `server.fs.allow`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L305",
    "p": 0.11
   },
@@ -1157,6 +1312,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "bundled-dev: reload once after rebuild instead of via the fallback page",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L306",
    "p": 0.08
   },
@@ -1164,6 +1320,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "bundled-dev: support worker file update accepted by HMR",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L307",
    "p": 0.04
   },
@@ -1171,6 +1328,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "config: include column in config incompatibility location",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L308",
    "p": 0.05
   },
@@ -1178,6 +1336,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "dev: resolve interface name for explicit host in network URLs",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L309",
    "p": 0.06
   },
@@ -1185,6 +1344,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "add `input` option",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L310",
    "p": 0.04
   },
@@ -1192,6 +1352,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "config: warn features incompatible with native loader in bundle loader",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L311",
    "p": 0.19
   },
@@ -1199,6 +1360,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "css: export PostCSS config type for type-safe configs",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L312",
    "p": 0.05
   },
@@ -1206,6 +1368,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "dev: label network URLs with their interface name",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L313",
    "p": 0.04
   },
@@ -1213,6 +1376,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "optimizer: support aube lockfile (6319827)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L314",
    "p": 0.04
   },
@@ -1220,6 +1384,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "optimizer: support nub lockfile",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L315",
    "p": 0.05
   },
@@ -1227,6 +1392,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "update rolldown-related dependencies and use client-side HMR in bundled-dev",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L316",
    "p": 0.15
   },
@@ -1234,6 +1400,7 @@
    "version": "8.2.0",
    "section": "Features",
    "text": "wasm: expand test suite, unwrap WebAssembly.Global and enable js-string builtins",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L317",
    "p": 0.06
   },
@@ -1241,6 +1408,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "bundledDev: print build errors to the terminal when an HMR update fails",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L321",
    "p": 0.03
   },
@@ -1248,6 +1416,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "hmr: preserve environment snapshot during server restart",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L323",
    "p": 0.04
   },
@@ -1255,6 +1424,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "importAnalysis: interop imports injected into optimized dep files by plugins",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L324",
    "p": 0.07
   },
@@ -1262,6 +1432,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "module-runner: keep stack trace interception working when `Object.prototype` is frozen",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L325",
    "p": 0.04
   },
@@ -1269,6 +1440,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "server: strip base in indexHtml module graph lookup",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L326",
    "p": 0.07
   },
@@ -1276,6 +1448,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "support resolving top-level input option with plugins",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L327",
    "p": 0.05
   },
@@ -1283,6 +1456,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "build: map CSS chunks in chunk import maps (fix #22946)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L328",
    "p": 0.05
   },
@@ -1290,6 +1464,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "config: exclude virtual modules from native config compat check",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L329",
    "p": 0.05
   },
@@ -1297,6 +1472,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "css: rewrite urls in OnceExit-injected content",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L330",
    "p": 0.05
   },
@@ -1304,6 +1480,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "deps: update dependency magic-string to v1",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L332",
    "p": 0.14
   },
@@ -1311,6 +1488,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "hmr: remove hot data after prune",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L333",
    "p": 0.04
   },
@@ -1318,6 +1496,7 @@
    "version": "8.2.0",
    "section": "Bug Fixes",
    "text": "resolve root to real path",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L334",
    "p": 0.11
   },
@@ -1325,6 +1504,7 @@
    "version": "8.2.0",
    "section": "Performance Improvements",
    "text": "config: skip native config compat check when warning is ignored",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L338",
    "p": 0.05
   },
@@ -1332,6 +1512,7 @@
    "version": "8.2.0",
    "section": "Performance Improvements",
    "text": "optimizer: check popular package manager lockfiles first",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L339",
    "p": 0.04
   },
@@ -1339,6 +1520,7 @@
    "version": "8.2.0",
    "section": "Documentation",
    "text": "config: correct cacheDir default fallback description",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L343",
    "p": 0.03
   },
@@ -1346,6 +1528,7 @@
    "version": "8.2.0",
    "section": "Documentation",
    "text": "remove `@experimental` from `resolve.tsconfigPaths` JSDoc",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L344",
    "p": 0.03
   },
@@ -1353,6 +1536,7 @@
    "version": "8.2.0",
    "section": "Miscellaneous Chores",
    "text": "fix ts erros in test cases",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L348",
    "p": 0.04
   },
@@ -1360,6 +1544,7 @@
    "version": "8.2.0",
    "section": "Tests",
    "text": "config CJS module vars in ESM case",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L352",
    "p": 0.13
   },
@@ -1368,6 +1553,7 @@
    "section": "",
    "text": "See 8.2.0-beta.0 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L358",
    "p": 0.22
   },
@@ -1375,6 +1561,7 @@
    "version": "8.1.5",
    "section": "Bug Fixes",
    "text": "bundled-dev: avoid duplicated `buildEnd` (8100320)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L363",
    "p": 0.05
   },
@@ -1382,6 +1569,7 @@
    "version": "8.1.5",
    "section": "Bug Fixes",
    "text": "client: overlay error message format align rolldown",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L364",
    "p": 0.06
   },
@@ -1389,6 +1577,7 @@
    "version": "8.1.5",
    "section": "Bug Fixes",
    "text": "module-runner: don't crash stack-trace source mapping when globalThis.Buffer is absent",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L367",
    "p": 0.04
   },
@@ -1396,6 +1585,7 @@
    "version": "8.1.5",
    "section": "Bug Fixes",
    "text": "optimizer: respect importer module format for dynamic import interop with CJS deps",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L368",
    "p": 0.07
   },
@@ -1403,6 +1593,7 @@
    "version": "8.1.5",
    "section": "Bug Fixes",
    "text": "ssr: scope switch-case declarations to the switch, not the function",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L369",
    "p": 0.07
   },
@@ -1410,6 +1601,7 @@
    "version": "8.1.5",
    "section": "Documentation",
    "text": "build: fix incorrect `@default` for build.cssMinify",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L373",
    "p": 0.1
   },
@@ -1417,6 +1609,7 @@
    "version": "8.1.5",
    "section": "Documentation",
    "text": "build: fix incorrect `@default` for build.lib.formats",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L374",
    "p": 0.16
   },
@@ -1424,6 +1617,7 @@
    "version": "8.1.5",
    "section": "Tests",
    "text": "avoid scanner scanning all files under `__tests__`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L378",
    "p": 0.04
   },
@@ -1431,6 +1625,7 @@
    "version": "8.1.4",
    "section": "Features",
    "text": "legacy: prefer oxc as minifier (fix #21973)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L383",
    "p": 0.16
   },
@@ -1438,6 +1633,7 @@
    "version": "8.1.4",
    "section": "Bug Fixes",
    "text": "build: add workaround for building on stackblitz",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L387",
    "p": 0.05
   },
@@ -1445,6 +1641,7 @@
    "version": "8.1.4",
    "section": "Bug Fixes",
    "text": "build: keep `import.meta.url` in preload function as-is",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L388",
    "p": 0.06
   },
@@ -1452,6 +1649,7 @@
    "version": "8.1.4",
    "section": "Bug Fixes",
    "text": "html: avoid backtracking in import-only check",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L391",
    "p": 0.04
   },
@@ -1459,6 +1657,7 @@
    "version": "8.1.4",
    "section": "Bug Fixes",
    "text": "optimizer: avoid optimizer run for transform request before init",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L392",
    "p": 0.04
   },
@@ -1466,6 +1665,7 @@
    "version": "8.1.4",
    "section": "Bug Fixes",
    "text": "ssr: align named export function call stacktrace column with Node",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L393",
    "p": 0.04
   },
@@ -1473,6 +1673,7 @@
    "version": "8.1.4",
    "section": "Bug Fixes",
    "text": "strip pure CSS chunk imports when chunkImportMap is enabled",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L394",
    "p": 0.11
   },
@@ -1480,6 +1681,7 @@
    "version": "8.1.4",
    "section": "Documentation",
    "text": "fix incorrect `@default` for `server.cors`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L398",
    "p": 0.05
   },
@@ -1487,6 +1689,7 @@
    "version": "8.1.4",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency postcss-modules to v9",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L402",
    "p": 0.16
   },
@@ -1494,6 +1697,7 @@
    "version": "8.1.4",
    "section": "Code Refactoring",
    "text": "eliminate ineffectiveDynamicImport warn",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L406",
    "p": 0.1
   },
@@ -1501,6 +1705,7 @@
    "version": "8.1.4",
    "section": "Tests",
    "text": "avoid warnings",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L410",
    "p": 0.08
   },
@@ -1508,6 +1713,7 @@
    "version": "8.1.4",
    "section": "Build System",
    "text": "remove the custom onLog function",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L414",
    "p": 0.44
   },
@@ -1515,6 +1721,7 @@
    "version": "8.1.4",
    "section": "Build System",
    "text": "replace deprecated `onwarn` with `onLog`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L415",
    "p": 0.69
   },
@@ -1522,6 +1729,7 @@
    "version": "8.1.3",
    "section": "Bug Fixes",
    "text": "css: inject inlined CSS after the shebang line",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L420",
    "p": 0.06
   },
@@ -1529,6 +1737,7 @@
    "version": "8.1.3",
    "section": "Bug Fixes",
    "text": "deps: bump `es-module-lexer` to 2.3.0",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L421",
    "p": 0.05
   },
@@ -1536,6 +1745,7 @@
    "version": "8.1.3",
    "section": "Bug Fixes",
    "text": "preload css for nested dynamic imports",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L422",
    "p": 0.04
   },
@@ -1543,6 +1753,7 @@
    "version": "8.1.3",
    "section": "Bug Fixes",
    "text": "ssr: correct stacktrace column position for first line",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L423",
    "p": 0.03
   },
@@ -1550,6 +1761,7 @@
    "version": "8.1.2",
    "section": "Bug Fixes",
    "text": "deps: revert es-module-lexer to 2.1.0",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L428",
    "p": 0.06
   },
@@ -1557,6 +1769,7 @@
    "version": "8.1.2",
    "section": "Bug Fixes",
    "text": "restore, \"fix: resolve pnpm .modules.yaml from workspace root instead of cwd\"",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L429",
    "p": 0.09
   },
@@ -1564,6 +1777,7 @@
    "version": "8.1.2",
    "section": "Bug Fixes",
    "text": "revert, \"fix: escape ids with multiple null bytes\"",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L430",
    "p": 0.2
   },
@@ -1571,6 +1785,7 @@
    "version": "8.1.2",
    "section": "Bug Fixes",
    "text": "revert, \"fix: resolve pnpm .modules.yaml from workspace root instead of cwd\"",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L431",
    "p": 0.26
   },
@@ -1578,6 +1793,7 @@
    "version": "8.1.1",
    "section": "Features",
    "text": "update dynamic import warning to link to Vite docs",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L436",
    "p": 0.03
   },
@@ -1585,6 +1801,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "bundled-dev: avoid stack overflow on `import.meta.hot.invalidate()`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L440",
    "p": 0.04
   },
@@ -1592,6 +1809,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "bundled-dev: serve assets emitted during HMR/lazy compile",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L441",
    "p": 0.05
   },
@@ -1599,6 +1817,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "bundledDev: skip plugin transform hooks for rolldown-lazy stub modules",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L442",
    "p": 0.04
   },
@@ -1606,6 +1825,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "css: preserve dollar signs in external `@import` urls with lightningcss",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L443",
    "p": 0.04
   },
@@ -1613,6 +1833,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "css: resolve tsconfig paths in CSS and Sass @import",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L444",
    "p": 0.06
   },
@@ -1620,6 +1841,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "deps: update all non-major dependencies (8837400)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L446",
    "p": 0.09
   },
@@ -1627,6 +1849,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "escape ids with multiple null bytes",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L448",
    "p": 0.06
   },
@@ -1634,6 +1857,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "hide console window when running 'net use' on Windows",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L449",
    "p": 0.04
   },
@@ -1641,6 +1865,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "ignore bundled config temp dir",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L450",
    "p": 0.05
   },
@@ -1648,6 +1873,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "invert `esbuild.jsxSideEffects` when converting to `oxc.jsx.pure`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L451",
    "p": 0.13
   },
@@ -1655,6 +1881,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "optimize-deps: ignore `ERR_CLOSED_SERVER` in scanner",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L452",
    "p": 0.03
   },
@@ -1662,6 +1889,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "optimizer: scanner should resolve `input` from `root`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L453",
    "p": 0.09
   },
@@ -1669,6 +1897,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "resolve pnpm .modules.yaml from workspace root instead of cwd",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L454",
    "p": 0.09
   },
@@ -1676,6 +1905,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "return sourcemap field from some plugins that were lacking",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L455",
    "p": 0.04
   },
@@ -1683,6 +1913,7 @@
    "version": "8.1.1",
    "section": "Bug Fixes",
    "text": "server: handle malformed URI in indexHtmlMiddleware",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L456",
    "p": 0.05
   },
@@ -1690,6 +1921,7 @@
    "version": "8.1.1",
    "section": "Miscellaneous Chores",
    "text": "improve dependency optimizer messages",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L460",
    "p": 0.04
   },
@@ -1697,6 +1929,7 @@
    "version": "8.1.1",
    "section": "Code Refactoring",
    "text": "css: remove lightningcss null byte bug workaround",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L464",
    "p": 0.07
   },
@@ -1704,6 +1937,7 @@
    "version": "8.1.1",
    "section": "Code Refactoring",
    "text": "use pre-defined environments variable to avoid duplicate `Object.values` calls",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L465",
    "p": 0.06
   },
@@ -1711,6 +1945,7 @@
    "version": "8.1.1",
    "section": "Tests",
    "text": "enable \"manual chunk path\" test and remove \"worker.format error\" test",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L469",
    "p": 0.05
   },
@@ -1718,6 +1953,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "extend `server.fs.deny` list with common files",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L475",
    "p": 0.27
   },
@@ -1725,6 +1961,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "update rolldown to 1.1.2",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L476",
    "p": 0.1
   },
@@ -1732,6 +1969,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "use `~` for Rolldown (9928722)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L477",
    "p": 0.17
   },
@@ -1739,6 +1977,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "`import.meta.glob` support `caseSensitive` option",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L478",
    "p": 0.04
   },
@@ -1746,6 +1985,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "add warning to discourage Vite with yarn pnp",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L479",
    "p": 0.05
   },
@@ -1753,6 +1993,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "build: chunk importmap",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L480",
    "p": 0.1
   },
@@ -1760,6 +2001,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "css: support lightningcss plugin dependency",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L481",
    "p": 0.05
   },
@@ -1767,6 +2009,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "deps: bump @vitejs/devtools peer dependency version",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L482",
    "p": 0.1
   },
@@ -1774,6 +2017,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "html: add `html.additionalAssetSources` option",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L483",
    "p": 0.03
   },
@@ -1781,6 +2025,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "integrate with Vite Task for zero-config build caching",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L484",
    "p": 0.06
   },
@@ -1788,6 +2033,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "rename `server.hmr` options to `server.ws` options",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L485",
    "p": 0.8
   },
@@ -1795,6 +2041,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "server: support multiple hosts in __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L486",
    "p": 0.05
   },
@@ -1802,6 +2049,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "track dependencies when loading config with native",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L487",
    "p": 0.07
   },
@@ -1809,6 +2057,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "types: add more precise typing for known `query` types to match known `as` types",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L488",
    "p": 0.07
   },
@@ -1816,6 +2065,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "update rolldown to 1.1.1",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L489",
    "p": 0.11
   },
@@ -1823,6 +2073,7 @@
    "version": "8.1.0",
    "section": "Features",
    "text": "wasm: direct .wasm imports (WASM ESM Integration)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L490",
    "p": 0.05
   },
@@ -1830,6 +2081,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "bundled-dev: errors should be kept when incremental build fails",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L494",
    "p": 0.05
   },
@@ -1837,6 +2089,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "cache falsy values in perEnvironmentState",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L495",
    "p": 0.05
   },
@@ -1844,6 +2097,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "glob: respect caseSensitive option in hmr matcher",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L496",
    "p": 0.06
   },
@@ -1851,6 +2105,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "html: omit nonce on import map when cspNonce is unset",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L497",
    "p": 0.07
   },
@@ -1858,6 +2113,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "optimizer: skip null-valued exports in expandGlobIds glob resolution",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L498",
    "p": 0.04
   },
@@ -1865,6 +2121,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "resolved build options should be kept as a getter (3527191)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L499",
    "p": 0.1
   },
@@ -1872,6 +2129,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "server: handle malformed URI in memory files middleware",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L500",
    "p": 0.04
   },
@@ -1879,6 +2137,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "use literal envPrefix queries for Vite Task",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L501",
    "p": 0.11
   },
@@ -1886,6 +2145,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "warn on deprecated envFile",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L502",
    "p": 0.16
   },
@@ -1893,6 +2153,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "apply correct fs restrictions for pnpm gvs",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L503",
    "p": 0.07
   },
@@ -1900,6 +2161,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "css: support external CSS with lightningcss",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L504",
    "p": 0.05
   },
@@ -1907,6 +2169,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "html: insert import map before modulepreload that is not self-close tag",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L507",
    "p": 0.05
   },
@@ -1914,6 +2177,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "optimizer: preserve sourcemaps for transformed optimized deps with follow-up transforms (1298951)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L508",
    "p": 0.04
   },
@@ -1921,6 +2185,7 @@
    "version": "8.1.0",
    "section": "Bug Fixes",
    "text": "use node_modules/.vite as cacheDir when node_modules exists",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L509",
    "p": 0.11
   },
@@ -1928,6 +2193,7 @@
    "version": "8.1.0",
    "section": "Documentation",
    "text": "clarify `loadEnv` merges `process.env`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L513",
    "p": 0.04
   },
@@ -1935,6 +2201,7 @@
    "version": "8.1.0",
    "section": "Miscellaneous Chores",
    "text": "bundle ViteTask client",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L517",
    "p": 0.09
   },
@@ -1942,6 +2209,7 @@
    "version": "8.1.0",
    "section": "Miscellaneous Chores",
    "text": "clean up eslint config (2292140)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L518",
    "p": 0.06
   },
@@ -1949,6 +2217,7 @@
    "version": "8.1.0",
    "section": "Miscellaneous Chores",
    "text": "correct `parseAst`/`parseAstAsync` deprecation hints",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L519",
    "p": 0.1
   },
@@ -1956,6 +2225,7 @@
    "version": "8.1.0",
    "section": "Miscellaneous Chores",
    "text": "update `create-react-app` links",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L520",
    "p": 0.03
   },
@@ -1963,6 +2233,7 @@
    "version": "8.1.0",
    "section": "Miscellaneous Chores",
    "text": "update `es-module-lexer` to 2.0.0",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L521",
    "p": 0.16
   },
@@ -1970,6 +2241,7 @@
    "version": "8.1.0",
    "section": "Code Refactoring",
    "text": "client: inline dev-id value in CSS selector",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L525",
    "p": 0.09
   },
@@ -1977,6 +2249,7 @@
    "version": "8.1.0",
    "section": "Code Refactoring",
    "text": "remove unused removeRawQuery util",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L526",
    "p": 0.09
   },
@@ -1984,6 +2257,7 @@
    "version": "8.1.0",
    "section": "Code Refactoring",
    "text": "use `rolldownOptions` property for chunkImportMap",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L527",
    "p": 0.43
   },
@@ -1991,6 +2265,7 @@
    "version": "8.1.0",
    "section": "Code Refactoring",
    "text": "include optional `bundledDev` in `DevEnvironment` instead of having a separate FBM `DevEnvironment`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L528",
    "p": 0.15
   },
@@ -1998,6 +2273,7 @@
    "version": "8.1.0",
    "section": "Code Refactoring",
    "text": "match import glob common base by path segment correctly",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L529",
    "p": 0.1
   },
@@ -2005,6 +2281,7 @@
    "version": "8.1.0",
    "section": "Code Refactoring",
    "text": "use rolldownOptions where possible",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L530",
    "p": 0.17
   },
@@ -2013,6 +2290,7 @@
    "section": "",
    "text": "See 8.1.0-beta.0 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L536",
    "p": 0.22
   },
@@ -2020,6 +2298,7 @@
    "version": "8.0.16",
    "section": "Bug Fixes",
    "text": "deps: reject UNC paths for launch-editor-middleware",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L541",
    "p": 0.16
   },
@@ -2027,6 +2306,7 @@
    "version": "8.0.16",
    "section": "Bug Fixes",
    "text": "reject windows alternate paths",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L542",
    "p": 0.16
   },
@@ -2034,6 +2314,7 @@
    "version": "8.0.15",
    "section": "Features",
    "text": "send 408 on request timeout",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L547",
    "p": 0.12
   },
@@ -2041,6 +2322,7 @@
    "version": "8.0.15",
    "section": "Features",
    "text": "update rolldown to 1.0.3",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L548",
    "p": 0.11
   },
@@ -2048,6 +2330,7 @@
    "version": "8.0.15",
    "section": "Bug Fixes",
    "text": "capitalize error messages and remove spurious space in parse error",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L552",
    "p": 0.04
   },
@@ -2055,6 +2338,7 @@
    "version": "8.0.15",
    "section": "Bug Fixes",
    "text": "dev: fix html-proxy cache key mismatch for /@fs/ HTML paths",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L554",
    "p": 0.04
   },
@@ -2062,6 +2346,7 @@
    "version": "8.0.15",
    "section": "Bug Fixes",
    "text": "glob: error on relative glob in virtual module when no files match",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L555",
    "p": 0.17
   },
@@ -2069,6 +2354,7 @@
    "version": "8.0.15",
    "section": "Bug Fixes",
    "text": "optimizer: close the rolldown bundle when write() rejects",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L556",
    "p": 0.04
   },
@@ -2076,6 +2362,7 @@
    "version": "8.0.15",
    "section": "Bug Fixes",
    "text": "resolve: provide onWarn for viteResolvePlugin in JS plugin containers",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L557",
    "p": 0.05
   },
@@ -2083,6 +2370,7 @@
    "version": "8.0.15",
    "section": "Code Refactoring",
    "text": "correct logic in `collectAllModules` function",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L565",
    "p": 0.06
   },
@@ -2090,6 +2378,7 @@
    "version": "8.0.14",
    "section": "Features",
    "text": "update rolldown to 1.0.2",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L570",
    "p": 0.1
   },
@@ -2097,6 +2386,7 @@
    "version": "8.0.14",
    "section": "Bug Fixes",
    "text": "dev: handle errors when sending messages to vite server",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L575",
    "p": 0.04
   },
@@ -2104,6 +2394,7 @@
    "version": "8.0.14",
    "section": "Bug Fixes",
    "text": "html: handle trailing slash paths in transformIndexHtml",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L576",
    "p": 0.05
   },
@@ -2111,6 +2402,7 @@
    "version": "8.0.14",
    "section": "Bug Fixes",
    "text": "optimizer: pass oxc jsx options to transformSync in dependency scan",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L577",
    "p": 0.05
   },
@@ -2118,6 +2410,7 @@
    "version": "8.0.14",
    "section": "Miscellaneous Chores",
    "text": "remove irrelevant commits from changelog",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L582",
    "p": 0.03
   },
@@ -2125,6 +2418,7 @@
    "version": "8.0.14",
    "section": "Code Refactoring",
    "text": "glob: do not rewrite import path for absolute base",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L586",
    "p": 0.16
   },
@@ -2132,6 +2426,7 @@
    "version": "8.0.14",
    "section": "Tests",
    "text": "css: sass does not use main field",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L590",
    "p": 0.17
   },
@@ -2139,6 +2434,7 @@
    "version": "8.0.13",
    "section": "Features",
    "text": "bundled-dev: add lazy bundling support",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L595",
    "p": 0.05
   },
@@ -2146,6 +2442,7 @@
    "version": "8.0.13",
    "section": "Features",
    "text": "optimizer: improve the esbuild plugin converter to pass some properties of build result to `onEnd`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L596",
    "p": 0.05
   },
@@ -2153,6 +2450,7 @@
    "version": "8.0.13",
    "section": "Features",
    "text": "update rolldown to 1.0.1",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L597",
    "p": 0.12
   },
@@ -2160,6 +2458,7 @@
    "version": "8.0.13",
    "section": "Bug Fixes",
    "text": "build: copy public directory after building same environment with `write=false`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L601",
    "p": 0.09
   },
@@ -2167,6 +2466,7 @@
    "version": "8.0.13",
    "section": "Bug Fixes",
    "text": "css: await sass/less/styl worker disposal on teardown (fix #22274)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L602",
    "p": 0.04
   },
@@ -2174,6 +2474,7 @@
    "version": "8.0.13",
    "section": "Bug Fixes",
    "text": "css: keep deprecated `name`/`originalFileName` in synthetic `assetFileNames` call",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L603",
    "p": 0.05
   },
@@ -2181,6 +2482,7 @@
    "version": "8.0.13",
    "section": "Bug Fixes",
    "text": "make `isBundled` per environment",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L604",
    "p": 0.21
   },
@@ -2188,6 +2490,7 @@
    "version": "8.0.13",
    "section": "Bug Fixes",
    "text": "ssr: avoid rewriting labels that collide with imports",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L605",
    "p": 0.05
   },
@@ -2195,6 +2498,7 @@
    "version": "8.0.13",
    "section": "Miscellaneous Chores",
    "text": "update changelog",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L610",
    "p": 0.06
   },
@@ -2202,6 +2506,7 @@
    "version": "8.0.12",
    "section": "Features",
    "text": "update rolldown to 1.0.0",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L615",
    "p": 0.18
   },
@@ -2209,6 +2514,7 @@
    "version": "8.0.12",
    "section": "Bug Fixes",
    "text": "module-runner: prevent partial-exports race on concurrent imports of in-flight invalidated re-export chains",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L620",
    "p": 0.04
   },
@@ -2216,6 +2522,7 @@
    "version": "8.0.12",
    "section": "Bug Fixes",
    "text": "refer to `rolldownOptions` instead of deprecated `rollupOptions` in messages",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L621",
    "p": 0.07
   },
@@ -2223,6 +2530,7 @@
    "version": "8.0.12",
    "section": "Bug Fixes",
    "text": "worker: apply `build.target` to worker bundle",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L622",
    "p": 0.12
   },
@@ -2230,6 +2538,7 @@
    "version": "8.0.12",
    "section": "Bug Fixes",
    "text": "worker: forward define to worker bundle transform",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L623",
    "p": 0.05
   },
@@ -2237,6 +2546,7 @@
    "version": "8.0.12",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency eslint-plugin-n to v18",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L627",
    "p": 0.11
   },
@@ -2244,6 +2554,7 @@
    "version": "8.0.11",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.18",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L633",
    "p": 0.15
   },
@@ -2251,6 +2562,7 @@
    "version": "8.0.11",
    "section": "Bug Fixes",
    "text": "glob: align hmr matcher options with glob enumeration",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L639",
    "p": 0.11
   },
@@ -2258,6 +2570,7 @@
    "version": "8.0.11",
    "section": "Bug Fixes",
    "text": "make separate object instance for each environment",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L640",
    "p": 0.11
   },
@@ -2265,6 +2578,7 @@
    "version": "8.0.11",
    "section": "Documentation",
    "text": "create-vite: list react-compiler templates in README",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L644",
    "p": 0.03
   },
@@ -2272,6 +2586,7 @@
    "version": "8.0.11",
    "section": "Documentation",
    "text": "explain mergeConfig skips null/undefined",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L645",
    "p": 0.07
   },
@@ -2279,6 +2594,7 @@
    "version": "8.0.11",
    "section": "Documentation",
    "text": "mention native config loader in CLI options",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L646",
    "p": 0.05
   },
@@ -2286,6 +2602,7 @@
    "version": "8.0.11",
    "section": "Documentation",
    "text": "update evan's x handle",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L647",
    "p": 0.02
   },
@@ -2293,6 +2610,7 @@
    "version": "8.0.11",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency tsdown to ^0.21.10",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L651",
    "p": 0.07
   },
@@ -2300,6 +2618,7 @@
    "version": "8.0.11",
    "section": "Miscellaneous Chores",
    "text": "deps: update transitive packages to fix npm audit alerts",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L653",
    "p": 0.06
   },
@@ -2307,6 +2626,7 @@
    "version": "8.0.11",
    "section": "Code Refactoring",
    "text": "devtools integration",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L657",
    "p": 0.11
   },
@@ -2314,6 +2634,7 @@
    "version": "8.0.11",
    "section": "Code Refactoring",
    "text": "remove unnecessary async",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L658",
    "p": 0.08
   },
@@ -2321,6 +2642,7 @@
    "version": "8.0.11",
    "section": "Code Refactoring",
    "text": "show direct path type in bad character warning",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L659",
    "p": 0.05
   },
@@ -2328,6 +2650,7 @@
    "version": "8.0.11",
    "section": "Tests",
    "text": "create-vite: use short help alias",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L663",
    "p": 0.06
   },
@@ -2335,6 +2658,7 @@
    "version": "8.0.10",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.17",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L668",
    "p": 0.15
   },
@@ -2342,6 +2666,7 @@
    "version": "8.0.10",
    "section": "Bug Fixes",
    "text": "`hmrClient.logger.debug` and `hmrClient.logger.error` looked different from other HMR logs",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L672",
    "p": 0.04
   },
@@ -2349,6 +2674,7 @@
    "version": "8.0.10",
    "section": "Bug Fixes",
    "text": "css: show filename in CSS minification warnings for `.css?inline`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L673",
    "p": 0.03
   },
@@ -2356,6 +2682,7 @@
    "version": "8.0.10",
    "section": "Bug Fixes",
    "text": "optimizer: allow user transform.target to override default in optimizeDeps",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L674",
    "p": 0.07
   },
@@ -2363,6 +2690,7 @@
    "version": "8.0.10",
    "section": "Bug Fixes",
    "text": "remove format sniffing module resolution from JS resolver",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L675",
    "p": 0.27
   },
@@ -2370,6 +2698,7 @@
    "version": "8.0.10",
    "section": "Code Refactoring",
    "text": "enable some typecheck rules (9437518)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L679",
    "p": 0.16
   },
@@ -2377,6 +2706,7 @@
    "version": "8.0.10",
    "section": "Code Refactoring",
    "text": "typecheck client directory",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L680",
    "p": 0.12
   },
@@ -2384,6 +2714,7 @@
    "version": "8.0.9",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.16",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L685",
    "p": 0.16
   },
@@ -2391,6 +2722,7 @@
    "version": "8.0.9",
    "section": "Bug Fixes",
    "text": "allow binding when strictPort is set but wildcard port is in use",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L689",
    "p": 0.05
   },
@@ -2398,6 +2730,7 @@
    "version": "8.0.9",
    "section": "Bug Fixes",
    "text": "build: emptyOutDir should happen for watch rebuilds",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L690",
    "p": 0.12
   },
@@ -2405,6 +2738,7 @@
    "version": "8.0.9",
    "section": "Bug Fixes",
    "text": "bundled-dev: reject requests to HMR patch files in non potentially trustworthy origins",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L691",
    "p": 0.13
   },
@@ -2412,6 +2746,7 @@
    "version": "8.0.9",
    "section": "Bug Fixes",
    "text": "css: use unique key for cssEntriesMap to prevent same-basename collision",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L692",
    "p": 0.04
   },
@@ -2419,6 +2754,7 @@
    "version": "8.0.9",
    "section": "Bug Fixes",
    "text": "detect Deno workspace root (fix #22237)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L695",
    "p": 0.04
   },
@@ -2426,6 +2762,7 @@
    "version": "8.0.9",
    "section": "Bug Fixes",
    "text": "dev: handle errors in `watchChange` hook",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L696",
    "p": 0.05
   },
@@ -2433,6 +2770,7 @@
    "version": "8.0.9",
    "section": "Bug Fixes",
    "text": "optimizer: handle more chars that will be sanitized",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L697",
    "p": 0.06
   },
@@ -2440,6 +2778,7 @@
    "version": "8.0.9",
    "section": "Bug Fixes",
    "text": "skip fallback sourcemap generation for `?raw` imports",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L698",
    "p": 0.07
   },
@@ -2447,6 +2786,7 @@
    "version": "8.0.9",
    "section": "Documentation",
    "text": "align the descriptions in READMEs",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L702",
    "p": 0.03
   },
@@ -2454,6 +2794,7 @@
    "version": "8.0.9",
    "section": "Documentation",
    "text": "fix reuses wording in dev environment comment (9163412)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L703",
    "p": 0.03
   },
@@ -2461,6 +2802,7 @@
    "version": "8.0.9",
    "section": "Documentation",
    "text": "fix wording in sass error comment",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L704",
    "p": 0.02
   },
@@ -2468,6 +2810,7 @@
    "version": "8.0.9",
    "section": "Documentation",
    "text": "update build CLI defaults",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L705",
    "p": 0.42
   },
@@ -2475,6 +2818,7 @@
    "version": "8.0.9",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency dotenv-expand to v13",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L709",
    "p": 0.12
   },
@@ -2482,6 +2826,7 @@
    "version": "8.0.8",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.15",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L714",
    "p": 0.15
   },
@@ -2489,6 +2834,7 @@
    "version": "8.0.8",
    "section": "Bug Fixes",
    "text": "avoid `dns.getDefaultResultOrder` temporary",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L718",
    "p": 0.07
   },
@@ -2496,6 +2842,7 @@
    "version": "8.0.8",
    "section": "Bug Fixes",
    "text": "ssr: class property keys hoisting matching imports",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L719",
    "p": 0.06
   },
@@ -2503,6 +2850,7 @@
    "version": "8.0.7",
    "section": "Bug Fixes",
    "text": "use sync dns.getDefaultResultOrder instead of dns.promises",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L724",
    "p": 0.07
   },
@@ -2510,6 +2858,7 @@
    "version": "8.0.6",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.13",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L729",
    "p": 0.15
   },
@@ -2517,6 +2866,7 @@
    "version": "8.0.6",
    "section": "Bug Fixes",
    "text": "css: avoid mutating sass error multiple times",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L733",
    "p": 0.04
   },
@@ -2524,6 +2874,7 @@
    "version": "8.0.6",
    "section": "Bug Fixes",
    "text": "optimize-deps: hoist CJS interop assignment",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L734",
    "p": 0.06
   },
@@ -2531,6 +2882,7 @@
    "version": "8.0.6",
    "section": "Performance Improvements",
    "text": "early return in `getLocalhostAddressIfDiffersFromDNS` when DNS order is `verbatim`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L738",
    "p": 0.03
   },
@@ -2538,6 +2890,7 @@
    "version": "8.0.6",
    "section": "Miscellaneous Chores",
    "text": "create-vite: remove unnecessary DOM.Iterable",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L742",
    "p": 0.05
   },
@@ -2545,6 +2898,7 @@
    "version": "8.0.6",
    "section": "Miscellaneous Chores",
    "text": "replace remaining prettier script",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L743",
    "p": 0.11
   },
@@ -2552,6 +2906,7 @@
    "version": "8.0.5",
    "section": "Bug Fixes",
    "text": "apply server.fs check to env transport",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L748",
    "p": 0.09
   },
@@ -2559,6 +2914,7 @@
    "version": "8.0.5",
    "section": "Bug Fixes",
    "text": "avoid path traversal with optimize deps sourcemap handler",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L749",
    "p": 0.05
   },
@@ -2566,6 +2922,7 @@
    "version": "8.0.5",
    "section": "Bug Fixes",
    "text": "check `server.fs` after stripping query as well",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L750",
    "p": 0.05
   },
@@ -2573,6 +2930,7 @@
    "version": "8.0.5",
    "section": "Bug Fixes",
    "text": "disallow referencing files outside the package from sourcemap",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L751",
    "p": 0.27
   },
@@ -2580,6 +2938,7 @@
    "version": "8.0.4",
    "section": "Features",
    "text": "allow esbuild 0.28 as peer deps",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L756",
    "p": 0.09
   },
@@ -2587,6 +2946,7 @@
    "version": "8.0.4",
    "section": "Features",
    "text": "hmr: truncate list of files on hmr update",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L757",
    "p": 0.06
   },
@@ -2594,6 +2954,7 @@
    "version": "8.0.4",
    "section": "Features",
    "text": "optimizer: log when dependency scanning or bundling takes over 1s",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L758",
    "p": 0.03
   },
@@ -2601,6 +2962,7 @@
    "version": "8.0.4",
    "section": "Bug Fixes",
    "text": "`hasBothRollupOptionsAndRolldownOptions` should return `false` for proxy case",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L762",
    "p": 0.07
   },
@@ -2608,6 +2970,7 @@
    "version": "8.0.4",
    "section": "Bug Fixes",
    "text": "add types for `vite/modulepreload-polyfill`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L763",
    "p": 0.04
   },
@@ -2615,6 +2978,7 @@
    "version": "8.0.4",
    "section": "Bug Fixes",
    "text": "resolve: resolve tsconfig paths starting with `#`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L766",
    "p": 0.05
   },
@@ -2622,6 +2986,7 @@
    "version": "8.0.4",
    "section": "Bug Fixes",
    "text": "ssr: use browser platform for webworker SSR builds (fix #21969)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L767",
    "p": 0.07
   },
@@ -2629,6 +2994,7 @@
    "version": "8.0.4",
    "section": "Documentation",
    "text": "add `environment.fetchModule` documentation",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L771",
    "p": 0.02
   },
@@ -2636,6 +3002,7 @@
    "version": "8.0.4",
    "section": "Code Refactoring",
    "text": "upgrade to typescript 6",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L779",
    "p": 0.3
   },
@@ -2643,6 +3010,7 @@
    "version": "8.0.3",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.12",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L784",
    "p": 0.15
   },
@@ -2650,6 +3018,7 @@
    "version": "8.0.3",
    "section": "Bug Fixes",
    "text": "html: cache unfiltered CSS list to prevent missing styles across entries (5464190)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L788",
    "p": 0.04
   },
@@ -2657,6 +3026,7 @@
    "version": "8.0.3",
    "section": "Bug Fixes",
    "text": "module-runner: handle non-ascii characters in base64 sourcemaps",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L789",
    "p": 0.04
   },
@@ -2664,6 +3034,7 @@
    "version": "8.0.3",
    "section": "Bug Fixes",
    "text": "module-runner: skip re-import if the runner is closed",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L790",
    "p": 0.04
   },
@@ -2671,6 +3042,7 @@
    "version": "8.0.3",
    "section": "Bug Fixes",
    "text": "optimizer: scan is not resolving sub path import if used in a glob import",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L791",
    "p": 0.05
   },
@@ -2678,6 +3050,7 @@
    "version": "8.0.3",
    "section": "Bug Fixes",
    "text": "ssr: ssrTransform incorrectly rewrites `meta` identifier inside `import.meta` when a binding named `meta` exists",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L792",
    "p": 0.05
   },
@@ -2685,6 +3058,7 @@
    "version": "8.0.3",
    "section": "Miscellaneous Chores",
    "text": "deps: bump picomatch from 4.0.3 to 4.0.4",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L796",
    "p": 0.04
   },
@@ -2692,6 +3066,7 @@
    "version": "8.0.3",
    "section": "Tests",
    "text": "html: add tests for `getCssFilesForChunk`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L800",
    "p": 0.03
   },
@@ -2699,6 +3074,7 @@
    "version": "8.0.2",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.11",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L805",
    "p": 0.15
   },
@@ -2706,6 +3082,7 @@
    "version": "8.0.2",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency @vitejs/devtools to ^0.1.5",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L813",
    "p": 0.06
   },
@@ -2713,6 +3090,7 @@
    "version": "8.0.1",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.10",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L818",
    "p": 0.15
   },
@@ -2720,6 +3098,7 @@
    "version": "8.0.1",
    "section": "Bug Fixes",
    "text": "bundled-dev: properly disable `inlineConst` optimization",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L822",
    "p": 0.07
   },
@@ -2727,6 +3106,7 @@
    "version": "8.0.1",
    "section": "Bug Fixes",
    "text": "css: lightningcss minify failed when `build.target: 'es6'`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L823",
    "p": 0.07
   },
@@ -2734,6 +3114,7 @@
    "version": "8.0.1",
    "section": "Bug Fixes",
    "text": "dev: always use ESM Oxc runtime",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L825",
    "p": 0.11
   },
@@ -2741,6 +3122,7 @@
    "version": "8.0.1",
    "section": "Bug Fixes",
    "text": "dev: handle concurrent restarts in `_createServer`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L826",
    "p": 0.04
   },
@@ -2748,6 +3130,7 @@
    "version": "8.0.1",
    "section": "Bug Fixes",
    "text": "handle `+` symbol in package subpath exports during dep optimization",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L827",
    "p": 0.04
   },
@@ -2755,6 +3138,7 @@
    "version": "8.0.1",
    "section": "Bug Fixes",
    "text": "improve `no-cors` request block error",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L828",
    "p": 0.06
   },
@@ -2762,6 +3146,7 @@
    "version": "8.0.1",
    "section": "Bug Fixes",
    "text": "use precise regexes for transform filter to avoid backtracking",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L829",
    "p": 0.05
   },
@@ -2769,6 +3154,7 @@
    "version": "8.0.1",
    "section": "Bug Fixes",
    "text": "worker: `require(json)` result should not be wrapped",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L830",
    "p": 0.12
   },
@@ -2776,6 +3162,7 @@
    "version": "8.0.1",
    "section": "Bug Fixes",
    "text": "worker: make worker output consistent with client and SSR",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L831",
    "p": 0.1
   },
@@ -2783,6 +3170,7 @@
    "version": "8.0.1",
    "section": "Miscellaneous Chores",
    "text": "add changelog rearrange script",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L835",
    "p": 0.03
   },
@@ -2790,6 +3178,7 @@
    "version": "8.0.1",
    "section": "Miscellaneous Chores",
    "text": "deps: bump required `@vitejs/devtools` version to 0.1+",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L836",
    "p": 0.25
   },
@@ -2797,6 +3186,7 @@
    "version": "8.0.1",
    "section": "Miscellaneous Chores",
    "text": "rearrange 8.0 changelog",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L838",
    "p": 0.08
   },
@@ -2805,6 +3195,7 @@
    "section": "",
    "text": "Today, we're thrilled to announce the release of the next Vite major:",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L845",
    "p": 0.35
   },
@@ -2812,6 +3203,7 @@
    "version": "8.0.0",
    "section": "",
    "text": "Vite 8.0 announcement blog post",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L847",
    "p": 0.33
   },
@@ -2819,6 +3211,7 @@
    "version": "8.0.0",
    "section": "",
    "text": "Docs (translations: 简体中文, 日本語, Español, Português, 한국어, Deutsch, فارسی)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L848",
    "p": 0.04
   },
@@ -2826,6 +3219,7 @@
    "version": "8.0.0",
    "section": "",
    "text": "Migration Guide",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L849",
    "p": 0.31
   },
@@ -2833,6 +3227,7 @@
    "version": "8.0.0",
    "section": "⚠ BREAKING CHANGES",
    "text": "remove `import.meta.hot.accept` resolution fallback",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L853",
    "p": 0.69
   },
@@ -2840,6 +3235,7 @@
    "version": "8.0.0",
    "section": "⚠ BREAKING CHANGES",
    "text": "update default browser target",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L854",
    "p": 0.54
   },
@@ -2847,6 +3243,7 @@
    "version": "8.0.0",
    "section": "⚠ BREAKING CHANGES",
    "text": "the epic `rolldown-vite` merge",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L855",
    "p": 0.36
   },
@@ -2854,6 +3251,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.9",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L859",
    "p": 0.16
   },
@@ -2861,6 +3259,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "warn when `vite-tsconfig-paths` plugin is detected",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L860",
    "p": 0.07
   },
@@ -2868,6 +3267,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "css: support es2025 build target for lightningcss",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L861",
    "p": 0.05
   },
@@ -2875,6 +3275,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "forward browser console logs and errors to dev server terminal",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L862",
    "p": 0.04
   },
@@ -2882,6 +3283,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.8",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L863",
    "p": 0.15
   },
@@ -2889,6 +3291,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "export `Visitor` and `ESTree` from `rolldown/utils`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L864",
    "p": 0.05
   },
@@ -2896,6 +3299,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.6",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L865",
    "p": 0.15
   },
@@ -2903,6 +3307,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "use util.inspect for CLI error display",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L866",
    "p": 0.04
   },
@@ -2910,6 +3315,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.5",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L867",
    "p": 0.16
   },
@@ -2917,6 +3323,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.4",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L868",
    "p": 0.14
   },
@@ -2924,6 +3331,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "wasm: add SSR support for `.wasm?init`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L869",
    "p": 0.05
   },
@@ -2931,6 +3339,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "integrate devtools",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L870",
    "p": 0.06
   },
@@ -2938,6 +3347,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.3",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L871",
    "p": 0.14
   },
@@ -2945,6 +3355,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "manifest: add `assets` field for standalone CSS entry points",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L872",
    "p": 0.05
   },
@@ -2952,6 +3363,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.2",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L873",
    "p": 0.14
   },
@@ -2959,6 +3371,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "bundled-dev: support worker in initial bundle",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L874",
    "p": 0.06
   },
@@ -2966,6 +3379,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "dev: detect port conflicts on wildcard hosts",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L875",
    "p": 0.08
   },
@@ -2973,6 +3387,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "shortcuts case insensitive",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L876",
    "p": 0.08
   },
@@ -2980,6 +3395,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-rc.1",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L877",
    "p": 0.17
   },
@@ -2987,6 +3403,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "warn if `envPrefix` contains spaces",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L878",
    "p": 0.09
   },
@@ -2994,6 +3411,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-beta.60",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L879",
    "p": 0.15
   },
@@ -3001,6 +3419,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-beta.59 (0037943)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L880",
    "p": 0.14
   },
@@ -3008,6 +3427,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "add `ignoreOutdatedRequests` option to `optimizeDeps`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L881",
    "p": 0.05
   },
@@ -3015,6 +3435,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "add ios to default esbuild targets",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L882",
    "p": 0.12
   },
@@ -3022,6 +3443,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-beta.58",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L883",
    "p": 0.15
   },
@@ -3029,6 +3451,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-beta.57",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L884",
    "p": 0.15
   },
@@ -3036,6 +3459,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "css: support es2024 build target for lightningcss",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L885",
    "p": 0.05
   },
@@ -3043,6 +3467,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-beta.56",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L886",
    "p": 0.15
   },
@@ -3050,6 +3475,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "introduce v2 native plugins and enable it by default",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L887",
    "p": 0.33
   },
@@ -3057,6 +3483,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "ssr: avoid errors when rewriting already rewritten stacktrace",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L888",
    "p": 0.03
   },
@@ -3064,6 +3491,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-beta.55",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L889",
    "p": 0.15
   },
@@ -3071,6 +3499,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "update rolldown to 1.0.0-beta.54",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L890",
    "p": 0.14
   },
@@ -3078,6 +3507,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "add a warning that is output when a plugin sets esbuild related options",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L891",
    "p": 0.05
   },
@@ -3085,6 +3515,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "highly experimental full bundle mode",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L892",
    "p": 0.1
   },
@@ -3092,6 +3523,7 @@
    "version": "8.0.0",
    "section": "Features",
    "text": "print esbuild options when both esbuild and oxc options are set",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L893",
    "p": 0.04
   },
@@ -3099,6 +3531,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "use `watch.watcher` instead of `watch.notify`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L900",
    "p": 0.2
   },
@@ -3106,6 +3539,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "css: apply `server.origin` to public file URLs in CSS (fix #18457)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L901",
    "p": 0.08
   },
@@ -3113,6 +3547,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "dev: disable extglobs for consistency",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L903",
    "p": 0.16
   },
@@ -3120,6 +3555,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "lib: keep annotation comments for es output",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L904",
    "p": 0.06
   },
@@ -3127,6 +3563,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "optimizer: avoid error happening with a package with asset entrypoint",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L905",
    "p": 0.04
   },
@@ -3134,6 +3571,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "ssr: throw friendly error when calling `ssrLoadModule` with non-runnable ssr env",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L906",
    "p": 0.1
   },
@@ -3141,6 +3579,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "types: remove extends ImportMeta from ModuleRunnerImportMeta",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L907",
    "p": 0.16
   },
@@ -3148,6 +3587,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "wasm: reset assetUrlRE.lastIndex before .test() in SSR builds",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L908",
    "p": 0.03
   },
@@ -3155,6 +3595,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "optimizer: avoid duplicate modules when `preserveSymlinks` is enabled",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L910",
    "p": 0.06
   },
@@ -3162,6 +3603,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "dev: only treat EADDRINUSE as port conflict in wildcard pre-check",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L911",
    "p": 0.05
   },
@@ -3169,6 +3611,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "dev: prevent concurrent server restarts",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L912",
    "p": 0.04
   },
@@ -3176,6 +3619,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "dev: return \"502 Bad Gateway\" on proxy failures instead of 500",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L913",
    "p": 0.11
   },
@@ -3183,6 +3627,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "clear tsconfig cache only when tsconfig.json is cached",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L914",
    "p": 0.03
   },
@@ -3190,6 +3635,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "lib: CSS injection point error with nested name IIFE output",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L916",
    "p": 0.08
   },
@@ -3197,6 +3643,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "module-runner: incorrect column with `sourcemapInterceptor: \"prepareStackTrace\"`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L917",
    "p": 0.05
   },
@@ -3204,6 +3651,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "module-runner: prevent crash on negative column in stacktrace",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L918",
    "p": 0.03
   },
@@ -3211,6 +3659,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "rolldownOptions/rollupOptions merging at environment level",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L919",
    "p": 0.12
   },
@@ -3218,6 +3667,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "scanner: respect tsconfig.json",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L920",
    "p": 0.14
   },
@@ -3225,6 +3675,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "avoid registering customization hook for import meta resolver multiple times",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L921",
    "p": 0.04
   },
@@ -3232,6 +3683,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "config: avoid watching rolldown runtime virtual module",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L922",
    "p": 0.04
   },
@@ -3239,6 +3691,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "populate originalFileNames when resolving CSS asset paths",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L924",
    "p": 0.04
   },
@@ -3246,6 +3699,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "disable `tsconfig` option when loading config",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L926",
    "p": 0.24
   },
@@ -3253,6 +3707,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "optimizer: map relative `new URL` paths to correct relative file location",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L927",
    "p": 0.06
   },
@@ -3260,6 +3715,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "avoid using deprecated `output.inlineDynamicImport` option",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L928",
    "p": 0.44
   },
@@ -3267,6 +3723,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "use separate hook object for each environment",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L929",
    "p": 0.1
   },
@@ -3274,6 +3731,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "deps: update all non-major dependencies (1835995)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L930",
    "p": 0.09
   },
@@ -3281,6 +3739,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "dev: avoid event emitter leak caused by `server.listen` callback",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L931",
    "p": 0.04
   },
@@ -3288,6 +3747,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "lazy hook filter should work",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L932",
    "p": 0.06
   },
@@ -3295,6 +3755,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "optimizer: skip `rolldownCjsExternalPlugin` for `platform: neutral`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L933",
    "p": 0.05
   },
@@ -3302,6 +3763,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "deps: update esbuild peerDependency version",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L935",
    "p": 0.1
   },
@@ -3309,6 +3771,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "hmr: trigger prune event when last import is removed (7576735)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L936",
    "p": 0.04
   },
@@ -3316,6 +3779,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "module-runner: use `process.getBuiltinModule` instead of `import('node:module')`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L937",
    "p": 0.05
   },
@@ -3323,6 +3787,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "support .env file mounts (FIFOs)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L938",
    "p": 0.05
   },
@@ -3330,6 +3795,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "css: stylus Evaluator support",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L939",
    "p": 0.05
   },
@@ -3337,6 +3803,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "import-analysis: avoid cjs interop for built browser external module",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L941",
    "p": 0.08
   },
@@ -3344,6 +3811,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "worker: handle `new Worker(..., new URL(import.meta.url))` with trailing comma",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L942",
    "p": 0.04
   },
@@ -3351,6 +3819,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "detect `import.meta.resolve` when formatted across multiple lines",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L943",
    "p": 0.04
   },
@@ -3358,6 +3827,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "allow no-cors requests for non-script tag requests",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L944",
    "p": 0.07
   },
@@ -3365,6 +3835,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "unreachable error when building with `experimental.bundledDev` is enabled",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L946",
    "p": 0.06
   },
@@ -3372,6 +3843,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "don't strip base from imports",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L948",
    "p": 0.1
   },
@@ -3379,6 +3851,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "allow exiting process before optimizer cleanup is done",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L949",
    "p": 0.06
   },
@@ -3386,6 +3859,7 @@
    "version": "8.0.0",
    "section": "Bug Fixes",
    "text": "plugin shortcut support",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L950",
    "p": 0.06
   },
@@ -3393,6 +3867,7 @@
    "version": "8.0.0",
    "section": "Performance Improvements",
    "text": "ssr: skip circular import check for already-evaluated modules",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L954",
    "p": 0.04
   },
@@ -3400,6 +3875,7 @@
    "version": "8.0.0",
    "section": "Performance Improvements",
    "text": "use tsconfig cache for oxc transform in dev",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L955",
    "p": 0.04
   },
@@ -3407,6 +3883,7 @@
    "version": "8.0.0",
    "section": "Documentation",
    "text": "bulk of typo fixes",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L959",
    "p": 0.03
   },
@@ -3414,6 +3891,7 @@
    "version": "8.0.0",
    "section": "Documentation",
    "text": "update `build.dynamicImportVarsOptions`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L960",
    "p": 0.26
   },
@@ -3421,6 +3899,7 @@
    "version": "8.0.0",
    "section": "Documentation",
    "text": "clarify the pronunciation of `vite` in IPA symbols",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L961",
    "p": 0.02
   },
@@ -3428,6 +3907,7 @@
    "version": "8.0.0",
    "section": "Documentation",
    "text": "ensure https links",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L962",
    "p": 0.04
   },
@@ -3435,6 +3915,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "deps-dev: bump rollup from 4.57.1 to 4.59.0",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L966",
    "p": 0.09
   },
@@ -3442,6 +3923,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency cac to v7",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L967",
    "p": 0.09
   },
@@ -3449,6 +3931,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency rolldown-plugin-dts to ^0.22.2",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L968",
    "p": 0.07
   },
@@ -3456,6 +3939,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "deps: remove `fdir` and `@rollup/plugin-commonjs`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L969",
    "p": 0.16
   },
@@ -3463,6 +3947,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency @rollup/plugin-alias to v6",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L970",
    "p": 0.17
   },
@@ -3470,6 +3955,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "fix broken link for future deprecations",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L971",
    "p": 0.04
   },
@@ -3477,6 +3963,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "update `customResolver` deprecation message to mention `enforce: 'pre'`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L972",
    "p": 0.06
   },
@@ -3484,6 +3971,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "update rolldown-plugin-dts to 0.22.1",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L973",
    "p": 0.11
   },
@@ -3491,6 +3979,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "deps: update dependency rolldown-plugin-dts to ^0.21.8",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L974",
    "p": 0.07
   },
@@ -3498,6 +3987,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "add missing versions to changelog",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L975",
    "p": 0.03
   },
@@ -3505,6 +3995,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "fix typo in plugin.ts comment",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L978",
    "p": 0.02
   },
@@ -3512,6 +4003,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "replace caniuse link for ES2024",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L979",
    "p": 0.03
   },
@@ -3519,6 +4011,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "cleanup changelog",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L980",
    "p": 0.05
   },
@@ -3526,6 +4019,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "deps: update rolldown-related dependencies (9349446)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L981",
    "p": 0.08
   },
@@ -3533,6 +4027,7 @@
    "version": "8.0.0",
    "section": "Miscellaneous Chores",
    "text": "fix spelling error",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L982",
    "p": 0.03
   },
@@ -3540,6 +4035,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "don't add `optimization.inlineConst: { mode: 'smart' }` as it's enabled by default",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L986",
    "p": 0.11
   },
@@ -3547,6 +4043,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "enable some native plugins even with enable native plugin false",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L987",
    "p": 0.3
   },
@@ -3554,6 +4051,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "avoid deprecated `legalComments` option",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L988",
    "p": 0.67
   },
@@ -3561,6 +4059,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "use `ESTree` types from `rolldown/utils` (9239750)",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L989",
    "p": 0.1
   },
@@ -3568,6 +4067,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "deprecate `customResolver` in `resolve.alias`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L990",
    "p": 0.56
   },
@@ -3575,6 +4075,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "remove unnecessary `@rolldown/pluginutils`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L991",
    "p": 0.07
   },
@@ -3582,6 +4083,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "use `rolldown/utils`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L993",
    "p": 0.2
   },
@@ -3589,6 +4091,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "use internal devtools config",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L994",
    "p": 0.14
   },
@@ -3596,6 +4099,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "use parseEnv",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L995",
    "p": 0.21
   },
@@ -3603,6 +4107,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "wasm: remove native wasm helper plugin usage",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L996",
    "p": 0.35
   },
@@ -3610,6 +4115,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "remove `experimental.enableNativePlugin: 'resolver'`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L998",
    "p": 0.69
   },
@@ -3617,6 +4123,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "use `import.meta.dirname` everywhere",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L999",
    "p": 0.22
   },
@@ -3624,6 +4131,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "optimizer: simplify `rolldownCjsExternalPlugin`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1000",
    "p": 0.05
   },
@@ -3631,6 +4139,7 @@
    "version": "8.0.0",
    "section": "Code Refactoring",
    "text": "optimizer: remove dead code",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1002",
    "p": 0.06
   },
@@ -3638,6 +4147,7 @@
    "version": "8.0.0",
    "section": "Tests",
    "text": "ssr: incorrect `handleInvoke` was called in server-worker-runner.invoke test",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1006",
    "p": 0.04
   },
@@ -3645,6 +4155,7 @@
    "version": "8.0.0",
    "section": "Tests",
    "text": "add more type tests for `defineConfig`",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1007",
    "p": 0.03
   },
@@ -3652,6 +4163,7 @@
    "version": "8.0.0",
    "section": "Tests",
    "text": "test case for catching invalid package resolution error",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1008",
    "p": 0.04
   },
@@ -3659,6 +4171,7 @@
    "version": "8.0.0",
    "section": "Tests",
    "text": "bundled-dev: add worker test cases",
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1009",
    "p": 0.03
   },
@@ -3667,6 +4180,7 @@
    "section": "",
    "text": "See 8.0.0-beta.18 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1015",
    "p": 0.27
   },
@@ -3675,6 +4189,7 @@
    "section": "",
    "text": "See 8.0.0-beta.17 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1019",
    "p": 0.28
   },
@@ -3683,6 +4198,7 @@
    "section": "",
    "text": "See 8.0.0-beta.16 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1023",
    "p": 0.3
   },
@@ -3691,6 +4207,7 @@
    "section": "",
    "text": "See 8.0.0-beta.15 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1027",
    "p": 0.29
   },
@@ -3699,6 +4216,7 @@
    "section": "",
    "text": "See 8.0.0-beta.14 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1031",
    "p": 0.29
   },
@@ -3707,6 +4225,7 @@
    "section": "",
    "text": "See 8.0.0-beta.13 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1035",
    "p": 0.29
   },
@@ -3715,6 +4234,7 @@
    "section": "",
    "text": "See 8.0.0-beta.12 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1039",
    "p": 0.29
   },
@@ -3723,6 +4243,7 @@
    "section": "",
    "text": "See 8.0.0-beta.11 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1043",
    "p": 0.3
   },
@@ -3731,6 +4252,7 @@
    "section": "",
    "text": "See 8.0.0-beta.10 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1047",
    "p": 0.3
   },
@@ -3739,6 +4261,7 @@
    "section": "",
    "text": "See 8.0.0-beta.9 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1051",
    "p": 0.29
   },
@@ -3747,6 +4270,7 @@
    "section": "",
    "text": "See 8.0.0-beta.8 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1055",
    "p": 0.28
   },
@@ -3755,6 +4279,7 @@
    "section": "",
    "text": "See 8.0.0-beta.7 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1059",
    "p": 0.29
   },
@@ -3763,6 +4288,7 @@
    "section": "",
    "text": "See 8.0.0-beta.6 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1063",
    "p": 0.29
   },
@@ -3771,6 +4297,7 @@
    "section": "",
    "text": "See 8.0.0-beta.5 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1067",
    "p": 0.29
   },
@@ -3779,6 +4306,7 @@
    "section": "",
    "text": "See 8.0.0-beta.4 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1071",
    "p": 0.29
   },
@@ -3787,6 +4315,7 @@
    "section": "",
    "text": "See 8.0.0-beta.3 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1075",
    "p": 0.29
   },
@@ -3795,6 +4324,7 @@
    "section": "",
    "text": "See 8.0.0-beta.2 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1079",
    "p": 0.29
   },
@@ -3803,6 +4333,7 @@
    "section": "",
    "text": "See 8.0.0-beta.1 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1083",
    "p": 0.34
   },
@@ -3811,6 +4342,7 @@
    "section": "",
    "text": "See 8.0.0-beta.0 changelog",
    "prose": true,
+   "kind": "changelog",
    "source": "https://github.com/vitejs/vite/blob/981f07fa45/packages/vite/CHANGELOG.md#L1087",
    "p": 0.35
   },
@@ -3819,6 +4351,7 @@
    "section": "Migration from v7",
    "text": "If you are migrating from `rolldown-vite`, the technical preview release for Rolldown integrated Vite for v6 & v7, only the sections with in the title are applicable.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L3",
    "p": 0.2
   },
@@ -3827,6 +4360,7 @@
    "section": "Default Browser Target Change",
    "text": "The default browser values of `build.target` and `'baseline-widely-available'` are updated to newer browser versions: These browser versions align with Baseline Widely Available feature sets as of 2026-01-01. In other words, they were all released about two and a half years ago.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L7",
    "p": 0.32
   },
@@ -3834,6 +4368,7 @@
    "version": "8.0.0",
    "section": "Default Browser Target Change",
    "text": "Chrome 107 → 111",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L9",
    "p": 0.36
   },
@@ -3841,6 +4376,7 @@
    "version": "8.0.0",
    "section": "Default Browser Target Change",
    "text": "Edge 107 → 111",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L10",
    "p": 0.36
   },
@@ -3848,6 +4384,7 @@
    "version": "8.0.0",
    "section": "Default Browser Target Change",
    "text": "Firefox 104 → 114",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L11",
    "p": 0.32
   },
@@ -3855,6 +4392,7 @@
    "version": "8.0.0",
    "section": "Default Browser Target Change",
    "text": "Safari 16.0 → 16.4",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L12",
    "p": 0.29
   },
@@ -3863,6 +4401,7 @@
    "section": "Rolldown",
    "text": "Vite 8 uses Rolldown and Oxc based tools instead of esbuild and Rollup.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L18",
    "p": 0.19
   },
@@ -3871,6 +4410,7 @@
    "section": "Gradual Migration",
    "text": "The `rolldown-vite` package implements Vite 7 with Rolldown, without other Vite 8 changes. This can be used as an intermediate step to migrate to Vite 8. See the Rolldown Integration guide in the Vite 7 docs to switch to `rolldown-vite` from Vite 7. For users migrating from `rolldown-vite` to Vite 8, you can undo the dependency changes in `package.json` and update to Vite 8:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L22",
    "p": 0.11
   },
@@ -3879,6 +4419,7 @@
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "Rolldown is now used for dependency optimization instead of esbuild. Vite still supports `optimizeDeps.esbuildOptions` for backward compatibility by converting it to `optimizeDeps.rolldownOptions` automatically. `optimizeDeps.esbuildOptions` is now deprecated and will be removed in the future and we encourage you to migrate to `optimizeDeps.rolldownOptions`. The following options are converted automatically: You can get the options set by the compatibility layer from the `configResolved` hook:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L37",
    "p": 0.14
   },
@@ -3886,6 +4427,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.minify` -> `rolldownOptions.output.minify`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L41",
    "p": 0.78
   },
@@ -3893,6 +4435,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.treeShaking` -> `rolldownOptions.treeshake`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L42",
    "p": 0.76
   },
@@ -3900,6 +4443,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.define` -> `rolldownOptions.transform.define`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L43",
    "p": 0.61
   },
@@ -3907,6 +4451,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.loader` -> `rolldownOptions.moduleTypes`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L44",
    "p": 0.78
   },
@@ -3914,6 +4459,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.preserveSymlinks` -> `!rolldownOptions.resolve.symlinks`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L45",
    "p": 0.74
   },
@@ -3921,6 +4467,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.resolveExtensions` -> `rolldownOptions.resolve.extensions`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L46",
    "p": 0.75
   },
@@ -3928,6 +4475,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.mainFields` -> `rolldownOptions.resolve.mainFields`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L47",
    "p": 0.77
   },
@@ -3935,6 +4483,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.conditions` -> `rolldownOptions.resolve.conditionNames`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L48",
    "p": 0.77
   },
@@ -3942,6 +4491,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.keepNames` -> `rolldownOptions.output.keepNames`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L49",
    "p": 0.75
   },
@@ -3949,6 +4499,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.platform` -> `rolldownOptions.platform`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L50",
    "p": 0.67
   },
@@ -3956,6 +4507,7 @@
    "version": "8.0.0",
    "section": "Dependency Optimizer Now Uses Rolldown",
    "text": "`esbuildOptions.plugins` -> `rolldownOptions.plugins` (partial support)",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L51",
    "p": 0.56
   },
@@ -3964,6 +4516,7 @@
    "section": "JavaScript Transforms by Oxc",
    "text": "Oxc is now used for JavaScript transformation instead of esbuild. Vite still supports the `esbuild` option for backward compatibility by converting it to `oxc` automatically. `esbuild` is now deprecated and will be removed in the future and we encourage you to migrate to `oxc`. The following options are converted automatically: The `esbuild.supported` option is not supported by Oxc. If you need this option, please see oxc-project/oxc#15373. You can get the options set by the compatibility layer from the `configResolved` hook: Currently, the Oxc transformer does not support lowering native decorators as we are waiting for the specification to progress, see (oxc-project/oxc#9170). :::: details Workaround for lowering native decorators You can use Babel or SWC to lower native decorators for the time being. Using Babel: ::: code-group ::: Using SWC: ::: code-group ::: ::::",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L66",
    "p": 0.19
   },
@@ -3971,6 +4524,7 @@
    "version": "8.0.0",
    "section": "JavaScript Transforms by Oxc",
    "text": "`esbuild.jsxInject` -> `oxc.jsxInject`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L70",
    "p": 0.51
   },
@@ -3978,6 +4532,7 @@
    "version": "8.0.0",
    "section": "JavaScript Transforms by Oxc",
    "text": "`esbuild.include` -> `oxc.include`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L71",
    "p": 0.55
   },
@@ -3985,6 +4540,7 @@
    "version": "8.0.0",
    "section": "JavaScript Transforms by Oxc",
    "text": "`esbuild.exclude` -> `oxc.exclude`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L72",
    "p": 0.61
   },
@@ -3992,6 +4548,7 @@
    "version": "8.0.0",
    "section": "JavaScript Transforms by Oxc",
    "text": "`esbuild.jsx` -> `oxc.jsx` `esbuild.jsx: 'preserve'` -> `oxc.jsx: 'preserve'` `esbuild.jsx: 'automatic'` -> `oxc.jsx: { runtime: 'automatic' }` `esbuild.jsxImportSource` -> `oxc.jsx.importSource` `esbuild.jsx: 'transform'` -> `oxc.jsx: { runtime: 'classic' }` `esbuild.jsxFactory` -> `oxc.jsx.pragma` `esbuild.jsxFragment` -> `oxc.jsx.pragmaFrag` `esbuild.jsxDev` -> `oxc.jsx.development` `esbuild.jsxSideEffects` -> `oxc.jsx.pure`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L73",
    "p": 0.3
   },
@@ -3999,6 +4556,7 @@
    "version": "8.0.0",
    "section": "JavaScript Transforms by Oxc",
    "text": "`esbuild.define` -> `oxc.define`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L82",
    "p": 0.19
   },
@@ -4006,6 +4564,7 @@
    "version": "8.0.0",
    "section": "JavaScript Transforms by Oxc",
    "text": "`esbuild.banner` -> custom plugin using transform hook",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L83",
    "p": 0.49
   },
@@ -4013,6 +4572,7 @@
    "version": "8.0.0",
    "section": "JavaScript Transforms by Oxc",
    "text": "`esbuild.footer` -> custom plugin using transform hook",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L84",
    "p": 0.45
   },
@@ -4021,6 +4581,7 @@
    "section": "esbuild Fallbacks",
    "text": "`esbuild` is no longer directly used by Vite and is now an optional dependency. If you are using a plugin that uses the `transformWithEsbuild` function, you need to install `esbuild` as a `devDependency`. The `transformWithEsbuild` function is deprecated and will be removed in the future. We recommend migrating to the new `transformWithOxc` function instead.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L207",
    "p": 0.44
   },
@@ -4029,6 +4590,7 @@
    "section": "JavaScript Minification by Oxc",
    "text": "The Oxc Minifier is now used for JavaScript minification instead of esbuild. You can use the deprecated `build.minify: 'esbuild'` option to switch back to esbuild. This configuration option will be removed in the future and you need install `esbuild` as a `devDependency` as Vite no longer relies on esbuild directly. If you were using the `esbuild.minify*` options to control minification behavior, you can now use `build.rolldownOptions.output.minify` instead. If you were using the `esbuild.drop` option, you can now use `build.rolldownOptions.output.minify.compress.drop*` options. Property mangling and its related options (`mangleProps`, `reserveProps`, `mangleQuoted`, `mangleCache`) are not supported by Oxc. If you need these options, please see oxc-project/oxc#15375. esbuild and Oxc Minifier make slightly different assumptions about source code. In case you suspect the minifier is causing breakage in your code, you can compare these assumptions here: Please report any issues you find related to minification in your JavaScript apps.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L211",
    "p": 0.49
   },
@@ -4036,6 +4598,7 @@
    "version": "8.0.0",
    "section": "JavaScript Minification by Oxc",
    "text": "esbuild minify assumptions",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L219",
    "p": 0.16
   },
@@ -4043,6 +4606,7 @@
    "version": "8.0.0",
    "section": "JavaScript Minification by Oxc",
    "text": "Oxc Minifier assumptions",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L220",
    "p": 0.16
   },
@@ -4051,6 +4615,7 @@
    "section": "CSS Minification by Lightning CSS",
    "text": "Lightning CSS is now used for CSS minification by default. You can use the `build.cssMinify: 'esbuild'` option to switch back to esbuild. Note that you need to install `esbuild` as a `devDependency`. Lightning CSS supports better syntax lowering and your CSS bundle size might increase slightly.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L226",
    "p": 0.27
   },
@@ -4059,6 +4624,7 @@
    "section": "Consistent CommonJS Interop",
    "text": "The `default` import from a CommonJS (CJS) module is now handled in a consistent way. If it matches one of the following conditions, the `default` import is the `module.exports` value of the importee CJS module. Otherwise, the `default` import is the `module.exports.default` value of the importee CJS module: ::: details The previous behavior In development, if it matches one of the following conditions, the `default` import is the `module.exports` value of the importee CJS module. Otherwise, the `default` import is the `module.exports.default` value of the importee CJS module: In build, the conditions were: (assuming `build.commonjsOptions.defaultIsModuleExports` is not changed from the default `'auto'`) ::: See Rolldown's docs about this problem for more details: Ambiguous `default` import from CJS modules - Bundling CJS | Rolldown. This change may break some existing code importing CJS modules. You can use the deprecated `legacy.inconsistentCjsInterop: true` option to temporarily restore the previous behavior. If you find a package that is affected by this change, please report it to the package author or send them a pull request. Make sure to link to the Rolldown documentation above so that the author can understand the context.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L232",
    "p": 0.34
   },
@@ -4066,6 +4632,7 @@
    "version": "8.0.0",
    "section": "Consistent CommonJS Interop",
    "text": "The importer is `.mjs` or `.mts`.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L236",
    "p": 0.31
   },
@@ -4073,6 +4640,7 @@
    "version": "8.0.0",
    "section": "Consistent CommonJS Interop",
    "text": "The closest `package.json` for the importer has a `type` field set to `module`.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L237",
    "p": 0.34
   },
@@ -4080,6 +4648,7 @@
    "version": "8.0.0",
    "section": "Consistent CommonJS Interop",
    "text": "The `module.exports.__esModule` value of the importee CJS module is not set to `true`.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L238",
    "p": 0.31
   },
@@ -4087,6 +4656,7 @@
    "version": "8.0.0",
    "section": "Consistent CommonJS Interop",
    "text": "_The importer is included in the dependency optimization_ and `.mjs` or `.mts`.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L244",
    "p": 0.21
   },
@@ -4094,6 +4664,7 @@
    "version": "8.0.0",
    "section": "Consistent CommonJS Interop",
    "text": "_The importer is included in the dependency optimization_ and the closest `package.json` for the importer has a `type` field set to `module`.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L245",
    "p": 0.21
   },
@@ -4101,6 +4672,7 @@
    "version": "8.0.0",
    "section": "Consistent CommonJS Interop",
    "text": "_`default` property of `module.exports` does not exist_.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L251",
    "p": 0.48
   },
@@ -4109,6 +4681,7 @@
    "section": "Removed Module Resolution Using Format Sniffing",
    "text": "When both `browser` and `module` fields are present in `package.json`, Vite used to resolve the field based on the content of the file and it used to pick the ESM file for browsers. This was introduced because some packages were using the `module` field to point to ESM files for Node.js and some other packages were using the `browser` field to point to UMD files for browsers. Given that the modern `exports` field solved this problem and is now adopted by many packages, Vite no longer uses this heuristic and always respects the order of the `resolve.mainFields` option. If you were relying on this behavior, you can use the `resolve.alias` option to map the field to the desired file or apply a patch with your package manager (e.g. `patch-package`, `pnpm patch`).",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L263",
    "p": 0.5
   },
@@ -4117,6 +4690,7 @@
    "section": "Require Calls For Externalized Modules",
    "text": "`require` calls for externalized modules are now preserved as `require` calls and not converted to `import` statements. This is to preserve the semantics of `require` calls. If you want to convert them to `import` statements, you can use Rolldown's built-in `esmExternalRequirePlugin`, which is re-exported from `vite`. See Rolldown's docs for more details: `require` external modules - Bundling CJS | Rolldown.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L267",
    "p": 0.22
   },
@@ -4125,6 +4699,7 @@
    "section": "`import.meta.url` in UMD / IIFE",
    "text": "`import.meta.url` is no longer polyfilled in UMD / IIFE output formats. It will be replaced with `undefined` by default. If you prefer the previous behavior, you can use the `define` option with `build.rolldownOptions.output.intro` option. See Rolldown's docs for more details: Well-known `import.meta` properties - Non ESM Output Formats | Rolldown.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L286",
    "p": 0.52
   },
@@ -4133,6 +4708,7 @@
    "section": "Removed `build.rollupOptions.watch.chokidar` option",
    "text": "The `build.rollupOptions.watch.chokidar` option was removed. Please migrate to the `build.rolldownOptions.watch.watcher` option.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L290",
    "p": 0.85
   },
@@ -4141,6 +4717,7 @@
    "section": "Removed object form `build.rollupOptions.output.manualChunks` and deprecate function form one",
    "text": "The object form `output.manualChunks` option is not supported anymore. The function form `output.manualChunks` is deprecated. Rolldown has the more flexible `codeSplitting` option. See Rolldown's docs for more details about `codeSplitting`: Manual Code Splitting - Rolldown.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L294",
    "p": 0.83
   },
@@ -4149,6 +4726,7 @@
    "section": "`build()` Throws `BundleError`",
    "text": "_This change only affects JS API users._ `build()` now throws a `BundleError` instead of the raw error thrown in the plugin. `BundleError` is typed as `Error & { errors?: RolldownError[] }` and it wraps the individual errors in an `errors` array. If you need the individual errors, you need to access `.errors`:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L298",
    "p": 0.57
   },
@@ -4157,6 +4735,7 @@
    "section": "Module Type Support and Auto Detection",
    "text": "_This change only affects plugin authors._ Rolldown has experimental support for Module types, similar to esbuild's `loader` option. Due to this, Rolldown automatically sets a module type based on the extension of the resolved id. If you are converting content from other module types to JavaScript in `load` or `transform` hooks, you may need to add `moduleType: 'js'` to the returned value:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L316",
    "p": 0.12
   },
@@ -4165,6 +4744,7 @@
    "section": "Other Related Deprecations",
    "text": "The following options are deprecated and will be removed in the future:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L340",
    "p": 0.34
   },
@@ -4172,6 +4752,7 @@
    "version": "8.0.0",
    "section": "Other Related Deprecations",
    "text": "`build.rollupOptions`: renamed to `build.rolldownOptions`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L342",
    "p": 0.73
   },
@@ -4179,6 +4760,7 @@
    "version": "8.0.0",
    "section": "Other Related Deprecations",
    "text": "`worker.rollupOptions`: renamed to `worker.rolldownOptions`",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L343",
    "p": 0.79
   },
@@ -4186,6 +4768,7 @@
    "version": "8.0.0",
    "section": "Other Related Deprecations",
    "text": "`build.commonjsOptions`: it is now no-op",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L344",
    "p": 0.47
   },
@@ -4193,6 +4776,7 @@
    "version": "8.0.0",
    "section": "Other Related Deprecations",
    "text": "`build.dynamicImportVarsOptions.warnOnError`: it is now no-op",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L345",
    "p": 0.27
   },
@@ -4200,6 +4784,7 @@
    "version": "8.0.0",
    "section": "Other Related Deprecations",
    "text": "`resolve.alias[].customResolver`: Use a custom plugin with `resolveId` hook and `enforce: 'pre'` instead",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L346",
    "p": 0.78
   },
@@ -4207,6 +4792,7 @@
    "version": "8.0.0",
    "section": "Removed Deprecated Features",
    "text": "Passing a URL to `import.meta.hot.accept` is no longer supported. Please pass an id instead.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L350",
    "p": 0.79
   },
@@ -4215,6 +4801,7 @@
    "section": "Advanced",
    "text": "These breaking changes are expected to only affect a minority of use cases:",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L354",
    "p": 0.32
   },
@@ -4222,6 +4809,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "Extglobs are not supported yet (rolldown-vite#365)",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L356",
    "p": 0.26
   },
@@ -4229,6 +4817,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "TypeScript legacy namespace is only supported partially. See Oxc Transformer's related documentation for more details.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L357",
    "p": 0.4
   },
@@ -4236,6 +4825,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "`define` does not share reference for objects: When you pass an object as a value to `define`, each variable will have a separate copy of the object. See Oxc Transformer's related documentation for more details.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L358",
    "p": 0.32
   },
@@ -4243,6 +4833,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "`bundle` object changes (`bundle` is an object passed in `generateBundle` / `writeBundle` hooks, returned by `build` function): Assigning to `bundle[foo]` is not supported. This is discouraged by Rollup as well. Please use `this.emitFile()` instead. the reference is not shared across the hooks (rolldown-vite#410) `structuredClone(bundle)` errors with `DataCloneError: #<Object> could not be cloned`. This is not supported anymore. Please clone it with `structuredClone({ ...bundle })`. (rolldown-vite#128)",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L359",
    "p": 0.55
   },
@@ -4250,6 +4841,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "All parallel hooks in Rollup work as sequential hooks. See Rolldown's documentation for more details.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L363",
    "p": 0.15
   },
@@ -4257,6 +4849,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "`\"use strict\";` is not injected sometimes. See Rolldown's documentation for more details.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L364",
    "p": 0.2
   },
@@ -4264,6 +4857,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "Transforming to ES5 and below with plugin-legacy is not supported (rolldown-vite#452)",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L365",
    "p": 0.63
   },
@@ -4271,6 +4865,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "Passing the same browser with multiple versions of it to `build.target` option now errors: esbuild selects the latest version of it, which was probably not what you intended.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L366",
    "p": 0.6
   },
@@ -4278,6 +4873,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "Missing support by Rolldown: The following features are not supported by Rolldown and are no longer supported by Vite. `build.rollupOptions.output.format: 'system'` (rolldown#2387) `build.rollupOptions.output.format: 'amd'` (rolldown#2528) `shouldTransformCachedModule` hook (rolldown#4389) `resolveImportMeta` hook (rolldown#1010) `renderDynamicImport` hook (rolldown#4532) `resolveFileUrl` hook",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L367",
    "p": 0.79
   },
@@ -4285,6 +4881,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "`parseAst` / `parseAstAsync` functions are now deprecated in favor of `parseSync` / `parse` functions which have more features.",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L374",
    "p": 0.37
   },
@@ -4292,6 +4889,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "comments are removed before the `renderChunk` hook instead of after the `renderChunk` hook",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L375",
    "p": 0.23
   },
@@ -4299,6 +4897,7 @@
    "version": "8.0.0",
    "section": "Advanced",
    "text": "comments other than the ones listed here are moved, while Rollup only removes comments if the adjacent code is removed",
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L376",
    "p": 0.16
   },
@@ -4307,6 +4906,7 @@
    "section": "Migration from v6",
    "text": "Check the Migration from v6 Guide in the Vite v7 docs first to see the needed changes to port your app to Vite 7, and then proceed with the changes on this page.",
    "prose": true,
+   "kind": "guide",
    "source": "https://github.com/vitejs/vite/blob/a6d310e42e/docs/guide/migration.md#L380",
    "p": 0.59
   }

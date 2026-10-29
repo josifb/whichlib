@@ -1,7 +1,9 @@
 // Builds the breaking-change index of one package: collects the changelog
 // entries of every version after `from` up to `to` from its sources, has the
 // judge rate each entry once (answers kept in `cache`), and returns plain JSON.
-// No Node built-ins: fetching is done by the injected `sources`.
+// Each entry keeps the kind of source it came from (changelog, guide or
+// releases), which the card uses to rank it. No Node built-ins: fetching is
+// done by the injected `sources`.
 
 import { changelogEntries, notesEntries } from './entries.mjs';
 import { compareVersions, inRange, parseVersion } from './version.mjs';
@@ -22,13 +24,13 @@ async function collect(source, sources) {
     const { text, url } = await sources.file(source.repo, source.path);
     const format = source.path.endsWith('.rst') ? 'rst' : 'md';
     const entries = source.kind === 'guide' ? notesEntries(text, source.version, { format }) : changelogEntries(text, { format });
-    return entries.map(({ line, ...e }) => ({ ...e, source: `${url}#L${line}` }));
+    return entries.map(({ line, ...e }) => ({ ...e, kind: source.kind, source: `${url}#L${line}` }));
   }
   if (source.kind === 'releases') {
     const out = [];
     for (const r of await sources.releases(source.repo)) {
       const version = r.prerelease ? null : tagVersion(r.tag, source.tag ?? 'v{version}');
-      if (version) out.push(...notesEntries(r.body, version, { lines: true }).map(({ line, ...e }) => ({ ...e, source: r.url })));
+      if (version) out.push(...notesEntries(r.body, version, { lines: true }).map(({ line, ...e }) => ({ ...e, kind: 'releases', source: r.url })));
     }
     return out;
   }

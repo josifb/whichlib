@@ -1,23 +1,32 @@
 // Renders version cards from breaking-change indexes: per package one header
 // line, then the breaking changes since the version the agent likely knows,
-// most important first, each with its version and source link. Node-free.
+// what the authors said breaks first (migration guides, breaking headings),
+// then most likely breaking, each with its version and source link. Node-free.
 
 import { compareVersions } from './version.mjs';
 
 const MAX_BULLET = 200;
+// Headings authors file breaking changes under: "Breaking", "⚠ BREAKING CHANGES", "Async APIs (Breaking change)",
+// changesets' "Major Changes", Keep a Changelog's "Removed", "Removal of ...". Not "Non-breaking changes".
+const BREAKING_HEADING = /(?<!non-)\bbreaking\b|^\W*(?:major changes|removed|removals?)\b/i;
 
 function short(s) {
   if (s.length <= MAX_BULLET) return s;
   const space = s.lastIndexOf(' ', MAX_BULLET - 1);
   return s.slice(0, space > 100 ? space : MAX_BULLET - 1) + '…';
 }
-const bullet = (e) => `- ${short(e.prose && e.section ? `${e.section}: ${e.text}` : e.text)} (${e.version}, ${e.source})`;
+// Prose and release-note lines say little without their section ("`adapter` has been removed"): keep it.
+const withSection = (e) => (e.prose || e.kind === 'releases') && e.section;
+const bullet = (e) => `- ${short(withSection(e) ? `${e.section.replace(/:$/, '')}: ${e.text}` : e.text)} (${e.version}, ${e.source})`;
 
-/** The breaking entries after `index.from` up to `version`, most likely breaking first. */
+/** 0 for what the authors said breaks (a migration guide, or a breaking heading), 1 for everything else. */
+const authorityRank = (e) => (e.kind === 'guide' || BREAKING_HEADING.test(e.section ?? '') ? 0 : 1);
+
+/** The breaking entries after `index.from` up to `version`: by source authority, then most likely breaking first. */
 function breakingSince(index, version) {
   return index.entries
     .filter((e) => e.p >= index.threshold && compareVersions(e.version, version) <= 0)
-    .sort((a, b) => b.p - a.p || compareVersions(a.version, b.version));
+    .sort((a, b) => authorityRank(a) - authorityRank(b) || b.p - a.p || compareVersions(a.version, b.version));
 }
 
 function card(request, indexes) {
