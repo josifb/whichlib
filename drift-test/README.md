@@ -46,6 +46,11 @@ its working folder, even with `--setting-sources project`, so a folder below you
 would give every setup your own instructions. The runner refuses to start when it finds one
 there and names the file.
 
+`results.json` and `report.md` are saved after every finished task, so a run that stops
+(machine asleep, out of memory, Ctrl+C) loses nothing: continue it with
+`npm run drift -- --resume results/<date>T<time>`, which runs only the missing tasks with the
+same tasks, cards, setups and `--only` selection. Until it finishes, the report says "unfinished".
+
 Runs that fail for infrastructure reasons are recorded as **error**, not fail, and left out of
 the pass rates: a usage limit, a failed install, or an agent that crashed before changing any
 file. Rerun just those into the same report with

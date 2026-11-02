@@ -4,7 +4,7 @@ import { cp, mkdtemp, writeFile, readFile, readdir } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { rerunErrors, runDriftTest } from '../src/runner.mjs'
+import { rerunErrors, resumeRun, runDriftTest } from '../src/runner.mjs'
 
 const here = dirname(fileURLToPath(import.meta.url))
 const tasksDir = join(here, 'fixtures', 'tasks')
@@ -223,4 +223,55 @@ test('no verdict without the alone, context7 and whichlib setups', async () => {
   const { report, json } = await runScripted({ whichlib: ['add'] }, ['alone', 'whichlib'])
   assert.equal(json.summary.verdict.outcome, 'incomplete')
   assert.match(report, /No verdict/)
+})
+
+test('saves results.json after every finished run, so a run that dies keeps what it finished', async () => {
+  const dir = await outDir()
+  const savedCounts = []
+  await runDriftTest({
+    tasksDir,
+    cardsDir,
+    setups: ['alone', 'whichlib'],
+    agent: cardOnlyAgent,
+    outDir: dir,
+    onResult: async () => {
+      const saved = JSON.parse(await readFile(join(dir, 'results.json'), 'utf8'))
+      savedCounts.push(saved.results.length)
+    },
+  })
+  assert.deepEqual(savedCounts, [1, 2, 3, 4])
+  const report = await readFile(join(dir, 'report.md'), 'utf8')
+  assert.match(report, /whichlib/)
+})
+
+test('resuming a run that died runs only what is missing and keeps the earlier results', async () => {
+  const dir = await outDir()
+  const first = await runDriftTest({ tasksDir, cardsDir, setups: ['alone', 'whichlib'], only: ['add', 'greet'], agent: cardOnlyAgent, outDir: dir })
+  // As if the process had died after its first run.
+  const died = { ...first, finishedAt: null, results: first.results.slice(0, 1) }
+  await writeFile(join(dir, 'results.json'), JSON.stringify(died))
+
+  const ran = []
+  const agent = async (input) => {
+    ran.push(`${input.task.id}/${input.setup.id}`)
+    return cardOnlyAgent(input)
+  }
+  const run = await resumeRun({ resultsDir: dir, agent })
+
+  assert.deepEqual(ran, ['add/whichlib', 'greet/alone', 'greet/whichlib'])
+  assert.deepEqual(run.results[0], first.results[0])
+  assert.deepEqual(
+    run.results.map((r) => [r.task, r.setup, r.outcome]),
+    [
+      ['add', 'alone', 'fail'],
+      ['add', 'whichlib', 'pass'],
+      ['greet', 'alone', 'fail'],
+      ['greet', 'whichlib', 'pass'],
+    ],
+  )
+  assert.equal(run.startedAt, first.startedAt)
+  assert.ok(run.finishedAt)
+  const saved = JSON.parse(await readFile(join(dir, 'results.json'), 'utf8'))
+  assert.equal(saved.results.length, 4)
+  assert.equal(saved.summary.bySetup.whichlib.passed, 2)
 })

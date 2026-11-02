@@ -1,11 +1,12 @@
 #!/usr/bin/env node
 // npm run drift -- [--tasks dir] [--cards dir] [--setups alone,context7,whichlib,both] [--only tasks] [--out dir] [--model name] [--work dir]
 // npm run drift -- --rerun-errors <results dir>
+// npm run drift -- --resume <results dir>
 
 import { parseArgs } from 'node:util'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { rerunErrors, runDriftTest, SETUPS } from './runner.mjs'
+import { rerunErrors, resumeRun, runDriftTest, SETUPS } from './runner.mjs'
 import { createClaudeCodeAgent } from './claude-code.mjs'
 import { defaultWorkDir, prepareWorkDir } from './work-dir.mjs'
 
@@ -21,6 +22,7 @@ const { values } = parseArgs({
     'agent-timeout': { type: 'string', default: '900' },
     work: { type: 'string', default: defaultWorkDir() },
     'rerun-errors': { type: 'string' },
+    resume: { type: 'string' },
     help: { type: 'boolean', short: 'h' },
   },
 })
@@ -39,7 +41,9 @@ if (values.help) {
                          or any parent (default: ${defaultWorkDir()})
   --rerun-errors <dir>   rerun only the runs recorded as "error" in that results folder and
                          merge them into its results.json and report.md; uses that run's tasks
-                         and cards folders unless --tasks/--cards are given (pass the same --model)`)
+                         and cards folders unless --tasks/--cards are given (pass the same --model)
+  --resume <dir>         continue a run that stopped before the end (results are saved after every
+                         task): runs only what that results folder is missing (pass the same --model)`)
   process.exit(0)
 }
 
@@ -64,7 +68,11 @@ const common = {
 }
 
 let out, run
-if (values['rerun-errors']) {
+if (values.resume) {
+  out = resolve(values.resume)
+  console.log(`resuming into ${out}`)
+  run = await resumeRun({ ...common, resultsDir: out })
+} else if (values['rerun-errors']) {
   out = resolve(values['rerun-errors'])
   // Without --tasks/--cards the rerun uses the folders the original run recorded.
   const dir = (name) => values[name] && resolve(values[name])
@@ -75,6 +83,7 @@ if (values['rerun-errors']) {
   // One folder per run, so two runs on the same day never overwrite each other.
   const stamp = new Date().toISOString().slice(0, 16).replace(':', '-')
   out = resolve(values.out ?? join(root, 'results', stamp))
+  console.log(`results go to ${out} (saved after every task; if the run stops, continue with --resume ${out})`)
   run = await runDriftTest({
     ...common,
     tasksDir: resolve(values.tasks ?? join(root, 'tasks')),

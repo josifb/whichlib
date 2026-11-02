@@ -176,7 +176,7 @@ async function runPairs(pairs, { cards, agent, workRoot, agentTimeoutMs, checkTi
       const card = setup.whichlib ? cards.get(task.library) : null
       const result = await runOne({ task, setup, card, agent, workRoot: root, agentTimeoutMs, checkTimeoutMs })
       results.push(result)
-      onResult(result)
+      await onResult(result)
     }
   } finally {
     if (!workRoot) await rm(root, { recursive: true, force: true }).catch(() => {})
@@ -201,27 +201,64 @@ export async function runDriftTest({
   agentTimeoutMs = DEFAULT_AGENT_TIMEOUT_MS,
   checkTimeoutMs = DEFAULT_CHECK_TIMEOUT_MS,
   onResult = () => {},
+  previous, // an unfinished run (its results.json) to continue: its finished pairs are not run again
 }) {
   const setups = setupIds.map(resolveSetup)
   const tasks = selectTasks(await loadTasks(tasksDir), only)
   const cards = await loadCards(tasks, setups, cardsDir)
 
-  const startedAt = new Date().toISOString()
-  const pairs = tasks.flatMap((task) => setups.map((setup) => ({ task, setup })))
-  const results = await runPairs(pairs, { cards, agent, workRoot, agentTimeoutMs, checkTimeoutMs, onResult })
+  const all = tasks.flatMap((task) => setups.map((setup) => ({ task, setup })))
+  const done = previous?.results ?? []
+  const find = (results, { task, setup }) => results.find((r) => r.task === task.id && r.setup === setup.id)
+  const pairs = all.filter((pair) => !find(done, pair))
 
   const run = {
-    startedAt,
-    finishedAt: new Date().toISOString(),
+    ...previous,
+    startedAt: previous?.startedAt ?? new Date().toISOString(),
+    finishedAt: null,
     setups: setupIds,
+    only: only ?? null,
     tasksDir,
     cardsDir,
     tasks: tasks.length,
-    summary: summarize(results, setupIds),
-    results,
   }
-  if (outDir) await writeRun(outDir, run)
+  const fresh = []
+  // Saved after every finished pair, so a run that dies can be resumed without losing work.
+  const save = async () => {
+    run.results = all.map((pair) => find(fresh, pair) ?? find(done, pair)).filter(Boolean)
+    run.summary = summarize(run.results, setupIds)
+    if (outDir) await writeRun(outDir, run)
+  }
+  await runPairs(pairs, {
+    cards,
+    agent,
+    workRoot,
+    agentTimeoutMs,
+    checkTimeoutMs,
+    onResult: async (result) => {
+      fresh.push(result)
+      await save()
+      await onResult(result)
+    },
+  })
+  run.finishedAt = new Date().toISOString()
+  await save()
   return run
+}
+
+// Continues a run that stopped before the end (its results.json has no finishedAt), with the
+// same tasks, cards, setups and task selection, writing into the same folder.
+export async function resumeRun({ resultsDir, ...options }) {
+  const previous = JSON.parse(await readFile(join(resultsDir, 'results.json'), 'utf8'))
+  return runDriftTest({
+    ...options,
+    tasksDir: previous.tasksDir,
+    cardsDir: previous.cardsDir,
+    setups: previous.setups,
+    only: previous.only ?? undefined,
+    outDir: resultsDir,
+    previous,
+  })
 }
 
 // Reruns only the runs recorded as "error" in an earlier results folder, puts the new

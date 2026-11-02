@@ -68,7 +68,7 @@ export function renderReport(run) {
   const lines = [
     '# Drift Test report',
     '',
-    `Run ${run.startedAt} to ${run.finishedAt}. Model: ${models.join(', ') || 'unknown'}. ` +
+    `Run ${run.startedAt} to ${run.finishedAt ?? '(unfinished: resume with --resume)'}. Model:${models.join(', ') || 'unknown'}. ` +
       `${run.tasks} tasks, setups: ${setups.join(', ')}.`,
     '',
     'Pass or fail is decided only by each task\'s type checker and tests. ' +
