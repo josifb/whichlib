@@ -1,0 +1,1395 @@
+{
+  "startedAt": "2026-11-02T13:51:24.302Z",
+  "finishedAt": "2026-11-02T20:34:19.549Z",
+  "setups": [
+    "alone",
+    "context7",
+    "whichlib"
+  ],
+  "only": null,
+  "tasksDir": "E:\\private-projects\\whichlib\\whichlib\\drift-test\\tasks",
+  "cardsDir": "E:\\private-projects\\whichlib\\whichlib\\drift-test\\cards",
+  "tasks": 30,
+  "results": [
+    {
+      "task": "ai-support-chat",
+      "library": "ai",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 46909,
+      "tokens": {
+        "input": 206030,
+        "output": 2266
+      },
+      "costUsd": 0.2170732,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "ai-support-chat",
+      "library": "ai",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 62936,
+      "tokens": {
+        "input": 225859,
+        "output": 2150
+      },
+      "costUsd": 0.2172368,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "ai-support-chat",
+      "library": "ai",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 35113,
+      "tokens": {
+        "input": 132488,
+        "output": 1130
+      },
+      "costUsd": 0.1345534,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "ai-tool-context",
+      "library": "ai",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 54520,
+      "tokens": {
+        "input": 272875,
+        "output": 3595
+      },
+      "costUsd": 0.2752036,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "ai-tool-context",
+      "library": "ai",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 47839,
+      "tokens": {
+        "input": 270707,
+        "output": 2803
+      },
+      "costUsd": 0.3008162,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "ai-tool-context",
+      "library": "ai",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 42136,
+      "tokens": {
+        "input": 261303,
+        "output": 2444
+      },
+      "costUsd": 0.259518,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "ai-usage-report",
+      "library": "ai",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 65185,
+      "tokens": {
+        "input": 549257,
+        "output": 4333
+      },
+      "costUsd": 0.3812746,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "ai-usage-report",
+      "library": "ai",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 34219,
+      "tokens": {
+        "input": 189369,
+        "output": 2601
+      },
+      "costUsd": 0.2312286,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "ai-usage-report",
+      "library": "ai",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 58966,
+      "tokens": {
+        "input": 193921,
+        "output": 2808
+      },
+      "costUsd": 0.24226160000000002,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "langchain-chat-memory",
+      "library": "langchain",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 37480,
+      "tokens": {
+        "input": 118632,
+        "output": 1939
+      },
+      "costUsd": 0.1281034,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "langchain-chat-memory",
+      "library": "langchain",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 72036,
+      "tokens": {
+        "input": 193940,
+        "output": 4043
+      },
+      "costUsd": 0.2383078,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "langchain-chat-memory",
+      "library": "langchain",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 51272,
+      "tokens": {
+        "input": 104638,
+        "output": 1918
+      },
+      "costUsd": 0.1431524,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "langchain-summarize",
+      "library": "langchain",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 56755,
+      "tokens": {
+        "input": 93847,
+        "output": 1790
+      },
+      "costUsd": 0.118123,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "langchain-summarize",
+      "library": "langchain",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 76128,
+      "tokens": {
+        "input": 162036,
+        "output": 2026
+      },
+      "costUsd": 0.17959859999999997,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "langchain-summarize",
+      "library": "langchain",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 45463,
+      "tokens": {
+        "input": 104416,
+        "output": 1814
+      },
+      "costUsd": 0.13969420000000002,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "langchain-tool-agent",
+      "library": "langchain",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 77881,
+      "tokens": {
+        "input": 119260,
+        "output": 2004
+      },
+      "costUsd": 0.13218880000000002,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "langchain-tool-agent",
+      "library": "langchain",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 53971,
+      "tokens": {
+        "input": 231695,
+        "output": 2447
+      },
+      "costUsd": 0.215639,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "langchain-tool-agent",
+      "library": "langchain",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 75845,
+      "tokens": {
+        "input": 188196,
+        "output": 2255
+      },
+      "costUsd": 0.1798946,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "next-admin-actions",
+      "library": "next",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 112247,
+      "tokens": {
+        "input": 155840,
+        "output": 2655
+      },
+      "costUsd": 0.17703999999999998,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "next-admin-actions",
+      "library": "next",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 71655,
+      "tokens": {
+        "input": 157579,
+        "output": 2582
+      },
+      "costUsd": 0.1819804,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "next-admin-actions",
+      "library": "next",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 50273,
+      "tokens": {
+        "input": 163143,
+        "output": 2262
+      },
+      "costUsd": 0.174018,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "next-lint-script",
+      "library": "next",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 151156,
+      "tokens": {
+        "input": 117773,
+        "output": 1254
+      },
+      "costUsd": 0.1117668,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "next-lint-script",
+      "library": "next",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 206254,
+      "tokens": {
+        "input": 240839,
+        "output": 2910
+      },
+      "costUsd": 0.2198012,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "next-lint-script",
+      "library": "next",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 161495,
+      "tokens": {
+        "input": 162228,
+        "output": 1758
+      },
+      "costUsd": 0.1609704,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "next-product-page",
+      "library": "next",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 84395,
+      "tokens": {
+        "input": 204648,
+        "output": 2357
+      },
+      "costUsd": 0.1786728,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "next-product-page",
+      "library": "next",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 90004,
+      "tokens": {
+        "input": 260267,
+        "output": 3081
+      },
+      "costUsd": 0.2496878,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "next-product-page",
+      "library": "next",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 70426,
+      "tokens": {
+        "input": 131756,
+        "output": 1271
+      },
+      "costUsd": 0.1370008,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "prisma-blog-queries",
+      "library": "prisma",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 88724,
+      "tokens": {
+        "input": 247296,
+        "output": 3305
+      },
+      "costUsd": 0.19893919999999998,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "prisma-blog-queries",
+      "library": "prisma",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 85845,
+      "tokens": {
+        "input": 242565,
+        "output": 3516
+      },
+      "costUsd": 0.2369776,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "prisma-blog-queries",
+      "library": "prisma",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 43919,
+      "tokens": {
+        "input": 189877,
+        "output": 2170
+      },
+      "costUsd": 0.17828119999999997,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "prisma-seed",
+      "library": "prisma",
+      "setup": "alone",
+      "outcome": "fail",
+      "pass": false,
+      "reason": "check failed: `npx prisma db seed` exited 1",
+      "durationMs": 81521,
+      "tokens": {
+        "input": 237893,
+        "output": 2949
+      },
+      "costUsd": 0.2139472,
+      "model": "claude-opus-5-5",
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nRunning seed command `tsx prisma/seed.ts` ...\nC:\\drift-work\\prisma-seed-alone-YFpRDe\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:238\r\n      throw new PrismaClientKnownRequestError(message, {\r\n            ^\r\n\r\n\r\nPrismaClientKnownRequestError: \r\nInvalid `prisma.category.upsert()` invocation in\r\nC:\\drift-work\\prisma-seed-alone-YFpRDe\\prisma\\seed.ts:12:54\r\n\r\n   9 async function main() {\r\n  10   for (const { category, product } of catalog) {\r\n  11     // upsert on the unique `name` columns keeps the seed idempotent\r\n→ 12     const { id: categoryId } = await prisma.category.upsert(\r\nThe module '\\\\?\\C:\\drift-work\\prisma-seed-alone-YFpRDe\\node_modules\\better-sqlite3\\build\\Release\\better_sqlite3.node'\r\nwas compiled against a different Node.js version using\r\nNODE_MODULE_VERSION 137. This version of Node.js requires\r\nNODE_MODULE_VERSION 127. Please try re-compiling or re-installing\r\nthe module (for instance, using `npm rebuild` or `npm install`).\r\n    at vn.handleRequestError (C:\\drift-work\\prisma-seed-alone-YFpRDe\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:238:13)\r\n    at vn.handleAndLogRequestError (C:\\drift-work\\prisma-seed-alone-YFpRDe\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:184:12)\r\n    at vn.request (C:\\drift-work\\prisma-seed-alone-YFpRDe\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:153:12)\r\n    at async a (C:\\drift-work\\prisma-seed-alone-YFpRDe\\node_modules\\@prisma\\client\\src\\runtime\\getPrismaClient.ts:1012:24)\r\n    at async main (C:\\drift-work\\prisma-seed-alone-YFpRDe\\prisma\\seed.ts:12:32)\r\n    at async <anonymous> (C:\\drift-work\\prisma-seed-alone-YFpRDe\\prisma\\seed.ts:26:3) {\r\n  code: 'ERR_DLOPEN_FAILED',\r\n  meta: { modelName: 'Category' },\r\n  clientVersion: '7.10.1'\r\n}\r\n\r\nNode.js v22.13.1\r\n\nAn error occurred while running the seed command:\nError: Command failed with exit code 1: tsx prisma/seed.ts\n"
+    },
+    {
+      "task": "prisma-seed",
+      "library": "prisma",
+      "setup": "context7",
+      "outcome": "fail",
+      "pass": false,
+      "reason": "check failed: `npx prisma db seed` exited 1",
+      "durationMs": 86640,
+      "tokens": {
+        "input": 274387,
+        "output": 2686
+      },
+      "costUsd": 0.2196908,
+      "model": "claude-opus-5-5",
+      "output": "Loaded Prisma config from prisma.config.ts.\n\nRunning seed command `tsx prisma/seed.ts` ...\nPrismaClientKnownRequestError: \nInvalid `prisma.category.upsert()` invocation in\nC:\\drift-work\\prisma-seed-context7-We9Erp\\prisma\\seed.ts:12:54\n\n   9 async function main() {\n  10   for (const { category, product } of catalog) {\n  11     // upsert on the unique `name` columns keeps the seed idempotent\n→ 12     const { id: categoryId } = await prisma.category.upsert(\nThe module '\\\\?\\C:\\drift-work\\prisma-seed-context7-We9Erp\\node_modules\\better-sqlite3\\build\\Release\\better_sqlite3.node'\nwas compiled against a different Node.js version using\nNODE_MODULE_VERSION 137. This version of Node.js requires\nNODE_MODULE_VERSION 127. Please try re-compiling or re-installing\nthe module (for instance, using `npm rebuild` or `npm install`).\n    at vn.handleRequestError (C:\\drift-work\\prisma-seed-context7-We9Erp\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:238:13)\n    at vn.handleAndLogRequestError (C:\\drift-work\\prisma-seed-context7-We9Erp\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:184:12)\n    at vn.request (C:\\drift-work\\prisma-seed-context7-We9Erp\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:153:12)\n    at async a (C:\\drift-work\\prisma-seed-context7-We9Erp\\node_modules\\@prisma\\client\\src\\runtime\\getPrismaClient.ts:1012:24)\n    at async main (C:\\drift-work\\prisma-seed-context7-We9Erp\\prisma\\seed.ts:12:32) {\n  code: 'ERR_DLOPEN_FAILED',\n  meta: { modelName: 'Category' },\n  clientVersion: '7.10.1'\n}\n\nAn error occurred while running the seed command:\nError: Command failed with exit code 1: tsx prisma/seed.ts\n"
+    },
+    {
+      "task": "prisma-seed",
+      "library": "prisma",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 38370,
+      "tokens": {
+        "input": 136400,
+        "output": 1843
+      },
+      "costUsd": 0.1605938,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "prisma-todo-setup",
+      "library": "prisma",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 91277,
+      "tokens": {
+        "input": 266571,
+        "output": 4149
+      },
+      "costUsd": 0.23947060000000003,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "prisma-todo-setup",
+      "library": "prisma",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 85903,
+      "tokens": {
+        "input": 255531,
+        "output": 3809
+      },
+      "costUsd": 0.2622008,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "prisma-todo-setup",
+      "library": "prisma",
+      "setup": "whichlib",
+      "outcome": "fail",
+      "pass": false,
+      "reason": "check failed: `npx tsx --test drift-judge/*.test.ts` exited 1",
+      "durationMs": 129321,
+      "tokens": {
+        "input": 325107,
+        "output": 4100
+      },
+      "costUsd": 0.27926819999999997,
+      "model": "claude-opus-5-5",
+      "output": "TAP version 13\n# Subtest: adds, lists and completes todos in dev.db\nnot ok 1 - adds, lists and completes todos in dev.db\n  ---\n  duration_ms: 29.0877\n  location: 'C:\\\\drift-work\\\\prisma-todo-setup-whichlib-MkAwOH\\\\drift-judge\\\\todos.test.ts:8:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    \n    Invalid `prisma.todo.create()` invocation in\n    C:\\drift-work\\prisma-todo-setup-whichlib-MkAwOH\\src\\todos.ts:14:22\n    \n      11 export type { Todo };\n      12 \n      13 export function addTodo(title: string): Promise<Todo> {\n    → 14   return prisma.todo.create(\n    The module '\\\\?\\C:\\drift-work\\prisma-todo-setup-whichlib-MkAwOH\\node_modules\\better-sqlite3\\build\\Release\\better_sqlite3.node'\n    was compiled against a different Node.js version using\n    NODE_MODULE_VERSION 137. This version of Node.js requires\n    NODE_MODULE_VERSION 127. Please try re-compiling or re-installing\n    the module (for instance, using `npm rebuild` or `npm install`).\n  code: 'ERR_TEST_FAILURE'\n  stack: |-\n    vn.handleRequestError (C:\\drift-work\\prisma-todo-setup-whichlib-MkAwOH\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:238:13)\n    vn.handleAndLogRequestError (C:\\drift-work\\prisma-todo-setup-whichlib-MkAwOH\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:184:12)\n    vn.request (C:\\drift-work\\prisma-todo-setup-whichlib-MkAwOH\\node_modules\\@prisma\\client\\src\\runtime\\RequestHandler.ts:153:12)\n    async a (C:\\drift-work\\prisma-todo-setup-whichlib-MkAwOH\\node_modules\\@prisma\\client\\src\\runtime\\getPrismaClient.ts:1012:24)\n    async TestContext.<anonymous> (C:\\drift-work\\prisma-todo-setup-whichlib-MkAwOH\\drift-judge\\todos.test.ts:9:16)\n    async Test.run (node:internal/test_runner/test:932:9)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:296:3)\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 0\n# fail 1\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 441.9557\n"
+    },
+    {
+      "task": "pydantic-booking",
+      "library": "pydantic",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 31273,
+      "tokens": {
+        "input": 117302,
+        "output": 1706
+      },
+      "costUsd": 0.12082960000000001,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "pydantic-booking",
+      "library": "pydantic",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 24006,
+      "tokens": {
+        "input": 133393,
+        "output": 1904
+      },
+      "costUsd": 0.1684974,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "pydantic-booking",
+      "library": "pydantic",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 21723,
+      "tokens": {
+        "input": 78192,
+        "output": 1042
+      },
+      "costUsd": 0.1175822,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "pydantic-catalog",
+      "library": "pydantic",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 34169,
+      "tokens": {
+        "input": 150246,
+        "output": 3024
+      },
+      "costUsd": 0.17415180000000002,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "pydantic-catalog",
+      "library": "pydantic",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 33568,
+      "tokens": {
+        "input": 165330,
+        "output": 2428
+      },
+      "costUsd": 0.1933752,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "pydantic-catalog",
+      "library": "pydantic",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 28814,
+      "tokens": {
+        "input": 163826,
+        "output": 2572
+      },
+      "costUsd": 0.1837164,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "pydantic-settings-env",
+      "library": "pydantic",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 36154,
+      "tokens": {
+        "input": 94131,
+        "output": 1748
+      },
+      "costUsd": 0.114875,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "pydantic-settings-env",
+      "library": "pydantic",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 33344,
+      "tokens": {
+        "input": 190085,
+        "output": 2234
+      },
+      "costUsd": 0.1841812,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "pydantic-settings-env",
+      "library": "pydantic",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 22956,
+      "tokens": {
+        "input": 158504,
+        "output": 1654
+      },
+      "costUsd": 0.14926920000000002,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "react-item-refs",
+      "library": "react",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 84645,
+      "tokens": {
+        "input": 290546,
+        "output": 3539
+      },
+      "costUsd": 0.23056000000000001,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "react-item-refs",
+      "library": "react",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 68026,
+      "tokens": {
+        "input": 255970,
+        "output": 3813
+      },
+      "costUsd": 0.25665899999999997,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "react-item-refs",
+      "library": "react",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 41764,
+      "tokens": {
+        "input": 160966,
+        "output": 2236
+      },
+      "costUsd": 0.16989579999999996,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "react-mount-app",
+      "library": "react",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 61478,
+      "tokens": {
+        "input": 210053,
+        "output": 3246
+      },
+      "costUsd": 0.20183159999999997,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "react-mount-app",
+      "library": "react",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 109720,
+      "tokens": {
+        "input": 343598,
+        "output": 4793
+      },
+      "costUsd": 0.3030036,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "react-mount-app",
+      "library": "react",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 67516,
+      "tokens": {
+        "input": 193424,
+        "output": 2836
+      },
+      "costUsd": 0.20245840000000004,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "react-stopwatch",
+      "library": "react",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 45837,
+      "tokens": {
+        "input": 144055,
+        "output": 2278
+      },
+      "costUsd": 0.1456774,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "react-stopwatch",
+      "library": "react",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 53886,
+      "tokens": {
+        "input": 220657,
+        "output": 2835
+      },
+      "costUsd": 0.220505,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "react-stopwatch",
+      "library": "react",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 58635,
+      "tokens": {
+        "input": 160295,
+        "output": 2312
+      },
+      "costUsd": 0.1709774,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "sqlalchemy-active-users",
+      "library": "sqlalchemy",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 23956,
+      "tokens": {
+        "input": 70118,
+        "output": 1329
+      },
+      "costUsd": 0.10038219999999999,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "sqlalchemy-active-users",
+      "library": "sqlalchemy",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 38752,
+      "tokens": {
+        "input": 173346,
+        "output": 2161
+      },
+      "costUsd": 0.15396100000000001,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "sqlalchemy-active-users",
+      "library": "sqlalchemy",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 31701,
+      "tokens": {
+        "input": 104819,
+        "output": 1524
+      },
+      "costUsd": 0.1326956,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "sqlalchemy-add-user",
+      "library": "sqlalchemy",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 19407,
+      "tokens": {
+        "input": 94456,
+        "output": 1369
+      },
+      "costUsd": 0.1078904,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "sqlalchemy-add-user",
+      "library": "sqlalchemy",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 30085,
+      "tokens": {
+        "input": 182334,
+        "output": 2004
+      },
+      "costUsd": 0.17090180000000002,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "sqlalchemy-add-user",
+      "library": "sqlalchemy",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 19224,
+      "tokens": {
+        "input": 104140,
+        "output": 1336
+      },
+      "costUsd": 0.1277234,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "sqlalchemy-order-report",
+      "library": "sqlalchemy",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 21267,
+      "tokens": {
+        "input": 71032,
+        "output": 1907
+      },
+      "costUsd": 0.11895780000000002,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "sqlalchemy-order-report",
+      "library": "sqlalchemy",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 33582,
+      "tokens": {
+        "input": 186434,
+        "output": 2704
+      },
+      "costUsd": 0.1964,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "sqlalchemy-order-report",
+      "library": "sqlalchemy",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 22625,
+      "tokens": {
+        "input": 78722,
+        "output": 1845
+      },
+      "costUsd": 0.13838140000000002,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "tailwind-brand-setup",
+      "library": "tailwindcss",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 28973,
+      "tokens": {
+        "input": 95106,
+        "output": 1285
+      },
+      "costUsd": 0.10840739999999999,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "tailwind-brand-setup",
+      "library": "tailwindcss",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 34944,
+      "tokens": {
+        "input": 179955,
+        "output": 1806
+      },
+      "costUsd": 0.15841639999999999,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "tailwind-brand-setup",
+      "library": "tailwindcss",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 21686,
+      "tokens": {
+        "input": 132027,
+        "output": 1515
+      },
+      "costUsd": 0.1403204,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "tailwind-dark-toggle",
+      "library": "tailwindcss",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 18583,
+      "tokens": {
+        "input": 139998,
+        "output": 1148
+      },
+      "costUsd": 0.110059,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "tailwind-dark-toggle",
+      "library": "tailwindcss",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 23110,
+      "tokens": {
+        "input": 181904,
+        "output": 1223
+      },
+      "costUsd": 0.1533238,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "tailwind-dark-toggle",
+      "library": "tailwindcss",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 16858,
+      "tokens": {
+        "input": 102652,
+        "output": 1043
+      },
+      "costUsd": 0.11843020000000001,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "tailwind-postcss-utility",
+      "library": "tailwindcss",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 23832,
+      "tokens": {
+        "input": 119986,
+        "output": 1407
+      },
+      "costUsd": 0.1189432,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "tailwind-postcss-utility",
+      "library": "tailwindcss",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 34026,
+      "tokens": {
+        "input": 154687,
+        "output": 1467
+      },
+      "costUsd": 0.1538526,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "tailwind-postcss-utility",
+      "library": "tailwindcss",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 19560,
+      "tokens": {
+        "input": 78051,
+        "output": 1140
+      },
+      "costUsd": 0.119514,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "vite-drop-console",
+      "library": "vite",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 31821,
+      "tokens": {
+        "input": 144666,
+        "output": 1842
+      },
+      "costUsd": 0.1388736,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "vite-drop-console",
+      "library": "vite",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 160747,
+      "tokens": {
+        "input": 266792,
+        "output": 2841
+      },
+      "costUsd": 0.26887500000000003,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "vite-drop-console",
+      "library": "vite",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 49141,
+      "tokens": {
+        "input": 240014,
+        "output": 2366
+      },
+      "costUsd": 0.2541526,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "vite-keep-names",
+      "library": "vite",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 38389,
+      "tokens": {
+        "input": 213292,
+        "output": 2781
+      },
+      "costUsd": 0.20966859999999998,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "vite-keep-names",
+      "library": "vite",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 30474,
+      "tokens": {
+        "input": 155745,
+        "output": 1983
+      },
+      "costUsd": 0.16966479999999998,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "vite-keep-names",
+      "library": "vite",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 27297,
+      "tokens": {
+        "input": 166116,
+        "output": 1640
+      },
+      "costUsd": 0.17363080000000003,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "vite-vendor-chunk",
+      "library": "vite",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 27388,
+      "tokens": {
+        "input": 143769,
+        "output": 1818
+      },
+      "costUsd": 0.1414668,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "vite-vendor-chunk",
+      "library": "vite",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 34488,
+      "tokens": {
+        "input": 242521,
+        "output": 2181
+      },
+      "costUsd": 0.20374799999999998,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "vite-vendor-chunk",
+      "library": "vite",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 24853,
+      "tokens": {
+        "input": 164917,
+        "output": 1738
+      },
+      "costUsd": 0.1698598,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-order-errors",
+      "library": "zod",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 33743,
+      "tokens": {
+        "input": 146150,
+        "output": 2447
+      },
+      "costUsd": 0.152573,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-order-errors",
+      "library": "zod",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 35306,
+      "tokens": {
+        "input": 154639,
+        "output": 2274
+      },
+      "costUsd": 0.1761762,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-order-errors",
+      "library": "zod",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 28184,
+      "tokens": {
+        "input": 78129,
+        "output": 1658
+      },
+      "costUsd": 0.1335478,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-server-config",
+      "library": "zod",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 25790,
+      "tokens": {
+        "input": 117384,
+        "output": 2016
+      },
+      "costUsd": 0.1281926,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-server-config",
+      "library": "zod",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 41411,
+      "tokens": {
+        "input": 185385,
+        "output": 2529
+      },
+      "costUsd": 0.1894064,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-server-config",
+      "library": "zod",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 27337,
+      "tokens": {
+        "input": 129914,
+        "output": 1854
+      },
+      "costUsd": 0.1456482,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-signup-form",
+      "library": "zod",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 28011,
+      "tokens": {
+        "input": 119064,
+        "output": 1977
+      },
+      "costUsd": 0.131633,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-signup-form",
+      "library": "zod",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 37096,
+      "tokens": {
+        "input": 150214,
+        "output": 2203
+      },
+      "costUsd": 0.1598002,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-signup-form",
+      "library": "zod",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 33472,
+      "tokens": {
+        "input": 104936,
+        "output": 2188
+      },
+      "costUsd": 0.1500394,
+      "model": "claude-opus-5-5"
+    }
+  ],
+  "summary": {
+    "bySetup": {
+      "alone": {
+        "passed": 29,
+        "total": 30,
+        "errors": 0,
+        "rate": 96.7
+      },
+      "context7": {
+        "passed": 29,
+        "total": 30,
+        "errors": 0,
+        "rate": 96.7
+      },
+      "whichlib": {
+        "passed": 29,
+        "total": 30,
+        "errors": 0,
+        "rate": 96.7
+      }
+    },
+    "verdict": {
+      "outcome": "stop",
+      "vsAlone": 0,
+      "vsContext7": 0
+    }
+  }
+}

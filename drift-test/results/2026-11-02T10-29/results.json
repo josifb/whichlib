@@ -1,0 +1,176 @@
+{
+  "startedAt": "2026-11-02T10:29:55.590Z",
+  "finishedAt": "2026-11-02T10:38:49.204Z",
+  "setups": [
+    "alone",
+    "context7",
+    "whichlib"
+  ],
+  "tasksDir": "E:\\private-projects\\whichlib\\whichlib\\drift-test\\tasks",
+  "cardsDir": "E:\\private-projects\\whichlib\\whichlib\\drift-test\\cards",
+  "tasks": 3,
+  "summary": {
+    "bySetup": {
+      "alone": {
+        "passed": 3,
+        "total": 3,
+        "errors": 0,
+        "rate": 100
+      },
+      "context7": {
+        "passed": 3,
+        "total": 3,
+        "errors": 0,
+        "rate": 100
+      },
+      "whichlib": {
+        "passed": 3,
+        "total": 3,
+        "errors": 0,
+        "rate": 100
+      }
+    },
+    "verdict": {
+      "outcome": "stop",
+      "vsAlone": 0,
+      "vsContext7": 0
+    }
+  },
+  "results": [
+    {
+      "task": "zod-order-errors",
+      "library": "zod",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 45136,
+      "tokens": {
+        "input": 118677,
+        "output": 1968
+      },
+      "costUsd": 0.13070479999999998,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-order-errors",
+      "library": "zod",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 75273,
+      "tokens": {
+        "input": 185057,
+        "output": 2488
+      },
+      "costUsd": 0.1932632,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-order-errors",
+      "library": "zod",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 28443,
+      "tokens": {
+        "input": 77883,
+        "output": 1788
+      },
+      "costUsd": 0.13474139999999998,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-server-config",
+      "library": "zod",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 41232,
+      "tokens": {
+        "input": 93984,
+        "output": 1904
+      },
+      "costUsd": 0.12163159999999999,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-server-config",
+      "library": "zod",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 47312,
+      "tokens": {
+        "input": 211484,
+        "output": 2029
+      },
+      "costUsd": 0.1787994,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-server-config",
+      "library": "zod",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 38102,
+      "tokens": {
+        "input": 129952,
+        "output": 1897
+      },
+      "costUsd": 0.1465548,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-signup-form",
+      "library": "zod",
+      "setup": "alone",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 30793,
+      "tokens": {
+        "input": 118638,
+        "output": 2248
+      },
+      "costUsd": 0.1365622,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-signup-form",
+      "library": "zod",
+      "setup": "context7",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 41798,
+      "tokens": {
+        "input": 184591,
+        "output": 2122
+      },
+      "costUsd": 0.1809126,
+      "model": "claude-opus-5-5"
+    },
+    {
+      "task": "zod-signup-form",
+      "library": "zod",
+      "setup": "whichlib",
+      "outcome": "pass",
+      "pass": true,
+      "reason": null,
+      "durationMs": 41908,
+      "tokens": {
+        "input": 104829,
+        "output": 1840
+      },
+      "costUsd": 0.1431516,
+      "model": "claude-opus-5-5"
+    }
+  ]
+}
