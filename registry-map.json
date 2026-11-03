@@ -26560,7 +26560,7 @@
  },
  "DhvanilPatel/swarm-cursors": {
   "npm": null,
-  "checkedAt": "2026-10-15T11:37:42.367Z"
+  "checkedAt": "2026-11-03T14:25:20.907Z"
  },
  "AyoubAchour/net-switch": {
   "npm": null,
@@ -29181,7 +29181,7 @@
  },
  "chhoumann/t3-pstack": {
   "npm": null,
-  "checkedAt": "2026-10-23T11:46:47.671Z"
+  "checkedAt": "2026-11-03T14:25:20.907Z"
  },
  "aboard-io/tinylittleoffice": {
   "npm": "tinylittleoffice",
@@ -35086,7 +35086,7 @@
  },
  "agent0ai/tuxee": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-11-03T14:25:20.907Z"
  },
  "MrMR-711/NoteBlockClone": {
   "npm": null,
@@ -35290,7 +35290,7 @@
  },
  "wingedpanther/cleanmytv": {
   "npm": null,
-  "checkedAt": "2026-10-21T11:58:22.045Z"
+  "checkedAt": "2026-11-03T14:25:20.907Z"
  },
  "bigWhiteWhite/we-chat-official-account": {
   "npm": null,
@@ -41394,8 +41394,8 @@
   "checkedAt": "2026-10-25T11:39:51.254Z"
  },
  "chenkezhen480/dsh-world": {
-  "npm": null,
-  "checkedAt": "2026-10-25T11:39:51.254Z"
+  "npm": "dsh-world",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
  },
  "WhaBuzz/whaleads": {
   "npm": "whaleads",
@@ -48844,7 +48844,8 @@
  },
  "modelflare-ai/AnyModelBot": {
   "npm": null,
-  "checkedAt": "2026-11-01T13:32:27.244Z"
+  "checkedAt": "2026-11-03T14:25:20.907Z",
+  "pypi": null
  },
  "jiuyang5354/bilibili-margin": {
   "npm": null,
@@ -50325,5 +50326,1377 @@
  "neuregex/freefield": {
   "pypi": null,
   "checkedAt": "2026-11-02T16:06:05.460Z"
+ },
+ "Balanov/verdict": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "SplendorHornbill/windows-animated-wallpapers": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "jwang771/3d-world-simulator": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Open-RUA/uni-robot-agent": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "DominikScholz/open-bot-avatar": {
+  "npm": "open-bot-avatar",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "fuyichen0725/blinkmimic": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "MagoStudio/MagoStudio": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "JDhruv14/ascii-diorama": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "1337isnot1337/DOPPLERGEIST": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "chadandyou/jrames": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "larajeftic/memechain": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "shanselman/gputaskman": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "RUC-NLPIR/CoworkOS": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "anomalyco/textjs": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "supercli-site/awesome-coding-plan": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Arcanum-Sec/SpikeStrip": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "wiwek13/morpheflow-portal": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "well0nez/afterglow-web": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "VITASID57/ai-toy-hub": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "joeseesun/hackerbooks-cn": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "threerocks/sweety-statechart-video": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "wanyingsun357-ship-it/pwa-location-guide": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "MatthewKuKanich/CivSwitch-ControlCenter": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "su-kaka/st-catiecli-tasks": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alfidarasi/comprehensive-design-review": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "AlphaaCode/Popbook": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "mahmed74/server-buddies": {
+  "npm": "server-buddies",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "baonguyen-agilityio/bobix": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "jakub-tucek/herdr-annotator": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "ergunozyurt/herdr-super-agent": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Takifighter/lovelace-solar-heatmap": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Sakib2263/hivemind-public": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Creeptones/insanity-xtreme": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "oxomkbk/Interactive-Playground": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "GEd520/legado-sources": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alexwjj/x-reader": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "OlegChe77/local-ai": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "vincitamore/hermes-slopcannon": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Leisure066/EngPilot": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "myu28599-source/dsh-deepseek-web-combo": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "thanhbinh-io/MiniShop-NTU": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "futorio/red-green": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "minh-shadow/Phantom-Shield-Chrome-Extensions": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "upstrategylab/cookie-away": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "huazhenglin2003/huazhenglin2003.github.io": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "publishtop/codex-usage-card-windows": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "cipherdecrypted/freebuff-automated-repair-tool": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "amit-srivatsa/linkedin-content-agent": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "FST-EchoFly/dsh-im-phone-chat": {
+  "npm": "dsh-im-phone-chat",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "shenwei322/dsh-purge-ports": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "mrmajko123/freeify": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "zhengmingliang/chinese-calendar-cinnamon": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpenwhale/MakeWebUsable-Firefox-Extension": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "DeevsDeevs/deevs-herdr-kit": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "gauravgupta26-hub/library-dekho": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "JUTZUGC/phongent-deploy-guide": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "JUTZUGC/reveric-deploy-guide": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "doveris263/gugu-music-player": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "codrops/TextCharacterAnimations": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "jihaoran222/dsh-qq-violet": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "xoteqh/ShakePack": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "AniChikage/opc-harness": {
+  "npm": "opc-harness",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "hoangdinhreborn/Swiftride-client": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Vienky/English_Desk": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "8aozi/poetry-time": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "921-Jared/feature-test": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "AYoungSablinoid/netease-music-age": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "361376552-beep/dsh-task-delete": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "mexht/ps4-14.00-wkjb": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "opekefuya64-oss/cf-deepseek-translator": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "jjangsky/herdr-pr-flow": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "KonshinHaoshin/dsh-eni": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Siddiq2772/ilmo": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Huxtuntios/pf2e-consumables-tracker": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "mrdoob/codevember-2026": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "JUTZUGC/anymodelbot-deploy-guide": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "pilef-co/bqto-action": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "XuYuanDaWang/dsh-message-edit": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "btvdev03/zen-desk-clock": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "JUTZUGC/anymove-deploy-guide": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "JUTZUGC/cyber-xiaoya-live-deploy-guide": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "bk19921030315-ai/teardown-autopilot": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Modanez/HomeMinerProxy": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "kariyamii/MiiCreator": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "romuloalcanfor/justhold": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "T-AI-Labs/awesome-claude-code-mods": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "sipelepis/basura-vision": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "WolfThatMoos/MooGames": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "CreeperboyMCVN/Kanna": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "janehwzn/snugnote": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "SoftVortexProd/third-wheel": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Durrell-229/hunter-bridge": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "lingmao233/dsh-plugin-attune-wechat-agent": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "NstyZ/BiliFound": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "zhaojunsheng0525/rcl-launcher": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "unkarelian/canon-corps": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Raven-Jackdaw/dsh-film-analysis": {
+  "npm": "dsh-film-analysis",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "MerkyorLynn/dsh-live-compact": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "hoangminhon/city-beer-station": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "AmosIscr/dsh-session-git-sync": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "leandrofus/who-wants-to-be-a-DEV": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "logika-studio/repoflags": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Xiuxiu-6/harnessmm-dsh": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "jonasmelheb/younesh": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "shinarugrok-a11y/Gutenberg-virtual-library": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Yiheng-Hu-Henry/bilibili-speed": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "mechseiko/Frontend-eval": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Lyken17/gomoku-cthulhu": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "ucfjoe/dsh-team-progress": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Rsuiyi/Zotero_PaperLoom": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "TeVerde29/janken-poker": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "cybertron288/herdr-mods": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "joelhooks/mutant-cafe": {
+  "npm": "mutant-cafe",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "abouchedidxcode/open-source-hands": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "outgoingyang/solana-sniping-bot": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "BinaryDevil/bunny-math": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "gmpetrov/agent-screenplay": {
+  "npm": "agent-screenplay",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "csimpkins22/mechanical-pianist": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "rit3zh/expo-scroll-metaball": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Robbings/Paperpane": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "s1egg/ascii-sharks-wallpaper": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "mashupsolution/tu-tien-online": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "sisyphuslabs/doriface": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "ChevalierOnGithub/slingsh0t": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "danielmiessler/cortex-cloud": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "TTDiang2/TT_Persona": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "nekibud/OC-editor": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "ahmetcankacar54/relay": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "firatoltulu/AhtapotAgentHq": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "JamieLivingstone/ArchStudio": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "ytton/compare-video": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "shreyanshio/saksham-fln": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "psygreg/prompt-blocker": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "tartanunicorn/flinders": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Shudesu/personal-line-harness": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Mprcoder/attend-ai-axis": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "silverbronze/code-tycoon": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "devsergioherrera/read-aloud-mod": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "ashwini2134/VidyaVerse": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "boss-dog916/single-player-jubensha-agent-release": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "franco-roura/ledger-01": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "DanielOu1208/portals": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "kai1303/space": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Goprogabriel/echotrace": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "lilzem/pi-setup": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "VictorStochero/orca-agent-pool": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "halisdalkilic/algoritma-ogrenme": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "periskopos/periskopos": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "DonDejvo/Code-Geass-Chronicles": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "nayandas69/crazy-downloader": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "fpkybcmp4c-lgtm/gold-strategy-lab-oss": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "YoelRuso/TellMotion": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Somazz88/ascii-wallpapers": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "noproblemerr-web/live-room-sync": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "a422015028/clouddrive2_ksu_magisk": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "atbox-zz/taixuan": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Garionhk/Assist-Writer": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "New-Altitude/Oddboro": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "salexandr0s/ai-config": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "xiaomuxin406/multi-document-management": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "TanStack/oracles": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "zhouhantao/wagespack": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "JeropsWang/WeChatBot": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "vibegui/zapzero": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "hb268039591/qq-farm-bot-auto-refresh": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "aryananand-iitp/PRIVASEC.AI": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "i1mT/loop": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "orafaelfragoso/crewyard": {
+  "npm": "crewyard",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "xendo3000/claude-token-consumption-bar": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "trentderosa/Ai-Club-Simmer": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "aleiruiz/offerbound-public": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "foryourever/ssh-plugin-dsh": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "wangdongzuopin/contract-guard": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "mpinedaj/atlas-of-small-weathers": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "zhenxiliang/teamlink": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "kuangre123/dsh-context-press": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "mstan/newtype": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "SID9-HoneyBee/honeybee-waggle": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "MohammadAliNekouie/jlink-rtt-terminal": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "AlbertoBarrago/rex-usage": {
+  "npm": "rex-usage",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "MiniMax-AI/mcode-agent-table": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "arcships/magpie-dim-oauth": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "itsalissonsilva/math-knowledge": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Itsjust-dan/Dan-s-Portfolio": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "guyucode/MarkdownShelf": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "dengo07/studih": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Fai1th/Website-Dev-Obsidian-Vault": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "soyleremo3/claude-account-switcher": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "boxiao-qd/lucid": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Jiyaul007/Neural-Engine": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "rich-richer/claude-mods": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "uday-d-d/rise-and-tails": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Safayet-Tahmid/SpongeBob-Jellyfish-Catcher-": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Nya-Nya-Hoshino/fx-leverage-front": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "pablodefloripa-sudo/equitylabs01": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "shyamk-alt/Portfolio_series": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "haithamexe/dx-toolkit": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "ogous/anchorset": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "KrisHedges/db-seatbelt": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Dhruvi0708/Portfolio": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "wideryan/clawd-pet": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "beipo-ai/NorthCUA": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "luisxl15/GOD-OF-WAR-HD-COLLECTION": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "aditiiprasad/digital-diwali": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "osamaayub/nextjs-ai-chatbot": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "deanyool/lorevault": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Over9rowth/O9-RD-MAO-Governance": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "egorfm/nfl-big-data-bowl-2027": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "deanyool/corpmatch": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "slinky010/dual-screen-mode": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "CHE0DAN/recap-shorts-automation": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Amrkadry/moraa-ai-offsec-agent": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "laszapens/Atta": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "liangdabiao/comic-story-video": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Vumb-VibeCoder/hook-everything": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "hguihanarjes/sudo-font": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Dis1re/xk_streamparser": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "spider12223/exterminator": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "huanngzh/oh-my-skills": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "levantolabs/extract-bench": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "aldotoa/max-payne-recomp": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "nathanmarlor/flightscope-public": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Liuy90/qemu-kvm-devirtualization-core": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "lingdongbudong/Comfyui-Anima-Wardrobe-V5": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Essoz/pdf2midi": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "AhmadHassan-BTed/AhmadHassan-BTed": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Artecoode/Exodus-Balance-Flasher": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-pulmonary-dynamic-airway-closing-pressure-pel-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-cardiac-pulse-pressure-variation-ppv-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-oculomotor-saccadic-main-sequence-velocity-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-ocular-dynamic-contour-tonometry-opa-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-pulmonary-closing-volume-nitrogen-washout-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-cerebral-tissue-oxygenation-nirs-rso2-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-pulmonary-airway-resistance-fot-oscillometry-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-somatosensory-trigeminal-blink-reflex-r1-r2-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-acoustic-efferent-contralateral-suppression-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-somatosensory-transcranial-magnetic-cortical-silent-period-csp-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-auditory-binaural-masking-level-difference-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-ocular-contrast-sensitivity-pelli-robson-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-ocular-cone-contrast-test-color-vision-cct-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-ocular-macular-pigment-optical-density-mpod-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-acoustic-efferent-olivocochlear-reflex-moc-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-ocular-dark-adaptation-rod-intercept-time-rit-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-ocular-torsional-optokinetic-nystagmus-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-cardiac-ventricular-late-potentials-saecg-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-respiratory-chemoreflex-hypercapnic-hcv-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-cerebral-critical-closing-pressure-crpc-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-somatosensory-trigeminal-blink-reflex-r1-r2-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-cutaneous-microdialysis-perfusion-recovery-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-oculomotor-vergence-peak-velocity-dynamics-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-somatosensory-f-wave-chronodispersion-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-postural-vestibular-cervical-vemp-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-cardiac-systolic-time-intervals-pep-lvet-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-acoustic-efferent-olivocochlear-reflex-moc-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-cerebral-autoregulation-hyperemic-thrr-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-cutaneous-transcutaneous-oxygen-tcpo2-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-ocular-tear-film-breakup-time-nibut-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-pulmonary-airway-resistance-body-plethysmography-raw-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-cutaneous-tactile-allodynia-vonfrey-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-renal-fractional-excretion-sodium-fena-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-cardiac-coronary-flow-velocity-reserve-cfvr-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-pulmonary-single-breath-diffusing-capacity-dlco-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-pulmonary-alveolar-dead-space-bohr-enghoff-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-cardiac-pulse-arrival-time-pat-pwt-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-cutaneous-sebaceous-lipogenesis-sebum-excretion-rate-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-ocular-dark-adaptation-rod-intercept-time-rit-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-cutaneous-transepidermal-water-loss-tewl-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-cutaneous-axon-reflex-flare-laser-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-cutaneous-transepidermal-water-loss-tewl-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-respiratory-chemoreflex-hypercapnic-hcv-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "20Z/Instagram_Hide_Follower_Lists": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-cutaneous-sebaceous-lipogenesis-sebum-excretion-rate-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "mbzuai-oryx/EO-Jev": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-pulmonary-nitrogen-washout-closing-volume-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-pulmonary-single-breath-diffusing-capacity-dlco-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-acoustic-startle-prepulse-inhibition-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-pulmonary-airway-resistance-fot-oscillometry-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-acoustic-otoacoustic-emissions-dpoae-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-cardiac-pulse-arrival-time-pat-pwt-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-pulmonary-alveolar-dead-space-bohr-enghoff-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-somatosensory-h-reflex-excitability-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-electroretinogram-photopic-negative-erg-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-cutaneous-microvascular-post-occlusive-reactive-hyperemia-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-acoustic-efferent-contralateral-suppression-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-ocular-foveal-avascular-zone-octa-faz-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-ocular-macular-pigment-optical-density-mpod-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-auditory-binaural-masking-level-difference-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-acoustic-startle-prepulse-inhibition-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-pulmonary-closing-volume-nitrogen-washout-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Alpha-Park/genpark-personal-agent-ocular-contrast-sensitivity-pelli-robson-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-cardiac-total-peripheral-resistance-tpri-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-pulmonary-dynamic-hyperinflation-ic-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-pupil-light-reflex-pupillometry-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-cutaneous-thermal-quantitative-qset-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "alphaparkinc/genpark-personal-agent-acoustic-frequency-following-response-ffr-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "RikiyaT/lm_understand-logs": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "rerun-build/rerun": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Roland0511/dsh-marktext": {
+  "npm": "dsh-marktext",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "tanlu9410-beep/xiexie-calendar": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "kubai087/pro-threads": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "asdfd3/3d-memory-sea": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "leodavincs/kalem": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "mathew5612/devilop": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "modem-dev/boxery": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "agentic-videogen/awesome-agentic-videogen": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "ahmedemad3/excalicraft": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Felpborges/skill-reel": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "EBEBEEBE/comfyui-lucid-vrp": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "851-labs/honest-thumbnails": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "CharcherGit/pokebonk-app": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "iiwish/kgdiff": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Marius-Adam/claude-files-pane": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "ElysiumForge-Labs/elysium-chain-mcp": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "p10node/office-engine": {
+  "npm": "@p10node/office-engine",
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "kunai974/nyx-player": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "noah-thing/open-cursor": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "Jokejoker-designer/QUANTSMART": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "jaklimoff/claude-grammar": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "scholay-rssd/rssd": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "wangweihong/comfyui-pose-gallery": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "launsion-boop/phone-dsh": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "maluramichael/awesome-reverse-engineer-anything": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "R238Company/meu-emprego-novo": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "duyunzhoudyz/dyz-med-paper-skills": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "ilkemerol/foreman-vision-pub": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "sandskatherinenymph/Electrum-Fake-Balance": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "xlyu0106/CUA-Master": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "LucianoNeo/pokemon-pokopia-pt-br": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "JaydenTeoh/Soft-MTP": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "DrAlanK/Alan-RIP-Dpi-Windows": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "akari-sora/synology-nas-cli": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "justhalfbit/thinksmart-ubuntu-image": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "OamIcs/NablaMimic": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "kerlenton/bootgpt": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "PisenAILab/china-patent-figure-skill": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "cisco-ai-defense/project-quarry": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "cibernicola/tdt-local": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "vixhal-baraiya/qwenGPU": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "JuneYaooo/rea-video": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "zhouwei713/luobo-design": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "kusule1351-hue/thought-desk": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "OpenTodoApp/OpenTodo": {
+  "npm": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
+ },
+ "divagr18/qwenputer": {
+  "pypi": null,
+  "checkedAt": "2026-11-03T14:25:20.907Z"
  }
 }
